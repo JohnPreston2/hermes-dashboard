@@ -1,0 +1,65 @@
+{
+  "last_sync": "2026-06-10T14:32:00Z",
+  "regime": {
+    "bias": "LONG",
+    "conviction": "HIGH",
+    "history": [
+      {"day":"M","val":1},{"day":"T","val":1},{"day":"W","val":0},
+      {"day":"T","val":1},{"day":"F","val":1},{"day":"S","val":1},{"day":"S","val":-1}
+    ]
+  },
+  "sectors": [
+    {"name":"DEFI","status":"BULLISH","desc":"TVL +2.3%  |  Aave v4 launch"},
+    {"name":"AI","status":"NEUTRAL","desc":"TAO consolidating  |  FET range"},
+    {"name":"PERPS","status":"BULLISH","desc":"OI rising  |  Funding normal"},
+    {"name":"LENDING","status":"CAUTIOUS","desc":"Rates climbing  |  Risk watch"},
+    {"name":"DEX","status":"NEUTRAL","desc":"Volume flat  |  No catalyst"}
+  ],
+  "performance": {
+    "wr": 58,
+    "trades": 23,
+    "rr": "2.4x",
+    "streak": "+3W",
+    "pnl": "+$18.40",
+    "long_wr": 62,
+    "short_wr": 41
+  },
+  "memo": {
+    "regime_insight": "Market in early-cycle accumulation. BTC holding above $104k with decreasing volatility. Altcoin rotation into DeFi blue-chips signals institutional positioning.",
+    "signal_trust": "High confidence: composite_momentum_T12 on AERO (backtest WR 67%, aligned with sector thesis). Medium: VIRTUAL volume breakout (T6, thin depth — monitor closely).",
+    "blind_spots": "Funding rates near zero across board. Could signal calm or exhaustion. Watch BTC.D for rotation. BRETT exposure concentrated — single-token risk.",
+    "adjustment": "Tighten VIRTUAL SL to -2.2% (depth). Skip BRETT T6."
+  },
+  "signals": [
+    {"name":"composite_mom_T12","token":"AERO","conf":"72%","dir":"LONG","time":"14:02","status":"ACTIVE"},
+    {"name":"vol_breakout_T6","token":"VIRTUAL","conf":"61%","dir":"LONG","time":"14:02","status":"ACTIVE"},
+    {"name":"mean_rev_T24","token":"AIXBT","conf":"58%","dir":"SHORT","time":"12:02","status":"GATED"},
+    {"name":"momentum_div_T12","token":"MORPHO","conf":"55%","dir":"LONG","time":"12:02","status":"WAIT"},
+    {"name":"oi_surge_T6","token":"BRETT","conf":"48%","dir":"LONG","time":"10:02","status":"REJECTED"},
+    {"name":"funding_flip_T12","token":"VVV","conf":"43%","dir":"SHORT","time":"08:02","status":"BLACKLIST"},
+    {"name":"depth_squeeze_T6","token":"AERO","conf":"67%","dir":"LONG","time":"06:02","status":"FILLED"},
+    {"name":"rsi_div_T24","token":"VIRTUAL","conf":"52%","dir":"LONG","time":"04:02","status":"EXPIRED"}
+  ],
+  "tokens": [
+    {"name":"AERO","tier":"A","score":78,"sparkline":[40,45,42,55,60,72,68,75,78,76,78]},
+    {"name":"VIRTUAL","tier":"A","score":71,"sparkline":[50,48,52,55,60,58,65,68,71,70,71]},
+    {"name":"AIXBT","tier":"B","score":63,"sparkline":[70,65,60,55,58,62,60,63,63,62,63]},
+    {"name":"MORPHO","tier":"B","score":59,"sparkline":[45,50,48,52,55,58,56,59,59,58,59]},
+    {"name":"BRETT","tier":"B","score":45,"sparkline":[55,52,50,48,46,44,45,44,45,44,45]},
+    {"name":"VVV","tier":"C","score":32,"sparkline":[60,55,50,45,40,38,35,33,32,31,32]}
+  ],
+  "convergence": [
+    {"token":"AERO","score":82,"desc":"momentum + funding + OI aligned","horizon":"T12","features":"3/3 features"},
+    {"token":"VIRTUAL","score":67,"desc":"volume + momentum convergence","horizon":"T6","features":"2/3 features"},
+    {"token":"MORPHO","score":44,"desc":"partial: momentum only","horizon":"T12","features":"1/3 features"}
+  ],
+  "health": [
+    {"name":"Agent VPS","status":"ONLINE","color":"green"},
+    {"name":"Delta VPS","status":"ONLINE","color":"green"},
+    {"name":"Venice API","status":"OK","color":"green"},
+    {"name":"Hyperliquid","status":"CONNECTED","color":"green"},
+    {"name":"Redis","status":"ACTIVE","color":"green"},
+    {"name":"Forensics","status":"IDLE","color":"cyan"}
+  ],
+  "uptime": "14d 7h"
+}
