@@ -486,6 +486,59 @@ body {
   line-height: 1.7;
 }
 
+/* === NEWS FEED === */
+.news-list { padding: 8px 14px 10px; max-height: 200px; overflow-y: auto; }
+
+.news-item {
+  display: flex;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.news-item:last-child { border-bottom: none; }
+
+.news-sentiment {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.news-sentiment.bullish { background: var(--green); }
+.news-sentiment.bearish { background: var(--red); }
+.news-sentiment.neutral { background: var(--grey); }
+
+.news-body { flex: 1; min-width: 0; }
+
+.news-title {
+  font-size: 10px;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.news-meta {
+  font-size: 8px;
+  color: var(--dark-grey);
+  margin-top: 2px;
+  display: flex;
+  gap: 8px;
+}
+
+.news-source { color: var(--cyan); }
+
+.news-tags span {
+  font-size: 7px;
+  padding: 1px 4px;
+  margin-left: 4px;
+  background: var(--purple-dim);
+  color: var(--purple);
+}
+
 /* === SIGNAL FEED === */
 .signal-table { padding: 8px 14px 14px; }
 

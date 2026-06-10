@@ -59,6 +59,15 @@ const FALLBACK_DATA = {
     { name: "Redis", status: "ACTIVE", color: "green" },
     { name: "Forensics", status: "IDLE", color: "cyan" }
   ],
+  news: [
+    {title:"The DeFi Moment for Prediction Markets",source:"Chainlink Blog",sentiment:"neutral",sectors:["defi"],is_defi:true,is_ai:false},
+    {title:"Aave V4 Launches With Unified Liquidity Layer",source:"The Block",sentiment:"bullish",sectors:["defi","lending"],is_defi:true,is_ai:false},
+    {title:"TAO Network Announces Compute Subnet Upgrade",source:"CryptoPanic",sentiment:"bullish",sectors:["ai"],is_defi:false,is_ai:true},
+    {title:"Funding Rates Reset Across Major Perps",source:"Coinglass",sentiment:"neutral",sectors:["perps"],is_defi:false,is_ai:false},
+    {title:"MorphoLabs Treasury Diversification Proposal",source:"Governance Forum",sentiment:"neutral",sectors:["defi","lending"],is_defi:true,is_ai:false},
+    {title:"Base DEX Volume Hits New Monthly High",source:"DeFiLlama",sentiment:"bullish",sectors:["dex"],is_defi:true,is_ai:false}
+  ],
+  positions: [],
   uptime: "14d 7h"
 };
 
@@ -170,6 +179,27 @@ function render(data) {
     <div class="memo-section"><div class="memo-heading blind">BLIND SPOTS</div><div class="memo-text">${data.memo.blind_spots}</div></div>
     <div class="memo-section"><div class="memo-heading adjust">ADJUSTMENT</div><div class="memo-text">${data.memo.adjustment}</div></div>
   `;
+
+  // News
+  const nl = document.getElementById('news-list');
+  const newsItems = data.news || [];
+  nl.innerHTML = newsItems.map(n => {
+    const tags = [];
+    if (n.is_defi) tags.push('DeFi');
+    if (n.is_ai) tags.push('AI');
+    (n.sectors || []).forEach(s => { if (s && !tags.includes(s.toUpperCase())) tags.push(s); });
+    const tagHtml = tags.slice(0, 3).map(t => `<span>${t}</span>`).join('');
+    return `<div class="news-item">
+      <div class="news-sentiment ${n.sentiment || 'neutral'}"></div>
+      <div class="news-body">
+        <div class="news-title">${n.title || ''}</div>
+        <div class="news-meta">
+          <span class="news-source">${n.source || ''}</span>
+          <span class="news-tags">${tagHtml}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 
   // Signals
   const sr = document.getElementById('signal-rows');
