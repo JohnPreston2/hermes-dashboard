@@ -1,65 +1,377 @@
 {
-  "last_sync": "2026-06-10T14:32:00Z",
+  "last_sync": "2026-06-10T20:26:07.738840+00:00",
   "regime": {
-    "bias": "LONG",
-    "conviction": "HIGH",
+    "bias": "SHORT",
+    "conviction": "7",
     "history": [
-      {"day":"M","val":1},{"day":"T","val":1},{"day":"W","val":0},
-      {"day":"T","val":1},{"day":"F","val":1},{"day":"S","val":1},{"day":"S","val":-1}
+      {
+        "day": "M",
+        "val": 0
+      },
+      {
+        "day": "T",
+        "val": 0
+      },
+      {
+        "day": "W",
+        "val": -1
+      },
+      {
+        "day": "T",
+        "val": 0
+      },
+      {
+        "day": "F",
+        "val": 0
+      },
+      {
+        "day": "S",
+        "val": 0
+      },
+      {
+        "day": "S",
+        "val": 0
+      }
     ]
   },
   "sectors": [
-    {"name":"DEFI","status":"BULLISH","desc":"TVL +2.3%  |  Aave v4 launch"},
-    {"name":"AI","status":"NEUTRAL","desc":"TAO consolidating  |  FET range"},
-    {"name":"PERPS","status":"BULLISH","desc":"OI rising  |  Funding normal"},
-    {"name":"LENDING","status":"CAUTIOUS","desc":"Rates climbing  |  Risk watch"},
-    {"name":"DEX","status":"NEUTRAL","desc":"Volume flat  |  No catalyst"}
+    {
+      "name": "DEFI",
+      "status": "NEUTRAL",
+      "desc": "Watching DeFi protocols"
+    },
+    {
+      "name": "AI",
+      "status": "NEUTRAL",
+      "desc": "AI token analysis"
+    },
+    {
+      "name": "PERPS",
+      "status": "ACTIVE",
+      "desc": "12 HIGH anomalies detected"
+    },
+    {
+      "name": "LENDING",
+      "status": "NEUTRAL",
+      "desc": "Lending protocols"
+    },
+    {
+      "name": "DEX",
+      "status": "NEUTRAL",
+      "desc": "DEX activity"
+    }
   ],
   "performance": {
-    "wr": 58,
-    "trades": 23,
-    "rr": "2.4x",
-    "streak": "+3W",
-    "pnl": "+$18.40",
-    "long_wr": 62,
-    "short_wr": 41
+    "wr": 40,
+    "trades": 60,
+    "rr": "1.1x",
+    "streak": "-1L",
+    "pnl": "+$1.66",
+    "long_wr": 40,
+    "short_wr": 36
   },
   "memo": {
-    "regime_insight": "Market in early-cycle accumulation. BTC holding above $104k with decreasing volatility. Altcoin rotation into DeFi blue-chips signals institutional positioning.",
-    "signal_trust": "High confidence: composite_momentum_T12 on AERO (backtest WR 67%, aligned with sector thesis). Medium: VIRTUAL volume breakout (T6, thin depth — monitor closely).",
-    "blind_spots": "Funding rates near zero across board. Could signal calm or exhaustion. Watch BTC.D for rotation. BRETT exposure concentrated — single-token risk.",
-    "adjustment": "Tighten VIRTUAL SL to -2.2% (depth). Skip BRETT T6."
+    "regime_insight": "The system performs best during clean trending BTC moves with normalized funding; current bearish regime is entrenched but choppy, with distribution-phase tokens and extreme negative funding producing false short breakdowns and traps.",
+    "signal_trust": "- **MORPHO composite_LONG_T6**: recent trade hit TP for +7.73% in NEUTRAL bias, proving high-confidence T6 longs can deliver outsized gains even in bearish regimes; consistent with MORPHO\u2019s 33% WR and +1.43% avg PnL last 30 trades. - **MORPHO SHORT signals (T6/T12)**: a recent SHORT timeout delivered +4.16%, and overall MORPHO shorts have shown resilience\u2014low drawdowns and positive carry when timed with BTC weakness. - **AERO SHORT (high-confidence, BTC-confirmed)**: despite noise, AERO\u2019s last 4",
+    "blind_spots": "Strict directional bias filtering may block high-confidence outlier signals\u2014MORPHO composite_LONG_T6 proved that a single strong T6 long can overcome a SHORT macro bias and deliver a full TP win. Applying a confidence override (e.g., >70) for such signals could materially lift PnL without degrading risk.",
+    "adjustment": "- **Cut size 50%** on all new positions until after the first win (CRITICAL streak rule). - **Ban AIXBT trades** completely and **avoid 08:00 UTC entries** (low WR hour). - **Raise min confidence for BRETT and VIRTUAL to 65**, while allowing **MORPHO T6 longs with confidence \u226570 even if BIAS=SHORT** (override filter with a note on token phase not being extreme distribution). - Require **BTC confirmation** (e.g., 2h close below support) before entering any short signal on AERO/BRETT."
   },
   "signals": [
-    {"name":"composite_mom_T12","token":"AERO","conf":"72%","dir":"LONG","time":"14:02","status":"ACTIVE"},
-    {"name":"vol_breakout_T6","token":"VIRTUAL","conf":"61%","dir":"LONG","time":"14:02","status":"ACTIVE"},
-    {"name":"mean_rev_T24","token":"AIXBT","conf":"58%","dir":"SHORT","time":"12:02","status":"GATED"},
-    {"name":"momentum_div_T12","token":"MORPHO","conf":"55%","dir":"LONG","time":"12:02","status":"WAIT"},
-    {"name":"oi_surge_T6","token":"BRETT","conf":"48%","dir":"LONG","time":"10:02","status":"REJECTED"},
-    {"name":"funding_flip_T12","token":"VVV","conf":"43%","dir":"SHORT","time":"08:02","status":"BLACKLIST"},
-    {"name":"depth_squeeze_T6","token":"AERO","conf":"67%","dir":"LONG","time":"06:02","status":"FILLED"},
-    {"name":"rsi_div_T24","token":"VIRTUAL","conf":"52%","dir":"LONG","time":"04:02","status":"EXPIRED"}
+    {
+      "name": "unknown",
+      "token": "?",
+      "conf": "0%",
+      "dir": "LONG",
+      "time": "--:--",
+      "status": "WAIT"
+    },
+    {
+      "name": "unknown",
+      "token": "?",
+      "conf": "0%",
+      "dir": "LONG",
+      "time": "--:--",
+      "status": "WAIT"
+    },
+    {
+      "name": "unknown",
+      "token": "?",
+      "conf": "0%",
+      "dir": "LONG",
+      "time": "--:--",
+      "status": "WAIT"
+    },
+    {
+      "name": "unknown",
+      "token": "?",
+      "conf": "0%",
+      "dir": "LONG",
+      "time": "--:--",
+      "status": "WAIT"
+    },
+    {
+      "name": "unknown",
+      "token": "?",
+      "conf": "0%",
+      "dir": "LONG",
+      "time": "--:--",
+      "status": "WAIT"
+    }
   ],
   "tokens": [
-    {"name":"AERO","tier":"A","score":78,"sparkline":[40,45,42,55,60,72,68,75,78,76,78]},
-    {"name":"VIRTUAL","tier":"A","score":71,"sparkline":[50,48,52,55,60,58,65,68,71,70,71]},
-    {"name":"AIXBT","tier":"B","score":63,"sparkline":[70,65,60,55,58,62,60,63,63,62,63]},
-    {"name":"MORPHO","tier":"B","score":59,"sparkline":[45,50,48,52,55,58,56,59,59,58,59]},
-    {"name":"BRETT","tier":"B","score":45,"sparkline":[55,52,50,48,46,44,45,44,45,44,45]},
-    {"name":"VVV","tier":"C","score":32,"sparkline":[60,55,50,45,40,38,35,33,32,31,32]}
+    {
+      "name": "AERO",
+      "tier": "B",
+      "score": 50,
+      "sparkline": []
+    },
+    {
+      "name": "VIRTUAL",
+      "tier": "B",
+      "score": 50,
+      "sparkline": []
+    },
+    {
+      "name": "AIXBT",
+      "tier": "B",
+      "score": 50,
+      "sparkline": []
+    },
+    {
+      "name": "MORPHO",
+      "tier": "B",
+      "score": 50,
+      "sparkline": []
+    },
+    {
+      "name": "BRETT",
+      "tier": "B",
+      "score": 50,
+      "sparkline": []
+    },
+    {
+      "name": "VVV",
+      "tier": "B",
+      "score": 50,
+      "sparkline": []
+    }
   ],
   "convergence": [
-    {"token":"AERO","score":82,"desc":"momentum + funding + OI aligned","horizon":"T12","features":"3/3 features"},
-    {"token":"VIRTUAL","score":67,"desc":"volume + momentum convergence","horizon":"T6","features":"2/3 features"},
-    {"token":"MORPHO","score":44,"desc":"partial: momentum only","horizon":"T12","features":"1/3 features"}
+    {
+      "token": "DYDX",
+      "score": 99,
+      "desc": "funding_spread \u2014 HL bullish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "AAVE",
+      "score": 40,
+      "desc": "funding_spread \u2014 HL bullish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "WLD",
+      "score": 40,
+      "desc": "funding_spread \u2014 HL bullish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "UNI",
+      "score": 40,
+      "desc": "funding_spread \u2014 HL bearish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "GMX",
+      "score": 40,
+      "desc": "funding_spread \u2014 HL bearish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    }
+  ],
+  "news": [
+    {
+      "title": "Lava Network Signs Tokenization Pact for Planned 40,000-Unit Caribbean Project",
+      "source": "The Defiant",
+      "sentiment": "neutral",
+      "published": "2026-06-10T21:30:00Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Solana Exchange Raydium Hit With $1.34 Million Exploit as DeFi Attacks Grow",
+      "source": "Decrypt",
+      "sentiment": "bearish",
+      "published": "2026-06-10T20:19:35Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Here\u2019s what happened in crypto today",
+      "source": "CoinTelegraph",
+      "sentiment": "neutral",
+      "published": "2026-06-10T19:53:26Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Tether, Nvidia and Amazon Back Humanoid Robotics Firm NEURA in $1.4 Billion Funding Round",
+      "source": "Decrypt",
+      "sentiment": "neutral",
+      "published": "2026-06-10T19:30:32Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "The Internet Is Furious at Anthropic After Claude Fable 5 Release",
+      "source": "Decrypt",
+      "sentiment": "neutral",
+      "published": "2026-06-10T19:17:27Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "UK crypto advocates launch campaign against banks blocking exchange transfers",
+      "source": "CoinTelegraph",
+      "sentiment": "bullish",
+      "published": "2026-06-10T18:55:00Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Pending Bank of Japan rate decision may impact Bitcoin price: Should traders prepare?",
+      "source": "CoinTelegraph",
+      "sentiment": "neutral",
+      "published": "2026-06-10T18:41:15Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "AI Helped People Spot Fake News\u2014Then Made Them Worse at It: MIT",
+      "source": "Decrypt",
+      "sentiment": "neutral",
+      "published": "2026-06-10T18:40:06Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "On-Chain Tracking Revives Allegations That Hoskinson Sold 1.5B ADA in the 2021 Rally",
+      "source": "The Defiant",
+      "sentiment": "bullish",
+      "published": "2026-06-10T18:17:26Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Botanix Will Shut Down Bitcoin Layer-2 Network in July, Citing Lack of DeFi Demand",
+      "source": "Decrypt",
+      "sentiment": "neutral",
+      "published": "2026-06-10T18:11:36Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Bitcoin Is Getting Closer to the Bottom, But Demand Is Falling: CryptoQuant",
+      "source": "Decrypt",
+      "sentiment": "neutral",
+      "published": "2026-06-10T17:47:40Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Supermicro Computer (SMCI) Stock Down 18% Today, Here\u2019s Why",
+      "source": "Watcher Guru",
+      "sentiment": "neutral",
+      "published": "2026-06-10T17:24:34Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Anchorage backs Treasury\u2019s GENIUS AML rules, seeks secondary-market sanctions clarity",
+      "source": "CoinTelegraph",
+      "sentiment": "neutral",
+      "published": "2026-06-10T17:20:02Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Attacker Mints 10 Billion TOP Tokens Through Governance Takeover, Drains $1.58M from Balancer Pool",
+      "source": "The Defiant",
+      "sentiment": "neutral",
+      "published": "2026-06-10T17:08:28Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "7 Factors That Actually Matter When Choosing a Crypto Swap Platform",
+      "source": "Decrypt",
+      "sentiment": "neutral",
+      "published": "2026-06-10T17:01:03Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    }
+  ],
+  "positions": [
+    {
+      "coin": "BRETT",
+      "side": "SHORT",
+      "entry": 0.005449,
+      "signal": "?",
+      "pnl_pct": 0
+    },
+    {
+      "coin": "MORPHO",
+      "side": "LONG",
+      "entry": 2.12183,
+      "signal": "?",
+      "pnl_pct": 0
+    }
   ],
   "health": [
-    {"name":"Agent VPS","status":"ONLINE","color":"green"},
-    {"name":"Delta VPS","status":"ONLINE","color":"green"},
-    {"name":"Venice API","status":"OK","color":"green"},
-    {"name":"Hyperliquid","status":"CONNECTED","color":"green"},
-    {"name":"Redis","status":"ACTIVE","color":"green"},
-    {"name":"Forensics","status":"IDLE","color":"cyan"}
+    {
+      "name": "Agent VPS",
+      "status": "ONLINE",
+      "color": "green"
+    },
+    {
+      "name": "Delta VPS",
+      "status": "DOWN",
+      "color": "red"
+    },
+    {
+      "name": "Venice API",
+      "status": "OK",
+      "color": "green"
+    },
+    {
+      "name": "Hyperliquid",
+      "status": "CONNECTED",
+      "color": "green"
+    },
+    {
+      "name": "Redis",
+      "status": "ACTIVE",
+      "color": "green"
+    }
   ],
-  "uptime": "14d 7h"
+  "uptime": "live"
 }
