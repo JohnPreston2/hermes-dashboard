@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-06-11T07:20:01.256260+00:00",
+  "last_sync": "2026-06-11T08:13:39.881321+00:00",
   "regime": {
     "bias": "LONG",
     "conviction": "2",
@@ -78,44 +78,112 @@
   },
   "signals": [
     {
-      "name": "unknown",
-      "token": "?",
-      "conf": "0%",
+      "name": "SCR_FCI_LONG_T24",
+      "token": "MORPHO",
+      "conf": "100%",
       "dir": "LONG",
-      "time": "--:--",
-      "status": "WAIT"
+      "time": "08:13",
+      "horizon": "T24",
+      "status": "ACTIVE"
     },
     {
-      "name": "unknown",
-      "token": "?",
-      "conf": "0%",
+      "name": "IPS10k_LONG_T24",
+      "token": "VVV",
+      "conf": "100%",
       "dir": "LONG",
-      "time": "--:--",
-      "status": "WAIT"
+      "time": "08:13",
+      "horizon": "T24",
+      "status": "ACTIVE"
     },
     {
-      "name": "unknown",
-      "token": "?",
-      "conf": "0%",
-      "dir": "LONG",
-      "time": "--:--",
-      "status": "WAIT"
+      "name": "SCR_lag2_SHORT_T12",
+      "token": "MORPHO",
+      "conf": "92%",
+      "dir": "SHORT",
+      "time": "08:13",
+      "horizon": "T12",
+      "status": "ACTIVE"
     },
     {
-      "name": "unknown",
-      "token": "?",
-      "conf": "0%",
-      "dir": "LONG",
-      "time": "--:--",
-      "status": "WAIT"
+      "name": "SCR_roll6_SHORT_T12",
+      "token": "MORPHO",
+      "conf": "89%",
+      "dir": "SHORT",
+      "time": "08:13",
+      "horizon": "T12",
+      "status": "ACTIVE"
     },
     {
-      "name": "unknown",
-      "token": "?",
-      "conf": "0%",
+      "name": "IPS10k_LONG_T12",
+      "token": "VVV",
+      "conf": "89%",
       "dir": "LONG",
-      "time": "--:--",
-      "status": "WAIT"
+      "time": "08:13",
+      "horizon": "T12",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "TCI_roll6_SHORT_T12",
+      "token": "AIXBT",
+      "conf": "85%",
+      "dir": "SHORT",
+      "time": "08:13",
+      "horizon": "T12",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "WCC_z_LONG_T24",
+      "token": "VVV",
+      "conf": "82%",
+      "dir": "LONG",
+      "time": "08:13",
+      "horizon": "T24",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "IPS10k_LONG_T24",
+      "token": "AIXBT",
+      "conf": "79%",
+      "dir": "LONG",
+      "time": "08:13",
+      "horizon": "T24",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "IPS10k_LONG_T24",
+      "token": "MORPHO",
+      "conf": "77%",
+      "dir": "LONG",
+      "time": "08:13",
+      "horizon": "T24",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "IPS10k_z24_SHORT_T12",
+      "token": "AIXBT",
+      "conf": "76%",
+      "dir": "SHORT",
+      "time": "08:13",
+      "horizon": "T12",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "IPS10k_LONG_T24",
+      "token": "AERO",
+      "conf": "76%",
+      "dir": "LONG",
+      "time": "08:13",
+      "horizon": "T24",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "TCI_lag1_LONG_T24",
+      "token": "VVV",
+      "conf": "72%",
+      "dir": "LONG",
+      "time": "08:13",
+      "horizon": "T24",
+      "status": "ACTIVE"
     }
   ],
   "tokens": [
@@ -123,36 +191,48 @@
       "name": "AERO",
       "tier": "B",
       "score": 50,
+      "regime": "NEUTRAL",
+      "composite_raw": 0.0,
       "sparkline": []
     },
     {
       "name": "VIRTUAL",
       "tier": "B",
       "score": 50,
-      "sparkline": []
-    },
-    {
-      "name": "AIXBT",
-      "tier": "B",
-      "score": 50,
+      "regime": "NEUTRAL",
+      "composite_raw": 0.0,
       "sparkline": []
     },
     {
       "name": "MORPHO",
       "tier": "B",
       "score": 50,
+      "regime": "NEUTRAL",
+      "composite_raw": 0.0,
       "sparkline": []
     },
     {
       "name": "BRETT",
       "tier": "B",
       "score": 50,
+      "regime": "NEUTRAL",
+      "composite_raw": 0.0,
       "sparkline": []
     },
     {
       "name": "VVV",
       "tier": "B",
       "score": 50,
+      "regime": "NEUTRAL",
+      "composite_raw": 0.0,
+      "sparkline": []
+    },
+    {
+      "name": "AIXBT",
+      "tier": "B",
+      "score": 45,
+      "regime": "NEUTRAL",
+      "composite_raw": 0.343,
       "sparkline": []
     }
   ],
@@ -160,42 +240,81 @@
     {
       "token": "DYDX",
       "score": 99,
-      "desc": "funding_spread \u2014 HL bearish",
-      "horizon": "T12",
-      "features": "hyperliquid"
-    },
-    {
-      "token": "GMX",
-      "score": 40,
-      "desc": "funding_spread \u2014 HL bearish",
-      "horizon": "T12",
-      "features": "hyperliquid"
-    },
-    {
-      "token": "UNI",
-      "score": 40,
-      "desc": "funding_spread \u2014 HL bearish",
+      "desc": "hyperliquid \u2014 HL bearish",
       "horizon": "T12",
       "features": "hyperliquid"
     },
     {
       "token": "WLD",
-      "score": 40,
-      "desc": "funding_spread \u2014 HL bullish",
+      "score": 99,
+      "desc": "hyperliquid \u2014 HL bullish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "GMX",
+      "score": 78,
+      "desc": "hyperliquid \u2014 HL bearish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "BTC",
+      "score": 71,
+      "desc": "hyperliquid \u2014 HL bearish",
       "horizon": "T12",
       "features": "hyperliquid"
     },
     {
       "token": "AAVE",
-      "score": 40,
-      "desc": "funding_spread \u2014 HL bullish",
+      "score": 69,
+      "desc": "hyperliquid \u2014 HL bullish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "CRV",
+      "score": 67,
+      "desc": "hyperliquid \u2014 buy_dominant",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "LINK",
+      "score": 64,
+      "desc": "hyperliquid \u2014 HL bearish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "UNI",
+      "score": 62,
+      "desc": "hyperliquid \u2014 HL bearish",
       "horizon": "T12",
       "features": "hyperliquid"
     }
   ],
   "news": [
     {
-      "title": "TradFi advisors want stablecoins, tokenization over Bitcoin: Bitwise",
+      "title": "XRP In Trouble? Price Falls To $1.10",
+      "source": "Watcher Guru",
+      "sentiment": "neutral",
+      "published": "2026-06-11T08:02:00Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "Here\u2019s what happened in crypto today",
+      "source": "CoinTelegraph",
+      "sentiment": "neutral",
+      "published": "2026-06-11T07:55:49Z",
+      "sectors": [],
+      "is_defi": false,
+      "is_ai": false
+    },
+    {
+      "title": "TradFi advisers want stablecoins, tokenization over Bitcoin: Bitwise",
       "source": "CoinTelegraph",
       "sentiment": "neutral",
       "published": "2026-06-11T07:01:31Z",
@@ -310,42 +429,9 @@
       "sectors": [],
       "is_defi": false,
       "is_ai": false
-    },
-    {
-      "title": "Binance Stock Trading Draws 84% of First-Week Volume From Emerging Markets",
-      "source": "The Defiant",
-      "sentiment": "neutral",
-      "published": "2026-06-10T20:34:40Z",
-      "sectors": [],
-      "is_defi": false,
-      "is_ai": false
-    },
-    {
-      "title": "Solana Exchange Raydium Hit With $1.34 Million Exploit as DeFi Attacks Grow",
-      "source": "Decrypt",
-      "sentiment": "bearish",
-      "published": "2026-06-10T20:19:35Z",
-      "sectors": [],
-      "is_defi": false,
-      "is_ai": false
     }
   ],
-  "positions": [
-    {
-      "coin": "MORPHO",
-      "side": "LONG",
-      "entry": 1.9704,
-      "signal": "?",
-      "pnl_pct": 0
-    },
-    {
-      "coin": "BRETT",
-      "side": "SHORT",
-      "entry": 0.005617,
-      "signal": "?",
-      "pnl_pct": 0
-    }
-  ],
+  "positions": [],
   "health": [
     {
       "name": "Agent VPS",
@@ -354,8 +440,8 @@
     },
     {
       "name": "Delta VPS",
-      "status": "DOWN",
-      "color": "red"
+      "status": "ONLINE",
+      "color": "green"
     },
     {
       "name": "Venice API",
