@@ -311,6 +311,51 @@ function render(data) {
     }
   }
 
+  // === MARKET PRICES ===
+  const pricesEl = document.getElementById('prices-content');
+  if (pricesEl && data.prices && data.prices.length > 0) {
+    const catOrder = ['major', 'ai', 'defi', 'memes', 'solana', 'privacy'];
+    const byCat = {};
+    data.prices.forEach(p => {
+      const c = p.cat || 'other';
+      if (!byCat[c]) byCat[c] = [];
+      byCat[c].push(p);
+    });
+    let html = '';
+    catOrder.forEach(cat => {
+      const tokens = byCat[cat];
+      if (!tokens || tokens.length === 0) return;
+      html += `<div class="price-cat"><span class="price-cat-label">${cat.toUpperCase()}</span></div>`;
+      tokens.forEach(t => {
+        const pColor = t.pct >= 0 ? 'var(--green)' : 'var(--red)';
+        const price = t.price >= 1000 ? t.price.toFixed(0) : (t.price >= 1 ? t.price.toFixed(2) : t.price.toFixed(4));
+        const vol = t.volume > 1e9 ? `${(t.volume/1e9).toFixed(1)}B` : (t.volume > 1e6 ? `${(t.volume/1e6).toFixed(0)}M` : `${(t.volume/1e3).toFixed(0)}K`);
+        html += `<div class="price-row">
+          <span class="price-sym">${t.symbol}</span>
+          <span class="price-val">$${price}</span>
+          <span class="price-pct" style="color:${pColor}">${t.pct >= 0 ? '+' : ''}${t.pct.toFixed(2)}%</span>
+          <span class="price-vol">${vol}</span>
+        </div>`;
+      });
+    });
+    pricesEl.innerHTML = html;
+  }
+
+  // === FUNDING RATES ===
+  const fundingEl = document.getElementById('funding-content');
+  if (fundingEl && data.funding && data.funding.length > 0) {
+    fundingEl.innerHTML = data.funding.slice(0, 10).map(f => {
+      const color = f.annualized >= 0 ? 'var(--green)' : 'var(--red)';
+      return `<div class="oc-row">
+        <span class="oc-name">${f.symbol}</span>
+        <span class="oc-val" style="color:${color}">${f.annualized >= 0 ? '+' : ''}${f.annualized}%</span>
+        <span class="oc-chg" style="color:var(--dim)">${f.rate}%/8h</span>
+      </div>`;
+    }).join('');
+  } else if (fundingEl) {
+    fundingEl.innerHTML = '<div class="no-data">All funding rates near zero</div>';
+  }
+
   // === OPERATIONS ===
   const opsEl = document.getElementById('ops-content');
   if (opsEl && data.operations) {
