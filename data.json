@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-06-10T23:20:02.002074+00:00",
+  "last_sync": "2026-06-11T00:20:01.271056+00:00",
   "regime": {
     "bias": "SHORT",
     "conviction": "7",
@@ -14,11 +14,11 @@
       },
       {
         "day": "W",
-        "val": -1
+        "val": 0
       },
       {
         "day": "T",
-        "val": 0
+        "val": -1
       },
       {
         "day": "F",
@@ -48,7 +48,7 @@
     {
       "name": "PERPS",
       "status": "ACTIVE",
-      "desc": "19 HIGH anomalies detected"
+      "desc": "17 HIGH anomalies detected"
     },
     {
       "name": "LENDING",
@@ -62,19 +62,19 @@
     }
   ],
   "performance": {
-    "wr": 40,
+    "wr": 38,
     "trades": 60,
     "rr": "1.1x",
-    "streak": "-1L",
-    "pnl": "+$1.66",
-    "long_wr": 40,
-    "short_wr": 36
+    "streak": "-2L",
+    "pnl": "-$2.42",
+    "long_wr": 43,
+    "short_wr": 40
   },
   "memo": {
-    "regime_insight": "The system performs best during clean trending BTC moves with normalized funding; current bearish regime is entrenched but choppy, with distribution-phase tokens and extreme negative funding producing false short breakdowns and traps.",
-    "signal_trust": "- **MORPHO composite_LONG_T6**: recent trade hit TP for +7.73% in NEUTRAL bias, proving high-confidence T6 longs can deliver outsized gains even in bearish regimes; consistent with MORPHO\u2019s 33% WR and +1.43% avg PnL last 30 trades. - **MORPHO SHORT signals (T6/T12)**: a recent SHORT timeout delivered +4.16%, and overall MORPHO shorts have shown resilience\u2014low drawdowns and positive carry when timed with BTC weakness. - **AERO SHORT (high-confidence, BTC-confirmed)**: despite noise, AERO\u2019s last 4",
-    "blind_spots": "Strict directional bias filtering may block high-confidence outlier signals\u2014MORPHO composite_LONG_T6 proved that a single strong T6 long can overcome a SHORT macro bias and deliver a full TP win. Applying a confidence override (e.g., >70) for such signals could materially lift PnL without degrading risk.",
-    "adjustment": "- **Cut size 50%** on all new positions until after the first win (CRITICAL streak rule). - **Ban AIXBT trades** completely and **avoid 08:00 UTC entries** (low WR hour). - **Raise min confidence for BRETT and VIRTUAL to 65**, while allowing **MORPHO T6 longs with confidence \u226570 even if BIAS=SHORT** (override filter with a note on token phase not being extreme distribution). - Require **BTC confirmation** (e.g., 2h close below support) before entering any short signal on AERO/BRETT."
+    "regime_insight": "Our system only works when the macro bias is neutral-to-bullish and the token structure is in accumulation; the current bearish distribution regime is generating low-quality longs and no winning shorts, producing a death-by-a-thousand-cuts drawdown.",
+    "signal_trust": "- MORPHO composite LONG T24 and T12 (conf=72\u2013100) \u2013 allowed by the current memo, and the only signals that have shown a recent meaningful win (+7.73% on a T6 variant, suggesting the composite family is not broken). - AERO SHORT (if they ever fire) \u2013 the regime card prioritises AERO for shorts, but no short has been profitable; trust only if the entry appears after a confirmed distribution break, not as a standalone signal.",
+    "blind_spots": "The BIAS filter is anchored to a SHORT conviction that our own signals cannot execute. We are overriding the few profitable signals (MORPHO composite longs) with a macro view that has no evidence of edge in our execution. The system is fighting itself.",
+    "adjustment": "- Disable all SHORT signals entirely until the system logs a single profitable short (0% WR is a hard stop). - Flip BIAS to NEUTRAL and allow only MORPHO composite LONG (T24, T12, and T6 with conf \u226590) to fire. Keep size at HALF (or even 25%) as punishment for the streak, but let the signals breathe\u2014the timeout/sl framework can handle exits."
   },
   "signals": [
     {
@@ -165,20 +165,6 @@
       "features": "hyperliquid"
     },
     {
-      "token": "WLD",
-      "score": 40,
-      "desc": "funding_spread \u2014 HL bullish",
-      "horizon": "T12",
-      "features": "hyperliquid"
-    },
-    {
-      "token": "AAVE",
-      "score": 40,
-      "desc": "funding_spread \u2014 HL bullish",
-      "horizon": "T12",
-      "features": "hyperliquid"
-    },
-    {
       "token": "GMX",
       "score": 40,
       "desc": "funding_spread \u2014 HL bullish",
@@ -186,9 +172,23 @@
       "features": "hyperliquid"
     },
     {
-      "token": "RENDER",
+      "token": "WLD",
       "score": 40,
       "desc": "funding_spread \u2014 HL bullish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "UNI",
+      "score": 40,
+      "desc": "funding_spread \u2014 HL bearish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "NEAR",
+      "score": 40,
+      "desc": "funding_spread \u2014 HL bearish",
       "horizon": "T12",
       "features": "hyperliquid"
     }
