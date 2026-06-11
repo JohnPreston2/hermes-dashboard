@@ -356,6 +356,46 @@ function render(data) {
     fundingEl.innerHTML = '<div class="no-data">All funding rates near zero</div>';
   }
 
+  // === SECTOR BRIEFS ===
+  const briefsEl = document.getElementById('sector-briefs-content');
+  if (briefsEl && data.sector_briefs && data.sector_briefs.length > 0) {
+    const sectorColors = {
+      'PERP': '#ff6b9d',
+      'LENDING': '#4ecdc4',
+      'DEX': '#45b7d1',
+      'LST': '#96ceb4',
+      'RWA+AI': '#dda0dd',
+    };
+    briefsEl.innerHTML = data.sector_briefs.map(b => {
+      const color = sectorColors[b.sector] || 'var(--dim)';
+      const urgBadge = b.urgency ? `<span class="brief-urg" style="color:${b.urgency > 40 ? 'var(--amber)' : 'var(--dim)'}">urg:${b.urgency}</span>` : '';
+      let regimeHtml = '';
+      if (b.regime_dist) {
+        const rd = b.regime_dist;
+        const total = (rd.BULL || 0) + (rd.BEAR || 0) + (rd.NEUTRAL || 0);
+        if (total > 0) {
+          const bullPct = Math.round(((rd.BULL || 0) / total) * 100);
+          const bearPct = Math.round(((rd.BEAR || 0) / total) * 100);
+          regimeHtml = `<div class="brief-regime">
+            <span style="color:var(--green)">${bullPct}% BULL</span>
+            <span style="color:var(--red)">${bearPct}% BEAR</span>
+          </div>`;
+        }
+      }
+      return `<div class="brief-card">
+        <div class="brief-header">
+          <span class="brief-sector" style="border-color:${color};color:${color}">${b.sector}</span>
+          ${urgBadge}
+          <span class="brief-time">${b.time_ago}</span>
+        </div>
+        <div class="brief-summary">${b.summary}</div>
+        ${regimeHtml}
+      </div>`;
+    }).join('');
+  } else if (briefsEl) {
+    briefsEl.innerHTML = '<div class="no-data">No sector briefs available</div>';
+  }
+
   // === OPERATIONS ===
   const opsEl = document.getElementById('ops-content');
   if (opsEl && data.operations) {
