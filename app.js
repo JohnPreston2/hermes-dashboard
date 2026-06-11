@@ -351,52 +351,6 @@ function render(data) {
     opsEl.innerHTML = html || '<div class="no-data">No operations data</div>';
   }
 
-  // === MACRO (OBB Terminal) ===
-  const macroEl = document.getElementById('macro-content');
-  if (macroEl && data.macro) {
-    const m = data.macro;
-    let html = '';
-    // Indices
-    if (m.indices && m.indices.length > 0) {
-      html += '<div class="oc-section"><span class="oc-header">INDICES</span></div>';
-      html += m.indices.map(i => {
-        const pColor = i.pct >= 0 ? 'var(--green)' : 'var(--red)';
-        const price = i.price > 10000 ? i.price.toFixed(0) : i.price.toFixed(2);
-        return `<div class="oc-row">
-          <span class="oc-name">${i.name}</span>
-          <span class="oc-val">${price}</span>
-          <span class="oc-chg" style="color:${pColor}">${i.pct >= 0 ? '+' : ''}${i.pct.toFixed(2)}%</span>
-        </div>`;
-      }).join('');
-    }
-    // Top equities
-    if (m.equities && m.equities.length > 0) {
-      html += '<div class="oc-section"><span class="oc-header">EQUITIES</span></div>';
-      html += m.equities.map(e => {
-        const pColor = e.pct >= 0 ? 'var(--green)' : 'var(--red)';
-        return `<div class="oc-row">
-          <span class="oc-name">${e.name}</span>
-          <span class="oc-val">${e.price.toFixed(2)}</span>
-          <span class="oc-chg" style="color:${pColor}">${e.pct >= 0 ? '+' : ''}${e.pct.toFixed(2)}%</span>
-        </div>`;
-      }).join('');
-    }
-    // Rates
-    if (m.rates && m.rates.length > 0) {
-      html += '<div class="oc-section"><span class="oc-header">RATES</span></div>';
-      html += m.rates.map(r => {
-        const isSpread = r.spread;
-        const val = isSpread ? `${(r.value * 100).toFixed(0)}bp` : `${r.value.toFixed(3)}%`;
-        return `<div class="oc-row">
-          <span class="oc-name">${r.label}</span>
-          <span class="oc-val">${val}</span>
-          <span class="oc-chg" style="color:var(--dim)">${r.date || ''}</span>
-        </div>`;
-      }).join('');
-    }
-    macroEl.innerHTML = html || '<div class="no-data">OBB terminal offline</div>';
-  }
-
   // === ON-CHAIN ===
   const onchainEl = document.getElementById('onchain-content');
   if (onchainEl && data.onchain && data.onchain.dex_top) {
