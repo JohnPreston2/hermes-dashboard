@@ -893,3 +893,109 @@ body {
   min-width: 30px;
   text-align: center;
 }
+
+
+/* === POSITIONS / TRADES === */
+.trade-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.78rem;
+}
+
+.trade-row:last-child {
+  border-bottom: none;
+}
+
+.trade-coin {
+  font-weight: 600;
+  color: var(--text);
+  min-width: 55px;
+}
+
+.trade-dir {
+  font-size: 0.7rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.trade-dir.long {
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--green);
+}
+
+.trade-dir.short {
+  background: rgba(255, 68, 102, 0.1);
+  color: var(--red);
+}
+
+.trade-pnl {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: right;
+}
+
+.trade-signal {
+  color: var(--dim);
+  font-size: 0.7rem;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trade-dur {
+  color: var(--dim);
+  font-size: 0.7rem;
+  min-width: 35px;
+  text-align: right;
+}
+
+.trade-time {
+  color: var(--dim);
+  font-size: 0.65rem;
+  min-width: 50px;
+  text-align: right;
+}
+
+.trade-badge {
+  font-size: 0.6rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+}
+
+.trade-badge.active {
+  background: rgba(0, 255, 136, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.active-trade {
+  background: rgba(0, 255, 136, 0.03);
+  padding: 8px 6px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  border-bottom: none;
+}
+
+.no-data {
+  color: var(--dim);
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 12px 0;
+  font-style: italic;
+}
+
+/* Refresh countdown */
+.refresh-countdown {
+  color: var(--dim);
+  font-size: 0.7rem;
+  margin-left: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}

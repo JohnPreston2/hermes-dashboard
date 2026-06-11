@@ -273,6 +273,44 @@ function render(data) {
     </div>`;
   }).join('');
 
+  // Positions / Recent Trades
+  const posPanel = document.getElementById('positions-content');
+  if (posPanel) {
+    const positions = data.positions || [];
+    const recentTrades = data.recent_trades || [];
+
+    if (positions.length > 0) {
+      posPanel.innerHTML = positions.map(p => {
+        const pnlColor = (p.pnl_pct || 0) >= 0 ? 'var(--green)' : 'var(--red)';
+        const pnlStr = (p.pnl_pct || 0) >= 0 ? `+${(p.pnl_pct||0).toFixed(2)}%` : `${(p.pnl_pct||0).toFixed(2)}%`;
+        const dirCls = (p.side || '').toLowerCase();
+        return `<div class="trade-row active-trade">
+          <span class="trade-coin">${p.coin}</span>
+          <span class="trade-dir ${dirCls}">${p.side}</span>
+          <span class="trade-signal">${p.signal || ''}</span>
+          <span class="trade-pnl" style="color:${pnlColor}">${pnlStr}</span>
+          <span class="trade-badge active">OPEN</span>
+        </div>`;
+      }).join('');
+    } else if (recentTrades.length > 0) {
+      posPanel.innerHTML = recentTrades.map(t => {
+        const pnlColor = t.pnl_pct >= 0 ? 'var(--green)' : 'var(--red)';
+        const pnlStr = t.pnl_pct >= 0 ? `+${t.pnl_pct.toFixed(2)}%` : `${t.pnl_pct.toFixed(2)}%`;
+        const dirCls = (t.side || '').toLowerCase();
+        const durStr = t.duration > 60 ? `${(t.duration/60).toFixed(1)}h` : `${t.duration}m`;
+        return `<div class="trade-row closed-trade">
+          <span class="trade-coin">${t.coin}</span>
+          <span class="trade-dir ${dirCls}">${t.side}</span>
+          <span class="trade-pnl" style="color:${pnlColor}">${pnlStr}</span>
+          <span class="trade-dur">${durStr}</span>
+          <span class="trade-time">${t.time_ago}</span>
+        </div>`;
+      }).join('');
+    } else {
+      posPanel.innerHTML = '<div class="no-data">No positions or recent trades</div>';
+    }
+  }
+
   // Uptime
   document.getElementById('uptime').textContent = `UPTIME ${data.uptime}`;
 }
@@ -290,3 +328,19 @@ async function loadData() {
 
 loadData();
 setInterval(loadData, 60000);
+
+// Refresh countdown
+let lastLoad = Date.now();
+function updateCountdown() {
+  const el = document.getElementById('refresh-countdown');
+  if (!el) return;
+  const elapsed = Math.floor((Date.now() - lastLoad) / 1000);
+  const remaining = Math.max(0, 60 - elapsed);
+  el.textContent = `${remaining}s`;
+}
+const _origLoadData = loadData;
+loadData = async function() {
+  await _origLoadData();
+  lastLoad = Date.now();
+};
+setInterval(updateCountdown, 1000);
