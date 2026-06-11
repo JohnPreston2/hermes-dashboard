@@ -138,7 +138,7 @@ function render(data) {
   const sec = document.getElementById('sectors');
   sec.innerHTML = data.sectors.map(s => {
     const cls = s.status.toLowerCase();
-    const borderColor = cls === 'bullish' ? 'var(--green)' : (cls === 'cautious' ? 'var(--amber)' : (cls === 'bearish' ? 'var(--red)' : 'var(--grey)'));
+    const borderColor = cls === 'active' ? 'var(--green)' : (cls === 'watch' ? 'var(--amber)' : (cls === 'bullish' ? 'var(--green)' : (cls === 'cautious' ? 'var(--amber)' : (cls === 'bearish' ? 'var(--red)' : 'var(--grey)'))));
     return `<div class="sector-card" style="border-left-color:${borderColor}">
       <div class="sector-top">
         <span class="sector-name">${s.name}</span>
@@ -184,18 +184,19 @@ function render(data) {
   const nl = document.getElementById('news-list');
   const newsItems = data.news || [];
   nl.innerHTML = newsItems.map(n => {
-    const tags = [];
-    if (n.is_defi) tags.push('DeFi');
-    if (n.is_ai) tags.push('AI');
-    (n.sectors || []).forEach(s => { if (s && !tags.includes(s.toUpperCase())) tags.push(s); });
-    const tagHtml = tags.slice(0, 3).map(t => `<span>${t}</span>`).join('');
+    const tags = n.tags || [];
+    const tagHtml = tags.slice(0, 3).map(t => `<span class="news-tag">${t}</span>`).join('');
+    const timeStr = n.time_ago || '';
+    const sentClass = n.sentiment || 'neutral';
+    const tokenHtml = (n.tokens || []).slice(0, 2).map(t => `<span class="news-token">${t}</span>`).join('');
     return `<div class="news-item">
-      <div class="news-sentiment ${n.sentiment || 'neutral'}"></div>
+      <div class="news-sentiment ${sentClass}"></div>
       <div class="news-body">
         <div class="news-title">${n.title || ''}</div>
         <div class="news-meta">
           <span class="news-source">${n.source || ''}</span>
-          <span class="news-tags">${tagHtml}</span>
+          <span class="news-time">${timeStr}</span>
+          <span class="news-tags">${tagHtml}${tokenHtml}</span>
         </div>
       </div>
     </div>`;
@@ -212,6 +213,7 @@ function render(data) {
       <span class="sr-conf">${s.conf}</span>
       <span class="sr-dir ${dirCls}">${s.dir}</span>
       <span class="sr-time">${s.time}</span>
+      <span class="sr-horizon">${s.horizon || ''}</span>
       <span class="sr-status ${stCls}">${s.status}</span>
     </div>`;
   }).join('');
@@ -221,10 +223,16 @@ function render(data) {
   tl.innerHTML = data.tokens.map(t => {
     const color = colorForScore(t.score);
     const tierCls = t.tier.toLowerCase();
+    const regime = t.regime || 'NEUTRAL';
+    const regimeColor = regime === 'BULL' ? 'var(--green)' : (regime === 'BEAR' ? 'var(--red)' : 'var(--grey)');
+    const forensic = t.forensic_z !== undefined ? t.forensic_z.toFixed(1) : '--';
+    const bpi = t.bpi_z !== undefined ? t.bpi_z.toFixed(1) : '--';
+    const sigCount = t.signals_active || 0;
+    const sigBadge = sigCount > 0 ? `<span class="token-sig-count">${sigCount}s</span>` : '';
     return `<div class="token-card">
       <div>
-        <div class="token-name">${t.name}</div>
-        <div class="token-sub">LMI SDA NBR SMP</div>
+        <div class="token-name">${t.name} ${sigBadge}</div>
+        <div class="token-sub" style="color:${regimeColor}">${regime} | F:${forensic} B:${bpi}</div>
       </div>
       <div class="tier-badge ${tierCls}">${t.tier}</div>
       <div class="token-bar-wrap">
@@ -256,13 +264,14 @@ function render(data) {
 
   // Health
   const hi = document.getElementById('health-items');
-  hi.innerHTML = data.health.map(h => `
-    <div class="health-item">
+  hi.innerHTML = data.health.map(h => {
+    const detail = h.detail ? ` <span class="health-detail">(${h.detail})</span>` : '';
+    return `<div class="health-item">
       <span class="health-dot ${h.color}"></span>
       <span class="health-name">${h.name}</span>
-      <span class="health-status" style="color:var(--${h.color})">${h.status}</span>
-    </div>
-  `).join('');
+      <span class="health-status" style="color:var(--${h.color})">${h.status}${detail}</span>
+    </div>`;
+  }).join('');
 
   // Uptime
   document.getElementById('uptime').textContent = `UPTIME ${data.uptime}`;

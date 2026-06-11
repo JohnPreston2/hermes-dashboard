@@ -819,3 +819,77 @@ body {
   .header { padding: 0 12px; }
   .header-meta, .header-divider { display: none; }
 }
+
+
+/* === SESSION 15 ADDITIONS === */
+
+/* Sector WATCH status */
+.sector-badge.watch {
+  background: rgba(255, 179, 0, 0.12);
+  color: var(--amber);
+  border: 1px solid rgba(255, 179, 0, 0.25);
+}
+
+.sector-badge.active {
+  background: rgba(0, 255, 136, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+}
+
+/* News tags and time */
+.news-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  margin-left: 4px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  background: rgba(0, 178, 255, 0.1);
+  color: var(--cyan);
+  border: 1px solid rgba(0, 178, 255, 0.2);
+}
+
+.news-token {
+  display: inline-block;
+  padding: 1px 5px;
+  margin-left: 3px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  background: rgba(212, 168, 83, 0.1);
+  color: var(--gold);
+  border: 1px solid rgba(212, 168, 83, 0.2);
+}
+
+.news-time {
+  color: var(--dim);
+  font-size: 0.7rem;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+/* Token signal count badge */
+.token-sig-count {
+  display: inline-block;
+  padding: 0 4px;
+  margin-left: 4px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  background: rgba(0, 255, 136, 0.12);
+  color: var(--green);
+  vertical-align: middle;
+}
+
+/* Health detail text */
+.health-detail {
+  font-size: 0.65rem;
+  color: var(--dim);
+  margin-left: 2px;
+}
+
+/* Signal horizon badge */
+.sr-horizon {
+  font-size: 0.7rem;
+  color: var(--cyan);
+  min-width: 30px;
+  text-align: center;
+}
