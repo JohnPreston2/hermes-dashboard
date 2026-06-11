@@ -311,6 +311,102 @@ function render(data) {
     }
   }
 
+  // === OPERATIONS ===
+  const opsEl = document.getElementById('ops-content');
+  if (opsEl && data.operations) {
+    const ops = data.operations;
+    let html = '';
+    if (ops.gate) {
+      const gateColor = ops.gate.decision === 'GO' ? 'var(--green)' : 'var(--amber)';
+      html += `<div class="ops-row">
+        <span class="ops-label">GATE</span>
+        <span class="ops-value" style="color:${gateColor};font-weight:700">${ops.gate.decision}</span>
+        <span class="ops-detail">${ops.gate.reason || ''}</span>
+      </div>`;
+    }
+    if (ops.monitor_status) {
+      const monColor = ops.monitor_status === 'OK' ? 'var(--green)' : 'var(--amber)';
+      html += `<div class="ops-row">
+        <span class="ops-label">MONITOR</span>
+        <span class="ops-value" style="color:${monColor}">${ops.monitor_status}</span>
+        <span class="ops-detail">${ops.monitor_phase || ''}</span>
+      </div>`;
+    }
+    if (ops.verdicts && ops.verdicts.length > 0) {
+      ops.verdicts.forEach(v => {
+        const vColor = v.verdict === 'CUT' ? 'var(--red)' : (v.verdict === 'HOLD' ? 'var(--green)' : 'var(--amber)');
+        html += `<div class="ops-row">
+          <span class="ops-label">${v.coin}</span>
+          <span class="ops-value" style="color:${vColor}">${v.verdict}</span>
+          <span class="ops-detail">${v.reason || ''}</span>
+        </div>`;
+      });
+    }
+    if (ops.flash_analysis) {
+      html += `<div class="ops-flash">${ops.flash_analysis}</div>`;
+    }
+    if (ops.morning_brief) {
+      html += `<div class="ops-brief"><span class="ops-label">BRIEF</span> ${ops.morning_brief}</div>`;
+    }
+    opsEl.innerHTML = html || '<div class="no-data">No operations data</div>';
+  }
+
+  // === ON-CHAIN ===
+  const onchainEl = document.getElementById('onchain-content');
+  if (onchainEl && data.onchain && data.onchain.dex_top) {
+    const oc = data.onchain;
+    let html = '';
+    // DEX volumes
+    const dexTotal = oc.dex_total_24h ? `$${(oc.dex_total_24h / 1e9).toFixed(1)}B` : '?';
+    html += `<div class="oc-section"><span class="oc-header">DEX VOL 24H</span> <span class="oc-total">${dexTotal}</span></div>`;
+    if (oc.dex_top) {
+      html += oc.dex_top.map(d => {
+        const vol = d.vol > 1e9 ? `$${(d.vol/1e9).toFixed(1)}B` : `$${(d.vol/1e6).toFixed(0)}M`;
+        const chg = d.change || 0;
+        const chgColor = chg >= 0 ? 'var(--green)' : 'var(--red)';
+        return `<div class="oc-row"><span class="oc-name">${d.name}</span><span class="oc-val">${vol}</span><span class="oc-chg" style="color:${chgColor}">${chg >= 0 ? '+' : ''}${chg.toFixed(0)}%</span></div>`;
+      }).join('');
+    }
+    // TVL
+    if (oc.tvl_top && oc.tvl_top.length > 0) {
+      html += `<div class="oc-section"><span class="oc-header">TVL TOP</span></div>`;
+      html += oc.tvl_top.map(t => {
+        const tvl = t.tvl > 1e9 ? `$${(t.tvl/1e9).toFixed(0)}B` : `$${(t.tvl/1e6).toFixed(0)}M`;
+        const chg = t.change_1d || 0;
+        const chgColor = chg >= 0 ? 'var(--green)' : 'var(--red)';
+        return `<div class="oc-row"><span class="oc-name">${t.name}</span><span class="oc-val">${tvl}</span><span class="oc-chg" style="color:${chgColor}">${chg >= 0 ? '+' : ''}${chg.toFixed(1)}%</span></div>`;
+      }).join('');
+    }
+    // Yields
+    if (oc.yields && oc.yields.length > 0) {
+      html += `<div class="oc-section"><span class="oc-header">TOP YIELDS</span></div>`;
+      html += oc.yields.map(y => {
+        return `<div class="oc-row"><span class="oc-name">${y.project}/${y.symbol}</span><span class="oc-val">${y.apy.toFixed(2)}%</span><span class="oc-chg" style="color:var(--dim)">TVL $${(y.tvl/1e9).toFixed(1)}B</span></div>`;
+      }).join('');
+    }
+    onchainEl.innerHTML = html;
+  }
+
+  // === REFLECTIONS ===
+  const refEl = document.getElementById('reflections-content');
+  if (refEl && data.reflections && data.reflections.length > 0) {
+    refEl.innerHTML = data.reflections.map(r => {
+      const pnlColor = r.pnl_pct >= 0 ? 'var(--green)' : 'var(--red)';
+      const dirCls = (r.direction || '').toLowerCase();
+      return `<div class="ref-row">
+        <div class="ref-header">
+          <span class="trade-coin">${r.symbol}</span>
+          <span class="trade-dir ${dirCls}">${r.direction}</span>
+          <span class="trade-pnl" style="color:${pnlColor}">${r.pnl_pct >= 0 ? '+' : ''}${r.pnl_pct}%</span>
+          <span class="ref-signal">${r.signal || ''}</span>
+        </div>
+        <div class="ref-text">${r.reflection}</div>
+      </div>`;
+    }).join('');
+  } else if (refEl) {
+    refEl.innerHTML = '<div class="no-data">No trade reflections yet</div>';
+  }
+
   // Uptime
   document.getElementById('uptime').textContent = `UPTIME ${data.uptime}`;
 }

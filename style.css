@@ -999,3 +999,163 @@ body {
   margin-left: 6px;
   font-family: 'JetBrains Mono', monospace;
 }
+
+
+/* === OPERATIONS === */
+.ops-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.78rem;
+}
+
+.ops-label {
+  font-weight: 600;
+  color: var(--dim);
+  min-width: 60px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.ops-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  min-width: 50px;
+}
+
+.ops-detail {
+  color: var(--dim);
+  font-size: 0.72rem;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ops-flash {
+  margin-top: 6px;
+  padding: 6px 8px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  color: var(--dim);
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.ops-brief {
+  margin-top: 6px;
+  padding: 6px 8px;
+  background: rgba(0,100,255,0.04);
+  border-radius: 4px;
+  border-left: 2px solid rgba(0,100,255,0.3);
+  font-size: 0.72rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* === ON-CHAIN === */
+.oc-section {
+  padding: 6px 0 2px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 4px;
+}
+
+.oc-header {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+}
+
+.oc-total {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--text);
+  margin-left: 8px;
+  font-size: 0.85rem;
+}
+
+.oc-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  font-size: 0.75rem;
+}
+
+.oc-name {
+  flex: 1;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.oc-val {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text);
+  min-width: 55px;
+  text-align: right;
+}
+
+.oc-chg {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* === REFLECTIONS === */
+.ref-row {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.ref-row:last-child {
+  border-bottom: none;
+}
+
+.ref-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.ref-signal {
+  color: var(--dim);
+  font-size: 0.65rem;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ref-text {
+  font-size: 0.72rem;
+  color: var(--dim);
+  line-height: 1.4;
+  padding-left: 4px;
+  border-left: 2px solid rgba(120,80,255,0.2);
+  margin-left: 2px;
+}
+
+
+/* === EXTRA ROW (On-Chain + Reflections) === */
+.extra-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 0 24px;
+}
+
+@media (max-width: 900px) {
+  .extra-row {
+    grid-template-columns: 1fr;
+    padding: 0 12px;
+  }
+}
