@@ -356,7 +356,7 @@ function render(data) {
     fundingEl.innerHTML = '<div class="no-data">All funding rates near zero</div>';
   }
 
-  // === SECTOR BRIEFS (full reports with expandable sections) ===
+  // === SECTOR BRIEFS ===
   const briefsEl = document.getElementById('sector-briefs-content');
   if (briefsEl && data.sector_briefs && data.sector_briefs.length > 0) {
     const sectorColors = {
@@ -366,32 +366,30 @@ function render(data) {
       'LST': '#96ceb4',
       'RWA+AI': '#dda0dd',
     };
-    briefsEl.innerHTML = data.sector_briefs.map((b, idx) => {
+    briefsEl.innerHTML = data.sector_briefs.map(b => {
       const color = sectorColors[b.sector] || 'var(--dim)';
-      const sections = b.sections || [];
-      const hasSections = sections.length > 0;
-      const synthSection = sections.find(s => s.title && s.title.toUpperCase().includes('SYNTH'));
-      const preview = synthSection ? synthSection.content.substring(0, 200) : (b.summary || '').substring(0, 200);
-      let sectionsHtml = '';
-      if (hasSections) {
-        sectionsHtml = `<div class="brief-sections" id="brief-sections-${idx}" style="display:none">` +
-          sections.map(s => {
-            const content = (s.content || '').replace(/\n/g, '<br>').replace(/\|/g, '|');
-            return `<div class="brief-section">
-              <div class="brief-section-title">${s.title}</div>
-              <div class="brief-section-content">${content}</div>
-            </div>`;
-          }).join('') + '</div>';
+      const urgBadge = b.urgency ? `<span class="brief-urg" style="color:${b.urgency > 40 ? 'var(--amber)' : 'var(--dim)'}">urg:${b.urgency}</span>` : '';
+      let regimeHtml = '';
+      if (b.regime_dist) {
+        const rd = b.regime_dist;
+        const total = (rd.BULL || 0) + (rd.BEAR || 0) + (rd.NEUTRAL || 0);
+        if (total > 0) {
+          const bullPct = Math.round(((rd.BULL || 0) / total) * 100);
+          const bearPct = Math.round(((rd.BEAR || 0) / total) * 100);
+          regimeHtml = `<div class="brief-regime">
+            <span style="color:var(--green)">${bullPct}% BULL</span>
+            <span style="color:var(--red)">${bearPct}% BEAR</span>
+          </div>`;
+        }
       }
-      const expandBtn = hasSections ? `<span class="brief-expand" onclick="toggleBrief(${idx})" id="brief-btn-${idx}">+ details</span>` : '';
       return `<div class="brief-card">
         <div class="brief-header">
           <span class="brief-sector" style="border-color:${color};color:${color}">${b.sector}</span>
+          ${urgBadge}
           <span class="brief-time">${b.time_ago}</span>
-          ${expandBtn}
         </div>
-        <div class="brief-summary">${preview}${preview.length >= 200 ? '...' : ''}</div>
-        ${sectionsHtml}
+        <div class="brief-summary">${b.summary}</div>
+        ${regimeHtml}
       </div>`;
     }).join('');
   } else if (briefsEl) {
@@ -496,19 +494,6 @@ function render(data) {
 
   // Uptime
   document.getElementById('uptime').textContent = `UPTIME ${data.uptime}`;
-}
-
-function toggleBrief(idx) {
-  const el = document.getElementById('brief-sections-' + idx);
-  const btn = document.getElementById('brief-btn-' + idx);
-  if (!el || !btn) return;
-  if (el.style.display === 'none') {
-    el.style.display = 'block';
-    btn.textContent = '- hide';
-  } else {
-    el.style.display = 'none';
-    btn.textContent = '+ details';
-  }
 }
 
 async function loadData() {
