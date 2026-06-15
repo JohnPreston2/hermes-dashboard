@@ -1,14 +1,9 @@
 {
-  "last_sync": "2026-06-14T23:20:01.213440+00:00",
+  "last_sync": "2026-06-15T00:20:02.040728+00:00",
   "regime": {
     "bias": "NEUTRAL",
     "conviction": "2",
     "history": [
-      {
-        "day": "M",
-        "val": 0,
-        "date": "2026-06-08"
-      },
       {
         "day": "T",
         "val": 0,
@@ -38,6 +33,11 @@
         "day": "S",
         "val": 0,
         "date": "2026-06-14"
+      },
+      {
+        "day": "M",
+        "val": 0,
+        "date": "2026-06-15"
       }
     ]
   },
@@ -55,7 +55,7 @@
     {
       "name": "PERPS",
       "status": "ACTIVE",
-      "desc": "24 HL anomalies"
+      "desc": "22 HL anomalies"
     },
     {
       "name": "LENDING",
@@ -69,19 +69,19 @@
     }
   ],
   "performance": {
-    "wr": 33,
-    "trades": 59,
+    "wr": 35,
+    "trades": 67,
     "rr": "1.5x",
-    "streak": "-2L",
-    "pnl": "+$2.02",
-    "long_wr": 40,
-    "short_wr": 53
+    "streak": "+2W",
+    "pnl": "+$5.51",
+    "long_wr": 37,
+    "short_wr": 56
   },
   "memo": {
-    "regime_insight": "The system performs best in strong, unambiguous trending regimes where signals reach TP swiftly (e.g., bearish breakdowns for shorts), but it severely underperforms during choppy reversals like the current post-BTC-bounce environment, where longs stall and get whipsawed into SL or premature CUT verdicts.",
-    "signal_trust": "- composite_LONG_T6 on MORPHO: Only signal that recently hit TP (+7.73%) and aligns with the current accumulation thesis (NBP_z +2.29, HL_fund +1.4%). The reflector\u2019s broader MORPHO WR (20%) is low, but this specific composite entry likely has stricter confirmation. - BRETT SHORT (in bearish regime): Produced multiple wins (+1.63%, +1.05%) when the regime was clearly bearish and the BIAS filter permitted it. However, shorts are currently disabled, so trust applies only for future bearish regimes",
-    "blind_spots": "The Monitor agent\u2019s \u201cCUT\u201d logic is likely overfitted to historical losses, prematurely closing positions that would have eventually hit TP if held to their designated timeout. Multiple BRETT longs were cut at -0.5% to -1.5% that could have turned positive given enough time, yet the system never allows the full horizon to play out. This creates a negative drift from interrupted trades that the backtests never captured.",
-    "adjustment": "Immediately enforce a token whitelist\u2014only MORPHO long signals (T6/T12) are permitted; all other token signals (AERO, AIXBT, BRETT, VIRTUAL, VVV) must be hard-blocked at the pipeline level. Additionally, cut notional size to $50 per trade (50% reduction) until the 14-day WR recovers above 35%, as the \u201c5 consecutive losses\u201d rule should remain active given the system\u2019s poor recent streak even after the isolated MORPHO win."
+    "regime_insight": "The system works best when extreme altcoin funding anomalies are absent, when BIAS has at least moderate directional conviction, and when entries fall outside the 00:00\u201302:59 UTC and 12:00 UTC dead-zones (both show WR \u226417%). It performs well on tokens with clear trending behavior (AIXBT, VVV) but fails during low-conviction NEUTRAL regimes where token selection becomes noise-driven.",
+    "signal_trust": "- AIXBT signals (any direction): last 3 trades from this token delivered a 67% WR and average PnL of +2.09%, including both long and short timeouts that clipped small gains. Even the stale exit managed +0.23%. The token\u2019s higher volatility and recent trending character make its TP/SL structure profitable. - VVV signals (any direction): also 67% WR over the last 3 trades, with a stellar average of +3.19% \u2013 the highest per-trade return. The system is correctly capturing VVV moves when they fire; s",
+    "blind_spots": "The current strategic hard-block allowing only MORPHO LONG is built on an outdated accumulation thesis; the system missed the rapid regime shift where MORPHO turned from a relative performer to a serial loser. We are systematically overweighting a token that the last 30 trades prove is toxic, while blocking the very tokens that are generating profits. This is a dynamic trust-allocation failure, not just a signal problem.",
+    "adjustment": "- Immediately hard-block all BRETT and MORPHO signals; permit only AIXBT and VVV trades until BIAS conviction rises above 5/10 and the 14-day WR for those tokens recovers above 40%. - Cut total notional size to $50 per trade (halve from $100) as per the critical 5-loss drawdown protocol, until a winning trade is booked. - Avoid any entry between 00:00\u201302:59 UTC and 12:00\u201312:59 UTC, given the catastrophic WR in those windows. - Disable the Monitor agent CUT verdict for AIXBT/VVV signals \u2013 allow t"
   },
   "signals": [
     {
@@ -89,7 +89,7 @@
       "token": "VVV",
       "conf": "89%",
       "dir": "LONG",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T12",
       "status": "ACTIVE"
     },
@@ -98,7 +98,7 @@
       "token": "VVV",
       "conf": "82%",
       "dir": "LONG",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T24",
       "status": "ACTIVE"
     },
@@ -107,7 +107,7 @@
       "token": "AIXBT",
       "conf": "79%",
       "dir": "LONG",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T24",
       "status": "ACTIVE"
     },
@@ -116,8 +116,17 @@
       "token": "MORPHO",
       "conf": "77%",
       "dir": "LONG",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T24",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "IPS10k_z24_SHORT_T12",
+      "token": "AIXBT",
+      "conf": "76%",
+      "dir": "SHORT",
+      "time": "00:13",
+      "horizon": "T12",
       "status": "ACTIVE"
     },
     {
@@ -125,7 +134,7 @@
       "token": "AERO",
       "conf": "76%",
       "dir": "LONG",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T24",
       "status": "ACTIVE"
     },
@@ -134,7 +143,7 @@
       "token": "AERO",
       "conf": "69%",
       "dir": "LONG",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T12",
       "status": "ACTIVE"
     },
@@ -143,7 +152,7 @@
       "token": "VIRTUAL",
       "conf": "59%",
       "dir": "LONG",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T24",
       "status": "ACTIVE"
     },
@@ -152,7 +161,7 @@
       "token": "VIRTUAL",
       "conf": "55%",
       "dir": "LONG",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T12",
       "status": "ACTIVE"
     },
@@ -161,7 +170,7 @@
       "token": "VIRTUAL",
       "conf": "45%",
       "dir": "SHORT",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T12",
       "status": "WAIT"
     },
@@ -170,83 +179,22 @@
       "token": "VIRTUAL",
       "conf": "42%",
       "dir": "SHORT",
-      "time": "22:13",
+      "time": "00:13",
       "horizon": "T12",
       "status": "WAIT"
     }
   ],
   "tokens": [
     {
-      "name": "VIRTUAL",
-      "tier": "A",
-      "score": 70,
-      "regime": "NEUTRAL",
-      "signals_active": 2,
-      "max_conf": 59,
-      "forensic_z": 0.41,
-      "bpi_z": 4.2,
-      "sparkline": [
-        52,
-        52,
-        52,
-        52,
-        52,
-        52,
-        52,
-        52,
-        54,
-        54,
-        49,
-        49,
-        52,
-        52,
-        51,
-        51,
-        57,
-        57,
-        57,
-        57,
-        54,
-        54,
-        56,
-        56,
-        54,
-        54,
-        53,
-        53,
-        53,
-        53,
-        55,
-        55,
-        50,
-        50,
-        50,
-        50,
-        52,
-        52,
-        51,
-        51,
-        45,
-        45,
-        46,
-        46,
-        47,
-        47,
-        70,
-        70
-      ]
-    },
-    {
       "name": "MORPHO",
       "tier": "B",
-      "score": 69,
+      "score": 68,
       "regime": "BULL",
       "signals_active": 1,
       "max_conf": 77,
-      "forensic_z": 1.2,
-      "bpi_z": 4.36,
+      "forensic_z": 0.76,
+      "bpi_z": 4.31,
       "sparkline": [
-        43,
         43,
         49,
         49,
@@ -293,80 +241,20 @@
         47,
         47,
         69,
-        69
-      ]
-    },
-    {
-      "name": "VVV",
-      "tier": "B",
-      "score": 63,
-      "regime": "BULL",
-      "signals_active": 2,
-      "max_conf": 89,
-      "forensic_z": 1.13,
-      "bpi_z": 1.32,
-      "sparkline": [
-        52,
-        52,
-        76,
-        76,
-        61,
-        61,
-        60,
-        60,
-        57,
-        57,
-        61,
-        61,
-        58,
-        58,
-        54,
-        54,
-        55,
-        55,
-        55,
-        55,
-        55,
-        55,
-        54,
-        54,
-        55,
-        55,
-        54,
-        54,
-        55,
-        55,
-        59,
-        59,
-        60,
-        60,
-        57,
-        57,
-        57,
-        57,
-        57,
-        57,
-        57,
-        57,
-        56,
-        56,
-        56,
-        56,
-        63,
-        63
+        69,
+        68
       ]
     },
     {
       "name": "AERO",
       "tier": "B",
-      "score": 51,
-      "regime": "NEUTRAL",
+      "score": 63,
+      "regime": "BULL",
       "signals_active": 2,
       "max_conf": 76,
-      "forensic_z": 0.0,
-      "bpi_z": -0.2,
+      "forensic_z": 0.73,
+      "bpi_z": 1.88,
       "sparkline": [
-        47,
         47,
         47,
         47,
@@ -413,20 +301,140 @@
         50,
         50,
         51,
-        51
+        51,
+        63
+      ]
+    },
+    {
+      "name": "VVV",
+      "tier": "B",
+      "score": 61,
+      "regime": "BULL",
+      "signals_active": 2,
+      "max_conf": 89,
+      "forensic_z": 0.97,
+      "bpi_z": 0.76,
+      "sparkline": [
+        52,
+        76,
+        76,
+        61,
+        61,
+        60,
+        60,
+        57,
+        57,
+        61,
+        61,
+        58,
+        58,
+        54,
+        54,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        54,
+        54,
+        55,
+        55,
+        54,
+        54,
+        55,
+        55,
+        59,
+        59,
+        60,
+        60,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        56,
+        56,
+        56,
+        56,
+        63,
+        63,
+        61
+      ]
+    },
+    {
+      "name": "VIRTUAL",
+      "tier": "B",
+      "score": 53,
+      "regime": "NEUTRAL",
+      "signals_active": 2,
+      "max_conf": 59,
+      "forensic_z": -0.03,
+      "bpi_z": 0.13,
+      "sparkline": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        54,
+        54,
+        49,
+        49,
+        52,
+        52,
+        51,
+        51,
+        57,
+        57,
+        57,
+        57,
+        54,
+        54,
+        56,
+        56,
+        54,
+        54,
+        53,
+        53,
+        53,
+        53,
+        55,
+        55,
+        50,
+        50,
+        50,
+        50,
+        52,
+        52,
+        51,
+        51,
+        45,
+        45,
+        46,
+        46,
+        47,
+        47,
+        70,
+        70,
+        53
       ]
     },
     {
       "name": "AIXBT",
       "tier": "B",
-      "score": 47,
+      "score": 51,
       "regime": "NEUTRAL",
-      "signals_active": 1,
+      "signals_active": 2,
       "max_conf": 79,
-      "forensic_z": -0.1,
-      "bpi_z": -0.32,
+      "forensic_z": -0.12,
+      "bpi_z": -0.36,
       "sparkline": [
-        56,
         55,
         63,
         64,
@@ -473,7 +481,8 @@
         46,
         46,
         47,
-        47
+        47,
+        51
       ]
     },
     {
@@ -487,9 +496,9 @@
       "bpi_z": 0,
       "sparkline": [
         42,
-        42,
         57,
         57,
+        39,
         39,
         39,
         39,
@@ -555,12 +564,19 @@
     {
       "token": "SUI",
       "score": 99,
-      "desc": "hyperliquid \u2014 HL bullish",
+      "desc": "hyperliquid \u2014 HL bearish",
       "horizon": "T12",
       "features": "hyperliquid"
     },
     {
       "token": "CRV",
+      "score": 99,
+      "desc": "hyperliquid \u2014 HL bearish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "LINK",
       "score": 99,
       "desc": "hyperliquid \u2014 HL bearish",
       "horizon": "T12",
@@ -574,23 +590,16 @@
       "features": "hyperliquid"
     },
     {
-      "token": "INJ",
-      "score": 99,
-      "desc": "hyperliquid \u2014 HL bullish",
-      "horizon": "T12",
-      "features": "hyperliquid"
-    },
-    {
-      "token": "ONDO",
-      "score": 94,
-      "desc": "hyperliquid \u2014 HL bullish",
-      "horizon": "T12",
-      "features": "hyperliquid"
-    },
-    {
-      "token": "BTC",
-      "score": 91,
+      "token": "UNI",
+      "score": 98,
       "desc": "hyperliquid \u2014 HL bearish",
+      "horizon": "T12",
+      "features": "hyperliquid"
+    },
+    {
+      "token": "INJ",
+      "score": 98,
+      "desc": "hyperliquid \u2014 HL bullish",
       "horizon": "T12",
       "features": "hyperliquid"
     }
@@ -602,7 +611,7 @@
       "sentiment": "neutral",
       "cat": "news",
       "published": "2026-06-14T22:19:35Z",
-      "time_ago": "1h ago",
+      "time_ago": "2h ago",
       "tags": [],
       "tokens": [],
       "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, Web3 and crypto regulation."
@@ -613,7 +622,7 @@
       "sentiment": "neutral",
       "cat": "defi",
       "published": "2026-06-14T21:14:07Z",
-      "time_ago": "2h ago",
+      "time_ago": "3h ago",
       "tags": [
         "defi"
       ],
@@ -626,7 +635,7 @@
       "sentiment": "neutral",
       "cat": "news",
       "published": "2026-06-14T19:11:33Z",
-      "time_ago": "4h ago",
+      "time_ago": "5h ago",
       "tags": [
         "ai"
       ],
@@ -639,7 +648,7 @@
       "sentiment": "neutral",
       "cat": "news",
       "published": "2026-06-14T19:05:46Z",
-      "time_ago": "4h ago",
+      "time_ago": "5h ago",
       "tags": [
         "lending",
         "btc"
@@ -653,7 +662,7 @@
       "sentiment": "bearish",
       "cat": "alert",
       "published": "2026-06-14T15:03:00Z",
-      "time_ago": "8h ago",
+      "time_ago": "9h ago",
       "tags": [],
       "tokens": [],
       "summary": "Micron stock bull vs bear arguments have rarely been this far apart, and right now, with MU up&#8230;"
@@ -664,7 +673,7 @@
       "sentiment": "neutral",
       "cat": "news",
       "published": "2026-06-14T13:49:48Z",
-      "time_ago": "9h ago",
+      "time_ago": "10h ago",
       "tags": [],
       "tokens": [],
       "summary": "The SPHINCS- proposal aims to reduce the cost of post-quantum signature verification on Ethereum while the network works toward a longer-term solution."
@@ -675,7 +684,7 @@
       "sentiment": "neutral",
       "cat": "alert",
       "published": "2026-06-14T13:02:00Z",
-      "time_ago": "10h ago",
+      "time_ago": "11h ago",
       "tags": [],
       "tokens": [],
       "summary": "Microsoft stock prediction models right now are pointing to a meaningful recovery over the next two to three&#8230;"
@@ -686,7 +695,7 @@
       "sentiment": "neutral",
       "cat": "news",
       "published": "2026-06-14T13:01:03Z",
-      "time_ago": "10h ago",
+      "time_ago": "11h ago",
       "tags": [],
       "tokens": [],
       "summary": "Tokenized Pok\u00e9mon card sales have skyrocketed over the past year, fueled by a wave of speculation and so-called gacha machines."
@@ -697,7 +706,7 @@
       "sentiment": "bearish",
       "cat": "news",
       "published": "2026-06-14T11:07:34Z",
-      "time_ago": "12h ago",
+      "time_ago": "13h ago",
       "tags": [],
       "tokens": [],
       "summary": "A fake Bithumb email used in the $36 million Humanity Protocol hack points to the involvement of North Korean threat actors, according to Quantstamp."
@@ -708,7 +717,7 @@
       "sentiment": "neutral",
       "cat": "news",
       "published": "2026-06-14T10:06:04Z",
-      "time_ago": "13h ago",
+      "time_ago": "14h ago",
       "tags": [
         "btc"
       ],
@@ -721,7 +730,7 @@
       "sentiment": "neutral",
       "cat": "news",
       "published": "2026-06-14T05:07:31Z",
-      "time_ago": "18h ago",
+      "time_ago": "19h ago",
       "tags": [],
       "tokens": [],
       "summary": "Crypto analyst Micha\u00ebl van de Poppe said a peace deal, which would reopen the Strait of Hormuz, would likely send liquidity back to risk-on assets such as cryptocurrencies."
@@ -732,7 +741,7 @@
       "sentiment": "neutral",
       "cat": "news",
       "published": "2026-06-14T03:36:49Z",
-      "time_ago": "19h ago",
+      "time_ago": "20h ago",
       "tags": [
         "ai"
       ],
@@ -844,35 +853,46 @@
   "positions": [],
   "recent_trades": [
     {
-      "coin": "MORPHO",
-      "side": "SHORT",
-      "pnl_pct": -0.0,
-      "pnl_usd": -0.11,
-      "duration": 111,
-      "closed": "05/25 04:05",
+      "coin": "BRETT",
+      "side": "LONG",
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.2,
+      "duration": 119,
+      "closed": "05/25 16:13",
       "time_ago": "20d ago",
       "signal": "",
-      "type": "closed"
-    },
-    {
-      "coin": "AIXBT",
-      "side": "SHORT",
-      "pnl_pct": -0.01,
-      "pnl_usd": -0.54,
-      "duration": 47,
-      "closed": "05/25 05:00",
-      "time_ago": "20d ago",
-      "signal": "v2_IPS10k_z24_SHORT_T12",
       "type": "closed"
     },
     {
       "coin": "BRETT",
       "side": "LONG",
-      "pnl_pct": 0.0,
-      "pnl_usd": 0.15,
+      "pnl_pct": 0.01,
+      "pnl_usd": 0.35,
       "duration": 119,
-      "closed": "05/25 08:13",
+      "closed": "05/25 18:13",
       "time_ago": "20d ago",
+      "signal": "",
+      "type": "closed"
+    },
+    {
+      "coin": "BRETT",
+      "side": "LONG",
+      "pnl_pct": -0.01,
+      "pnl_usd": -0.22,
+      "duration": 119,
+      "closed": "05/25 20:13",
+      "time_ago": "20d ago",
+      "signal": "",
+      "type": "closed"
+    },
+    {
+      "coin": "MORPHO",
+      "side": "SHORT",
+      "pnl_pct": 0.04,
+      "pnl_usd": 1.04,
+      "duration": 239,
+      "closed": "05/26 02:13",
+      "time_ago": "19d ago",
       "signal": "",
       "type": "closed"
     },
@@ -880,22 +900,11 @@
       "coin": "AIXBT",
       "side": "SHORT",
       "pnl_pct": -0.0,
-      "pnl_usd": -0.05,
-      "duration": 121,
-      "closed": "05/25 08:16",
-      "time_ago": "20d ago",
-      "signal": "v2_IPS10k_z24_SHORT_T12",
-      "type": "closed"
-    },
-    {
-      "coin": "MORPHO",
-      "side": "SHORT",
-      "pnl_pct": -0.0,
-      "pnl_usd": -0.08,
-      "duration": 51,
-      "closed": "05/25 09:05",
-      "time_ago": "20d ago",
-      "signal": "",
+      "pnl_usd": -0.12,
+      "duration": 228,
+      "closed": "05/26 04:02",
+      "time_ago": "19d ago",
+      "signal": "composite_SHORT_T24",
       "type": "closed"
     }
   ],
@@ -904,13 +913,13 @@
       "name": "Pipeline",
       "status": "FRESH",
       "color": "green",
-      "detail": "signals 1h ago"
+      "detail": "signals 0h ago"
     },
     {
       "name": "Morning",
       "status": "STALE",
       "color": "yellow",
-      "detail": "regime 16h ago"
+      "detail": "regime 17h ago"
     },
     {
       "name": "Delta API",
@@ -932,23 +941,18 @@
   "operations": {
     "gate": {
       "decision": "GO",
-      "reason": "signal conf=84 direction=SHORT aligned with BIAS=NEUTRAL",
+      "reason": "signal conf=76 direction=SHORT aligned with BIAS=NEUTRAL",
       "source": "deterministic_v1",
-      "time": "2026-06-14T22:13:41.986518+00:00"
+      "time": "2026-06-15T00:13:45.547613+00:00"
     },
     "verdicts": [
-      {
-        "coin": "MORPHO",
-        "verdict": "CUT",
-        "reason": ""
-      },
       {
         "coin": "BRETT",
         "verdict": "HOLD",
         "reason": ""
       }
     ],
-    "verdicts_time": "2026-06-14T23:06:17.271391+00:00",
+    "verdicts_time": "2026-06-15T00:05:49.843885+00:00",
     "verdicts_source": "",
     "monitor_status": "OK",
     "monitor_phase": "EARLY_CONFIRM",
@@ -1012,7 +1016,7 @@
     "section_count": 19
   },
   "onchain": {
-    "generated_at": "2026-06-14T22:18:01Z",
+    "generated_at": "2026-06-15T00:18:01Z",
     "dex_total_24h": 5412200986,
     "dex_top": [
       {
@@ -1022,8 +1026,8 @@
       },
       {
         "name": "Uniswap V4",
-        "vol": 544840787,
-        "change": -23.95
+        "vol": 597820635,
+        "change": -16.56
       },
       {
         "name": "PancakeSwap AMM V3",
@@ -1037,35 +1041,35 @@
       },
       {
         "name": "Aerodrome Slipstream",
-        "vol": 216108820,
-        "change": -48.29
+        "vol": 221333215,
+        "change": -47.04
       }
     ],
     "tvl_top": [
       {
         "name": "Binance CEX",
-        "tvl": 140247918452,
-        "change_1d": -0.22
+        "tvl": 142082150966,
+        "change_1d": 0.9
       },
       {
         "name": "OKX",
-        "tvl": 21781925778,
-        "change_1d": -0.12
+        "tvl": 22092824709,
+        "change_1d": 1.33
       },
       {
         "name": "Bitfinex",
-        "tvl": 16828941946,
-        "change_1d": -0.81
+        "tvl": 17161653036,
+        "change_1d": 0.64
       },
       {
         "name": "Lido",
-        "tvl": 14846531411,
-        "change_1d": -0.87
+        "tvl": 15470955935,
+        "change_1d": 3.53
       },
       {
         "name": "Bybit",
-        "tvl": 13964756609,
-        "change_1d": 0.38
+        "tvl": 14111384010,
+        "change_1d": 1.15
       }
     ],
     "yields": [
@@ -1073,31 +1077,31 @@
         "project": "lido",
         "symbol": "STETH",
         "apy": 2.31,
-        "tvl": 14811148983
+        "tvl": 15505224123
       },
       {
         "project": "sky-lending",
         "symbol": "SUSDS",
         "apy": 3.6,
-        "tvl": 6161136889
+        "tvl": 6175223705
       },
       {
         "project": "ether.fi-stake",
         "symbol": "WEETH",
-        "apy": 2.85,
-        "tvl": 2848486741
+        "apy": 2.83,
+        "tvl": 3065415610
       },
       {
         "project": "rocket-pool",
         "symbol": "RETH",
         "apy": 2.06,
-        "tvl": 2260732751
+        "tvl": 2330127120
       },
       {
         "project": "morpho-blue",
         "symbol": "CBBTC",
         "apy": 0,
-        "tvl": 2144238112
+        "tvl": 2192574934
       }
     ],
     "stablecoins": {
@@ -1110,9 +1114,9 @@
             "Shiden",
             "Corn"
           ],
-          "mcap_usd": 186456879188,
+          "mcap_usd": 186476044298,
           "name": "Tether",
-          "price": 0.9992947479815055,
+          "price": 0.9993974612399482,
           "symbol": "USDT"
         },
         {
@@ -1123,9 +1127,9 @@
             "BSquared",
             "Superposition"
           ],
-          "mcap_usd": 74881175299,
+          "mcap_usd": 74877426010,
           "name": "USD Coin",
-          "price": 0.9996255366632512,
+          "price": 0.9997346425721659,
           "symbol": "USDC"
         },
         {
@@ -1136,22 +1140,22 @@
             "Solana",
             "Arbitrum"
           ],
-          "mcap_usd": 8434848324,
+          "mcap_usd": 8454277891,
           "name": "Sky Dollar",
-          "price": 0.999688225388187,
+          "price": 0.9996826298191221,
           "symbol": "USDS"
         },
         {
           "chains": [
             "OP Mainnet",
             "Metis",
-            "Kava",
             "Scroll",
+            "Kava",
             "Manta"
           ],
-          "mcap_usd": 4485849715,
+          "mcap_usd": 4485580867,
           "name": "Ethena USDe",
-          "price": 0.9995636292545368,
+          "price": 0.9995037230465116,
           "symbol": "USDe"
         },
         {
@@ -1162,9 +1166,9 @@
             "Monad",
             "Solana"
           ],
-          "mcap_usd": 4419742448,
+          "mcap_usd": 4419673575,
           "name": "World Liberty Financial USD",
-          "price": 1.0004667640465765,
+          "price": 1.000451173705911,
           "symbol": "USD1"
         },
         {
@@ -1175,15 +1179,15 @@
             "ThunderCore",
             "BSC"
           ],
-          "mcap_usd": 4408750145,
+          "mcap_usd": 4405551232,
           "name": "Dai",
-          "price": 0.9997452575424308,
+          "price": 0.999656704693099,
           "symbol": "DAI"
         },
         {
           "chains": [
-            "BSC",
             "OP Mainnet",
+            "BSC",
             "Ethereum",
             "Polygon",
             "Avalanche"
@@ -1211,35 +1215,35 @@
             "Abstract",
             "Fraxtal"
           ],
-          "mcap_usd": 2766438330,
+          "mcap_usd": 2766145755,
           "name": "PayPal USD",
-          "price": 0.9999809308661898,
+          "price": 0.999875174076853,
           "symbol": "PYUSD"
         },
         {
           "chains": [
-            "X Layer",
             "Hyperliquid L1",
+            "X Layer",
             "Ethereum",
             "Solana",
             "Ink"
           ],
-          "mcap_usd": 2606022304,
+          "mcap_usd": 2605630584,
           "name": "Global Dollar",
-          "price": 1.0002520002761583,
+          "price": 1.0001016487949734,
           "symbol": "USDG"
         },
         {
           "chains": [
             "Sui",
             "Mantle",
-            "Glue",
             "Aptos",
+            "Glue",
             "Noble"
           ],
-          "mcap_usd": 2141360717,
+          "mcap_usd": 2148419602,
           "name": "Ondo US Dollar Yield",
-          "price": 1.1311379184136479,
+          "price": 1.1348994639655983,
           "symbol": "USDY"
         },
         {
@@ -1247,9 +1251,9 @@
             "Ethereum",
             "XRPL"
           ],
-          "mcap_usd": 1638363329,
+          "mcap_usd": 1638016123,
           "name": "Ripple USD",
-          "price": 0.9996760804807099,
+          "price": 0.9994642267976428,
           "symbol": "RLUSD"
         },
         {
@@ -1259,9 +1263,9 @@
             "Ethereum",
             "Tron"
           ],
-          "mcap_usd": 1364643741,
+          "mcap_usd": 1364147020,
           "name": "USDD",
-          "price": 0.999661608591092,
+          "price": 0.9995087726358542,
           "symbol": "USDD"
         },
         {
@@ -1269,9 +1273,9 @@
             "BSC",
             "Ethereum"
           ],
-          "mcap_usd": 1297575763,
+          "mcap_usd": 1297978356,
           "name": "Falcon USD",
-          "price": 0.9959596761870936,
+          "price": 0.9962686884105705,
           "symbol": "USDf"
         },
         {
@@ -1280,230 +1284,238 @@
             "Tron",
             "Ethereum"
           ],
-          "mcap_usd": 999945513,
+          "mcap_usd": 999855127,
           "name": "United Stables",
-          "price": 0.99998682903966,
+          "price": 0.9998964399242283,
           "symbol": "U"
         }
       ],
-      "total_mcap": 301939476749
+      "total_mcap": 301976628373
     }
   },
   "prices": [
     {
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 65560.94,
-      "pct": 1.53,
-      "volume": 840954465,
+      "price": 65735.99,
+      "pct": 2.08,
+      "volume": 861702459,
       "cat": "major"
     },
     {
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 1722.35,
-      "pct": 2.27,
-      "volume": 288790882,
+      "price": 1726.09,
+      "pct": 2.81,
+      "volume": 313550751,
       "cat": "major"
     },
     {
       "symbol": "SOL",
       "name": "Solana",
-      "price": 70.5,
-      "pct": 1.91,
-      "volume": 118885706,
+      "price": 71.57,
+      "pct": 4.18,
+      "volume": 132471797,
       "cat": "major"
-    },
-    {
-      "symbol": "WLD",
-      "name": "Worldcoin",
-      "price": 0.5193,
-      "pct": 2.71,
-      "volume": 105406259,
-      "cat": "ai"
     },
     {
       "symbol": "ZEC",
       "name": "Zcash",
-      "price": 464.87,
-      "pct": 10.15,
-      "volume": 103657973,
+      "price": 474.01,
+      "pct": 12.85,
+      "volume": 115268689,
       "cat": "privacy"
+    },
+    {
+      "symbol": "WLD",
+      "name": "Worldcoin",
+      "price": 0.5263,
+      "pct": 4.49,
+      "volume": 108251114,
+      "cat": "ai"
     },
     {
       "symbol": "BNB",
       "name": "BNB",
-      "price": 614.64,
-      "pct": 0.82,
-      "volume": 73440484,
+      "price": 616.68,
+      "pct": 1.28,
+      "volume": 75692949,
+      "cat": "major"
+    },
+    {
+      "symbol": "XRP",
+      "name": "XRP",
+      "price": 1.18,
+      "pct": 3.16,
+      "volume": 67859686,
       "cat": "major"
     },
     {
       "symbol": "TAO",
       "name": "Bittensor",
-      "price": 272.2,
-      "pct": 2.29,
-      "volume": 61720254,
+      "price": 267.6,
+      "pct": 1.32,
+      "volume": 63301585,
       "cat": "ai"
-    },
-    {
-      "symbol": "XRP",
-      "name": "XRP",
-      "price": 1.17,
-      "pct": 1.92,
-      "volume": 60718557,
-      "cat": "major"
     },
     {
       "symbol": "DOGE",
       "name": "Dogecoin",
-      "price": 0.08848,
-      "pct": 0.52,
-      "volume": 36131920,
+      "price": 0.08892,
+      "pct": 1.36,
+      "volume": 40317600,
       "cat": "memes"
     },
     {
       "symbol": "ADA",
       "name": "Cardano",
-      "price": 0.1764,
-      "pct": 2.44,
-      "volume": 23451748,
+      "price": 0.1842,
+      "pct": 7.09,
+      "volume": 28928763,
       "cat": "major"
     },
     {
       "symbol": "FET",
       "name": "Fetch.ai",
-      "price": 0.2111,
-      "pct": 1.44,
-      "volume": 17829977,
+      "price": 0.2133,
+      "pct": 2.15,
+      "volume": 18200418,
       "cat": "ai"
     },
     {
       "symbol": "PEPE",
       "name": "Pepe",
       "price": 3e-06,
-      "pct": 1.4,
-      "volume": 17574820,
+      "pct": 2.81,
+      "volume": 18065869,
       "cat": "memes"
-    },
-    {
-      "symbol": "ONDO",
-      "name": "Ondo",
-      "price": 0.368,
-      "pct": 0.63,
-      "volume": 11545049,
-      "cat": "defi"
     },
     {
       "symbol": "AVAX",
       "name": "Avalanche",
-      "price": 6.73,
-      "pct": -0.04,
-      "volume": 11345087,
+      "price": 6.78,
+      "pct": 1.09,
+      "volume": 12510030,
       "cat": "major"
+    },
+    {
+      "symbol": "ONDO",
+      "name": "Ondo",
+      "price": 0.3682,
+      "pct": 1.21,
+      "volume": 11971199,
+      "cat": "defi"
     },
     {
       "symbol": "DASH",
       "name": "Dash",
-      "price": 37.51,
-      "pct": 5.28,
-      "volume": 5956388,
+      "price": 38.16,
+      "pct": 7.49,
+      "volume": 6497794,
       "cat": "privacy"
     },
     {
       "symbol": "RENDER",
       "name": "Render",
-      "price": 1.8,
-      "pct": 0.96,
-      "volume": 5472235,
+      "price": 1.81,
+      "pct": 2.15,
+      "volume": 5810295,
       "cat": "ai"
-    },
-    {
-      "symbol": "UNI",
-      "name": "Uniswap",
-      "price": 2.57,
-      "pct": 0.51,
-      "volume": 4563036,
-      "cat": "defi"
     },
     {
       "symbol": "AAVE",
       "name": "Aave",
-      "price": 67.82,
-      "pct": 0.98,
-      "volume": 4439381,
+      "price": 68.37,
+      "pct": 1.85,
+      "volume": 4939818,
+      "cat": "defi"
+    },
+    {
+      "symbol": "UNI",
+      "name": "Uniswap",
+      "price": 2.6,
+      "pct": 1.8,
+      "volume": 4721035,
       "cat": "defi"
     },
     {
       "symbol": "PENDLE",
       "name": "Pendle",
-      "price": 1.38,
-      "pct": 4.53,
-      "volume": 3630672,
+      "price": 1.39,
+      "pct": 5.61,
+      "volume": 3723091,
       "cat": "defi"
     },
     {
       "symbol": "JTO",
       "name": "Jito",
-      "price": 0.5621,
-      "pct": 2.52,
-      "volume": 3219252,
+      "price": 0.5636,
+      "pct": 3.87,
+      "volume": 3308708,
       "cat": "solana"
     },
     {
       "symbol": "BONK",
       "name": "Bonk",
       "price": 5e-06,
-      "pct": 2.0,
-      "volume": 2520044,
+      "pct": 4.0,
+      "volume": 2971454,
       "cat": "memes"
-    },
-    {
-      "symbol": "LDO",
-      "name": "Lido",
-      "price": 0.267,
-      "pct": 0.98,
-      "volume": 2287043,
-      "cat": "defi"
     },
     {
       "symbol": "CRV",
       "name": "Curve",
-      "price": 0.2353,
-      "pct": -1.63,
-      "volume": 2192540,
+      "price": 0.2382,
+      "pct": 0.59,
+      "volume": 2494065,
+      "cat": "defi"
+    },
+    {
+      "symbol": "LDO",
+      "name": "Lido",
+      "price": 0.2691,
+      "pct": 2.2,
+      "volume": 2347077,
       "cat": "defi"
     },
     {
       "symbol": "RAY",
       "name": "Raydium",
-      "price": 0.618,
-      "pct": 0.49,
-      "volume": 1189598,
+      "price": 0.621,
+      "pct": 1.64,
+      "volume": 1203487,
       "cat": "solana"
     },
     {
       "symbol": "JUP",
       "name": "Jupiter",
-      "price": 0.1756,
-      "pct": 0.46,
-      "volume": 936856,
+      "price": 0.1787,
+      "pct": 2.88,
+      "volume": 1047255,
       "cat": "solana"
     },
     {
       "symbol": "DYDX",
       "name": "dYdX",
-      "price": 0.12308,
-      "pct": 1.53,
-      "volume": 888696,
+      "price": 0.12299,
+      "pct": 1.8,
+      "volume": 904011,
       "cat": "defi"
     },
     {
       "symbol": "FLOKI",
       "name": "Floki",
-      "price": 2.5e-05,
-      "pct": 0.52,
-      "volume": 820066,
+      "price": 2.6e-05,
+      "pct": 2.35,
+      "volume": 874546,
+      "cat": "memes"
+    },
+    {
+      "symbol": "WIF",
+      "name": "dogwifhat",
+      "price": 0.1657,
+      "pct": 3.37,
+      "volume": 856907,
       "cat": "memes"
     },
     {
@@ -1513,14 +1525,6 @@
       "pct": -0.37,
       "volume": 787208,
       "cat": "ai"
-    },
-    {
-      "symbol": "WIF",
-      "name": "dogwifhat",
-      "price": 0.1628,
-      "pct": 1.18,
-      "volume": 701909,
-      "cat": "memes"
     },
     {
       "symbol": "XMR",
@@ -1541,156 +1545,162 @@
     {
       "symbol": "GMX",
       "name": "GMX",
-      "price": 5.79,
-      "pct": 3.21,
-      "volume": 182456,
+      "price": 5.81,
+      "pct": 3.75,
+      "volume": 178388,
       "cat": "defi"
     }
   ],
   "funding": [
     {
-      "symbol": "WLD",
+      "symbol": "COMP",
       "rate": 0.01,
       "annualized": 10.95,
-      "mark": 0.519
-    },
-    {
-      "symbol": "CRV",
-      "rate": 0.0091,
-      "annualized": 9.99,
-      "mark": 0.235
+      "mark": 17.98
     },
     {
       "symbol": "SUSHI",
-      "rate": 0.0086,
-      "annualized": 9.45,
-      "mark": 0.179
+      "rate": 0.01,
+      "annualized": 10.95,
+      "mark": 0.1798
     },
     {
-      "symbol": "FET",
-      "rate": 0.0084,
-      "annualized": 9.16,
-      "mark": 0.211
-    },
-    {
-      "symbol": "COMP",
-      "rate": 0.0077,
-      "annualized": 8.43,
-      "mark": 17.835
+      "symbol": "WLD",
+      "rate": 0.0083,
+      "annualized": 9.09,
+      "mark": 0.5258
     },
     {
       "symbol": "LINK",
-      "rate": 0.0067,
-      "annualized": 7.37,
-      "mark": 8.117
+      "rate": 0.0078,
+      "annualized": 8.54,
+      "mark": 8.191
     },
     {
-      "symbol": "AR",
-      "rate": 0.0066,
-      "annualized": 7.25,
-      "mark": 2.061
+      "symbol": "FET",
+      "rate": 0.0074,
+      "annualized": 8.11,
+      "mark": 0.2131
+    },
+    {
+      "symbol": "CRV",
+      "rate": 0.0072,
+      "annualized": 7.91,
+      "mark": 0.2379
+    },
+    {
+      "symbol": "YFI",
+      "rate": 0.0068,
+      "annualized": 7.41,
+      "mark": 1918.0
+    },
+    {
+      "symbol": "LDO",
+      "rate": 0.0064,
+      "annualized": 7.06,
+      "mark": 0.269
     },
     {
       "symbol": "DYDX",
-      "rate": 0.0066,
-      "annualized": 7.21,
-      "mark": 0.123
+      "rate": 0.0058,
+      "annualized": 6.35,
+      "mark": 0.1229
+    },
+    {
+      "symbol": "RENDER",
+      "rate": -0.0056,
+      "annualized": -6.11,
+      "mark": 1.808
     },
     {
       "symbol": "GMX",
-      "rate": 0.0062,
-      "annualized": 6.84,
-      "mark": 5.771
-    },
-    {
-      "symbol": "PENDLE",
-      "rate": 0.0061,
-      "annualized": 6.73,
-      "mark": 1.383
-    },
-    {
-      "symbol": "NEAR",
-      "rate": 0.0051,
-      "annualized": 5.6,
-      "mark": 2.221
+      "rate": 0.0052,
+      "annualized": 5.69,
+      "mark": 5.796
     },
     {
       "symbol": "AIXBT",
       "rate": 0.005,
       "annualized": 5.47,
-      "mark": 0.024
+      "mark": 0.0242
     },
     {
       "symbol": "NMR",
       "rate": 0.005,
       "annualized": 5.47,
-      "mark": 8.436
+      "mark": 8.4765
     },
     {
       "symbol": "TAO",
       "rate": 0.005,
       "annualized": 5.47,
-      "mark": 272.15
+      "mark": 267.63
     },
     {
       "symbol": "XAI",
       "rate": 0.005,
       "annualized": 5.47,
-      "mark": 0.0082
+      "mark": 0.0083
     },
     {
-      "symbol": "ETH",
-      "rate": 0.0044,
-      "annualized": 4.77,
-      "mark": 1721.42
-    },
-    {
-      "symbol": "BTC",
-      "rate": 0.0042,
-      "annualized": 4.55,
-      "mark": 65521.8594
+      "symbol": "AR",
+      "rate": 0.0047,
+      "annualized": 5.17,
+      "mark": 2.066
     },
     {
       "symbol": "SNX",
-      "rate": 0.0034,
-      "annualized": 3.75,
-      "mark": 0.2462
-    },
-    {
-      "symbol": "SOL",
-      "rate": -0.0033,
-      "annualized": -3.57,
-      "mark": 70.46
-    },
-    {
-      "symbol": "YFI",
-      "rate": 0.0032,
-      "annualized": 3.56,
-      "mark": 1916.6333
-    },
-    {
-      "symbol": "LDO",
-      "rate": 0.0028,
-      "annualized": 3.07,
-      "mark": 0.2668
-    },
-    {
-      "symbol": "UNI",
-      "rate": 0.0027,
-      "annualized": 3.0,
-      "mark": 2.5721
-    },
-    {
-      "symbol": "RENDER",
-      "rate": -0.0026,
-      "annualized": -2.81,
-      "mark": 1.794
+      "rate": 0.0046,
+      "annualized": 5.06,
+      "mark": 0.2471
     },
     {
       "symbol": "AAVE",
-      "rate": 0.0008,
-      "annualized": 0.91,
-      "mark": 67.77
+      "rate": -0.0041,
+      "annualized": -4.48,
+      "mark": 68.3
+    },
+    {
+      "symbol": "NEAR",
+      "rate": 0.0041,
+      "annualized": 4.47,
+      "mark": 2.228
+    },
+    {
+      "symbol": "ENS",
+      "rate": 0.0039,
+      "annualized": 4.24,
+      "mark": 5.1604
+    },
+    {
+      "symbol": "SOL",
+      "rate": -0.0037,
+      "annualized": -4.09,
+      "mark": 71.51
+    },
+    {
+      "symbol": "UNI",
+      "rate": 0.0031,
+      "annualized": 3.39,
+      "mark": 2.597
+    },
+    {
+      "symbol": "PENDLE",
+      "rate": -0.0029,
+      "annualized": -3.17,
+      "mark": 1.393
+    },
+    {
+      "symbol": "ETH",
+      "rate": 0.0024,
+      "annualized": 2.65,
+      "mark": 1725.2
+    },
+    {
+      "symbol": "BTC",
+      "rate": 0.0021,
+      "annualized": 2.29,
+      "mark": 65706.1
     }
   ],
   "sector_briefs": [
