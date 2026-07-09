@@ -3,28 +3,775 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Terminal</title>
+<title>Hermes — Research Terminal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark}
+:root{
+  --bg:#0a0c11; --side:#0d1017; --panel:#12151c; --panel2:#161a23; --hover:#1a1f29;
+  --line:#1e242f; --line2:#283040;
+  --ink:#e6e9ef; --ink2:#b9c0cd; --mut:#7c8494; --faint:#565e6e;
+  --blue:#4c82f5; --blue2:#2a4a8f; --green:#16c784; --red:#ea3943; --gold:#f0b90b;
+  --violet:#a78bfa; --cyan:#22d3ee; --orange:#fb923c;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; --mono:'JetBrains Mono',monospace;
+  color-scheme:dark;
+}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-  background:#0e0e10;color:#e7e5df;font-family:'JetBrains Mono',ui-monospace,'Courier New',monospace;
-  background-image:radial-gradient(60% 50% at 50% 38%,rgba(110,124,85,.09),transparent 70%)}
-.card{text-align:center;padding:40px}
-.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#6E7C55;margin-right:11px;
-  box-shadow:0 0 14px rgba(110,124,85,.7);animation:p 2.4s ease-in-out infinite}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;display:flex;min-height:100vh;font-variant-numeric:tabular-nums}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:#232a36;border-radius:5px}
+a{color:var(--blue);text-decoration:none}
+/* ── SIDEBAR ─────────────────────────────────────────────── */
+.side{width:216px;flex:none;background:var(--side);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh;z-index:10}
+.logo{display:flex;align-items:center;gap:10px;padding:18px 18px 14px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.logo .mk{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--blue),#7aa2ff);
+  display:flex;align-items:center;justify-content:center;font-size:12px;color:#0a0c11;font-weight:700;box-shadow:0 0 18px rgba(76,130,245,.35)}
+.logo small{display:block;font-weight:400;font-size:10.5px;color:var(--mut);letter-spacing:.02em}
+.nav{padding:6px 10px;display:flex;flex-direction:column;gap:2px}
+.nav .grp{font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);font-weight:600;padding:12px 11px 4px}
+.nav a{display:flex;align-items:center;gap:11px;padding:8px 11px;border-radius:7px;color:var(--mut);
+  text-decoration:none;font-size:13px;font-weight:500;position:relative;cursor:pointer}
+.nav a:hover{background:var(--panel);color:var(--ink2)}
+.nav a.on{background:var(--panel2);color:var(--ink)}
+.nav a.on::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:2.5px;border-radius:2px;background:var(--blue)}
+.nav a i{width:16px;height:16px;flex:none;opacity:.85}
+.nav a svg{display:block}
+.nav a .n{margin-left:auto;font-size:10px;font-family:var(--mono);color:var(--faint);background:var(--panel2);border-radius:9px;padding:1px 7px}
+.side .sfoot{margin-top:auto;padding:14px 18px;border-top:1px solid var(--line);font-size:11px;color:var(--faint)}
+.side .sfoot .live{display:flex;align-items:center;gap:7px;font-weight:500;margin-bottom:5px}
+.side .sfoot .live.ok{color:var(--green)}.side .sfoot .live.ko{color:var(--red)}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor;animation:p 2.4s ease-in-out infinite}
 @keyframes p{50%{opacity:.35}}
-h1{font-weight:400;font-size:22px;letter-spacing:.1em;margin:0 0 12px}
-p{color:#8b887e;font-size:13px;letter-spacing:.04em;margin:4px 0}
-.tag{margin-top:24px;font-size:11px;color:#5f5e58;letter-spacing:.22em;text-transform:uppercase}
+/* ── MAIN / TOPBAR ───────────────────────────────────────── */
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:14px;padding:13px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;
+  background:rgba(10,12,17,.85);backdrop-filter:blur(9px);z-index:9}
+.top h1{font-size:15px;font-weight:600;margin:0;letter-spacing:-.01em}
+.tag{font-size:11px;color:var(--mut);border:1px solid var(--line2);border-radius:20px;padding:2px 10px;font-family:var(--mono)}
+.srcbadge{font-size:10px;font-weight:700;letter-spacing:.08em;border-radius:5px;padding:3px 8px;font-family:var(--mono)}
+.srcbadge.live{color:var(--green);background:rgba(22,199,132,.1);border:1px solid #1a5a42}
+.srcbadge.mock{color:var(--gold);background:rgba(240,185,11,.1);border:1px solid #5c4a10}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);
+  border-radius:8px;padding:0 11px;min-width:230px}
+.search input{background:none;border:none;outline:none;color:var(--ink);font-size:12px;font-family:var(--sans);padding:7px 0;flex:1}
+.search input::placeholder{color:var(--faint)}
+.search kbd{font-size:10px;color:var(--faint);border:1px solid var(--line2);border-radius:4px;padding:0 5px;font-family:var(--mono)}
+.upd{font-size:11px;color:var(--mut);white-space:nowrap}
+.content{padding:20px 24px 60px;max-width:1440px;width:100%}
+.view{display:none}.view.on{display:block}
+.sec{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);font-weight:600;margin:26px 2px 12px;display:flex;align-items:baseline;gap:10px}
+.sec:first-child{margin-top:6px}
+.sec small{text-transform:none;letter-spacing:0;font-weight:400;color:var(--faint);font-size:11px}
+/* ── KPI ─────────────────────────────────────────────────── */
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media(max-width:1250px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px 15px;position:relative;overflow:hidden}
+.kpi .l{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);font-weight:600}
+.kpi .v{font-size:22px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.kpi .v small{font-size:12px;color:var(--mut);font-weight:500}
+.kpi .d{font-size:11px;margin-top:2px;color:var(--mut)}
+.up{color:var(--green)}.dn{color:var(--red)}.fl{color:var(--gold)}
+/* ── LAYOUT / CARDS ──────────────────────────────────────── */
+.grid{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;align-items:start}
+@media(max-width:1050px){.grid{grid-template-columns:1fr}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+@media(max-width:1050px){.grid2{grid-template-columns:1fr}}
+.stack{display:flex;flex-direction:column;gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.card>.h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.card>.h .t{font-size:13px;font-weight:600;letter-spacing:-.01em}
+.card>.h .s{font-size:11px;color:var(--faint);font-family:var(--mono)}
+.card .bd{padding:14px 16px}
+/* ── CHIPS / BADGES ──────────────────────────────────────── */
+.badge{font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:5px;border:1px solid var(--line2);color:var(--mut)}
+.badge.A{color:#8fb4ff;border-color:var(--blue2);background:rgba(76,130,245,.08)}
+.badge.S{color:var(--green);border-color:#1a5a42;background:rgba(22,199,132,.07)}
+.badge.B{color:var(--gold);border-color:#5c4a10;background:rgba(240,185,11,.07)}
+.badge.W{color:var(--violet);border-color:#4a3d7a;background:rgba(167,139,250,.08)}
+.badge.mode{color:var(--faint);font-weight:500;letter-spacing:.02em}
+.chip{font-size:10.5px;padding:2px 8px;border-radius:20px;font-family:var(--mono);font-weight:500;white-space:nowrap}
+.chip.disc{color:var(--green);background:rgba(22,199,132,.1)}
+.chip.disc.low{color:var(--gold);background:rgba(240,185,11,.1)}
+.chip.disc.bad{color:var(--red);background:rgba(234,57,67,.1)}
+.chip.r2{color:var(--green);background:rgba(22,199,132,.1)}
+.chip.r2.f{color:var(--red);background:rgba(234,57,67,.1)}
+.chip.th{color:var(--ink2);background:var(--panel2);border:1px solid var(--line)}
+.chip.warn{color:var(--orange);background:rgba(251,146,60,.1)}
+.chip.info{color:var(--cyan);background:rgba(34,211,238,.08)}
+.chip.halluc{color:var(--red);background:rgba(234,57,67,.14);font-weight:700}
+/* ── BRIEFS ──────────────────────────────────────────────── */
+.brief{padding:15px 16px;border-bottom:1px solid var(--line)}
+.brief:last-child{border-bottom:none}
+.brief .m{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+.brief .ts{margin-left:auto;font-size:11px;color:var(--faint);font-family:var(--mono);white-space:nowrap}
+.brief .tx{position:relative;max-height:230px;overflow:hidden;transition:max-height .25s ease}
+.brief .tx.open{max-height:none}
+.brief .tx::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(transparent,var(--panel));pointer-events:none}
+.brief .tx.open::after,.brief .tx.short::after{display:none}
+.brief .more{margin-top:8px;font-size:11px;color:var(--blue);cursor:pointer;font-weight:500;user-select:none}
+.brief .tx h4{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--blue);margin:12px 0 5px;font-weight:600}
+.brief .tx h4:first-child{margin-top:0}
+.brief .tx p{margin:5px 0;color:var(--ink2);font-size:12.5px}
+.brief .tx ul{margin:5px 0;padding-left:17px}
+.brief .tx li{color:var(--ink2);font-size:12.5px;margin:4px 0}
+.brief .tx b{color:var(--ink);font-weight:600}
+.silentrow{display:flex;align-items:center;gap:9px;padding:8px 16px;border-bottom:1px solid var(--line);color:var(--faint);font-size:11.5px;font-family:var(--mono)}
+.silentrow:last-child{border-bottom:none}
+.killrow{display:flex;align-items:center;gap:9px;padding:8px 16px;border-bottom:1px solid var(--line);color:var(--red);font-size:11.5px;font-family:var(--mono);opacity:.85}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.fbtn{font-size:11px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:3px 12px;cursor:pointer;background:none;font-family:var(--sans)}
+.fbtn.on{color:var(--ink);border-color:var(--blue);background:rgba(76,130,245,.1)}
+/* ── CHART ───────────────────────────────────────────────── */
+.chart{width:100%;height:120px;display:block}
+.chart .fill{fill:rgba(76,130,245,.12)}
+.chart .ln{fill:none;stroke:var(--blue);stroke-width:1.6}
+.chart .gl{stroke:var(--line2);stroke-width:1;stroke-dasharray:2 4}
+.chart .cut{stroke:var(--gold);stroke-width:1;stroke-dasharray:4 3}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:11px;color:var(--mut);margin-top:8px}
+.legend b{color:var(--ink)}
+.legend .k{display:inline-flex;align-items:center;gap:5px}
+.legend .sw{width:8px;height:8px;border-radius:2px;display:inline-block}
+/* ── TABLES ──────────────────────────────────────────────── */
+table{width:100%;border-collapse:collapse}
+thead th{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);font-weight:600;
+  text-align:left;padding:10px 16px;border-bottom:1px solid var(--line)}
+thead th.r{text-align:right}
+tbody td{padding:11px 16px;border-bottom:1px solid var(--line);font-size:12.5px;vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--hover)}
+td.r{text-align:right;font-family:var(--mono)}
+.key{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:12px}
+.vtag{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:5px}
+.vtag.confirm{color:var(--green);background:rgba(22,199,132,.1)}
+.vtag.revise{color:var(--gold);background:rgba(240,185,11,.1)}
+.vtag.retire{color:var(--faint);background:rgba(120,128,145,.1)}
+.trig{color:var(--mut);font-size:11.5px;max-width:330px}
+.kc{color:var(--ink2);font-size:11.5px;max-width:300px}
+.kc::before{content:"⚑ ";color:var(--orange)}
+.spark{display:block}
+.spark .l{fill:none;stroke:var(--green);stroke-width:1.4}
+.spark .p{fill:var(--green)}
+.spark .pr{fill:var(--gold)}
+/* ── INQUIRIES / MACRO / HEALTH ──────────────────────────── */
+.inq{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.inq:last-child{border-bottom:none}
+.inq .st{font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:5px;height:fit-content;white-space:nowrap}
+.inq .st.open{color:var(--blue);background:rgba(76,130,245,.1)}
+.inq .st.watch{color:var(--gold);background:rgba(240,185,11,.1)}
+.inq .q{color:var(--ink);font-weight:500;font-size:12.5px}
+.inq .lead{color:var(--mut);font-size:11.5px;margin-top:3px}
+.inq .ev{margin-top:6px;font-size:11px;color:var(--faint);font-family:var(--mono)}
+.hbar .row{display:grid;grid-template-columns:110px 1fr 90px;align-items:center;gap:10px;padding:6px 0;font-size:12px}
+.hbar .row .n{color:var(--ink2)}
+.hbar .row .tr{height:6px;background:var(--panel2);border-radius:4px;overflow:hidden}
+.hbar .row .tr>i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#6f9bff);border-radius:4px}
+.hbar .row .tr>i.g{background:linear-gradient(90deg,#0f9d6a,var(--green))}
+.hbar .row .tr>i.o{background:linear-gradient(90deg,#c2410c,var(--orange))}
+.hbar .row .v{text-align:right;font-family:var(--mono);color:var(--ink);font-size:11.5px}
+.hbar .row .v small{color:var(--faint)}
+.note{font-size:11px;color:var(--faint);margin-top:10px;line-height:1.55}
+.foot{padding:22px 24px;color:var(--faint);font-size:11px;font-family:var(--mono);border-top:1px solid var(--line);margin-top:34px;line-height:1.7}
+mark{background:rgba(240,185,11,.28);color:var(--ink);border-radius:2px;padding:0 1px}
+@media(max-width:900px){
+  .side{position:fixed;left:-216px;transition:left .2s}.side.open{left:0}
+  .main{margin-left:0}
+  .burger{display:block!important}
+}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:7px;color:var(--ink2);padding:5px 9px;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="card">
-<h1><span class="dot"></span>terminal</h1>
-<p>en reconstruction</p>
-<p>contenu precedent retire — redesign a venir</p>
-<div class="tag">nettoye · 2026-07-07</div>
-</div>
+<aside class="side" id="side">
+  <div class="logo"><span class="mk">H</span><span>Hermes<small>research terminal · brain v2</small></span></div>
+  <nav class="nav" id="nav">
+    <a data-v="overview" class="on"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>Overview</a>
+    <div class="grp">Recherche</div>
+    <a data-v="briefs"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10M3 7h10M3 11h7"/></svg>Briefs<span class="n" id="nb"></span></a>
+    <a data-v="theses"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12l3-4 3 2 4-6 2 3"/></svg>Thèses<span class="n" id="nt"></span></a>
+    <a data-v="inquiries"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="4.5"/><path d="M11 11l3 3"/></svg>Enquêtes<span class="n" id="ni"></span></a>
+    <div class="grp">Marché</div>
+    <a data-v="macro"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13h12M4 13V7M8 13V3M12 13V9"/></svg>Macro</a>
+    <a data-v="robinhood"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5 8.5l2 2 4-5"/></svg>Robinhood Chain</a>
+    <div class="grp">Système</div>
+    <a data-v="health"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h3l2-4 2 8 2-5 1 1h2"/></svg>Santé du harness</a>
+  </nav>
+  <div class="sfoot">
+    <div class="live ok" id="livedot"><span class="dot"></span><span id="livetxt">brain vivant</span></div>
+    <div id="sf"></div>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="top">
+    <button class="burger" onclick="document.getElementById('side').classList.toggle('open')">☰</button>
+    <h1 id="vtitle">Overview</h1>
+    <span class="tag" id="modeltag"></span>
+    <span class="srcbadge mock" id="src">…</span>
+    <div class="search"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--faint)"><circle cx="7" cy="7" r="4.5"/><path d="M11 11l3 3"/></svg>
+      <input id="q" placeholder="entité, thèse, thread…"><kbd>/</kbd></div>
+    <div class="upd" id="upd"></div>
+  </div>
+
+  <div class="content">
+
+    <!-- ═══ OVERVIEW ═══ -->
+    <section class="view on" data-view="overview">
+      <div class="sec">Aperçu</div>
+      <div class="kpis" id="kpis"></div>
+
+      <div class="sec">Discipline &amp; production <small>· points rouges = R2 fail · croix = run tué · ligne or = cutover 3-phase</small></div>
+      <div class="grid">
+        <div class="card">
+          <div class="h"><span class="t">Derniers briefs</span><span class="s" id="bc"></span></div>
+          <div id="briefs_ov"></div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="h"><span class="t">Discipline — 30 derniers runs</span><span class="s">gate R1-R9</span></div>
+            <div class="bd">
+              <svg class="chart" id="chart" viewBox="0 0 340 120" preserveAspectRatio="none"></svg>
+              <div class="legend" id="chartleg"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="h"><span class="t">Macro — TVL par secteur</span><span class="s">get_landscape</span></div>
+            <div class="bd"><div class="hbar" id="macro_ov"></div>
+              <div class="note">yardstick : lending/LST/RWA = TVL · DEX = volume · perps = OI/volume — jamais de fee-yield sur le TVL d'un DEX.</div></div>
+          </div>
+          <div class="card">
+            <div class="h"><span class="t">Fee-yield annualisé — classement</span><span class="s">drill_economics · 7d lissé</span></div>
+            <div class="bd"><div class="hbar" id="fy_ov"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">Thèses actives <small>· conviction = trajectoire, pas une photo</small></div>
+      <div class="card"><table>
+        <thead><tr><th>Thèse</th><th>Verdict</th><th class="r">Conviction</th><th>Trajectoire</th><th>Kill condition</th><th class="r">MAJ</th></tr></thead>
+        <tbody id="theses_ov"></tbody></table>
+      </div>
+
+      <div class="sec">Enquêtes-mission</div>
+      <div class="card"><div class="bd" id="inq_ov"></div></div>
+    </section>
+
+    <!-- ═══ BRIEFS ═══ -->
+    <section class="view" data-view="briefs">
+      <div class="sec">Flux des briefs <small id="bfcount"></small></div>
+      <div class="card">
+        <div class="h"><div class="filters" id="bfilters"></div><span class="s">brain_v2_traces</span></div>
+        <div id="briefs_all"></div>
+      </div>
+    </section>
+
+    <!-- ═══ THESES ═══ -->
+    <section class="view" data-view="theses">
+      <div class="sec">Le livre de thèses <small>· thesis_verdicts.jsonl — append-only, la continuité R6 rendue visible</small></div>
+      <div class="card"><table>
+        <thead><tr><th>Thèse</th><th>Verdict</th><th class="r">Conviction</th><th>Trajectoire</th><th>Dernier trigger</th><th>Kill condition</th><th class="r">MAJ</th></tr></thead>
+        <tbody id="theses_all"></tbody></table>
+      </div>
+      <div class="note" style="margin-top:12px">Un CONFIRM sans conviction hérite de la précédente (carry-forward s43). Un RETIRE éteint la thèse — l'historique reste.</div>
+    </section>
+
+    <!-- ═══ INQUIRIES ═══ -->
+    <section class="view" data-view="inquiries">
+      <div class="sec">Enquêtes-mission <small>· inquiry ledger — la mission permanente, run après run</small></div>
+      <div class="card"><div class="bd" id="inq_all"></div></div>
+    </section>
+
+    <!-- ═══ MACRO ═══ -->
+    <section class="view" data-view="macro">
+      <div class="sec">État de la DeFi <small>· get_landscape + get_macro · 0 LLM</small></div>
+      <div class="grid2">
+        <div class="stack">
+          <div class="card">
+            <div class="h"><span class="t">TVL par secteur</span><span class="s" id="mts"></span></div>
+            <div class="bd"><div class="hbar" id="macro_sect"></div>
+            <div class="note">Ne pas sommer les secteurs (LST/restaking double-comptent l'ETH staké).</div></div>
+          </div>
+          <div class="card">
+            <div class="h"><span class="t">Fee-yield annualisé — value accrual</span><span class="s">fees 7d lissés / base sectorielle</span></div>
+            <div class="bd"><div class="hbar" id="macro_fy"></div>
+            <div class="note">Fees PROTOCOLE ≠ accrual du TOKEN (fee switch / buyback à vérifier par gouvernance).</div></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="h"><span class="t">Fresh money — flux stablecoins</span><span class="s">Δ 7j par chaîne</span></div>
+            <div class="bd"><div class="hbar" id="macro_flows"></div>
+            <div class="note" id="stableline"></div></div>
+          </div>
+          <div class="card">
+            <div class="h"><span class="t">Agrégats</span><span class="s">market_agg</span></div>
+            <div class="bd"><div class="hbar" id="macro_agg"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ROBINHOOD ═══ -->
+    <section class="view" data-view="robinhood">
+      <div class="sec">Robinhood Chain — tracker quotidien <small>· on-chain × news, chaîne causale, synthèse 12h UTC</small></div>
+      <div class="kpis" id="rh_kpis" style="grid-template-columns:repeat(4,1fr)"></div>
+      <div class="sec">Dernière synthèse causale</div>
+      <div class="card"><div class="brief" style="border:none"><div class="tx open" id="rh_synth"></div></div></div>
+    </section>
+
+    <!-- ═══ HEALTH ═══ -->
+    <section class="view" data-view="health">
+      <div class="sec">Santé du harness <small>· la vue qu'aucun terminal du marché n'a : le système se regarde fonctionner</small></div>
+      <div class="kpis" id="h_kpis" style="grid-template-columns:repeat(5,1fr)"></div>
+
+      <div class="grid2" style="margin-top:16px">
+        <div class="card">
+          <div class="h"><span class="t">Budget LLM — aujourd'hui</span><span class="s">llm_budget.json · cap = garde anti-runaway</span></div>
+          <div class="bd"><div class="hbar" id="h_budget"></div>
+          <div class="note">Le coût réel = tokens × prix. Allowance Venice (DIEM stackés) = plafond structurel ; le cap harness est la 2e ceinture.</div></div>
+        </div>
+        <div class="card">
+          <div class="h"><span class="t">Complétions par run</span><span class="s">3-phase = 2-3 · ReAct = 5-11</span></div>
+          <div class="bd"><svg class="chart" id="h_comps" viewBox="0 0 340 110" preserveAspectRatio="none"></svg>
+          <div class="legend"><span class="k"><span class="sw" style="background:var(--blue)"></span>3-phase</span>
+          <span class="k"><span class="sw" style="background:var(--violet)"></span>ReAct</span>
+          <span class="k"><span class="sw" style="background:var(--red)"></span>tué (pas de complétion mesurée)</span></div></div>
+        </div>
+      </div>
+
+      <div class="sec">Incidents — runs tués / crashés <small>· trace-on-kill (H2) : chaque mort laisse sa phase</small></div>
+      <div class="card"><table>
+        <thead><tr><th>Horodatage</th><th>Tier</th><th>Mode</th><th>Statut</th><th>Phase au moment du kill</th><th>Cause probable</th></tr></thead>
+        <tbody id="h_kills"></tbody></table>
+      </div>
+
+      <div class="sec">Gate v2 — le juge sous surveillance</div>
+      <div class="card"><div class="bd"><div class="hbar" id="h_gate"></div>
+        <div class="note">ungrounded $ = chiffre dollar sans antécédent dans le contexte (pénalité −20/occurrence) · unsupported % = report-only, en calibration · hallucination = verdict du juge sémantique qui voit désormais le SOURCE CONTEXT.</div>
+      </div></div>
+    </section>
+
+    <div class="foot" id="foot"></div>
+  </div>
+</main>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   HERMES TERMINAL v2 — contrat data.json (schema_version 1)
+   Producteur attendu : terminal_feed.py (delta, 0-LLM) → git push.
+   Fallback : MOCK ci-dessous (chiffres = mesures réelles s43-s44),
+   badge MOCK affiché tant que data.json n'est pas servi.
+   ══════════════════════════════════════════════════════════════════ */
+const MOCK = {
+  "schema_version": 1,
+  "source": "MOCK",
+  "generated_at": "2026-07-09T19:40:00Z",
+  "status": {
+    "model": "zai-org-glm-4.7", "fallback_model": "deepseek-v4-pro",
+    "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
+    "cutover_ts": "2026-07-09T08:20:00Z",
+    "last_run": {"tier": "A", "mode": "3phase", "ts": "2026-07-09T18:07:46Z", "status": "ok",
+                 "discipline": 94, "r2_pass": true, "silent": false},
+    "runs_today": 11
+  },
+  "runs": [
+    {"ts":"2026-07-07T22:11:07Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":97,"r2_pass":true,"comps":2},
+    {"ts":"2026-07-08T00:07:10Z","tier":"A","mode":"react","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":6},
+    {"ts":"2026-07-08T01:10:58Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":87,"r2_pass":true,"comps":3},
+    {"ts":"2026-07-08T03:07:20Z","tier":"A","mode":"react","status":"ok","silent":false,"discipline":96,"r2_pass":true,"comps":6},
+    {"ts":"2026-07-08T04:10:34Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":87,"r2_pass":true,"comps":2},
+    {"ts":"2026-07-08T06:06:29Z","tier":"A","mode":"react","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":5},
+    {"ts":"2026-07-08T06:36:47Z","tier":"S","mode":"react","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":7},
+    {"ts":"2026-07-08T07:11:17Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":3},
+    {"ts":"2026-07-08T09:09:01Z","tier":"A","mode":"react","status":"killed","silent":true,"discipline":null,"r2_pass":null,"comps":null},
+    {"ts":"2026-07-08T09:40:01Z","tier":"B","mode":"react","status":"killed","silent":true,"discipline":null,"r2_pass":null,"comps":null},
+    {"ts":"2026-07-08T10:11:15Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":84,"r2_pass":true,"comps":2},
+    {"ts":"2026-07-08T12:06:46Z","tier":"A","mode":"react","status":"ok","silent":false,"discipline":84,"r2_pass":true,"comps":5},
+    {"ts":"2026-07-08T13:10:46Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":97,"r2_pass":true,"comps":3},
+    {"ts":"2026-07-08T15:09:01Z","tier":"A","mode":"react","status":"killed","silent":true,"discipline":null,"r2_pass":null,"comps":null},
+    {"ts":"2026-07-08T16:10:51Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":2},
+    {"ts":"2026-07-08T18:09:01Z","tier":"A","mode":"react","status":"killed","silent":true,"discipline":null,"r2_pass":null,"comps":null},
+    {"ts":"2026-07-08T19:10:09Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":87,"r2_pass":true,"comps":2},
+    {"ts":"2026-07-08T21:06:31Z","tier":"A","mode":"react","status":"ok","silent":false,"discipline":54,"r2_pass":true,"comps":5},
+    {"ts":"2026-07-08T22:10:06Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":2},
+    {"ts":"2026-07-09T00:08:10Z","tier":"A","mode":"react","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":5},
+    {"ts":"2026-07-09T03:07:17Z","tier":"A","mode":"react","status":"ok","silent":false,"discipline":97,"r2_pass":true,"comps":5},
+    {"ts":"2026-07-09T04:10:28Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":86,"r2_pass":true,"comps":2},
+    {"ts":"2026-07-09T06:08:34Z","tier":"A","mode":"react","status":"ok","silent":false,"discipline":84,"r2_pass":true,"comps":10},
+    {"ts":"2026-07-09T06:38:56Z","tier":"S","mode":"react","status":"ok","silent":false,"discipline":84,"r2_pass":true,"comps":7},
+    {"ts":"2026-07-09T07:11:36Z","tier":"A","mode":"3phase","status":"ok","silent":true,"discipline":null,"r2_pass":null,"comps":3},
+    {"ts":"2026-07-09T09:06:45Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":97,"r2_pass":true,"comps":3},
+    {"ts":"2026-07-09T09:40:01Z","tier":"B","mode":"react","status":"killed","silent":true,"discipline":null,"r2_pass":null,"comps":null},
+    {"ts":"2026-07-09T12:06:21Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":2},
+    {"ts":"2026-07-09T15:05:30Z","tier":"A","mode":"3phase","status":"killed","silent":true,"discipline":null,"r2_pass":null,"comps":null,"phase":"delegate"},
+    {"ts":"2026-07-09T18:07:46Z","tier":"A","mode":"3phase","status":"ok","silent":false,"discipline":94,"r2_pass":true,"comps":2}
+  ],
+  "briefs": [
+    {"tier":"A","mode":"3phase","ts":"2026-07-09T18:07:46Z","status":"ok","silent":false,
+     "discipline":94,"r2_pass":true,"comps":2,"plan_fallback":false,"novelty_enforced":false,
+     "threads":["JustLend V1","Base","Lido"],
+     "gate":{"R1":9,"R6":8,"R8":7,"hallucination":"no"},
+     "fact_check":{"n_ungrounded_dollar":0,"n_unsupported_pct":0},
+     "brief":"## WHAT CHANGED\nLido's protocol revenue generation has accelerated to a 2.5% annualized fee-yield (7d), maintaining its dominant 60.8% market share of the LST sector, while JustLend V1 sustains the highest raw fee-yield of the set on a concentrated TRON base.\n## FILS DOMINANTS\n* **JustLend V1 — 6.1% fee-yield (7d), Rank 1/3** (vs Lido 2.5%, Base n/a) : base TVL $6.2B stable (z=0.4 30d), fees driven by TRON energy-rental mechanics — capital quality is captive rather than sticky (source: get_metric + protocol_fees 7d).\n* **Lido — 2.5% fee-yield, Rank 2/3** : TVL $15.9B, +8.1% 7d (z=0.98 30d), 60.8% LST share. Organic staking demand ; token capture non-automatique (source: get_metric, peers).\n* **Base — TVL $4.4B chain-level** : security audit coverage expanding ; no protocol-level fee base comparable — flagged, not fee-yielded (source: read_articles).\n## RECONCILIATION\n* th_lido_defi-lst (CONFIRM) — conviction 0.97 : croissance TVL + share stable (source: get_prior_assessment).\n## LECTURE\nLa hiérarchie de value-accrual reste lending > LST > infra. Kill condition: une contraction TVL 7j > 15% sur Lido avec fees stables invaliderait la lecture capital organique."},
+    {"tier":"A","mode":"3phase","ts":"2026-07-09T15:05:30Z","status":"killed","silent":true,"phase":"delegate",
+     "threads":["JustLend V1","Ostium","KelpDAO"],"brief":"[INCOMPLETE] 3-phase run killed during phase=delegate"},
+    {"tier":"A","mode":"3phase","ts":"2026-07-09T12:06:21Z","status":"ok","silent":false,
+     "discipline":94,"r2_pass":true,"comps":2,"plan_fallback":false,"novelty_enforced":false,
+     "threads":["Maple","Spiko","Jupiter Lend"],
+     "gate":{"R1":9,"R6":8,"R8":7,"hallucination":"no"},
+     "fact_check":{"n_ungrounded_dollar":0,"n_unsupported_pct":0},
+     "brief":"## WHAT CHANGED\nMaple Finance's protocol revenue generation has surged to a 5.04% annualized fee-yield (7d), the highest of the analyzed set, on an institutional credit book expanding +9.2% 7d (z=1.1 30d).\n## FILS DOMINANTS\n* **Maple — 5.04% fee-yield, Rank 1/3** (vs Jupiter Lend 3.3%, Spiko 0.4%) : credit demand institutionnelle ; concentration emprunteurs = risque thèse-spécifique (source: get_metric + protocol_fees 7d).\n* **Jupiter Lend — 3.3% fee-yield** : TVL +12.6% 7d à $990M (z=0.69 30d) mais fees −22.8% 7d (z=−1.14) — rotation yield-arbitrage, capital non sticky (source: get_metric).\n* **Spiko — 0.4% fee-yield, RWA T-bills** : base $-stable, marge structurellement compressée vs lending (source: get_metric).\n## RECONCILIATION\n* th_aave_defi (CONFIRM) — 0.90 : part de marché lending stable (source: get_prior_assessment).\n## LECTURE\nKill condition: si les fees Maple reviennent sous leur baseline 30j (z<0) avec TVL stable, la thèse d'expansion crédit est invalidée."},
+    {"tier":"A","mode":"3phase","ts":"2026-07-09T09:06:45Z","status":"ok","silent":false,
+     "discipline":97,"r2_pass":true,"comps":3,"plan_fallback":false,"novelty_enforced":true,
+     "threads":["Morpho Blue","Spiko","Jupiter Lend"],
+     "gate":{"R1":9,"R6":9,"R8":8,"hallucination":"no"},
+     "fact_check":{"n_ungrounded_dollar":0,"n_unsupported_pct":0},
+     "brief":"## WHAT CHANGED\nMorpho Blue's fee generation (z=3.70 30d, 100th percentile) keeps outrunning its TVL growth — 5.96% annualized fee-yield (7d), sector-leading.\n## FILS DOMINANTS\n* **Morpho Blue — 5.96% fee-yield, Rank 1/3** : $2.7M fees 24h, +258% 7d vs TVL +5.2% — utilisation élevée des pools à risque ; qualité du capital provisoire (source: get_metric + protocol_fees 7d).\n* **Jupiter Lend — 3.3%** et **Spiko — 0.4%** en contrepoint (source: get_metric).\n## RECONCILIATION\n* th_lido_liquid_staking (CONFIRM) — 0.92 (source: get_prior_assessment).\n## LECTURE\nKill condition: normalisation des fees Morpho (z<1) sans croissance TVL compensatoire."},
+    {"tier":"A","mode":"3phase","ts":"2026-07-09T07:11:36Z","status":"ok","silent":true,
+     "threads":["Sky Lending","Spiko","Drift"],"brief":"[SILENT] rien de matériel depuis le dernier brief"},
+    {"tier":"S","mode":"react","ts":"2026-07-09T06:38:56Z","status":"ok","silent":false,
+     "discipline":84,"r2_pass":true,"comps":7,
+     "gate":{"R1":9,"R6":8,"R8":7,"hallucination":"no"},
+     "brief":"## PAYSAGE\nCapital rotation active d'Ethereum vers Solana ($280M 7d inflows) et Optimism ($5.4M), malgré une contraction stablecoin globale (−0.2% 7d) — rotation fondamentale, pas narrative (source: get_analyst_note, get_metric).\n## MOUVEMENTS DE THÈSES\n* Aave Institutional (CONFIRM, 0.90) : Ondo SEC-compliant valide la voie institutionnelle.\n* ETH Institutional Accumulation (CONFIRM, 0.88) : BitMine à 4.8% du supply ETH.\n## CONVERGENCES\nMaturation DeFi × TradFi : croissance regulatory narrative (+12.3% 7d) + lancements produits institutionnels + croissance lending. Risque systémique concentré : Morpho 6 pools stressés, $6.95B TVL (source: get_analyst_note).\n## SOUS SURVEILLANCE\nInvalidation: reversal TVL lending soutenu + accélération des sorties stablecoin Ethereum."}
+  ],
+  "theses": [
+    {"key":"LIDO::defi-lst","verdict":"confirm","conviction":0.97,
+     "trigger":"Partenariat Anchorage Digital + croissance TVL 12-14% 7j.",
+     "kill":"Contraction TVL 7j > 15% avec fees stables (capital non organique).",
+     "ts":"2026-07-09T18:07:46Z",
+     "history":[{"ts":"2026-07-04","c":0.90},{"ts":"2026-07-05","c":0.95},{"ts":"2026-07-06","c":0.97},{"ts":"2026-07-07","c":0.97},{"ts":"2026-07-08","c":0.97},{"ts":"2026-07-09","c":0.97}]},
+    {"key":"LIDO::liquid_staking","verdict":"confirm","conviction":0.92,
+     "trigger":"Propositions de gouvernance stETH utility + efficacité opérationnelle.",
+     "kill":"Perte de part LST sous 55% ou fee-switch rejeté.",
+     "ts":"2026-07-09T09:06:45Z",
+     "history":[{"ts":"2026-07-04","c":0.88},{"ts":"2026-07-05","c":0.90},{"ts":"2026-07-06","c":0.92},{"ts":"2026-07-07","c":0.92},{"ts":"2026-07-08","c":0.92},{"ts":"2026-07-09","c":0.92}]},
+    {"key":"AAVE::defi","verdict":"confirm","conviction":0.90,
+     "trigger":"Part de marché lending dominante (47-48%) et focus institutionnel stable.",
+     "kill":"Part lending < 40% ou migration V4 ratée.",
+     "ts":"2026-07-09T12:06:21Z",
+     "history":[{"ts":"2026-07-05","c":0.94},{"ts":"2026-07-06","c":0.95},{"ts":"2026-07-07","c":0.90,"v":"revise"},{"ts":"2026-07-08","c":0.90},{"ts":"2026-07-09","c":0.90}]},
+    {"key":"ETH::general","verdict":"confirm","conviction":0.88,
+     "trigger":"Accumulation institutionnelle (BitMine 4.8% du supply) malgré outflows stablecoins.",
+     "kill":"Sorties stablecoin Ethereum accélérées + départ des émetteurs RWA.",
+     "ts":"2026-07-09T06:38:56Z",
+     "history":[{"ts":"2026-07-06","c":0.88},{"ts":"2026-07-07","c":0.88},{"ts":"2026-07-08","c":0.88},{"ts":"2026-07-09","c":0.88}]},
+    {"key":"AAVE::defi-lending","verdict":"retire","conviction":null,
+     "trigger":"Supplantée par la thèse expansion institutionnelle plus large.",
+     "kill":"—","ts":"2026-07-08T04:10:21Z",
+     "history":[{"ts":"2026-07-04","c":0.85},{"ts":"2026-07-06","c":0.80},{"ts":"2026-07-08","c":null,"v":"retire"}]}
+  ],
+  "inquiries": [
+    {"q":"Où va le fresh money (Δ stablecoin supply) ?","status":"open",
+     "lead":"Contraction −0.2% 7j → pas d'entrée nette ; rotation interne ETH→Solana ($280M 7j) et Optimism.",
+     "evidence":"get_metric(stablecoin_flow) · stress_analyst per-chain · 9 juil."},
+    {"q":"Morpho capte-t-il durablement la valeur du lending émergent ?","status":"open",
+     "lead":"Fees z=3.70 (100e pctile) vs TVL z=0.62 — sur-performance, mais 6 pools stressés = risque cascade.",
+     "evidence":"drill_economics · get_analyst_note(stress) · 9 juil."},
+    {"q":"Robinhood Chain : capital sticky ou mercenaire ?","status":"watch",
+     "lead":"Utility-driven à J+7, Morpho = 80% du TVL ; rétention 30j = le vrai test.",
+     "evidence":"robinhood_onchain 5×/j · synthèse causale 12h · 9 juil."}
+  ],
+  "macro": {
+    "sectors":[{"name":"lending","tvl":42.0,"yard":"TVL"},{"name":"lst","tvl":41.0,"yard":"TVL"},
+               {"name":"rwa","tvl":22.0,"yard":"TVL"},{"name":"dex","tvl":9.0,"yard":"VOLUME"},
+               {"name":"perp","tvl":1.8,"yard":"OI/VOL"}],
+    "fee_yield":[{"name":"JustLend V1","sector":"lending","fy":6.1},{"name":"Morpho Blue","sector":"lending","fy":5.96},
+                 {"name":"Maple","sector":"lending","fy":5.04},{"name":"Jupiter Lend","sector":"lending","fy":3.30},
+                 {"name":"Aave V3","sector":"lending","fy":2.64},{"name":"Lido","sector":"lst","fy":2.50},
+                 {"name":"Spiko","sector":"rwa","fy":0.40},{"name":"Circle USYC","sector":"rwa","fy":0.31}],
+    "flows":[{"chain":"Solana","d7":280},{"chain":"Optimism","d7":5.4},{"chain":"Base","d7":-12},{"chain":"Ethereum","d7":-310}],
+    "agg":{"stable_mcap_b":311.9,"stable_d7_pct":-0.2,"dex_vol_24h_b":6.4,"defi_tvl_b":72.7}
+  },
+  "robinhood": {"tvl_m":36.6,"morpho_share_pct":80,"age_days":7,"synth_ts":"2026-07-09T12:00:00Z",
+    "synth":"## ÉTAT ON-CHAIN\nTVL $36.6M (+4% 7j), Morpho concentre 80% ($29.4M supply / $12M borrowed). Trajectoire utility-driven — dépôts corrélés aux lancements produit, pas aux émissions.\n## CATALYSEURS\nArbitrum vise 10% des fees de Robinhood Chain (The Defiant) ; proposition MakerDAO Grove pour USDG en cours.\n## VALUE ACCRUAL\nPas de token de chaîne → la valeur fuit vers MORPHO (fees lending) et l'écosystème (Arbitrum Orbit).\n## LECTURE RÉGIME\nValidation RWA en cours : Kraken/Securitize/Ondo convergent sur le même rail. Kill condition: rétention < 50% des dépôts J+30."},
+  "health": {
+    "budget":{"day":"2026-07-09","glm":58,"glm_cap":300,"dsp":0,"dsp_cap":150},
+    "gate":{"ungrounded_dollar_7d":1,"unsupported_pct_7d":0,"hallucination_7d":0,"r2_rewrites_7d":3,"silent_r2_7d":2}
+  }
+};
+
+/* ── helpers ──────────────────────────────────────────────── */
+const $=s=>document.getElementById(s);
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const inl=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+const ago=iso=>{if(!iso)return'—';const s=(Date.now()-new Date(iso))/1000;
+  if(s<0)return'à venir';if(s<3600)return Math.max(1,Math.round(s/60))+' min';
+  if(s<86400)return Math.round(s/3600)+' h';return Math.round(s/86400)+' j';};
+const hh=iso=>{try{const d=new Date(iso);return d.toISOString().slice(5,16).replace('T',' ')+'Z'}catch(e){return iso}};
+const dcl=v=>v>=80?'':v>=70?'low':'bad';
+const conv=c=>(c==null||isNaN(c))?'—':Number(c).toFixed(2);
+function md(t){let h='',ul=false;for(const l of String(t||'').split('\n')){
+  if(l.startsWith('## ')){if(ul){h+='</ul>';ul=false;}h+='<h4>'+esc(l.slice(3))+'</h4>';}
+  else if(l.startsWith('* ')){if(!ul){h+='<ul>';ul=true;}h+='<li>'+inl(l.slice(2))+'</li>';}
+  else if(l.trim()){if(ul){h+='</ul>';ul=false;}h+='<p>'+inl(l)+'</p>';}}
+  if(ul)h+='</ul>';return h;}
+const normKey=k=>String(k||'').replace(/::defi[-_]lending/i,'::defi-lending').replace(/_/g,'-');
+
+/* ── sparkline (conviction trajectory) ────────────────────── */
+function spark(hist,w=110,h=26){
+  const pts=(hist||[]).filter(p=>p.c!=null);
+  if(pts.length<2)return'<span style="color:var(--faint);font-size:11px">n='+(pts.length)+'</span>';
+  const xs=i=>4+i*(w-8)/(pts.length-1), ys=v=>h-4-((v-0.5)/(0.5))*(h-8);
+  let d='M'+pts.map((p,i)=>xs(i).toFixed(1)+' '+ys(Math.max(.5,Math.min(1,p.c))).toFixed(1)).join(' L');
+  const last=pts[pts.length-1];
+  const marks=(hist||[]).map((p,i)=>p.v==='revise'?`<circle class="pr" cx="${xs(i)}" cy="${ys(Math.max(.5,Math.min(1,p.c??.5)))}" r="2.4"/>`:'').join('');
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><path class="l" d="${d}"/>${marks}<circle class="p" cx="${xs(pts.length-1)}" cy="${ys(Math.max(.5,Math.min(1,last.c)))}" r="2.6"/></svg>`;
+}
+
+/* ── brief card ───────────────────────────────────────────── */
+function briefCard(b){
+  if(b.status==='killed')
+    return `<div class="killrow" data-search="${esc((b.threads||[]).join(' '))} killed ${b.tier}">✕ run tué — phase ${esc(b.phase||'?')} · ${b.tier} · ${(b.threads||[]).join(' · ')||'plan inconnu'} <span style="margin-left:auto">${hh(b.ts)}</span></div>`;
+  if(b.silent)
+    return `<div class="silentrow" data-search="silent ${esc((b.threads||[]).join(' '))}">— [SILENT] ${esc((b.threads||[]).join(' · '))||''} · rien de matériel <span style="margin-left:auto">${hh(b.ts)}</span></div>`;
+  const g=b.gate||{},fc=b.fact_check||{};
+  const halluc=g.hallucination&&String(g.hallucination).toLowerCase()!=='no';
+  const chips=[
+    `<span class="badge ${b.tier}">${b.tier}</span>`,
+    `<span class="badge mode">${esc(b.mode||'')}</span>`,
+    b.discipline!=null?`<span class="chip disc ${dcl(b.discipline)}">disc ${b.discipline}</span>`:'',
+    b.r2_pass!=null?`<span class="chip r2 ${b.r2_pass?'':'f'}">R2 ${b.r2_pass?'pass':'FAIL'}</span>`:'',
+    (b.threads||[]).map(t=>`<span class="chip th">${esc(t)}</span>`).join(''),
+    b.novelty_enforced?`<span class="chip info" title="le filet anti-répétition a corrigé le plan">novelty ✓</span>`:'',
+    b.plan_fallback?`<span class="chip warn">PLAN fallback</span>`:'',
+    halluc?`<span class="chip halluc">HALLUCINATION</span>`:'',
+    (fc.n_ungrounded_dollar>0)?`<span class="chip warn">$ non-fondé ×${fc.n_ungrounded_dollar}</span>`:'',
+    b.comps!=null?`<span class="chip" style="color:var(--faint);background:var(--panel2)">${b.comps} compl.</span>`:'',
+    g.R1!=null?`<span class="chip" style="color:var(--faint);background:var(--panel2)" title="juge sémantique">R1 ${g.R1} · R6 ${g.R6} · R8 ${g.R8}</span>`:''
+  ].join('');
+  const id='b'+Math.random().toString(36).slice(2,8);
+  const body=md(b.brief);
+  const short=(b.brief||'').split('\n').length<10;
+  return `<div class="brief" data-search="${esc((b.threads||[]).join(' ')+' '+(b.brief||'').slice(0,400))}">
+    <div class="m">${chips}<span class="ts">${hh(b.ts)} · il y a ${ago(b.ts)}</span></div>
+    <div class="tx ${short?'short':''}" id="${id}">${body}</div>
+    ${short?'':`<div class="more" onclick="const t=$('${id}');t.classList.toggle('open');this.textContent=t.classList.contains('open')?'réduire ↑':'lire la suite ↓'">lire la suite ↓</div>`}
+  </div>`;
+}
+
+/* ── discipline chart with epistemics markers ─────────────── */
+function discChart(runs,cutoverTs){
+  const W=340,H=120,pad=10,mn=40,mx=100;
+  const n=runs.length;if(!n)return;
+  const xs=i=>pad+i*(W-2*pad)/Math.max(1,n-1), ys=v=>H-pad-((v-mn)/(mx-mn))*(H-2*pad);
+  const pts=runs.map((r,i)=>({x:xs(i),r}));
+  const line=pts.filter(p=>p.r.discipline!=null);
+  let d=line.length?'M'+line.map(p=>p.x.toFixed(1)+' '+ys(p.r.discipline).toFixed(1)).join(' L'):'';
+  let fill=d?d+` L${line[line.length-1].x.toFixed(1)} ${H-pad} L${line[0].x.toFixed(1)} ${H-pad} Z`:'';
+  let cutX=null;
+  if(cutoverTs){const ct=new Date(cutoverTs).getTime();
+    for(let i=0;i<n;i++){if(new Date(runs[i].ts).getTime()>=ct){cutX=xs(i);break;}}}
+  const marks=pts.map(p=>{
+    if(p.r.status==='killed')return`<text x="${p.x}" y="${H-14}" font-size="9" fill="var(--red)" text-anchor="middle">✕</text>`;
+    if(p.r.silent)return`<circle cx="${p.x}" cy="${H-16}" r="1.6" fill="var(--faint)"/>`;
+    if(p.r.r2_pass===false)return`<circle cx="${p.x}" cy="${ys(p.r.discipline??mn)}" r="3.4" fill="var(--red)"/>`;
+    return'';}).join('');
+  $('chart').innerHTML=
+    `<line class="gl" x1="${pad}" y1="${ys(84)}" x2="${W-pad}" y2="${ys(84)}"/>`+
+    `<text x="${W-pad}" y="${ys(84)-3}" font-size="8" fill="var(--faint)" text-anchor="end">seuil 84</text>`+
+    (cutX!=null?`<line class="cut" x1="${cutX}" y1="${pad}" x2="${cutX}" y2="${H-pad}"/><text x="${cutX+3}" y="${pad+8}" font-size="8" fill="var(--gold)">cutover</text>`:'')+
+    `<path class="fill" d="${fill}"/><path class="ln" d="${d}"/>${marks}`;
+  const sc=runs.filter(r=>r.discipline!=null).map(r=>r.discipline).sort((a,b)=>a-b);
+  const med=sc.length?sc[Math.floor(sc.length/2)]:'—';
+  const kills=runs.filter(r=>r.status==='killed').length;
+  const sil=runs.filter(r=>r.silent&&r.status!=='killed').length;
+  const r2f=runs.filter(r=>r.r2_pass===false).length;
+  $('chartleg').innerHTML=`<span>médiane <b>${med}</b></span><span>min <b>${sc[0]??'—'}</b></span>
+    <span>R2 fails <b>${r2f}</b></span><span>[SILENT] <b>${sil}</b></span><span>tués <b style="color:${kills?'var(--red)':'var(--ink)'}">${kills}</b></span>`;
+}
+
+/* ── theses rows ──────────────────────────────────────────── */
+function thesisRow(t,full){
+  const c=t.conviction;
+  return `<tr class="${t.verdict}" data-search="${esc(t.key+' '+t.trigger)}">
+    <td class="key">${esc(normKey(t.key))}</td>
+    <td><span class="vtag ${t.verdict}">${t.verdict}</span></td>
+    <td class="r">${conv(c)}</td>
+    <td>${spark(t.history)}</td>
+    ${full?`<td><span class="trig">${esc(t.trigger||'')}</span></td>`:''}
+    <td><span class="kc">${esc(t.kill||'—')}</span></td>
+    <td class="r" style="color:var(--faint)">${ago(t.ts)}</td></tr>`;
+}
+
+/* ── hbar rows ────────────────────────────────────────────── */
+function hrow(name,val,maxv,fmt,cls){return`<div class="row"><span class="n">${esc(name)}</span>
+  <span class="tr"><i class="${cls||''}" style="width:${Math.max(2,Math.min(100,Math.abs(val)/maxv*100))}%"></i></span>
+  <span class="v">${fmt}</span></div>`;}
+
+/* ── render ───────────────────────────────────────────────── */
+function render(d,src){
+  const st=d.status,lr=st.last_run;
+  $('src').textContent=src==='live'?'LIVE':'MOCK';
+  $('src').className='srcbadge '+(src==='live'?'live':'mock');
+  $('modeltag').textContent=st.model;
+  $('upd').textContent='maj il y a '+ago(d.generated_at);
+  $('sf').textContent='dernier run: '+lr.tier+' · '+ago(lr.ts)+(src==='mock'?' · MOCK':'');
+  const stale=(Date.now()-new Date(lr.ts))/3600000>4;
+  $('livedot').className='live '+(stale?'ko':'ok');
+  $('livetxt').textContent=stale?'silence > 4h — vérifier':'brain vivant';
+
+  // KPIs
+  const runs=d.runs||[];
+  const sc=runs.filter(r=>r.discipline!=null).map(r=>r.discipline).sort((a,b)=>a-b);
+  const med=sc.length?sc[Math.floor(sc.length/2)]:null;
+  const r2ok=runs.filter(r=>r.r2_pass===true).length,r2tot=runs.filter(r=>r.r2_pass!=null).length;
+  const silr=runs.filter(r=>r.silent&&r.status==='ok').length;
+  const bud=(d.health||{}).budget||{};
+  const activeTheses=(d.theses||[]).filter(t=>t.verdict!=='retire');
+  $('kpis').innerHTML=[
+    ['Dernier run',`${lr.tier} <small>· ${lr.silent?'[SILENT]':('disc '+lr.discipline)}</small>`,ago(lr.ts)+' · '+lr.status],
+    ['Discipline méd.',med??'—','30 runs · min '+(sc[0]??'—')],
+    ['R2 pass',r2tot?Math.round(r2ok/r2tot*100)+'%':'—','loi n°1 · '+r2ok+'/'+r2tot],
+    ['[SILENT]',runs.length?Math.round(silr/runs.length*100)+'%':'—','silence = information'],
+    ['Thèses actives',activeTheses.length,(d.theses||[]).length+' au livre'],
+    ['GLM aujourd\'hui',`${bud.glm??'—'}<small> / ${bud.glm_cap??'—'}</small>`,'complétions · cap runaway']
+  ].map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`).join('');
+
+  // Overview briefs (last 3 non-killed)
+  const bs=d.briefs||[];
+  $('bc').textContent=bs.length+' derniers runs';
+  $('briefs_ov').innerHTML=bs.slice(0,4).map(briefCard).join('');
+  $('nb').textContent=bs.length;
+
+  discChart(runs.slice(-30),st.cutover_ts);
+
+  // macro overview
+  const mx1=Math.max(...d.macro.sectors.map(x=>x.tvl));
+  $('macro_ov').innerHTML=d.macro.sectors.map(x=>hrow(x.name,x.tvl,mx1,'$'+x.tvl+'B <small>'+x.yard+'</small>')).join('');
+  const mfy=Math.max(...d.macro.fee_yield.map(x=>x.fy));
+  $('fy_ov').innerHTML=d.macro.fee_yield.slice(0,6).map(x=>hrow(x.name,x.fy,mfy,x.fy.toFixed(2)+'% <small>'+x.sector+'</small>','g')).join('');
+
+  // theses
+  const th=(d.theses||[]).slice().sort((a,b)=>(b.conviction??0)-(a.conviction??0));
+  $('theses_ov').innerHTML=th.filter(t=>t.verdict!=='retire').map(t=>thesisRow(t,false)).join('');
+  $('theses_all').innerHTML=th.map(t=>thesisRow(t,true)).join('');
+  $('nt').textContent=activeTheses.length;
+
+  // inquiries
+  const iq=(d.inquiries||[]);
+  const iqHtml=iq.map(q=>`<div class="inq" data-search="${esc(q.q+' '+q.lead)}"><span class="st ${q.status}">${q.status}</span>
+    <div><div class="q">${esc(q.q)}</div><div class="lead">${esc(q.lead)}</div>
+    ${q.evidence?`<div class="ev">↳ ${esc(q.evidence)}</div>`:''}</div></div>`).join('');
+  $('inq_ov').innerHTML=iqHtml;$('inq_all').innerHTML=iqHtml;$('ni').textContent=iq.length;
+
+  // briefs tab with filters
+  const tiers=['tous','A','S','B','W','silent','tué'];
+  let cur='tous';
+  const renderFeed=()=>{ $('briefs_all').innerHTML=bs.filter(b=>{
+      if(cur==='tous')return true;if(cur==='silent')return b.silent&&b.status!=='killed';
+      if(cur==='tué')return b.status==='killed';return b.tier===cur;
+    }).map(briefCard).join('')||'<div class="silentrow">aucun brief pour ce filtre</div>';
+    $('bfcount').textContent='· '+bs.length+' runs chargés';};
+  $('bfilters').innerHTML=tiers.map(t=>`<button class="fbtn ${t===cur?'on':''}" data-f="${t}">${t}</button>`).join('');
+  $('bfilters').onclick=e=>{const f=e.target.dataset.f;if(!f)return;cur=f;
+    [...$('bfilters').children].forEach(b=>b.classList.toggle('on',b.dataset.f===f));renderFeed();};
+  renderFeed();
+
+  // macro tab
+  $('mts').textContent='tracked ≠ global — ne pas sommer';
+  $('macro_sect').innerHTML=d.macro.sectors.map(x=>hrow(x.name,x.tvl,mx1,'$'+x.tvl+'B <small>'+x.yard+'</small>')).join('');
+  $('macro_fy').innerHTML=d.macro.fee_yield.map(x=>hrow(x.name,x.fy,mfy,x.fy.toFixed(2)+'% <small>'+x.sector+'</small>','g')).join('');
+  const mfl=Math.max(...d.macro.flows.map(x=>Math.abs(x.d7)));
+  $('macro_flows').innerHTML=d.macro.flows.map(x=>hrow(x.chain,x.d7,mfl,(x.d7>0?'+':'')+x.d7+'M <small>7j</small>',x.d7>0?'g':'o')).join('');
+  const ag=d.macro.agg;
+  $('stableline').textContent=`Stablecoin mcap $${ag.stable_mcap_b}B (${ag.stable_d7_pct>0?'+':''}${ag.stable_d7_pct}% 7j) — le proxy fresh-money.`;
+  $('macro_agg').innerHTML=[
+    hrow('DeFi TVL',ag.defi_tvl_b,ag.defi_tvl_b,'$'+ag.defi_tvl_b+'B'),
+    hrow('Stables mcap',ag.stable_mcap_b,ag.stable_mcap_b,'$'+ag.stable_mcap_b+'B'),
+    hrow('DEX vol 24h',ag.dex_vol_24h_b,ag.stable_mcap_b,'$'+ag.dex_vol_24h_b+'B')].join('');
+
+  // robinhood
+  const rh=d.robinhood;
+  $('rh_kpis').innerHTML=[
+    ['TVL chaîne','$'+rh.tvl_m+'M','DefiLlama chainId 4663'],
+    ['Part Morpho',rh.morpho_share_pct+'%','le value-accrual fuit vers MORPHO'],
+    ['Âge',rh.age_days+' j','mainnet ~02 juil.'],
+    ['Synthèse',ago(rh.synth_ts),'quotidienne 12:00 UTC']
+  ].map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`).join('');
+  $('rh_synth').innerHTML=md(rh.synth);
+
+  // health
+  const kills=runs.filter(r=>r.status==='killed');
+  const nov=runs.filter(r=>r.mode==='3phase').length;
+  const fb=(bs.filter(b=>b.plan_fallback).length);
+  const novEnf=bs.filter(b=>b.novelty_enforced).length;
+  $('h_kpis').innerHTML=[
+    ['Runs tués · 30r',kills.length,kills.length?'voir incidents ↓':'aucun ✓'],
+    ['plan_fallback',fb,fb?'⚠ investiguer _call':'0 — le PLAN écrit ✓'],
+    ['novelty enforced',novEnf,'relances correctives'],
+    ['Runs 3-phase',nov+'/'+runs.length,'migration S/B/W à venir'],
+    ['R2 rewrites 7j',(d.health.gate||{}).r2_rewrites_7d??'—','+ '+((d.health.gate||{}).silent_r2_7d??'—')+' [SILENT] R2']
+  ].map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`).join('');
+
+  $('h_budget').innerHTML=[
+    hrow('GLM 4.7',bud.glm,bud.glm_cap,`${bud.glm} / ${bud.glm_cap} <small>compl.</small>`,bud.glm>bud.glm_cap*.8?'o':'g'),
+    hrow('DeepSeek',bud.dsp,bud.dsp_cap,`${bud.dsp} / ${bud.dsp_cap} <small>fallback</small>`,'g')].join('');
+
+  // completions chart
+  const cw=340,ch=110,cp=10,cr=runs.slice(-24);
+  const cmax=Math.max(4,...cr.map(r=>r.comps||0));
+  const bw=(cw-2*cp)/cr.length-2;
+  $('h_comps').innerHTML=cr.map((r,i)=>{
+    const x=cp+i*((cw-2*cp)/cr.length);
+    if(r.status==='killed')return`<text x="${x+bw/2}" y="${ch-6}" font-size="9" fill="var(--red)" text-anchor="middle">✕</text>`;
+    const h=((r.comps||0)/cmax)*(ch-2*cp);
+    const col=r.mode==='3phase'?'var(--blue)':'var(--violet)';
+    return`<rect x="${x}" y="${ch-cp-h}" width="${Math.max(2,bw)}" height="${h}" rx="1.5" fill="${col}" opacity=".85"/>`;
+  }).join('');
+
+  $('h_kills').innerHTML=kills.length?kills.map(k=>`<tr>
+    <td class="r" style="text-align:left">${hh(k.ts)}</td><td><span class="badge ${k.tier}">${k.tier}</span></td>
+    <td>${esc(k.mode)}</td><td style="color:var(--red);font-weight:600">${k.status}</td>
+    <td>${esc(k.phase||'(pré-H2 3p : inconnue)')}</td>
+    <td style="color:var(--mut)">timeout cron — latence Venice</td></tr>`).join('')
+    :'<tr><td colspan="6" style="color:var(--faint)">aucun incident sur la fenêtre ✓</td></tr>';
+
+  const hg=d.health.gate||{};
+  $('h_gate').innerHTML=[
+    hrow('$ non-fondés 7j',hg.ungrounded_dollar_7d||0,5,String(hg.ungrounded_dollar_7d||0),hg.ungrounded_dollar_7d?'o':'g'),
+    hrow('% non-supportés',hg.unsupported_pct_7d||0,10,(hg.unsupported_pct_7d||0)+' <small>report-only</small>','g'),
+    hrow('hallucinations',hg.hallucination_7d||0,3,String(hg.hallucination_7d||0),hg.hallucination_7d?'o':'g')].join('');
+
+  $('foot').innerHTML=`schema_version ${d.schema_version} · source: <b style="color:${src==='live'?'var(--green)':'var(--gold)'}">${src.toUpperCase()}</b>${src==='mock'?' — données d\'exemple calquées sur les mesures réelles s43-s44 ; brancher terminal_feed.py → data.json':''}<br>
+  données: brain_v2_traces · thesis_verdicts.jsonl · inquiry ledger · get_landscape/get_macro · llm_budget.json · généré ${d.generated_at}`;
+}
+
+/* ── nav / search / boot ──────────────────────────────────── */
+const TITLES={overview:'Overview',briefs:'Briefs',theses:'Thèses',inquiries:'Enquêtes-mission',
+  macro:'Macro — État de la DeFi',robinhood:'Robinhood Chain',health:'Santé du harness'};
+function go(v){
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.dataset.view===v));
+  document.querySelectorAll('.nav a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
+  $('vtitle').textContent=TITLES[v]||v;location.hash=v;
+  document.getElementById('side').classList.remove('open');
+}
+$('nav').addEventListener('click',e=>{const a=e.target.closest('a[data-v]');if(a){e.preventDefault();go(a.dataset.v);}});
+addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==$('q')){e.preventDefault();$('q').focus();}
+  if(e.key==='Escape'){$('q').value='';filter('');$('q').blur();}});
+function filter(q){
+  q=q.trim().toLowerCase();
+  document.querySelectorAll('[data-search]').forEach(el=>{
+    el.style.display=!q||el.dataset.search.toLowerCase().includes(q)?'':'none';});
+}
+$('q').addEventListener('input',e=>filter(e.target.value));
+
+(async function boot(){
+  let data=MOCK,src='mock';
+  try{
+    const r=await fetch('data.json',{cache:'no-store'});
+    if(r.ok){const j=await r.json();
+      if(j&&j.schema_version===1){data=j;src='live';}}
+  }catch(e){/* file:// ou pas encore de feed → mock assumé */}
+  try{render(data,src);}catch(err){
+    document.querySelector('.content').insertAdjacentHTML('afterbegin',
+      `<div class="card" style="border-color:var(--red)"><div class="bd" style="color:var(--red)">Erreur de rendu : ${esc(err.message)} — vérifier le schéma de data.json</div></div>`);
+    console.error(err);
+  }
+  const h=location.hash.slice(1);if(h&&TITLES[h])go(h);
+})();
+</script>
 </body>
 </html>
