@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-10T02:48:01Z",
+ "generated_at": "2026-07-10T04:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-10T00:05:53Z",
+   "ts": "2026-07-10T03:06:23Z",
    "status": "ok",
    "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 1
+  "runs_today": 2
  },
  "runs": [
-  {
-   "ts": "2026-07-07T19:10:33Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 87.0,
-   "r2_pass": true,
-   "comps": null,
-   "phase": null
-  },
   {
    "ts": "2026-07-07T20:29:18Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 2,
    "phase": null
+  },
+  {
+   "ts": "2026-07-10T03:06:23Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-10T03:06:23Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Maple",
+    "JustLend V1",
+    "BlackRock BUIDL"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaple Finance's protocol-level value accrual has accelerated to a 5.375% annualized fee-yield (7d), the highest in the set, despite an 18.13% TVL drawdown (7d), suggesting a contraction in the principal base that is outpacing the decline in fee generation, potentially signaling a shift in the composition of deployed capital toward higher-yielding institutional credit.\n\n## FILS DOMINANTS\n*   **Maple — 5.375% fee-yield, the highest of the set (vs JustLend V1 0.61%, BlackRock BUIDL 1.402%):** The protocol generated $159K in fees over the last 24h (source: get_metric + protocol_fees(7d) + onchain_enriched), with fees up 62.25% over the last 7 days even as TVL fell 18.13% to $2.04B. This divergence in capital efficiency is corroborated by the launch of an onchain warehouse facility for crypto-backed institutional loans with Kraken (source: read_articles (cross-source)), indicating a pivot toward higher-quality, institutional capital. The TVL drawdown (z=-2.43 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched) raises questions about whether this is a de-risking event or a redemption wall in underlying RWA exposures.\n*   **BlackRock BUIDL — 1.402% fee-yield, the second highest of the set (vs JustLend V1 0.61%):** The protocol generated $241K in fees over the last 24h (source: get_metric + protocol_fees(7d) + onchain_enriched), with fees surging 157.0% (7d) alongside a 4.61% TVL increase to $3.19B. This fee growth is statistically significant (z=2.15 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched) and points to strong value accrual on its massive base. It holds 20.9% market share in the RWA sector (source: sector-aware peers), second only to Circle USYC. The capital quality is high, likely representing sticky institutional treasury allocations, though the 4.4% TVL increase (7d) requires scrutiny to determine if it is fresh fiat entry or reallocation from other tokenized products.\n*   **JustLend V1 — 0.61% fee-yield, the lowest of the set (vs Maple 5.375%, BlackRock BUIDL 1.402%):** The protocol generated $54K in fees over the last 24h (source: get_metric + protocol_fees(7d) + onchain_enriched), with fees down 28.41% (7d) even as TVL surged 11.55% to $3.36B. This disconnect between TVL growth (z=1.63 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched) and fee compression (z=-0.47 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched) suggests the capital inflow is low-quality, likely driven by new Tron-based liquidity mining incentives rather than organic yield demand. It holds 11.5% market share in the lending sector (source: sector-aware peers), but its value accrual is materially weaker than its principal base would imply.\n\n## RECONCILIATION\nNo prior theses were active for these threads in the current research cycle.\n\n## LECTURE\nThe divergence between Maple's shrinking TVL and expanding fee yield is the critical signal. In a lending protocol, a principal base contraction that is accompanied by a *rise* in fee generation is a hallmark of a \"flight to quality\" within the protocol's own markets. It implies that the capital leaving is lower-yielding or lower-risk, while the capital remaining is deployed in higher-yielding, likely institutional-grade, credit facilities. This is a positive fundamental development for protocol revenue, even if it presents a negative headline TVL figure. The Kraken warehouse launch corroborates this shift. For JustLend, the opposite is true: TVL growth with fee yield compression is a classic symptom of mercenary capital inflows, where new deposits are chasing emissions rather than generating sustainable economic activity. The protocol's unit economics are deteriorating despite its growing scale.\nKill condition: Maple's fee-yie"
+  },
   {
    "ts": "2026-07-10T00:05:53Z",
    "tier": "A",
@@ -767,31 +796,6 @@
     "n_unsupported_pct": null
    },
    "brief": "## PAYSAGE\nAttention is fragmenting across DeFi sectors with macro narratives declining (-25% 7d) while regulatory narratives surge (+12.3% 7d), suggesting a shift from speculative to structural concerns. On-chain value is concentrating in yield-bearing lending and liquid staking protocols, with Sky Lending TVL at $5.85B (+10.16% 7d) (source: get_metric) and Lido TVL at $15.98B (+7.01% 7d) (source: get_metric), even as global stablecoin supply contracts slightly to $298.16B (-0.2% 7d) (source: get_metric). Capital is rotating from Ethereum to alternative chains, with Solana attracting $280M in 7d stablecoin inflows (source: get_analyst_note) while Ethereum experiences outflows, yet institutional-grade protocols like Aave maintain strength at $12.40B TVL (+2.86% 7d) (source: get_metric).\n\n## FILS DOMINANTS\n1. **Lending Sector Resilience**: Sky Lending's 10.16% TVL growth (source: get_metric) and Aave's 2.86% increase (source: get_metric) demonstrate sustained capital allocation to lending despite narrative decline (-34.5% article volume). This is backed by real fundamentals, not just article volume.\n\n2. **Liquid Staking Expansion**: Lido's 7.01% TVL growth (source: get_metric) and Binance staked ETH's 6.52% increase (source: get_analyst_note) show strengthening liquid staking narratives backed by actual capital flows, contrasting with declining macro narratives.\n\n3. **Cross-Chain Capital Rotation**: Capital is actively rotating from Ethereum to Solana ($280M 7d inflows) (source: get_analyst_note) and Optimism ($5.4M 7d inflows) (source: get_analyst_note), despite global stablecoin contraction (-0.2% 7d) (source: get_metric). This rotation is fundamental, not narrative-driven.\n\n4. **Systemic Risk Concentration**: Morpho Blue shows elevated risk with 6 stressed pools and $6.95B TVL (+4.51% 7d) (source: get_metric), creating potential cascade vulnerabilities despite protocol growth. This risk is real, not hypothetical.\n\n## MOUVEMENTS DE THESES\n- **Aave Institutional Thesis (CONFIRMED)**: Strengthened to 0.9 conviction (source: get_prior_assessment) as Ondo's SEC-compliant tokenization launch validates institutional adoption pathways, despite Aave navigating potential ownership restructuring discussions.\n\n- **Ethereum Post-Quantum Thesis (STABLE)**: Maintained at 0.88 conviction (source: get_prior_assessment) as Ondo chose Ethereum for tokenized securities settlement despite capital outflows, confirming Ethereum's enduring institutional relevance.\n\n- **ETH Institutional Accumulation (CONFIRMED)**: New thesis at 0.88 conviction (source: get_prior_assessment) tracking BitMine's 4.8% ETH supply accumulation, showing strong institutional conviction despite broader market uncertainty.\n\n## CONVERGENCES\nThe convergence of regulatory narrative growth (+12.3% 7d) (source: get_board) with institutional product launches (Ondo's SEC-compliant tokenization) and sustained lending protocol growth suggests a maturation phase where DeFi is integrating with traditional finance rather than operating in parallel. Simultaneously, the concentration of systemic risk in Morpho Blue's elevated pools (6 stressed pools, $6.95B TVL) (source: get_metric) coincides with cross-chain capital rotation, indicating that risk management is becoming as critical as yield generation in capital allocation decisions.\n\n## SOUS SURVEILLANCE\nMonitor Morpho Blue's liquidation cascade pathways and the 6 elevated risk pools (source: get_analyst_note) as potential triggers for broader systemic stress. Track whether USDC's 0.4% supply growth (source: get_metric) represents institutional inflows or arbitrage activity. Watch for resolution of Aave's potential ownership restructuring and its impact on governance effectiveness.\n\nInvalidation: A sustained reversal of lending protocol TVL "
-  },
-  {
-   "ts": "2026-07-09T06:08:27Z",
-   "tier": "A",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 10,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 8,
-    "R6": 9,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": null
-   },
-   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n**Ondo Finance Launches SEC-Compliant Tokenized U.S. Stocks and ETFs** — Ondo Finance has debuted a tokenized stock model aligned with SEC regulations, offering 24/7 onchain access to over 100 U.S. stocks and ETFs. The platform has tokenized BlackRock's IVV ETF and Micron stock under a U.S. custodial model with Ethereum-based settlement, utilizing Broadridge and Oasis Pro to underpin a structure that complies with existing U.S. market rules (source: read_articles, 2026-07-09). This launch represents a significant milestone in the RWA sector, potentially opening the door for greater institutional participation in DeFi through regulated tokenized securities.\n\n## RECONCILIATION\n**CONFIRM Aave Thesis** — Aave's focus on attracting institutional capital remains validated as Ondo's SEC-compliant tokenization model demonstrates growing institutional infrastructure in DeFi. The development aligns with the thesis that institutional adoption is accelerating through regulated pathways (source: get_board, 2026-07-09).\n\n**CONFIRM ETH Thesis** — The fact that Ondo chose Ethereum for settlement of tokenized securities supports the thesis of increasing institutional interest in Ethereum, despite recent capital outflows to other chains (source: read_articles, 2026-07-09).\n\n## LECTURE\n**Institutional DeFi Adoption Through Regulatory Compliance** — Ondo's launch represents a paradigm shift in how institutional capital can access DeFi markets. By creating an SEC-compliant structure for tokenized securities, Ondo has potentially solved one of the biggest barriers to institutional adoption: regulatory clarity. The use of established infrastructure providers (Broadridge, Oasis Pro) and U.S. custodial models provides the trust framework that institutions require. This development could serve as a template for other RWA protocols seeking institutional capital, potentially accelerating the tokenization of traditional financial assets. However, the success of this model will depend on sustained regulatory clarity and market adoption.\n\nKill condition: If regulatory challenges emerge or institutional adoption fails to materialize within 6 months, this thesis will be invalidated.\n\n## LIVE EVENTS\n- Critical exploit risks detected in defi-yield, Solana, and Drift protocols (source: get_events, 2026-07-09)\n- Regulatory activity increased +12.3% with focus on AI-inference and enforcement actions (source: get_board, 2026-07-09)\n- Global stablecoin market cap declined by $557M (-0.2%) over 7 days (source: get_metric, 2026-07-09)\n\n## SUIVI\n**Advanced inq_mission_institutional** — Evidence found: Ondo Finance launched SEC-compliant tokenized U.S. stocks and ETFs with BlackRock IVV and Micron stock, using Broadridge and Oasis Pro infrastructure. Next probe: Track TVL and adoption metrics for Ondo's tokenized securities over the next 30 days to measure institutional uptake.\n\n**Advanced inq_mission_fresh_money** — Evidence found: Global stablecoin market cap declined by $557M (-0.2%) over 7 days, indicating net outflows rather than fresh fiat entry. Next probe: Monitor which specific stablecoins (USDC vs USDT) are seeing supply changes to identify if institutional capital is rotating.\n\n**Advanced inq_mission_rotation** — Evidence found: Capital is rotating from Ethereum to other chains, with Ondo choosing Ethereum for settlement despite outflows. Next probe: Analyze whether RWA tokenization is attracting new capital or just rotating existing DeFi capital.\n\n## OPEN QUESTIONS\n- Will Ondo's SEC-compliant model attract significant institutional capital within the next 6 months?\n- How will the critical exploit risks in Solana and other protocols impact capital rotation trends?\n- Will the increase in regulatory activity (+12.3%) lead to clearer "
   }
  ],
  "theses": [
@@ -800,7 +804,7 @@
    "verdict": "confirm",
    "conviction": 0.95,
    "trigger": "Erebor Bank raising funding at $8B valuation backed by institutional leaders Thiel and Luckey",
-   "kill": "Monitor the rate of new dApp deployments and active developer addresses on NEAR Protocol following the removal of gas rebates, as a sustained decline would indicate a negative impa",
+   "kill": "Monitor the volume of proposals requesting funding from the NEAR Protocol treasury over the next quarter, as an increase would suggest developers are seeking alternative funding so",
    "ts": "2026-07-07T00:08:34Z",
    "history": [
     {
@@ -1095,12 +1099,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 41.4,
+    "tvl": 42.0,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 40.3,
+    "tvl": 40.9,
     "yard": "TVL"
    },
    {
@@ -1123,52 +1127,56 @@
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 7.16
+    "fy": 7.15
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 6.42
+    "fy": 6.36
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.16
-   },
-   {
-    "name": "Morpho Blue",
-    "sector": "lending",
-    "fy": 5.39
-   },
-   {
-    "name": "Maple",
-    "sector": "lending",
-    "fy": 5.38
-   },
-   {
-    "name": "Sanctum Validator LSTs",
-    "sector": "lst",
-    "fy": 5.31
+    "fy": 6.14
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.16
+    "fy": 6.06
+   },
+   {
+    "name": "Maple",
+    "sector": "lending",
+    "fy": 5.37
+   },
+   {
+    "name": "Morpho Blue",
+    "sector": "lending",
+    "fy": 5.32
+   },
+   {
+    "name": "Sanctum Validator LSTs",
+    "sector": "lst",
+    "fy": 5.25
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 4.8
+    "fy": 4.75
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -1887.8
+    "d7": -1888.8
+   },
+   {
+    "chain": "Solana",
+    "d7": 49.9
    },
    {
     "chain": "Arbitrum",
-    "d7": -17.0
+    "d7": -22.5
    },
    {
     "chain": "Polygon",
@@ -1177,21 +1185,17 @@
    {
     "chain": "Optimism",
     "d7": 6.6
-   },
-   {
-    "chain": "Solana",
-    "d7": 0.3
    }
   ],
   "agg": {
-   "stable_mcap_b": 297.9,
-   "stable_d7_pct": -0.09,
+   "stable_mcap_b": 298.2,
+   "stable_d7_pct": -0.08,
    "dex_vol_24h_b": 6.8,
-   "defi_tvl_b": 72.7
+   "defi_tvl_b": 73.3
   }
  },
  "robinhood": {
-  "tvl_m": 94.2,
+  "tvl_m": 95.4,
   "morpho_share_pct": 69,
   "age_days": 8,
   "synth_ts": "2026-07-09T12:00:00Z",
@@ -1200,7 +1204,7 @@
  "health": {
   "budget": {
    "day": "2026-07-10",
-   "glm": 2,
+   "glm": 4,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
