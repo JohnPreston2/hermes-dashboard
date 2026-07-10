@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-10T10:48:02Z",
+ "generated_at": "2026-07-10T12:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "B",
-   "mode": "react",
-   "ts": "2026-07-10T09:36:55Z",
+   "tier": "A",
+   "mode": "3phase",
+   "ts": "2026-07-10T12:07:00Z",
    "status": "ok",
-   "discipline": 87.0,
+   "discipline": 94.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 6
+  "runs_today": 7
  },
  "runs": [
-  {
-   "ts": "2026-07-07T21:08:44Z",
-   "tier": "A",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 81.0,
-   "r2_pass": true,
-   "comps": null,
-   "phase": null
-  },
   {
    "ts": "2026-07-07T22:10:55Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-07-10T12:07:00Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-10T12:07:00Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Near",
+    "Maple",
+    "Ostium"
+   ],
+   "gate": {
+    "R1": 8,
+    "R6": 9,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaple Finance's fee yield (4.86% annualized) has decoupled from its capital base, with TVL contracting by 11.5% (7d) while protocol fees expanded by 62.25% (7d), signaling a potential shift in yield composition or borrower quality rather than mere de-risking.\n\n## FILS DOMINANTS\n*   **Maple — 4.86% annualized fee-yield, the highest of the set (vs Ostium N/A, Near N/A):** TVL contracted by 11.5% (7d) to $2.26B, yet protocol fees grew 62.25% (7d) to $159K daily, indicating higher-yielding utilization or a repricing of risk despite capital flight. Capital quality is mixed; while the protocol maintains a 7.5% lending sector market share (vs Aave V3 41.7%), the rapid TVL exit suggests sticky capital is redeploying, potentially to higher-yielding alternatives or due to credit concerns (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Ostium — z=2.03 (100th pctile, n=88) for fees vs baseline, the highest relative fee expansion:** Protocol fees surged 54.79% (7d) to $115K on a 19.25% (7d) TVL increase to $61.0M. This extreme z-score deviation (z=2.03) flags the volume growth as potentially anomalous or incentivized rather than organic, requiring scrutiny of liquidity programs. Capital quality is provisional; the surge in Open Interest/Volume base is not yet proven durable (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Near — No value-accrual data available:** Governance voted to scrap developer gas rebates (source: The Defiant via read_articles), a policy adjustment impacting network security parameters. Without fee-yield or TVL data in the digest, no fundamental valuation ranking can be established for this thread.\n\n## RECONCILIATION\n*   **th_20260710_0320_near (CONFIRM):** The thesis that the ecosystem is consolidating towards prudence is CONFIRMED. The red_team_challenge argued that Zapper's shutdown and NEAR's incentive cuts might not signal broad prudence but rather specific failures. However, the data supports the consolidation thesis: NEAR's removal of gas rebates is a direct reduction in developer subsidies, and Maple's 11.5% TVL outflow alongside Zapper's closure indicates a broader capital flight from marginal or inefficient protocols. The evidence of capital contraction (Maple TVL -11.5% 7d) and subsidy removal (NEAR) outweighs the challenge's assertion that these are isolated events. Conviction increased to 0.92 (source: get_prior_assessment).\n\n## LECTURE\nThe divergence between Maple's shrinking TVL and expanding fees is a classic signal of a \"quality flight\" within a lending protocol. As capital exits (-11.5% 7d), the remaining base is likely comprised of higher-yielding, riskier loans, pushing the aggregate fee yield up (4.86%) even as the total asset base shrinks. This dynamic is distinct from a \"yield arbitrage\" rotation, where capital would move to a peer with a better risk-adjusted return; instead, the capital is leaving the sector entirely or moving to non-tracked assets. For Ostium, the z=2.03 fee deviation is a statistical outlier that demands skepticism regarding the sustainability of its volume growth without confirmation of organic user acquisition vs. liquidity mining incentives.\nKill condition: A reversal in Maple's fee growth concurrent with continued TVL decline would indicate a collapse in borrower demand rather than a repricing of risk.\n\n## RISQUE\n*   **Maple:** The 11.5% TVL outflow may accelerate if the fee expansion is driven by deteriorating loan performance (e.g., late fees) rather than healthy interest yield, leading to a solvency event for lending pools.\n*   **Ostium:** The 100th percentile fee z-score (z=2.03) suggests the current volume is unsustainable; a reversion to mean volume would cause a sharp drop in protocol revenue, invalid"
+  },
   {
    "ts": "2026-07-10T09:36:55Z",
    "tier": "B",
@@ -763,35 +792,6 @@
     "n_unsupported_pct": null
    },
    "brief": "[INCOMPLETE] run killed after 7 tool calls"
-  },
-  {
-   "ts": "2026-07-09T09:09:16Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": true,
-   "discipline": null,
-   "r2_pass": null,
-   "comps": 4,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Morpho Blue",
-    "Spiko",
-    "Jupiter Lend"
-   ],
-   "gate": {
-    "R1": null,
-    "R6": null,
-    "R8": null,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": null,
-    "n_unsupported_pct": null
-   },
-   "brief": "[SILENT] R2 could not be cleaned"
   }
  ],
  "theses": [
@@ -813,9 +813,9 @@
    "key": "NEAR::defi",
    "verdict": "confirm",
    "conviction": 0.92,
-   "trigger": "Zapper shutdown and continued reduction in developer incentives support consolidation trend (source: get_narrative)",
+   "trigger": "NEAR governance scrapping developer gas rebates and Maple TVL contraction confirm consolidation trend (source: The Defiant, get_metric).",
    "kill": "Monitor the volume of proposals requesting funding from the NEAR Protocol treasury over the next quarter, as an increase would suggest developers are seeking alternative funding so",
-   "ts": "2026-07-10T09:36:55Z",
+   "ts": "2026-07-10T12:07:00Z",
    "history": [
     {
      "ts": "07-05",
@@ -1066,10 +1066,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-09T08:19:10.319268+00:00",
-     "note": "Capital rotating into RWA (Spiko +10.11% TVL) and Solana lending (Jupiter +9.35% TVL) is accompanied by fee crashes (-27.67% and -22.77%), suggesting yield-agnostic rotation. (source: get_metric + protocol_fees 7d)"
-    },
-    {
      "ts": "2026-07-09T12:06:13.972468+00:00",
      "note": "Capital is rotating towards higher-yielding protocols; Maple's TVL shrank -15.05% 7d while fees surged +892.05% 7d, whereas Jupiter Lend and Spiko saw TVL growth with fee declines, indicating a shift towards capital efficiency. (source: get_metric + protocol_fees(7d))"
     },
@@ -1084,9 +1080,13 @@
     {
      "ts": "2026-07-10T09:36:55.298058+00:00",
      "note": "Capital rotating from Ethereum (-$778M stablecoin outflow 1d) to Polygon (+0.47% 1d) and Optimism (+0.67% 1d) (source: get_analyst_note)"
+    },
+    {
+     "ts": "2026-07-10T12:07:00.105731+00:00",
+     "note": "Capital rotating from lending to perps; Maple TVL -11.5% (7d) vs Ostium fees +54.79% (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     }
    ],
-   "evidence": "inq_mission_rotation · next: Determine if the TVL spikes in Jupiter Lend and Spiko correlate with the end of specific liquidity mining programs"
+   "evidence": "inq_mission_rotation · next: Analyze if the TVL outflow from Maple is correlated with inflows into RWA protocols to confirm the sector rotation thesis."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1125,17 +1125,17 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 42.2,
+    "tvl": 42.9,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 41.2,
+    "tvl": 41.5,
     "yard": "TVL"
    },
    {
     "name": "rwa",
-    "tvl": 22.2,
+    "tvl": 22.1,
     "yard": "TVL"
    },
    {
@@ -1151,29 +1151,29 @@
   ],
   "fee_yield": [
    {
-    "name": "Hastra",
-    "sector": "rwa",
-    "fy": 7.16
-   },
-   {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 6.37
+    "fy": 7.24
+   },
+   {
+    "name": "Hastra",
+    "sector": "rwa",
+    "fy": 7.14
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.12
+    "fy": 6.11
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.04
+    "fy": 6.02
    },
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 5.74
+    "fy": 5.71
    },
    {
     "name": "Maple",
@@ -1194,15 +1194,15 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -1878.9
+    "d7": -1887.1
    },
    {
     "chain": "Solana",
-    "d7": 50.3
+    "d7": 50.2
    },
    {
     "chain": "Arbitrum",
-    "d7": -22.4
+    "d7": -22.5
    },
    {
     "chain": "Polygon",
@@ -1210,27 +1210,27 @@
    },
    {
     "chain": "Optimism",
-    "d7": 6.7
+    "d7": 6.6
    }
   ],
   "agg": {
-   "stable_mcap_b": 298.1,
-   "stable_d7_pct": -0.1,
+   "stable_mcap_b": 298.0,
+   "stable_d7_pct": -0.13,
    "dex_vol_24h_b": 6.8,
-   "defi_tvl_b": 73.6
+   "defi_tvl_b": 74.5
   }
  },
  "robinhood": {
-  "tvl_m": 95.4,
-  "morpho_share_pct": 70,
-  "age_days": 8,
-  "synth_ts": "2026-07-09T12:00:00Z",
-  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-09\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$78.6M**, recording a daily delta of **+67.9%**. The trajectory is explosive, scaling from ~$1.3k at genesis (July 2) to nearly $80M in seven days. Capital concentration is extreme: **Morpho Blue** commands **73.3%** of total chain TVL ($57.6M), with **$67.8M** borrowed against that supply. This indicates a highly leveraged launch environment where the utilization rate is near saturation. DEX liquidity is fragmented but growing, with **Uniswap V3** ($10.5M) and **V4** ($7.3M) capturing the bulk of non-lending activity. The capital quality read is ambiguous; while the velocity is high, the concentration in a single lending protocol suggests launch-incentivized \"hot money\" rather than sticky, long-term institutional deployment, though the utilization implies immediate demand for leverage.\n\n## CATALYSEURS\n*   **Mainnet Launch & Tokenization:** The Robinhood Chain mainnet went live approximately one week ago, introducing 24/7 tokenized stocks and Lighter perps. This structural shift from traditional market hours to continuous on-chain trading is the primary driver of the initial TVL spike (Source: The Block).\n*   **dYdX Arcus Integration:** The rebranding of dYdX to Arcus and its partnership with Robinhood to launch a native DEX provides the foundational liquidity layer for derivatives, directly supporting the leveraged positions observed in the Morpho utilization metrics (Source: CoinTelegraph).\n*   **Collateral Efficiency (Ondo/Kraken):** Developments enabling tokenized stocks as collateral for perpetual trading (Ondo Finance) and leveraged trades (Kraken) have lowered the cost of capital entry, fueling the borrowing demand on Morpho (Source: The Block, CoinTelegraph).\n*   **MakerDAO Grove Proposal:** The governance signal from MakerDAO to deploy USDG liquidity via Spark Savings represents a potential future catalyst for stablecoin depth, though it has not yet materially impacted current TVL figures (Source: MakerDAO Forum).\n\n## VALUE ACCRUAL\nValue accrual is strictly **protocol-centric**, as Robinhood Chain operates without a native token. **MORPHO** is the primary beneficiary, capturin"
+  "tvl_m": 97.9,
+  "morpho_share_pct": 69,
+  "age_days": 9,
+  "synth_ts": "2026-07-10T12:00:00Z",
+  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-10\n\n## ÉTAT ON-CHAIN\nChain TVL has surged to **$97.9M**, marking a staggering **31.6%** increase in the last 24 hours alone. The trajectory is vertical, scaling from ~$1.3M at genesis (July 2) to nearly $100M in just over a week. Capital concentration is extreme: **Morpho Blue** commands **~71.2%** of total chain TVL ($69.7M), with on-chain data showing $67.1M supplied against $78.6M borrowed—a leverage ratio exceeding 1.17x. This indicates aggressive capital efficiency rather than passive depositing. DEX liquidity remains fragmented but growing, with Uniswap V3 ($15.9M) and V4 ($8.0M) absorbing the majority of trading flow, while NOXA Fun ($7.1M) suggests a non-trivial allocation to high-risk launchpad activity. The capital quality read is mixed: the velocity of funds points to mercenary capital chasing yield and meme speculation (CashCat), yet the underlying infrastructure (Morpho, dYdX Arcus) is attracting sophisticated leverage plays.\n\n## CATALYSEURS\n*   **Meme-Fueled Liquidity Injection:** The integration of **Pump.fun** for Robinhood Chain tokens has triggered a speculative frenzy around assets like **CashCat**. This acts as the primary on-chain Δ driver, explaining the rapid TVL ascent and the dominance of DEX volumes (Uniswap V3/V4) as users rotate capital into low-cap tokens. (Source: The Defiant, Decrypt)\n*   **RWA Collateralization Expansion:** **Ondo Finance** enabling tokenized stocks as collateral for perpetual trading, coupled with **MakerDAO's** deployment of Spark Savings USDG, creates a structural use-case for the chain. This links the on-chain lending surge (Morpho) directly to the regulated RWA narrative, moving beyond pure speculation. (Source: The Block, MakerDAO Forum)\n*   **Regulatory Alignment & Institutional Access:** The **Robinhood CEO's** public stance on Real-World Assets (RWAs) and the chain's regulated broker status provide the legitimacy required for institutional pilots. The surge in tokenized stock transfers ($8.4B industry-wide) validates the timing of this L2 launch. (Source: The Block, CoinTelegraph)\n\n## VALUE ACCRUAL\nValue capture is strictly protocol-centric; **Robinhood Chain has no nati"
  },
  "health": {
   "budget": {
    "day": "2026-07-10",
-   "glm": 23,
+   "glm": 27,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
