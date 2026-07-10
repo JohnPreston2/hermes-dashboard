@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-09T22:48:01Z",
+ "generated_at": "2026-07-10T00:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-09T21:05:45Z",
+   "ts": "2026-07-10T00:05:53Z",
    "status": "ok",
    "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 14
+  "runs_today": 1
  },
  "runs": [
-  {
-   "ts": "2026-07-07T18:08:08Z",
-   "tier": "A",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 77.0,
-   "r2_pass": true,
-   "comps": null,
-   "phase": null
-  },
   {
    "ts": "2026-07-07T19:10:33Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 2,
    "phase": null
+  },
+  {
+   "ts": "2026-07-10T00:05:53Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-10T00:05:53Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "JustLend V1",
+    "Morpho Blue",
+    "Kinetiq kHYPE"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's protocol revenue generation has surged to a 5.94% annualized fee-yield (7d), the highest in this set, driven by a 258.14% fee increase (7d) that places it in the 100th percentile (z=2.23 30d) relative to its lending sector baseline, while JustLend V1's TVL expanded by 11.72% (7d) despite a 30.68% decline in fees (7d).\n\n## FILS DOMINANTS\n*   Morpho Blue — 5.94% fee-yield, the highest of the set (vs Kinetiq kHYPE 2.13%, JustLend V1 0.64%): TVL grew +2.92% (7d) to $7.03B, capturing 23.9% sector share (vs Aave V3 41.9%, SparkLend 12.1%). The fee expansion (z=2.23 30d) suggests strong utilization, but capital quality requires verification of whether the TVL growth is correlated with new risk vault launches (e.g., CBBTC) or general market sentiment (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   Kinetiq kHYPE — 2.13% fee-yield, the second highest of the set (vs JustLend V1 0.64%): TVL is flat (+0.35% 7d) at $990.3M, holding 3.8% sector share (vs Lido 60.9%, Binance staked ETH 24.6%). The 1.9% APY on Hyperliquid L1 raises questions about sustainability given the chain's nascent security model versus Ethereum LSTs (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   JustLend V1 — 0.64% fee-yield, the lowest of the set (vs Morpho Blue 5.94%, Kinetiq kHYPE 2.13%): TVL surged +11.72% (7d) to $3.36B (z=1.72 30d), securing 11.4% sector share (vs Aave V3 41.9%, Morpho Blue 23.9%). The divergence between TVL growth and fee contraction (-30.68% 7d) implies the capital inflow is likely transient liquidity mining rather than organic yield demand (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\nNo prior theses were active for this specific set of entities in the retrieved context.\n\n## LECTURE\nThe divergence between JustLend V1's TVL expansion (+11.72% 7d) and its fee contraction (-30.68% 7d) is a textbook signal of mercenary capital. In lending, fee-yield is the true measure of productive capital efficiency; a TVL surge without a corresponding fee increase dilutes the revenue base per dollar deployed. Conversely, Morpho Blue's fee-yield of 5.94% (7d) indicates robust capital utilization, though the sustainability of this yield depends on the risk profile of the underlying vaults. For Kinetiq kHYPE, the 2.13% fee-yield is respectable for an LST, but the security risk premium of Hyperliquid L1 versus Ethereum remains a critical valuation discount factor. Value accrual cited here is strictly at the PROTOCOL level; token capture via fee switches or buybacks is unknown and must be verified separately.\nKill condition: Morpho Blue's fee-yield falls below 2% while TVL remains elevated, indicating a shift to low-yield, sticky capital.\n\n## RISQUE\n*   **JustLend V1:** The +11.72% TVL surge (7d) is likely driven by transient liquidity mining rather than organic yield demand, posing a risk of rapid capital flight once incentives wane.\n*   **Morpho Blue:** The 258.14% fee spike (7d) may be correlated with new, high-risk vault launches (e.g., CBBTC); a default event in a non-prime vault could trigger a sharp re-rating of the protocol's risk premium.\n*   **Kinetiq kHYPE:** The 1.9% APY on Hyperliquid L1 may not be sustainable if the chain's nascent security model is stress-tested versus Ethereum LSTs, potentially leading to a de-valuation of the staked asset.\n\n## SUIVI\n*   **inq_mission_rotation:** Investigating if the TVL spikes in JustLend V1 correlate with the end of specific liquidity mining programs. Evidence: JustLend V1 TVL +11.72% (7d) vs Fees -30.68% (7d), suggesting mercenary capital rotation (source: get_metric + protocol_fees(7d) + onchain_enriched). Next_probe: Analyze onchain data to identify specific incentive token emissions or program expiratio"
+  },
   {
    "ts": "2026-07-09T21:05:45Z",
    "tier": "A",
@@ -763,35 +792,6 @@
     "n_unsupported_pct": null
    },
    "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n**Ondo Finance Launches SEC-Compliant Tokenized U.S. Stocks and ETFs** — Ondo Finance has debuted a tokenized stock model aligned with SEC regulations, offering 24/7 onchain access to over 100 U.S. stocks and ETFs. The platform has tokenized BlackRock's IVV ETF and Micron stock under a U.S. custodial model with Ethereum-based settlement, utilizing Broadridge and Oasis Pro to underpin a structure that complies with existing U.S. market rules (source: read_articles, 2026-07-09). This launch represents a significant milestone in the RWA sector, potentially opening the door for greater institutional participation in DeFi through regulated tokenized securities.\n\n## RECONCILIATION\n**CONFIRM Aave Thesis** — Aave's focus on attracting institutional capital remains validated as Ondo's SEC-compliant tokenization model demonstrates growing institutional infrastructure in DeFi. The development aligns with the thesis that institutional adoption is accelerating through regulated pathways (source: get_board, 2026-07-09).\n\n**CONFIRM ETH Thesis** — The fact that Ondo chose Ethereum for settlement of tokenized securities supports the thesis of increasing institutional interest in Ethereum, despite recent capital outflows to other chains (source: read_articles, 2026-07-09).\n\n## LECTURE\n**Institutional DeFi Adoption Through Regulatory Compliance** — Ondo's launch represents a paradigm shift in how institutional capital can access DeFi markets. By creating an SEC-compliant structure for tokenized securities, Ondo has potentially solved one of the biggest barriers to institutional adoption: regulatory clarity. The use of established infrastructure providers (Broadridge, Oasis Pro) and U.S. custodial models provides the trust framework that institutions require. This development could serve as a template for other RWA protocols seeking institutional capital, potentially accelerating the tokenization of traditional financial assets. However, the success of this model will depend on sustained regulatory clarity and market adoption.\n\nKill condition: If regulatory challenges emerge or institutional adoption fails to materialize within 6 months, this thesis will be invalidated.\n\n## LIVE EVENTS\n- Critical exploit risks detected in defi-yield, Solana, and Drift protocols (source: get_events, 2026-07-09)\n- Regulatory activity increased +12.3% with focus on AI-inference and enforcement actions (source: get_board, 2026-07-09)\n- Global stablecoin market cap declined by $557M (-0.2%) over 7 days (source: get_metric, 2026-07-09)\n\n## SUIVI\n**Advanced inq_mission_institutional** — Evidence found: Ondo Finance launched SEC-compliant tokenized U.S. stocks and ETFs with BlackRock IVV and Micron stock, using Broadridge and Oasis Pro infrastructure. Next probe: Track TVL and adoption metrics for Ondo's tokenized securities over the next 30 days to measure institutional uptake.\n\n**Advanced inq_mission_fresh_money** — Evidence found: Global stablecoin market cap declined by $557M (-0.2%) over 7 days, indicating net outflows rather than fresh fiat entry. Next probe: Monitor which specific stablecoins (USDC vs USDT) are seeing supply changes to identify if institutional capital is rotating.\n\n**Advanced inq_mission_rotation** — Evidence found: Capital is rotating from Ethereum to other chains, with Ondo choosing Ethereum for settlement despite outflows. Next probe: Analyze whether RWA tokenization is attracting new capital or just rotating existing DeFi capital.\n\n## OPEN QUESTIONS\n- Will Ondo's SEC-compliant model attract significant institutional capital within the next 6 months?\n- How will the critical exploit risks in Solana and other protocols impact capital rotation trends?\n- Will the increase in regulatory activity (+12.3%) lead to clearer "
-  },
-  {
-   "ts": "2026-07-09T04:10:23Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 86.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "Morpho Blue",
-    "Jupiter Lend",
-    "Lido"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 9,
-    "R8": 8,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": null
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's protocol fee generation has surged to a 7-day annualized yield of 5.99%, the highest in the set, driven by a +258.14% spike in 7d fees ($2.7M 24h) that significantly outpaces its TVL growth (+5.2% 7d), placing its fee performance at the 100th percentile relative to its historical baseline (z=3.70 30d).\n\n## FILS DOMINANTS\n*   **Morpho Blue — 5.99% fee-yield, the highest of the set (vs Lido 2.50%, Jupiter Lend 3.30%):** Fee generation ($2.7M 24h) has expanded aggressively (z=3.70 30d), outstripping TVL growth ($6.97B, z=0.62 30d). This suggests elevated utilization in higher-yield risk pools, though capital quality is provisional as the surge may be driven by incentivized liquidity provision rather than organic sticky demand.\n*   **Jupiter Lend — 3.30% fee-yield (vs Lido 2.50%):** TVL grew +12.64% 7d to $990.3M (z=0.69 30d), but fee generation contracted -22.77% 7d ($94K 24h, z=-1.14 30d). This divergence indicates capital rotation is likely yield-arbitrage driven rather than fundamental utility expansion, raising concerns about capital stickiness on Solana.\n*   **Lido — 2.50% fee-yield (vs Jupiter Lend 3.30%):** Holds dominant 60.8% market share in the LST sector ($15.92B TVL). Fee generation ($1.1M 24h) grew +10.49% 7d (z=0.98 30d), tracking closely with TVL growth (+8.1% 7d), implying stable capital quality and organic staking demand rather than transient liquidity rebalancing.\n\n## RECONCILIATION\n*   **th_20260709_0320_aave (Aave sector dominance):** REVISE+trigger. While Aave maintains dominant lending market share (42.2%), the emergence of Morpho Blue with a superior 5.99% fee-yield (vs Aave's historical baseline) signals a shift in capital efficiency and risk appetite within the lending sector. The thesis of Aave's unchallenged dominance is weakening as high-yield alternatives attract capital.\n*   **th_20260704_0320_aave (Aave risk management):** CONFIRM. The elevated fee generation on Morpho Blue, often correlated with riskier asset deployment, corroborates the systemic risk hotspot thesis. Capital is actively seeking yield in non-standard pools, validating the need for advanced risk assessment tools like ZentraScore.\n\n## LECTURE\nThe divergence between TVL growth and fee yield is the critical signal for capital quality. Morpho Blue's fee-yield expansion (5.99%) is statistically anomalous (z=3.70), suggesting a shift toward higher-risk/higher-reward lending markets. In contrast, Jupiter Lend's expanding TVL amidst falling fees (-22.77% 7d) indicates mercenary capital flow, whereas Lido's stable correlation between fees and TVL confirms its status as a defensive, sticky utility. The protocol-level value accrual is robust across the board, but the *quality* of that accrual varies significantly: Morpho is high-beta/risk, Jupiter is flow-driven/speculative, and Lido is structural/sticky.\nKill condition: A contraction in Morpho Blue's fee-yield below 3.0% concurrent with a TVL decline >10%, signaling a risk-off event in lending markets.\n\n## RISQUE\n*   **Morpho Blue:** The fee surge is likely concentrated in specific risk pools; a default or liquidity crunch in these markets could cause a rapid reversion in fee yield and TVL.\n*   **Jupiter Lend:** The negative fee growth (-22.77% 7d) despite positive TVL inflows suggests a \"yield tourism\" dynamic where capital may exit as quickly as it arrived once arbitrage opportunities close.\n*   **Lido:** Regulatory risk remains the primary threat to the LST sector, though current metrics show no sign of stress.\n\n## SUIVI\n*   **inq_mission_rotation:** Evidence shows capital rotating into high-yield lending on Morpho Blue (fees +258% 7d) and Solana (Jupiter TVL +12.6% 7d), but the Solana rotation appears speculative (fees -22.8% 7d). Next probe: Analy"
   }
  ],
  "theses": [
@@ -1123,32 +1123,32 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 7.22
+    "fy": 7.23
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 7.12
+    "fy": 7.13
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.1
+    "fy": 7.11
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.85
+    "fy": 6.9
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.38
+    "fy": 6.39
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.16
+    "fy": 6.14
    },
    {
     "name": "Fluid Lending",
@@ -1164,43 +1164,43 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -964.6
+    "d7": -962.1
    },
    {
     "chain": "Arbitrum",
-    "d7": -17.1
+    "d7": -17.0
    },
    {
     "chain": "Optimism",
-    "d7": 5.4
+    "d7": 5.5
    },
    {
     "chain": "Polygon",
-    "d7": -2.8
+    "d7": -2.7
    },
    {
     "chain": "BSC",
-    "d7": 0.9
+    "d7": 1.0
    }
   ],
   "agg": {
-   "stable_mcap_b": 297.3,
-   "stable_d7_pct": -0.37,
+   "stable_mcap_b": 297.4,
+   "stable_d7_pct": -0.4,
    "dex_vol_24h_b": 7.9,
-   "defi_tvl_b": 72.9
+   "defi_tvl_b": 72.4
   }
  },
  "robinhood": {
-  "tvl_m": 78.6,
-  "morpho_share_pct": 73,
+  "tvl_m": 94.2,
+  "morpho_share_pct": 69,
   "age_days": 8,
   "synth_ts": "2026-07-09T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-09\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$78.6M**, recording a daily delta of **+67.9%**. The trajectory is explosive, scaling from ~$1.3k at genesis (July 2) to nearly $80M in seven days. Capital concentration is extreme: **Morpho Blue** commands **73.3%** of total chain TVL ($57.6M), with **$67.8M** borrowed against that supply. This indicates a highly leveraged launch environment where the utilization rate is near saturation. DEX liquidity is fragmented but growing, with **Uniswap V3** ($10.5M) and **V4** ($7.3M) capturing the bulk of non-lending activity. The capital quality read is ambiguous; while the velocity is high, the concentration in a single lending protocol suggests launch-incentivized \"hot money\" rather than sticky, long-term institutional deployment, though the utilization implies immediate demand for leverage.\n\n## CATALYSEURS\n*   **Mainnet Launch & Tokenization:** The Robinhood Chain mainnet went live approximately one week ago, introducing 24/7 tokenized stocks and Lighter perps. This structural shift from traditional market hours to continuous on-chain trading is the primary driver of the initial TVL spike (Source: The Block).\n*   **dYdX Arcus Integration:** The rebranding of dYdX to Arcus and its partnership with Robinhood to launch a native DEX provides the foundational liquidity layer for derivatives, directly supporting the leveraged positions observed in the Morpho utilization metrics (Source: CoinTelegraph).\n*   **Collateral Efficiency (Ondo/Kraken):** Developments enabling tokenized stocks as collateral for perpetual trading (Ondo Finance) and leveraged trades (Kraken) have lowered the cost of capital entry, fueling the borrowing demand on Morpho (Source: The Block, CoinTelegraph).\n*   **MakerDAO Grove Proposal:** The governance signal from MakerDAO to deploy USDG liquidity via Spark Savings represents a potential future catalyst for stablecoin depth, though it has not yet materially impacted current TVL figures (Source: MakerDAO Forum).\n\n## VALUE ACCRUAL\nValue accrual is strictly **protocol-centric**, as Robinhood Chain operates without a native token. **MORPHO** is the primary beneficiary, capturin"
  },
  "health": {
   "budget": {
-   "day": "2026-07-09",
-   "glm": 57,
+   "day": "2026-07-10",
+   "glm": 2,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
