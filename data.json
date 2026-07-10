@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-10T14:48:01Z",
+ "generated_at": "2026-07-10T16:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-10T12:07:00Z",
+   "ts": "2026-07-10T15:09:47Z",
    "status": "ok",
-   "discipline": 94.0,
+   "discipline": 78.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 7
+  "runs_today": 8
  },
  "runs": [
-  {
-   "ts": "2026-07-07T22:10:55Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-08T00:07:04Z",
    "tier": "A",
@@ -458,9 +447,48 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-10T15:09:47Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 78.0,
+   "r2_pass": true,
+   "comps": 4,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-10T15:09:47Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 78.0,
+   "r2_pass": true,
+   "comps": 4,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Regulatory events",
+    "Base"
+   ],
+   "gate": {
+    "R1": 8,
+    "R6": 3,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBase's fundamental valuation remains rich relative to its fee generation, with a 0.36% annualized fee-yield on a $5.91B productive base, while regulatory narratives intensify but lack quantifiable protocol-level impact.\n\n## FILS DOMINANTS\n*   Base — 0.36% fee-yield (rank 1 of 1 in this set): The protocol maintains a high-quality capital base with $5.91B TVL (z=1.42 30d), placing it at the 99th percentile relative to its historical baseline. However, value accrual is compressed; the protocol generates only $58K in daily fees (z=0.65 30d), resulting in a low yield relative to its massive capital base. It holds 17.4% market share in the infra sector, trailing WBTC (21.6%) and LayerZero V2 (20.7%) (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   Regulatory Events — N/A fee-yield (rank N/A): Narrative volume has surged, evidenced by the IMF's report on stablecoin adoption in Nigeria challenging existing frameworks (source: The Block via read_articles). Despite the attention, this thread lacks a quantifiable fee-yield or TVL base in the current dataset, indicating that the regulatory risk is currently exogenous to on-chain value accrual metrics.\n\n## RECONCILIATION\nNo prior theses were provided for reconciliation in this digest.\n\n## LECTURE\nThe divergence between Base's capital quality and its fee yield is the critical fundamental signal. While the chain attracts significant sticky capital (high TVL z-score), it fails to convert this base into proportional protocol revenue (low fee z-score). This suggests the current capital efficiency gap is predicated on future utility or ecosystem growth rather than present cash flows. Investors should distinguish between \"infrastructure lock-in\" (high TVL) and \"economic throughput\" (fees); the latter is the primary driver of sustainable value accrual. The regulatory noise, while material for long"
+  },
   {
    "ts": "2026-07-10T12:07:00Z",
    "tier": "A",
@@ -767,31 +795,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaple Finance's protocol revenue generation has surged to a 5.04% annualized fee-yield (7d), the highest in this set, despite a significant -15.05% contraction in its total value locked (TVL) over the same period, signaling a potential improvement in capital efficiency or a de-risking of its credit book.\n\n## FILS DOMINANTS\n*   **Maple — 5.04% fee-yield, the highest of the set (vs Jupiter Lend 3.28%, Spiko 2.49%):** Protocol fees spiked +892.05% 7d to $546K 24h (protocol_fees 7d), outpacing a sharp -15.05% 7d TVL decline to $2.12B (get_metric). This divergence suggests the remaining capital is higher-yielding or the protocol is capturing more value from its existing loan book. Capital quality is in question; the outflow may be a de-risking event or migration to competitors like Sky Lending, as the TVL is now at a z=-2.78 (5th pctile) relative to its baseline (tvl_vs_baseline).\n*   **Jupiter Lend — 3.28% fee-yield, ranked 2nd (vs Spiko 2.49%):** TVL grew +10.81% 7d to $994M (get_metric), a strong move at z=1.43 (90th pctile) relative to its baseline (tvl_vs_baseline). However, protocol fees fell -22.77% 7d to $94K 24h (protocol_fees 7d), indicating the new capital is not yet productive or is yield-chasing \"hot money\" rotating from other Solana DeFi yield aggregators. The capital quality is provisional until fee generation aligns with TVL growth.\n*   **Spiko — 2.49% fee-yield, ranked 3rd:** TVL surged +10.13% 7d to $1.20B (get_metric), placing it at an average z=-0.12 (50th pctile) for its sector (tvl_vs_baseline). This growth is juxtaposed with a -27.61% 7d drop in protocol fees to $65K 24h (protocol_fees 7d), raising concerns that the expansion is driven by incentivized liquidity mining rather than organic institutional adoption. Its 8.2% market share in the RWA sector is dwarfed by leaders like Circle USYC (21.2%) and BlackRock BUIDL (20.8%) (sector-aware peers).\n\n## RECONCILIATION\n*   **th_20260709_0320_aave (REVISE):** The thesis that capital is shifting towards more efficient lending protocols is confirmed by Maple's sector-leading fee-yield, which now surpasses the previously noted Aave baseline. The trigger is the observation that Maple's 5.04% fee-yield (7d) is a new high-water mark for value accrual in the lending sector, validating the capital efficiency shift away from legacy models.\n\n## LECTURE\nThe digest reveals a critical divergence between TVL and fee generation across these three protocols. Maple's case is the most instructive: a shrinking asset base (TVL -15.05% 7d) that is generating significantly more revenue (fees +892.05% 7d). This is the hallmark of improving capital efficiency, where the protocol is shedding lower-yield or higher-risk capital and retaining a more productive core. In contrast, both Jupiter Lend and Spiko show TVL growth (+10.81% and +10.13% 7d, respectively) coupled with declining fees (-22.77% and -27.61% 7d), a classic signal of low-quality, incentive-driven capital inflows that dilutes yield. For an institutional analyst, the key takeaway is to prioritize fee-yield and its trend over raw TVL aggregates. A protocol with a smaller but more productive capital base is fundamentally superior to one with bloated, unproductive TVL. The data suggests a rotation of capital towards protocols that can demonstrate superior unit economics, even if it means exiting larger, less efficient platforms.\nKill condition: A sustained convergence where TVL growth outpaces fee growth across the sector, indicating a return to indiscriminate capital deployment.\n\n## RISQUE\n*   **Maple:** The primary risk is that the -15.05% TVL outflow is not a benign efficiency improvement but a harbinger of a systemic credit event or a loss of confidence in its lending book. If the outflow continues, "
-  },
-  {
-   "ts": "2026-07-09T09:35:01Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "killed",
-   "silent": true,
-   "discipline": null,
-   "r2_pass": null,
-   "comps": null,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": null,
-    "R6": null,
-    "R8": null,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": null,
-    "n_unsupported_pct": null
-   },
-   "brief": "[INCOMPLETE] run killed after 7 tool calls"
   }
  ],
  "theses": [
@@ -1153,17 +1156,17 @@
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 7.24
+    "fy": 7.25
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 7.15
+    "fy": 7.16
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.11
+    "fy": 6.08
    },
    {
     "name": "Fluid Lending",
@@ -1173,7 +1176,7 @@
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 5.72
+    "fy": 5.73
    },
    {
     "name": "Maple",
@@ -1181,9 +1184,9 @@
     "fy": 4.86
    },
    {
-    "name": "Centrifuge Protocol",
-    "sector": "rwa",
-    "fy": 4.21
+    "name": "Jupiter Lend",
+    "sector": "lending",
+    "fy": 3.76
    },
    {
     "name": "Invesco USTB",
@@ -1194,7 +1197,7 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -1890.4
+    "d7": -1885.9
    },
    {
     "chain": "Solana",
@@ -1230,7 +1233,7 @@
  "health": {
   "budget": {
    "day": "2026-07-10",
-   "glm": 27,
+   "glm": 31,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
