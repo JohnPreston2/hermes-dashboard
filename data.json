@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-10T16:48:01Z",
+ "generated_at": "2026-07-10T18:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-10T15:09:47Z",
+   "ts": "2026-07-10T18:07:45Z",
    "status": "ok",
-   "discipline": 78.0,
+   "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 8
+  "runs_today": 9
  },
  "runs": [
-  {
-   "ts": "2026-07-08T00:07:04Z",
-   "tier": "A",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 6,
-   "phase": null
-  },
   {
    "ts": "2026-07-08T01:10:52Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 4,
    "phase": null
+  },
+  {
+   "ts": "2026-07-10T18:07:45Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-10T18:07:45Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Aave V3",
+    "Maple",
+    "Ostium"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaple Finance's protocol revenue generation (+62.25% fees 7d) has decoupled from its capital base (-11.44% TVL 7d), suggesting a shift in unit economics or credit performance rather than sector-wide liquidity withdrawal, while Aave V3 exhibits statistically anomalous TVL growth (z=2.02) that outpaces its fee expansion (z=0.47).\n\n## FILS DOMINANTS\n*   **Maple — 4.86% fee-yield, the highest of the set (vs Aave V3 2.48%, Ostium N/A):** Protocol fees surged +62.25% (7d) while TVL contracted -11.44% (7d) to $2.26B, driving fee-yield to 4.86% (7d-smoothed). This divergence implies improved per-unit revenue efficiency or higher yields on the remaining loan book, though the capital quality is under pressure as the base shrinks (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Aave V3 — 2.48% fee-yield, ranked 2nd (vs Maple 4.86%):** TVL increased +4.72% (7d) to $13.22B, a statistically significant deviation (z=2.02 30d) from its baseline, while fees grew only +3.85% (7d) (z=0.47 30d). The capital inflow appears transient or yield-seeking rather than activity-driven, as fee generation lags the capital base expansion (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Ostium — Value accrual based on OI/VOLUME, ranked 3rd:** TVL surged +29.74% (7d) to $64.9M (z=1.89 30d) alongside a +54.79% fee increase (7d) (z=1.88 30d). As a perp DEX, the value base is Open Interest/Volume, not TVL; the rapid expansion in both metrics suggests speculative leverage positioning or aggressive market-making, though sustainable volume retention is unproven (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260710_1520_near (CONFIRM):** The thesis that the sector is contracting away from incentive-driven growth is confirmed. Maple's TVL contraction (-11.44% 7d) alongside NEAR governance scrapping developer rebates validates the consolidation trend. The fee decoupling at Maple suggests that surviving protocols are optimizing for yield efficiency rather than chasing unproductive scale (source: The Defiant, get_metric).\n*   **th_20260709_1520_eth (CONFIRM):** Institutional capital flow thesis remains stable. While Aave V3 sees strong TVL inflows, the lag in fee generation (z=0.47 vs TVL z=2.02) suggests this capital may be yield-chasing rather than productive deployment, aligning with the broader narrative of institutional liquidity seeking safe harbor in blue-chip DeFi amidst sector rotation (source: read_articles, get_metric).\n\n## LECTURE\nThe current market displays a bifurcation in capital efficiency. Maple is demonstrating \"richer\" unit economics on a shrinking asset base, a hallmark of credit market consolidation where lower-quality liquidity exits, leaving higher-yielding exposure. Conversely, Aave V3 is experiencing \"cheaper\" unit economics on an expanding base; the z-score spread (TVL z=2.02 vs Fees z=0.47) mathematically proves that the marginal capital flowing in is less productive than the historical average. For Ostium, the perp sector's volume surge must be scrutinized for \"wash\" trading or incentivized volume, as OI data remains thin. Investors must distinguish between protocols growing revenue per dollar (Maple) versus protocols growing dollars per revenue (Aave).\nKill condition: A sustained convergence of Aave's fee z-score below its TVL z-score for >30 days, indicating permanent capital inefficiency.\n\n## RISQUE\n*   **Maple:** The TVL contraction (-11.44% 7d) risks triggering a \"death spiral\" in liquidity if redemptions accelerate, potentially forcing fire-sales of underlying credit assets that impair the very loan book driving the high fee-yield.\n*   **Aave V3:** The statistically anomalous TVL growth (z=2.02) driven by transient liquidity mining"
+  },
   {
    "ts": "2026-07-10T15:09:47Z",
    "tier": "A",
@@ -766,35 +795,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nLido's protocol revenue generation has accelerated to a 2.5% annualized fee-yield (7d), the highest in this set, driven by a 4.66% TVL surge (z=0.57 30d) that solidifies its 60.8% market share in the LST sector, while JustLend V1 exhibits a divergence between capital inflows and value accrual, with TVL up 11.87% (z=1.73 30d) but fees down 30.68% (z=0.02 30d).\n\n## FILS DOMINANTS\n*   Lido — 2.5% fee-yield, the highest of the set (vs JustLend V1 0.64%, Base 0.37%): TVL increased +4.66% 7d to $15.95B, outpacing peers Binance staked ETH (24.6% share) and Rocket Pool (3.5% share). Capital quality is high, supported by a 10.49% fee increase 7d (z=0.94 30d), indicating organic staking demand rather than transient incentives (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   JustLend V1 — 0.64% fee-yield, ranked second (vs Base 0.37%): TVL surged +11.87% 7d to $3.35B (z=1.73 30d), a 95th percentile deviation, yet protocol fees fell -30.68% 7d (z=0.02 30d). This suggests capital inflows are likely liquidity mining or transient yield-seeking rather than productive lending, as value accrual does not track the capital base (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   Base — 0.37% fee-yield, the lowest of the set: TVL grew +3.37% 7d to $5.77B (z=0.87 30d), securing 17.1% market share in the infra sector, trailing LayerZero V2 (21.3%). Fee generation is modest at $57K 24h, with a 4.76% fee increase 7d (z=0.34 30d), reflecting steady but low-yield infrastructure utilization (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   th_20260704_0321_drift (Drift Perpetuals): RETIRE | Verdict: Stable. The thesis regarding regulatory risks for yield-bearing stablecoins in perps remains valid but is no longer the primary driver of current sector value accrual observed in the LST and lending sets.\n*   th_20260704_0321_drift (Aave Governance): RETIRE | Verdict: Stable. The observation of accelerated Aave governance parameter adjustments is confirmed as a stable operational trend, though the current brief focuses on Lido and JustLend dynamics.\n\n## LECTURE\nThe divergence between JustLend V1's TVL expansion (+11.87% 7d) and its fee contraction (-30.68% 7d) is a textbook signal of low-quality capital inflow. When value accrual (fee-yield) decouples from the capital base, the growth is often driven by incentive programs or mercenary liquidity rather than sustainable utilization. In contrast, Lido's positive correlation between TVL growth (+4.66% 7d) and fee growth (+10.49% 7d) demonstrates high-quality, sticky capital aligned with protocol revenue. Investors must prioritize fee-yield on the productive base over raw TVL aggregates to identify genuine economic activity.\nKill condition: JustLend V1 fee-yield remains below 0.7% for two consecutive weeks while TVL continues to expand.\n\n## RISQUE\n*   JustLend V1: The risk of a \"TVL trap\" is high; if the +11.87% 7d capital surge is incentive-driven, a rapid outflow is probable upon program completion, jeopardizing the protocol's liquidity stability.\n*   Lido: While dominant, the 60.8% market share concentration risk remains; any regulatory scrutiny or technical failure with the staking protocol could trigger a disproportionate sector-wide deleveraging.\n*   Base: The 0.37% fee-yield indicates low monetization efficiency of the $5.77B TVL; if the chain cannot convert transaction volume into higher protocol revenue, its valuation multiple on TVL will compress relative to higher-yielding infra peers.\n\n## SUIVI\n*   inq_mission_fresh_money: Evidence | USDC supply on Base grew +3.37% 7d, outpacing fee growth, suggesting new fiat entry is parking in low-yield assets rather than productive DeFi (source: get_metric). Next_probe: Monit"
-  },
-  {
-   "ts": "2026-07-09T12:06:13Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "Maple",
-    "Spiko",
-    "Jupiter Lend"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaple Finance's protocol revenue generation has surged to a 5.04% annualized fee-yield (7d), the highest in this set, despite a significant -15.05% contraction in its total value locked (TVL) over the same period, signaling a potential improvement in capital efficiency or a de-risking of its credit book.\n\n## FILS DOMINANTS\n*   **Maple — 5.04% fee-yield, the highest of the set (vs Jupiter Lend 3.28%, Spiko 2.49%):** Protocol fees spiked +892.05% 7d to $546K 24h (protocol_fees 7d), outpacing a sharp -15.05% 7d TVL decline to $2.12B (get_metric). This divergence suggests the remaining capital is higher-yielding or the protocol is capturing more value from its existing loan book. Capital quality is in question; the outflow may be a de-risking event or migration to competitors like Sky Lending, as the TVL is now at a z=-2.78 (5th pctile) relative to its baseline (tvl_vs_baseline).\n*   **Jupiter Lend — 3.28% fee-yield, ranked 2nd (vs Spiko 2.49%):** TVL grew +10.81% 7d to $994M (get_metric), a strong move at z=1.43 (90th pctile) relative to its baseline (tvl_vs_baseline). However, protocol fees fell -22.77% 7d to $94K 24h (protocol_fees 7d), indicating the new capital is not yet productive or is yield-chasing \"hot money\" rotating from other Solana DeFi yield aggregators. The capital quality is provisional until fee generation aligns with TVL growth.\n*   **Spiko — 2.49% fee-yield, ranked 3rd:** TVL surged +10.13% 7d to $1.20B (get_metric), placing it at an average z=-0.12 (50th pctile) for its sector (tvl_vs_baseline). This growth is juxtaposed with a -27.61% 7d drop in protocol fees to $65K 24h (protocol_fees 7d), raising concerns that the expansion is driven by incentivized liquidity mining rather than organic institutional adoption. Its 8.2% market share in the RWA sector is dwarfed by leaders like Circle USYC (21.2%) and BlackRock BUIDL (20.8%) (sector-aware peers).\n\n## RECONCILIATION\n*   **th_20260709_0320_aave (REVISE):** The thesis that capital is shifting towards more efficient lending protocols is confirmed by Maple's sector-leading fee-yield, which now surpasses the previously noted Aave baseline. The trigger is the observation that Maple's 5.04% fee-yield (7d) is a new high-water mark for value accrual in the lending sector, validating the capital efficiency shift away from legacy models.\n\n## LECTURE\nThe digest reveals a critical divergence between TVL and fee generation across these three protocols. Maple's case is the most instructive: a shrinking asset base (TVL -15.05% 7d) that is generating significantly more revenue (fees +892.05% 7d). This is the hallmark of improving capital efficiency, where the protocol is shedding lower-yield or higher-risk capital and retaining a more productive core. In contrast, both Jupiter Lend and Spiko show TVL growth (+10.81% and +10.13% 7d, respectively) coupled with declining fees (-22.77% and -27.61% 7d), a classic signal of low-quality, incentive-driven capital inflows that dilutes yield. For an institutional analyst, the key takeaway is to prioritize fee-yield and its trend over raw TVL aggregates. A protocol with a smaller but more productive capital base is fundamentally superior to one with bloated, unproductive TVL. The data suggests a rotation of capital towards protocols that can demonstrate superior unit economics, even if it means exiting larger, less efficient platforms.\nKill condition: A sustained convergence where TVL growth outpaces fee growth across the sector, indicating a return to indiscriminate capital deployment.\n\n## RISQUE\n*   **Maple:** The primary risk is that the -15.05% TVL outflow is not a benign efficiency improvement but a harbinger of a systemic credit event or a loss of confidence in its lending book. If the outflow continues, "
   }
  ],
  "theses": [
@@ -816,9 +816,9 @@
    "key": "NEAR::defi",
    "verdict": "confirm",
    "conviction": 0.92,
-   "trigger": "NEAR governance scrapping developer gas rebates and Maple TVL contraction confirm consolidation trend (source: The Defiant, get_metric).",
+   "trigger": "Maple TVL contraction (-11.44% 7d) and NEAR governance scrapping developer rebates confirm sector consolidation away from incentives.",
    "kill": "Monitor the volume of proposals requesting funding from the NEAR Protocol treasury over the next quarter, as an increase would suggest developers are seeking alternative funding so",
-   "ts": "2026-07-10T12:07:00Z",
+   "ts": "2026-07-10T18:07:45Z",
    "history": [
     {
      "ts": "07-05",
@@ -864,9 +864,9 @@
    "key": "ETH::tokenomics",
    "verdict": "confirm",
    "conviction": 0.92,
-   "trigger": "Paradigm's $1.2B fund expansion into AI and robotics validates institutional capital flow thesis (source: read_articles)",
+   "trigger": "Aave V3 TVL growth (+4.72%) outpacing fee growth (+3.85%) suggests institutional liquidity seeking blue-chip safety over productive deployment.",
    "kill": "Monitor the deployment of capital from Paradigm's new fund – specifically, the number and scale of investments made in projects demonstrably building AI applications on the Ethereu",
-   "ts": "2026-07-10T09:36:55Z",
+   "ts": "2026-07-10T18:07:45Z",
    "history": [
     {
      "ts": "07-10",
@@ -1069,10 +1069,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-09T12:06:13.972468+00:00",
-     "note": "Capital is rotating towards higher-yielding protocols; Maple's TVL shrank -15.05% 7d while fees surged +892.05% 7d, whereas Jupiter Lend and Spiko saw TVL growth with fee declines, indicating a shift towards capital efficiency. (source: get_metric + protocol_fees(7d))"
-    },
-    {
      "ts": "2026-07-10T06:05:52.201394+00:00",
      "note": "JustLend V1 TVL surged 13.0% (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) while fees fell -28.41% (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched), suggesting a rotation into incentivized lending rather than organic yield."
     },
@@ -1087,9 +1083,13 @@
     {
      "ts": "2026-07-10T12:07:00.105731+00:00",
      "note": "Capital rotating from lending to perps; Maple TVL -11.5% (7d) vs Ostium fees +54.79% (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched)"
+    },
+    {
+     "ts": "2026-07-10T18:07:45.128893+00:00",
+     "note": "Capital rotating from Maple (-11.44% TVL 7d) to Aave (+4.72% TVL 7d) and Ostium (+29.74% TVL 7d); Aave fee growth (+3.85%) lags TVL, indicating safety-seeking rotation (source: get_metric)."
     }
    ],
-   "evidence": "inq_mission_rotation · next: Analyze if the TVL outflow from Maple is correlated with inflows into RWA protocols to confirm the sector rotation thesis."
+   "evidence": "inq_mission_rotation · next: Analyze specific Aave market inflows vs Maple outflows to map the capital migration path."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1128,12 +1128,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.0,
+    "tvl": 42.9,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 41.4,
+    "tvl": 41.3,
     "yard": "TVL"
    },
    {
@@ -1156,7 +1156,7 @@
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 7.25
+    "fy": 7.32
    },
    {
     "name": "Hastra",
@@ -1166,17 +1166,17 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.08
+    "fy": 6.09
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.02
+    "fy": 6.04
    },
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 5.73
+    "fy": 5.75
    },
    {
     "name": "Maple",
@@ -1184,24 +1184,24 @@
     "fy": 4.86
    },
    {
-    "name": "Jupiter Lend",
-    "sector": "lending",
-    "fy": 3.76
+    "name": "Centrifuge Protocol",
+    "sector": "rwa",
+    "fy": 4.21
    },
    {
-    "name": "Invesco USTB",
-    "sector": "rwa",
-    "fy": 3.67
+    "name": "Jupiter Lend",
+    "sector": "lending",
+    "fy": 3.77
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -1885.9
+    "d7": -1885.3
    },
    {
     "chain": "Solana",
-    "d7": 50.0
+    "d7": 50.1
    },
    {
     "chain": "Arbitrum",
@@ -1218,9 +1218,9 @@
   ],
   "agg": {
    "stable_mcap_b": 298.0,
-   "stable_d7_pct": -0.14,
+   "stable_d7_pct": -0.1,
    "dex_vol_24h_b": 6.8,
-   "defi_tvl_b": 74.5
+   "defi_tvl_b": 74.4
   }
  },
  "robinhood": {
@@ -1233,7 +1233,7 @@
  "health": {
   "budget": {
    "day": "2026-07-10",
-   "glm": 31,
+   "glm": 33,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
