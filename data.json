@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-11T10:48:01Z",
+ "generated_at": "2026-07-11T12:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "B",
-   "mode": "react",
-   "ts": "2026-07-11T09:38:09Z",
+   "tier": "A",
+   "mode": "3phase",
+   "ts": "2026-07-11T12:06:53Z",
    "status": "ok",
    "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 6
+  "runs_today": 7
  },
  "runs": [
-  {
-   "ts": "2026-07-08T09:35:01Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "killed",
-   "silent": true,
-   "discipline": null,
-   "r2_pass": null,
-   "comps": null,
-   "phase": null
-  },
   {
    "ts": "2026-07-08T10:11:10Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-07-11T12:06:53Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-11T12:06:53Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Aave V3",
+    "BlackRock BUIDL",
+    "Near"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 1
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock BUIDL recorded a +21.03% TVL jump (7d) alongside a +166.75% fee surge (7d), driving its fee-yield to 1.77% and solidifying a 23.4% market share in the RWA sector, while Aave V3 maintained lending dominance with a 43.0% market share despite fee-yield compression to 2.49% (7d).\n\n## FILS DOMINANTS\n*   **Aave V3 — 2.49% fee-yield (7d), the highest of the set (vs BlackRock BUIDL 1.77%):** Protocol holds 43.0% lending market share (vs Morpho Blue 23.3%) on $13.21B TVL, but fee growth (+1.79% 7d) lagged TVL expansion (+3.84% 7d), compressing yield. Capital quality is mixed; TVL is at z=1.76 (99th pctile), suggesting sticky capital, yet the fee-to-TVL divergence warrants scrutiny on organic yield demand vs. transient incentives (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **BlackRock BUIDL — 1.77% fee-yield (7d), ranked second:** TVL surged +21.03% (7d) to $3.69B, capturing 23.4% sector share (vs Circle USYC 19.5%). Fee-yield improved to 1.77% on the back of a +166.75% fee spike (7d), with both TVL and fees at z=4.17 and z=1.81 (100th pctile) respectively. Capital quality appears high as institutional allocation, but the delta between TVL and fee growth raises questions on whether this represents fresh fiat entry or internal reallocation (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Near — Null fee-yield (data unavailable):** Data insufficient for value-accrual ranking. The removal of developer gas rebates remains a critical structural risk to user acquisition economics, though current on-chain metrics are not provided to quantify the impact (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260709_1520_eth (REVISE):** The thesis that institutional capital is flowing into Ethereum is REVISED to specify that inflows are highly selective to high-quality venues. The evidence shows Aave V3 (an Ethereum-based venue) attracting significant capital (+3.84% TVL 7d) while fee growth lagged, and BUIDL (Ethereum-settled) seeing explosive fee growth (+166.75% 7d). This confirms the \"institutional\" aspect but challenges the broad \"Ethereum\" accumulation narrative, suggesting capital is targeting specific yield/quality protocols rather than the layer generically. This REBUTS the red_team_challenge regarding exploit risk by demonstrating that despite risks, capital is actively flowing into regulated, high-quality Ethereum RWA/lending venues.\n*   **th_20260702_1522_eth (RETIRE):** Thesis retired as previously confirmed; no new evidence contradicts the stability of Ethereum's roadmap focus.\n\n## LECTURE\nThe divergence between TVL expansion and fee generation in Aave V3 (TVL z=1.76 vs Fees z=-0.31) signals a potential capital efficiency drag or a shift towards lower-yielding assets (e.g., RWA collateral). Conversely, BUIDL's explosive fee growth (z=1.81) relative to its TVL base indicates either a surge in transactional volume or a successful capture of high-yield institutional activity. The market is bifurcating: capital is sticky in dominant leaders (Aave), but value accrual (fees) is migrating to high-velocity institutional rails (BUIDL). The \"institutional DeFi\" thesis is no longer about entry, but about which protocols capture the *margin* of that activity.\nKill condition: Aave V3 fee-yield drops below 1.5% while TVL continues to expand, indicating capital is purely yield-seeking with no protocol revenue capture.\n\n## RISQUE\n*   **Aave V3:** Risk of \"zombie TVL\" where capital is parked for safety or airdrop farming rather than productive lending, evidenced by fee growth (+1.79%) significantly trailing TVL growth (+3.84%).\n*   **BlackRock BUIDL:** Fee spike (+166.75%) may be transient or attributable to a few large institutional tran"
+  },
   {
    "ts": "2026-07-11T09:38:09Z",
    "tier": "B",
@@ -766,35 +795,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\nThe infrastructure sector has experienced a 41.7% surge in narrative emergence (7d), driven primarily by a fundamental shift in AI-crypto integration. Paradigm raised a $1.2 billion fund to invest in crypto, AI, and robotics startups (source: read_articles), marking the largest venture capital commitment to the AI-crypto intersection in 2026. Simultaneously, BNB Chain announced development of a new Layer-1 blockchain specifically designed for high-frequency trading and AI agents, targeting over 100,000 transactions per second (source: read_articles). These developments signal a structural transition from general-purpose blockchain infrastructure to specialized AI-optimized architectures.\n\n## RECONCILIATION\n\n**CONFIRM th_20260710_0320_near (NEAR consolidation thesis)**: The NEAR Protocol thesis regarding ecosystem consolidation and increased financial prudence remains valid with 0.92 confidence. The recent Zapper shutdown (source: get_narrative) and continued reduction in developer incentives support this trend. The thesis withstands the red team challenge that Zapper's closure might reflect adaptation failure rather than prudence, as the broader pattern of reduced incentive programs across multiple protocols indicates a sector-wide shift toward sustainability.\n\n**CONFIRM th_20260709_1520_eth (ETH institutional accumulation thesis)**: The Ethereum thesis regarding institutional capital flowing into the AI-blockchain intersection is confirmed with 0.92 confidence. Paradigm's $1.2B fund expansion directly validates this thesis (source: get_prior_assessment). However, the thesis faces tension from observed stablecoin outflows from Ethereum (-$778M 1d, source: get_analyst_note), suggesting that while institutional commitment exists, retail capital may be rotating to other chains.\n\n## LECTURE\n\nThe AI-crypto infrastructure surge represents a maturation of the sector beyond general-purpose smart contract platforms. Specialized AI-optimized blockchains like BNB Chain's new Layer-1 indicate that market participants now view AI workloads as distinct enough from traditional DeFi operations to warrant dedicated infrastructure. This specialization trend suggests that future blockchain competition will increasingly focus on domain-specific optimizations rather than generic throughput improvements. The $1.2B Paradigm fund provides the capital necessary to build this specialized infrastructure, potentially accelerating the divergence between AI-focused and traditional DeFi platforms.\n\nKill condition: If AI-crypto projects fail to demonstrate measurable performance advantages or unique use cases on specialized infrastructure within 90 days, the specialization thesis would be invalidated.\n\n## LIVE EVENTS\n\nCritical exploit risks remain elevated across the ecosystem, with 31 active exploit_risk events (source: get_events). The most urgent include unidentified exploits (age_h: 14.3), a defi-yield sector drain (age_h: 38.3), and Solana-specific exploits (age_h: 74.3). Regulatory activity has surged 48.1% (7d), with 201 active regulatory events including court rulings, congressional actions, and licensing developments (source: get_events).\n\n## SUIVI\n\n**Advanced inq_mission_fresh_money**: Confirmed that aggregate stablecoin market cap stands at $298.2B with a -0.1% change (7d), indicating net stablecoin redemptions rather than fresh fiat entry (source: get_metric). This contradicts the narrative of institutional inflows and suggests the AI-crypto infrastructure development is not yet accompanied by significant new capital.\n\n**Advanced inq_mission_rotation**: Verified that capital is rotating from Ethereum (-$778M stablecoin outflow 1d) to Polygon (+0.47% 1d) and Optimism (+0.67% 1d) (source: get_analyst_note). This rotatio"
-  },
-  {
-   "ts": "2026-07-10T09:07:18Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": true,
-   "discipline": null,
-   "r2_pass": null,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "Near",
-    "Morpho Blue",
-    "BlackRock BUIDL"
-   ],
-   "gate": {
-    "R1": null,
-    "R6": null,
-    "R8": null,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": null,
-    "n_unsupported_pct": null
-   },
-   "brief": "[SILENT] R2 could not be cleaned"
   }
  ],
  "theses": [
@@ -884,26 +884,12 @@
    ]
   },
   {
-   "key": "ETH::general",
-   "verdict": "confirm",
-   "conviction": 0.88,
-   "trigger": "Ondo chose Ethereum for settlement of tokenized securities despite capital outflows",
-   "kill": "Monitor the deployment of capital from Paradigm's new fund – specifically, the number and scale of investments made in projects demonstrably building AI applications on the Ethereu",
-   "ts": "2026-07-09T06:08:27Z",
-   "history": [
-    {
-     "ts": "07-09",
-     "c": 0.88
-    }
-   ]
-  },
-  {
    "key": "ETH::tokenomics",
    "verdict": "revise",
    "conviction": 0.88,
    "trigger": "Capital inflow is specific to high-quality venues (Aave V3 RWA), evidenced by TVL growth outpacing fee growth.",
    "kill": "Monitor the deployment of capital from Paradigm's new fund – specifically, the number and scale of investments made in projects demonstrably building AI applications on the Ethereu",
-   "ts": "2026-07-11T09:07:22Z",
+   "ts": "2026-07-11T12:06:53Z",
    "history": [
     {
      "ts": "07-10",
@@ -1017,6 +1003,24 @@
      "c": 0.9
     }
    ]
+  },
+  {
+   "key": "ETH::general",
+   "verdict": "retire",
+   "conviction": 0.88,
+   "trigger": "Ondo chose Ethereum for settlement of tokenized securities despite capital outflows.",
+   "kill": "Monitor the deployment of capital from Paradigm's new fund – specifically, the number and scale of investments made in projects demonstrably building AI applications on the Ethereu",
+   "ts": "2026-07-11T12:06:53Z",
+   "history": [
+    {
+     "ts": "07-09",
+     "c": 0.88
+    },
+    {
+     "ts": "07-11",
+     "c": 0.88
+    }
+   ]
   }
  ],
  "inquiries": [
@@ -1024,10 +1028,6 @@
    "q": "Fresh money: is net new fiat entering crypto (stablecoin supply growing), and WHICH chains is it landing on?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-09T18:07:42.421386+00:00",
-     "note": "USDC supply on Base grew +3.37% 7d, outpacing fee growth, suggesting new fiat entry is parking in low-yield assets rather than productive DeFi (source: get_metric)."
-    },
     {
      "ts": "2026-07-10T06:39:18.089960+00:00",
      "note": "Global stablecoin market cap declined 0.1% to $298.17B (7d) with capital flowing out of Ethereum (-$776M 1d) (source: get_metric, get_analyst_note)"
@@ -1043,18 +1043,18 @@
     {
      "ts": "2026-07-11T09:38:09.442731+00:00",
      "note": "USDC supply +0.5% (7d) to $73.45B, z-score 1.24 (97th percentile) while aggregate stablecoin flow flat 0.0% (7d)"
+    },
+    {
+     "ts": "2026-07-11T12:06:53.458768+00:00",
+     "note": "BUIDL TVL +21.03% (7d) to $3.69B; need to verify if this is net new fiat via stablecoin supply analysis (source: get_metric + protocol_fees(7d) + onchain_enriched)."
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Monitor USDC vs USDT supply changes on Coinbase to confirm if this is institutional fiat entry"
+   "evidence": "inq_mission_fresh_money · next: Monitor USDC vs USDT supply changes on Coinbase to confirm if this is institutional fiat entry."
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-10T09:07:18.716646+00:00",
-     "note": "BlackRock BUIDL TVL +4.61% (7d) to $3.19B, 20.9% RWA market share (source: get_metric + protocol_fees(7d) + onchain_enriched)."
-    },
     {
      "ts": "2026-07-10T21:07:47.704546+00:00",
      "note": "BlackRock BUIDL TVL surged +21.03% (7d) to $3.69B (source: get_metric), capturing 23.5% sector market share (source: sector-aware peers)."
@@ -1070,9 +1070,13 @@
     {
      "ts": "2026-07-11T09:38:09.443007+00:00",
      "note": "MARA acquired 2 GW Texas site for AI/digital infrastructure; 27-firm consortium (OKX, MetaMask, Matter Labs) established AI agent dispute resolution court"
+    },
+    {
+     "ts": "2026-07-11T12:06:53.459028+00:00",
+     "note": "BUIDL fee growth +166.75% (7d) suggests high-velocity institutional activity; Aave V3 maintains 43.0% lending share (source: get_metric + protocol_fees(7d) + onchain_enriched)."
     }
    ],
-   "evidence": "inq_mission_institutional · next: Correlate BUIDL deposit timestamps with known institutional transfer announcements"
+   "evidence": "inq_mission_institutional · next: Correlate BUIDL deposit timestamps with known institutional transfer announcements."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
@@ -1166,7 +1170,7 @@
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 7.32
+    "fy": 7.31
    },
    {
     "name": "Maple",
@@ -1176,12 +1180,12 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 7.11
+    "fy": 7.14
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.05
+    "fy": 7.07
    },
    {
     "name": "Kamino Lend",
@@ -1191,66 +1195,66 @@
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.34
+    "fy": 6.35
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.3
+    "fy": 6.32
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.04
+    "fy": 6.05
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -1861.3
+    "d7": -1875.2
    },
    {
     "chain": "Solana",
-    "d7": 50.6
+    "d7": 50.2
    },
    {
     "chain": "Arbitrum",
-    "d7": -24.2
+    "d7": -24.4
    },
    {
     "chain": "Polygon",
-    "d7": 10.4
+    "d7": 10.3
    },
    {
     "chain": "Optimism",
-    "d7": 6.7
+    "d7": 6.6
    }
   ],
   "agg": {
    "stable_mcap_b": 298.5,
-   "stable_d7_pct": 0.04,
-   "dex_vol_24h_b": 6.5,
+   "stable_d7_pct": 0.03,
+   "dex_vol_24h_b": 6.4,
    "defi_tvl_b": 74.6
   }
  },
  "robinhood": {
-  "tvl_m": 119.3,
+  "tvl_m": 122.1,
   "morpho_share_pct": 63,
-  "age_days": 9,
-  "synth_ts": "2026-07-10T12:00:00Z",
-  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-10\n\n## ÉTAT ON-CHAIN\nChain TVL has surged to **$97.9M**, marking a staggering **31.6%** increase in the last 24 hours alone. The trajectory is vertical, scaling from ~$1.3M at genesis (July 2) to nearly $100M in just over a week. Capital concentration is extreme: **Morpho Blue** commands **~71.2%** of total chain TVL ($69.7M), with on-chain data showing $67.1M supplied against $78.6M borrowed—a leverage ratio exceeding 1.17x. This indicates aggressive capital efficiency rather than passive depositing. DEX liquidity remains fragmented but growing, with Uniswap V3 ($15.9M) and V4 ($8.0M) absorbing the majority of trading flow, while NOXA Fun ($7.1M) suggests a non-trivial allocation to high-risk launchpad activity. The capital quality read is mixed: the velocity of funds points to mercenary capital chasing yield and meme speculation (CashCat), yet the underlying infrastructure (Morpho, dYdX Arcus) is attracting sophisticated leverage plays.\n\n## CATALYSEURS\n*   **Meme-Fueled Liquidity Injection:** The integration of **Pump.fun** for Robinhood Chain tokens has triggered a speculative frenzy around assets like **CashCat**. This acts as the primary on-chain Δ driver, explaining the rapid TVL ascent and the dominance of DEX volumes (Uniswap V3/V4) as users rotate capital into low-cap tokens. (Source: The Defiant, Decrypt)\n*   **RWA Collateralization Expansion:** **Ondo Finance** enabling tokenized stocks as collateral for perpetual trading, coupled with **MakerDAO's** deployment of Spark Savings USDG, creates a structural use-case for the chain. This links the on-chain lending surge (Morpho) directly to the regulated RWA narrative, moving beyond pure speculation. (Source: The Block, MakerDAO Forum)\n*   **Regulatory Alignment & Institutional Access:** The **Robinhood CEO's** public stance on Real-World Assets (RWAs) and the chain's regulated broker status provide the legitimacy required for institutional pilots. The surge in tokenized stock transfers ($8.4B industry-wide) validates the timing of this L2 launch. (Source: The Block, CoinTelegraph)\n\n## VALUE ACCRUAL\nValue capture is strictly protocol-centric; **Robinhood Chain has no nati"
+  "age_days": 10,
+  "synth_ts": "2026-07-11T12:00:00Z",
+  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-11\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$122.1M**, recording a **+30.4%** daily expansion. The trajectory is vertical; the chain has effectively tripled its value locked in roughly 96 hours (from ~$34M on July 3 to current levels). Capital concentration is extreme: **Morpho Blue** commands **63.4%** of total chain TVL ($77.4M), with a utilization rate of **123%** (borrowed $95.2M against supplied $77.4M), indicating aggressive leveraged positioning likely against tokenized equity collateral. DEX liquidity is fragmented but growing, with Uniswap V3 ($21.8M) and V4 ($9.4M) absorbing the speculative overflow, while the launchpad \"NOXA Fun\" holds $8.7M. The capital quality is mixed—high leverage on Morpho suggests sticky, utility-driven capital (stock collateralization), whereas the DEX and launchpad metrics are indicative of hot, rotation-prone liquidity chasing immediate yield.\n\n## CATALYSEURS\n*   **MakerDAO Grove Proposal Execution:** The formal deployment of Spark Savings USDG on Robinhood Chain (MakerDAO Forum) is the structural driver for the TVL spike. This integrates the chain into the MakerDAO financial core, providing a deep, regulated liquidity sink for tokenized stocks, directly fueling the leverage seen in Morpho lending markets.\n*   **Tokenized Stock Collateralization:** Ondo Finance’s integration of tokenized stocks as collateral for perpetual trading (The Block) and Kraken’s similar move for leveraged trades (CoinTelegraph) have created a new capital efficiency loop. This explains the surge in tokenized stock transfers (+105% MoM to $8.4B; CoinTelegraph) flowing directly into on-chain lending and derivatives.\n*   **Speculative Infrastructure:** Pump.fun’s addition of Robinhood Chain tokens (The Defiant) and the viral \"CASHCAT\" memecoin trade ($800 → $1M; CoinDesk) are acting as the user acquisition engine, driving the DEX volume and bridging of $70M+ ETH in the first week (CoinTelegraph).\n*   **Arbitrum Revenue Share:** The governance decision for Arbitrum to capture 10% of fees (The Defiant) establishes a revenue-sharing precedent, though it currently dilutes the fee potential of native infrastructure.\n\n## VALUE"
  },
  "health": {
   "budget": {
    "day": "2026-07-11",
-   "glm": 28,
+   "glm": 32,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 2,
-   "unsupported_pct_7d": 3,
+   "unsupported_pct_7d": 4,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 6
