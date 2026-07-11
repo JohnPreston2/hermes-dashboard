@@ -1,46 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-11T08:48:01Z",
+ "generated_at": "2026-07-11T10:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "S",
+   "tier": "B",
    "mode": "react",
-   "ts": "2026-07-11T06:39:01Z",
+   "ts": "2026-07-11T09:38:09Z",
    "status": "ok",
-   "discipline": null,
-   "r2_pass": null,
-   "silent": true
+   "discipline": 97.0,
+   "r2_pass": true,
+   "silent": false
   },
-  "runs_today": 4
+  "runs_today": 6
  },
  "runs": [
-  {
-   "ts": "2026-07-08T07:11:11Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-08T09:05:02Z",
-   "tier": "A",
-   "mode": "react",
-   "status": "killed",
-   "silent": true,
-   "discipline": null,
-   "r2_pass": null,
-   "comps": null,
-   "phase": null
-  },
   {
    "ts": "2026-07-08T09:35:01Z",
    "tier": "B",
@@ -458,9 +436,85 @@
    "r2_pass": null,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-07-11T09:07:22Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 87.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
+  },
+  {
+   "ts": "2026-07-11T09:38:09Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-11T09:38:09Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\n**AI-CRYPTO INFRASTRUCTURE MATURATION: INSTITUTIONAL POWER & LEGAL FRAMEWORKS EMERGE**\n\nThe AI-crypto intersection has shifted from speculative narrative to concrete infrastructure deployment. MARA acquired a Texas site with up to 2 GW of power capacity specifically for AI and digital infrastructure expansion (source: CoinTelegraph, 7d). Simultaneously, a consortium of 27 firms including OKX, MetaMask, and Matter Labs established a dispute resolution court for AI agents operating in crypto, addressing growing legal ambiguity around AI-driven trading and smart contracts (source: CoinDesk, 7d). This formalization follows Kraken's integration of AI agents into its mobile app for automated trading suggestions and execution (source: The Block, 7d), and the Ethereum Foundation's deployment of AI agents to identify bugs in network infrastructure (source: The Block, 7d).\n\nThe infrastructure sector narrative surged 100% (from 20 to 40 articles, 7d), with regulatory events increasing 94.2% (from 52 to 101, 7d), indicating heightened institutional attention to the operational and legal frameworks necessary for AI-crypto integration.\n\n## RECONCILIATION\n\n**ETH TOKENOMICS THESIS (id: th_20260709_1520_eth): CONFIRM**\nPrior thesis: \"Continued accumulation of Ethereum by entities like BitMine, coupled with significant fundraises like Paradigm's expansion into AI and robotics, highlights a growing trend of institutional capital flowing into the intersection of AI and blockchain.\"\n\nCurrent evidence validates this thesis. The Ethereum Foundation's active deployment of AI agents for bug detection (source: The Block, 7d) demonstrates concrete technical integration beyond capital flows. The MARA power acquisition and AI agent dispute resolution court represent the infrastructure layer thesis manifesting in physical and legal domains. However, the red team challenge regarding potential capital outflows due to exploit risks remains relevant given 28 active exploit_risk events across protocols.\n\n**ETH POST-QUANTUM CRYPTOGRAPHY THESIS (id: th_20260702_1522_eth): RETIRED**\nThis thesis was previously retired and remains so. The current AI infrastructure developments have superseded post-quantum cryptography as the primary technical narrative.\n\n## LECTURE\n\n**AI-CRYPTO INFRASTRUCTURE: THE POWER-LEGAL FEEDBACK LOOP**\n\nThe convergence of massive power infrastructure (MARA's 2 GW acquisition) and legal frameworks (AI agent dispute court) creates a self-reinforcing cycle for AI-crypto maturation. Power capacity enables compute-intensive AI operations on-chain, while legal frameworks reduce uncertainty for institutional deployment. This addresses the key friction point identified in the analyst note: \"The market anticipates and is preparing for the legal and operational complexities of increasingly autonomous AI participation in crypto markets.\"\n\nThe critical vulnerability is the exploit surface: 28 active exploit_risk events (source: get_events), including specific vulnerabilities in AI agents susceptible to \"hallucinations\" leading to malicious code downloads (source: Decrypt, 7d). As AI agents gain autonomy and capital control, the exploit risk amplifies exponentially.\n\nKill condition: A major exploit (> $50M) directly attributed to AI agent autonomy or hallucination that triggers regulatory rollback of AI agent permissions on major protocols.\n\n## LIVE EVENTS\n\n**CRITICAL EXPLOIT RISKS (source: get_events, 7d):**\n- 28 active exploit_risk events across protocols\n- Specific vulnerability: AI agents susceptible to \"hallucinations\" leading to malicious code downloads\n- Drift protocol: critical exploit risk (hack, exploit)\n- Solana: critical exploit risk (exploit, drain)\n- Ethereum: critical exploit risk (hack)\n\n**REGULATORY DEVELOPMENT"
+  },
+  {
+   "ts": "2026-07-11T09:07:22Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 87.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Aave V3",
+    "NEAR",
+    "ETH"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 1
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nAave V3 solidified its dominance in the lending sector with a 43.0% market share (vs Morpho Blue 23.3%), driven by a +3.82% TVL increase (7d) that significantly outpaces its fee growth (+0.29% 7d), suggesting a capital rotation into lower-yielding, higher-quality assets rather than organic yield expansion.\n\n## FILS DOMINANTS\n*   **ETH — 2.677% fee-yield, the highest of the set (vs Aave V3 2.489%):** Ethereum's LST sector maintains a premium fee multiple relative to its capital base, with fees growing faster (+2.05% 7d) than TVL (+2.6% 7d), indicating improving capital efficiency. The protocol's value accrual is robust, though token capture remains governance-dependent.\n*   **Aave V3 — 2.489% fee-yield, the second highest (vs NEAR null):** Aave V3 captured $13.21B in TVL, a z-score of 1.78 (99th pctile) relative to its historical baseline, yet fee generation lagged (z=-0.54, 38th pctile). This divergence implies the recent capital inflow is seeking safety or liquidity arbitrage rather than high-yield lending opportunities, potentially diluting protocol revenue efficiency.\n*   **NEAR — Null fee-yield, the lowest of the set:** Data for NEAR's fee-yield and TVL was unavailable in this digest, preventing a fundamental valuation assessment. The removal of developer gas rebates suggests a pivot to monetization, but without protocol fee metrics, the economic impact cannot be quantified.\n\n## RECONCILIATION\n*   **th_20260709_1520_eth (REVISE):** The thesis that institutional capital is flowing into Ethereum is confirmed by the high fee-yield (2.677%) and fee growth (+2.05% 7d). However, the trigger must be revised: the capital is not generic accumulation but specific to high-quality, regulated venues (e.g., Aave V3's RWA markets), as evidenced by Aave's TVL surge outpacing fee growth. The red team challenge regarding exploit risk is noted but not yet rebutted by the current fee data, which shows strong fundamental utility.\n*   **th_20260710_1520_near (CONFIRM):** The thesis that NEAR is shifting from growth-at-all-costs to sustainability is confirmed by the removal of developer gas rebates. The red team challenge arguing that platform closures (e.g., Zapper) are business-specific failures is acknowledged; however, the NEAR protocol's specific policy change supports the consolidation thesis regardless of broader platform failure rates.\n\n## LECTURE\nThe current market exhibits a clear \"flight to quality\" within DeFi. Aave V3's disproportionate TVL growth (+3.82% 7d) against stagnant fee growth (+0.29% 7d) signals that capital is prioritizing established liquidity and perceived safety over yield maximization. This is corroborated by ETH's superior fee-yield (2.677%), where capital is stickier and more efficient. Investors are effectively paying a premium (in the form of lower yields on Aave) for the stability of blue-chip protocols, a behavior characteristic of a maturing market cycle rather than an expansionary one. The divergence between Aave's TVL (z=1.78) and fees (z=-0.54) is a critical warning sign for revenue multiple compression if the new capital remains idle.\nKill condition: A sustained decline in ETH's fee-yield below 2.0% coupled with a contraction in Aave V3's TVL share below 35%.\n\n## RISQUE\n*   **Aave V3:** The primary risk is \"yield dilution\"—the rapid influx of capital into low-yield markets (potentially RWA or stablecoins) could depress the overall protocol fee-yield, making the token less attractive if revenue sharing is enabled.\n*   **ETH:** The red team challenge regarding regulatory and exploit risks remains valid; while current fees are high, a significant exploit or regulatory crackdown in the AI/blockchain intersection could trigger rapid capital outflows, decoupling the fee-yield from the"
+  },
   {
    "ts": "2026-07-11T06:39:01Z",
    "tier": "S",
@@ -741,60 +795,6 @@
     "n_unsupported_pct": null
    },
    "brief": "[SILENT] R2 could not be cleaned"
-  },
-  {
-   "ts": "2026-07-10T06:39:18Z",
-   "tier": "S",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "## PAYSAGE\nThe DeFi/AI-crypto landscape shows a notable divergence between narrative attention and fundamental value flows. While regulatory narratives have surged 48.1% (source: get_board), aggregate stablecoin market cap has declined 0.1% over 7 days to $298.17B (source: get_metric), indicating net capital outflows rather than fresh fiat entry. The most significant value movement is occurring in the RWA sector, with BlackRock BUIDL reaching $3.19B TVL (up 4.61% in 7 days, z-score 4.75) (source: get_metric), and in lending protocols like Morpho Blue at $7.10B TVL (up 3.88% in 7 days) (source: get_metric). However, this growth is not uniform - Maple Finance has seen a significant 18.15% TVL decline to $2.05B (source: get_metric), suggesting sector-specific challenges rather than broad-based expansion.\n\n## FILS DOMINANTS\n1. **RWA Institutional Adoption**: BlackRock BUIDL's TVL of $3.19B (z=4.75, 100th percentile) with 4.61% 7d growth (source: get_metric) represents the strongest fundamental signal. This is backed by the regulatory narrative emergence (48.1% increase) (source: get_board) and specific developments like Ripple's RLUSD launch in Japan (source: read_articles). The narrative is strongly backed by fundamentals.\n\n2. **Lending Sector Divergence**: Morpho Blue shows robust growth at $7.10B TVL (up 3.88% 7d) (source: get_metric), while Maple Finance experiences significant contraction at $2.05B TVL (down 18.15% 7d) (source: get_metric). This divergence suggests a rotation toward newer, more efficient lending protocols rather than sector-wide expansion. The lending narrative is mixed - supported by Morpho's growth but contradicted by Maple's decline.\n\n3. **Cross-Chain Capital Rotation**: Capital is flowing out of Ethereum (-$776M 1d stablecoin flow) (source: get_analyst_note) into Layer-2 solutions like Optimism (+$1.4M 1d) and Polygon (+$10.48M 7d) (source: get_analyst_note). This rotation is backed by the stablecoin flow metric showing aggregate decline (source: get_metric) and specific protocol movements like Ostium's 19.07% TVL increase (source: get_board). The narrative is backed by fundamental flow data.\n\n4. **AI-Crypto Infrastructure Development**: While showing narrative emergence, the AI-crypto sector lacks active thesis coverage (source: get_board). However, material developments include Paradigm's $1.2B fund for crypto/AI/robotics (source: read_articles) and BNB Chain's new Layer-1 for AI agents (source: read_articles). The narrative is emerging but not yet backed by significant on-chain metrics.\n\n## MOUVEMENTS DE THESES\n1. **NEAR Protocol Thesis (STRENGTHENED)**: The thesis on crypto ecosystem consolidation and financial prudence has strengthened from confidence 0.88 to 0.92 (source: get_prior_assessment). This is supported by Zapper's shutdown and the continued trend away from unsustainable incentive models. The trigger was Erebor Bank's institutional funding round, validating the shift toward sustainable growth.\n\n2. **Ethereum Post-Quantum Thesis (RETIREMENT)**: The thesis on Ethereum's post-quantum cryptography integration has been retired (source: get_prior_assessment). While technically valid, the thesis appears to have been superseded by more immediate developments like Ondo choosing Ethereum for tokenized securities despite capital outflows.\n\n3. **ETH Institutional Accumulation Thesis (STRENGTHENED)**: The thesis on institutional capital flowing into AI/blockchain intersection has strengthened from confidence 0.88 to 0.92 (source: get_prior_assessment). This is supported by Paradigm's $1.2B fund expansion and continued ETH accumulation by entities like BitMine.\n\n## CONVERGENCES\nThe most significant convergence is between regulatory clarity and institutional adoption in the RWA sector. The SEC's addition of c"
-  },
-  {
-   "ts": "2026-07-10T06:05:52Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "JustLend V1",
-    "Ostium",
-    "Kinetiq kHYPE"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nOstium's protocol-level revenue generation has surged to a 100th percentile z-score for fees (z=2.24 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched), driving a 54.79% fee increase (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) that outpaces its 18.94% TVL growth (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched), signaling potential improvements in capital efficiency or take-rate rather than mere liquidity inflation.\n\n## FILS DOMINANTS\n*   **Kinetiq kHYPE — 2.119% fee-yield, the highest of the set (vs JustLend V1 0.602%):** The protocol maintains a 3.8% sector TVL share (source: sector-aware peers), competitive with Rocket Pool (3.5%) (source: sector-aware peers), while generating a 2.119% annualized fee-yield (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is provisional; the 1.3% TVL growth (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) suggests stickiness is untested against Ethereum-based LSTs.\n*   **JustLend V1 — 0.602% fee-yield, the lowest of the set:** The protocol captured 11.4% sector TVL share (source: sector-aware peers), ranking third behind Aave V3 (41.9%) and Morpho Blue (23.9%) (source: sector-aware peers), despite a 13.0% TVL surge (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) that hit a 100th percentile z-score (z=1.88 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched). Value accrual is weak; annualized fee-yield sits at just 0.602% (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched), and fees declined -28.41% (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched), indicating the TVL expansion is likely driven by transient incentives rather than organic yield demand.\n*   **Ostium — N/A fee-yield (perp sector base is OI/Volume, not TVL):** The protocol generated $115K in fees (24h) (source: get_metric + protocol_fees(7d) + onchain_enriched) with a 54.79% fee increase (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched), outpacing its 18.94% TVL growth (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is uncertain; the fee surge (z=2.24 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched) suggests improved utilization, but without corresponding Open Interest data, it is unclear if the capital is productive or idle.\n\n## RECONCILIATION\n*   **th_20260704_0321_drift (Perpetuals):** RETIRE. Operational trend confirmed as stable; focus shifted to LST/Lending dynamics (source: get_prior_assessments).\n*   **th_20260704_0321_drift (DeFi Lending):** RETIRE. Governance acceleration is a stable baseline (source: get_prior_assessments).\n*   **th_20260704_0321_lido (DeFi-LST):** RETIRE. Thesis retired as focus shifts to new market entrants and L2 rotations; Lido's governance reinforcement is now a stable baseline (source: get_prior_assessments).\n*   **th_20260704_0320_lido (Liquid Staking):** CONFIRM. Governance proposals for stETH utility and operational efficiency remain active (source: get_prior_assessments).\n\n## LECTURE\nThe divergence between JustLend V1's TVL expansion (z=1.88 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched) and its fee contraction (-28.41% 7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) highlights a critical capital quality risk: liquidity mining that inflates the asset base without improving yield efficiency. In contrast, Ostium's fee surge (z=2.24 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched) against a smaller TVL base suggests a higher take-rate or volume efficiency, a more durable driver for protocol revenue, though the lack of Open Interest data obscures the true capital utilization. Kinetiq kHYPE's 2.119% fee-"
   }
  ],
  "theses": [
@@ -816,9 +816,9 @@
    "key": "NEAR::defi",
    "verdict": "confirm",
    "conviction": 0.92,
-   "trigger": "Maple Finance TVL contraction (-11.57% 7d) alongside revenue efficiency surge (7.29% fee-yield).",
+   "trigger": "Removal of developer gas rebates confirms shift to monetization.",
    "kill": "Monitor the volume of proposals requesting funding from the NEAR Protocol treasury over the next quarter, as an increase would suggest developers are seeking alternative funding so",
-   "ts": "2026-07-11T06:08:18Z",
+   "ts": "2026-07-11T09:07:22Z",
    "history": [
     {
      "ts": "07-05",
@@ -901,9 +901,9 @@
    "key": "ETH::tokenomics",
    "verdict": "revise",
    "conviction": 0.88,
-   "trigger": "Aave V3 TVL growth (+3.82% 7d) outpacing fee growth (+2.9% 7d) combined with aggressive RWA rotation (BUIDL +21.03% TVL 7d).",
+   "trigger": "Capital inflow is specific to high-quality venues (Aave V3 RWA), evidenced by TVL growth outpacing fee growth.",
    "kill": "Monitor the deployment of capital from Paradigm's new fund – specifically, the number and scale of investments made in projects demonstrably building AI applications on the Ethereu",
-   "ts": "2026-07-11T06:08:18Z",
+   "ts": "2026-07-11T09:07:22Z",
    "history": [
     {
      "ts": "07-10",
@@ -1025,10 +1025,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-09T09:09:16.622823+00:00",
-     "note": "Spiko TVL +10.26% 7d ($1.21B) while fees -27.58% 7d (source: get_metric + protocol_fees 7d)"
-    },
-    {
      "ts": "2026-07-09T18:07:42.421386+00:00",
      "note": "USDC supply on Base grew +3.37% 7d, outpacing fee growth, suggesting new fiat entry is parking in low-yield assets rather than productive DeFi (source: get_metric)."
     },
@@ -1043,18 +1039,18 @@
     {
      "ts": "2026-07-11T00:07:17.340284+00:00",
      "note": "BlackRock BUIDL TVL surge (+21.03% 7d) with low fee-yield (1.55%) suggests potential rotation rather than new fiat. (source: get_metric + protocol_fees(7d) + onchain_enriched)"
+    },
+    {
+     "ts": "2026-07-11T09:38:09.442731+00:00",
+     "note": "USDC supply +0.5% (7d) to $73.45B, z-score 1.24 (97th percentile) while aggregate stablecoin flow flat 0.0% (7d)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Monitor USDC vs USDT supply changes on Coinbase to confirm if this is institutional fiat entry."
+   "evidence": "inq_mission_fresh_money · next: Monitor USDC vs USDT supply changes on Coinbase to confirm if this is institutional fiat entry"
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-09T06:08:27.552893+00:00",
-     "note": "Ondo Finance launched SEC-compliant tokenized U.S. stocks and ETFs with BlackRock IVV and Micron stock, using Broadridge and Oasis Pro infrastructure (source: read_articles)"
-    },
     {
      "ts": "2026-07-10T09:07:18.716646+00:00",
      "note": "BlackRock BUIDL TVL +4.61% (7d) to $3.19B, 20.9% RWA market share (source: get_metric + protocol_fees(7d) + onchain_enriched)."
@@ -1070,22 +1066,18 @@
     {
      "ts": "2026-07-11T06:08:18.022975+00:00",
      "note": "BUIDL TVL surge (+21.03% 7d) with fee-volume spike (z=1.89) but low fee-yield (1.77%) suggests large, single-deposit transactions. (source: get_metric + protocol_fees(7d) + onchain_enriched)"
+    },
+    {
+     "ts": "2026-07-11T09:38:09.443007+00:00",
+     "note": "MARA acquired 2 GW Texas site for AI/digital infrastructure; 27-firm consortium (OKX, MetaMask, Matter Labs) established AI agent dispute resolution court"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Correlate BUIDL deposit timestamps with known institutional transfer announcements."
+   "evidence": "inq_mission_institutional · next: Correlate BUIDL deposit timestamps with known institutional transfer announcements"
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-10T06:39:18.090250+00:00",
-     "note": "Capital rotating from Ethereum to Layer-2 solutions (Optimism +$1.4M 1d, Polygon +$10.48M 7d) with lending sector divergence (Morpho Blue +3.88% TVL, Maple -18.15% TVL) (source: get_analyst_note, get_metric)"
-    },
-    {
-     "ts": "2026-07-10T09:36:55.298058+00:00",
-     "note": "Capital rotating from Ethereum (-$778M stablecoin outflow 1d) to Polygon (+0.47% 1d) and Optimism (+0.67% 1d) (source: get_analyst_note)"
-    },
     {
      "ts": "2026-07-10T12:07:00.105731+00:00",
      "note": "Capital rotating from lending to perps; Maple TVL -11.5% (7d) vs Ostium fees +54.79% (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched)"
@@ -1097,9 +1089,17 @@
     {
      "ts": "2026-07-11T03:10:17.483901+00:00",
      "note": "Aave V3 holds 43.0% lending market share vs Maple's 7.4% (source: sector-aware peers)."
+    },
+    {
+     "ts": "2026-07-11T09:07:22.629046+00:00",
+     "note": "Aave V3 TVL growth (+3.82% 7d) outpaced fee growth (+0.29% 7d), indicating rotation into lower-yield assets (source: get_metric + protocol_fees(7d) + onchain_enriched)."
+    },
+    {
+     "ts": "2026-07-11T09:38:09.443104+00:00",
+     "note": "Infrastructure narrative +100% (7d); regulatory events +94.2% (7d); capital rotating toward AI-crypto infrastructure build-out"
     }
    ],
-   "evidence": "inq_mission_rotation · next: Analyze specific Aave market inflows vs Maple outflows to map the capital migration path."
+   "evidence": "inq_mission_rotation · next: Analyze specific Aave market inflows vs Maple outflows to map the capital migration path"
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1153,7 +1153,7 @@
    },
    {
     "name": "dex",
-    "tvl": 8.9,
+    "tvl": 9.0,
     "yard": "VOLUME"
    },
    {
@@ -1166,7 +1166,7 @@
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 7.29
+    "fy": 7.32
    },
    {
     "name": "Maple",
@@ -1184,6 +1184,11 @@
     "fy": 7.05
    },
    {
+    "name": "Kamino Lend",
+    "sector": "lending",
+    "fy": 6.9
+   },
+   {
     "name": "Jito Liquid Staking",
     "sector": "lst",
     "fy": 6.34
@@ -1191,12 +1196,7 @@
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.29
-   },
-   {
-    "name": "Kamino Lend",
-    "sector": "lending",
-    "fy": 6.18
+    "fy": 6.3
    },
    {
     "name": "Sky Lending",
@@ -1207,15 +1207,15 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -1867.1
+    "d7": -1861.3
    },
    {
     "chain": "Solana",
-    "d7": 50.4
+    "d7": 50.6
    },
    {
     "chain": "Arbitrum",
-    "d7": -24.3
+    "d7": -24.2
    },
    {
     "chain": "Polygon",
@@ -1223,19 +1223,19 @@
    },
    {
     "chain": "Optimism",
-    "d7": 6.6
+    "d7": 6.7
    }
   ],
   "agg": {
    "stable_mcap_b": 298.5,
    "stable_d7_pct": 0.04,
    "dex_vol_24h_b": 6.5,
-   "defi_tvl_b": 74.5
+   "defi_tvl_b": 74.6
   }
  },
  "robinhood": {
-  "tvl_m": 115.5,
-  "morpho_share_pct": 65,
+  "tvl_m": 119.3,
+  "morpho_share_pct": 63,
   "age_days": 9,
   "synth_ts": "2026-07-10T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-10\n\n## ÉTAT ON-CHAIN\nChain TVL has surged to **$97.9M**, marking a staggering **31.6%** increase in the last 24 hours alone. The trajectory is vertical, scaling from ~$1.3M at genesis (July 2) to nearly $100M in just over a week. Capital concentration is extreme: **Morpho Blue** commands **~71.2%** of total chain TVL ($69.7M), with on-chain data showing $67.1M supplied against $78.6M borrowed—a leverage ratio exceeding 1.17x. This indicates aggressive capital efficiency rather than passive depositing. DEX liquidity remains fragmented but growing, with Uniswap V3 ($15.9M) and V4 ($8.0M) absorbing the majority of trading flow, while NOXA Fun ($7.1M) suggests a non-trivial allocation to high-risk launchpad activity. The capital quality read is mixed: the velocity of funds points to mercenary capital chasing yield and meme speculation (CashCat), yet the underlying infrastructure (Morpho, dYdX Arcus) is attracting sophisticated leverage plays.\n\n## CATALYSEURS\n*   **Meme-Fueled Liquidity Injection:** The integration of **Pump.fun** for Robinhood Chain tokens has triggered a speculative frenzy around assets like **CashCat**. This acts as the primary on-chain Δ driver, explaining the rapid TVL ascent and the dominance of DEX volumes (Uniswap V3/V4) as users rotate capital into low-cap tokens. (Source: The Defiant, Decrypt)\n*   **RWA Collateralization Expansion:** **Ondo Finance** enabling tokenized stocks as collateral for perpetual trading, coupled with **MakerDAO's** deployment of Spark Savings USDG, creates a structural use-case for the chain. This links the on-chain lending surge (Morpho) directly to the regulated RWA narrative, moving beyond pure speculation. (Source: The Block, MakerDAO Forum)\n*   **Regulatory Alignment & Institutional Access:** The **Robinhood CEO's** public stance on Real-World Assets (RWAs) and the chain's regulated broker status provide the legitimacy required for institutional pilots. The surge in tokenized stock transfers ($8.4B industry-wide) validates the timing of this L2 launch. (Source: The Block, CoinTelegraph)\n\n## VALUE ACCRUAL\nValue capture is strictly protocol-centric; **Robinhood Chain has no nati"
@@ -1243,14 +1243,14 @@
  "health": {
   "budget": {
    "day": "2026-07-11",
-   "glm": 19,
+   "glm": 28,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 2,
-   "unsupported_pct_7d": 2,
+   "unsupported_pct_7d": 3,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 6
