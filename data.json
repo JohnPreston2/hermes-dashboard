@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-11T16:48:01Z",
+ "generated_at": "2026-07-11T18:48:02Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-11T15:07:20Z",
+   "ts": "2026-07-11T18:07:51Z",
    "status": "ok",
-   "discipline": 87.0,
+   "discipline": 94.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 8
+  "runs_today": 9
  },
  "runs": [
-  {
-   "ts": "2026-07-08T12:06:42Z",
-   "tier": "A",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 5,
-   "phase": null
-  },
   {
    "ts": "2026-07-08T13:10:38Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-11T18:07:51Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-11T18:07:51Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Near",
+    "ETH",
+    "Ostium"
+   ],
+   "gate": {
+    "R1": 8,
+    "R6": 9,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nOstium's protocol fees surged +198.2% (7d) to $115K (24h), outpacing a +30.53% TVL jump (7d), signaling a potential shift in perp market share, though the capital quality remains provisional pending incentive analysis.\n\n## FILS DOMINANTS\n*   **Ostium — 64.6% fee-yield (annualized), the highest of the set (vs ETH 2.67%):** Protocol fees hit $115K (24h), a +198.2% jump (7d), while TVL rose +30.53% (7d) to $65.1M. Fees are at z=1.49 (100th pctile, n=103) relative to baseline, but the TVL spike is provisional—retention is unproven without incentive data (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **ETH — 2.67% fee-yield, the second highest (vs Ostium 64.6%):** TVL stands at $6.69B with a +1.95% move (7d), generating $58K in fees (24h). Capital quality is high, evidenced by TVL growth outpacing fee growth (+1.95% vs +2.05%), suggesting sticky institutional inflows rather than speculative yield farming (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Near — Null fee-yield (data unavailable):** Governance voted to scrap developer gas rebates, a structural shift towards monetization. However, without fee data, the value accrual impact is unquantifiable; the move signals fiscal prudence but risks alienating developer liquidity in the short term (source: run_drill).\n\n## RECONCILIATION\n*   **th_20260710_1520_near (CONFIRM):** The governance removal of developer gas rebates confirms the shift to monetization. The standing challenge—that Zapper's closure is business-specific, not systemic—is rebutted by the protocol-level fiscal adjustment on NEAR, which indicates a broader sector-wide contraction towards sustainability (source: get_prior_assessment).\n*   **th_20260709_1520_eth (REVISE):** Capital inflow is specific to high-quality venues (Aave V3 RWA), evidenced by TVL growth (+1.95% 7d) outpacing fee growth (+2.05% 7d). The standing challenge regarding capital outflow risk is addressed by the \"sticky\" nature of RWA-focused TVL, which is less speculative than pure DeFi yields (source: get_prior_assessment + get_metric).\n*   **th_20260702_1522_eth (RETIRE):** The post-quantum cryptography thesis is retired in favor of AI-integration and institutional settlement as the primary fundamental drivers (source: get_prior_assessment).\n\n## LECTURE\nThe surge in Ostium's fees (+198.2% 7d) relative to its TVL (+30.53% 7d) is a classic signal of either volume expansion or aggressive liquidity mining. The z-score of 1.49 (100th pctile) on fees vs baseline is statistically significant, but the \"capital quality\" flag is critical: without confirming the absence of token incentives, this is a beta event, not an alpha one. ETH's steady 2.67% yield on $6.69B TVL represents the \"risk-free\" rate of crypto-institutional capital, a baseline against which all other yield plays must be measured.\nKill condition: Ostium's fee-yield drops below 20% while TVL remains elevated, confirming the surge was incentive-led.\n\n## RISQUE\n*   **Ostium:** The +30.53% TVL surge (7d) may be entirely incentivized; if the 64.6% fee-yield collapses upon incentive program expiry, the protocol's value accrual thesis is invalid.\n*   **ETH:** Institutional adoption via AI-integration (bug detection) is positive but increases centralization risk in the security model, potentially alienating purist node operators.\n*   **Near:** The removal of developer gas rebates could stifle on-chain activity, reducing fee generation even if the protocol captures a higher percentage of a smaller pie.\n\n## SUIVI\n*   **inq_mission_institutional:** Correlate BUIDL deposit timestamps with known institutional transfer announcements to confirm if ETH's TVL growth is driven by fresh fiat entry. (Next probe: Analyze Aave V3 RWA deposit addresses for "
+  },
   {
    "ts": "2026-07-11T15:07:20Z",
    "tier": "A",
@@ -770,35 +799,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBase's fundamental valuation remains rich relative to its fee generation, with a 0.36% annualized fee-yield on a $5.91B productive base, while regulatory narratives intensify but lack quantifiable protocol-level impact.\n\n## FILS DOMINANTS\n*   Base — 0.36% fee-yield (rank 1 of 1 in this set): The protocol maintains a high-quality capital base with $5.91B TVL (z=1.42 30d), placing it at the 99th percentile relative to its historical baseline. However, value accrual is compressed; the protocol generates only $58K in daily fees (z=0.65 30d), resulting in a low yield relative to its massive capital base. It holds 17.4% market share in the infra sector, trailing WBTC (21.6%) and LayerZero V2 (20.7%) (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   Regulatory Events — N/A fee-yield (rank N/A): Narrative volume has surged, evidenced by the IMF's report on stablecoin adoption in Nigeria challenging existing frameworks (source: The Block via read_articles). Despite the attention, this thread lacks a quantifiable fee-yield or TVL base in the current dataset, indicating that the regulatory risk is currently exogenous to on-chain value accrual metrics.\n\n## RECONCILIATION\nNo prior theses were provided for reconciliation in this digest.\n\n## LECTURE\nThe divergence between Base's capital quality and its fee yield is the critical fundamental signal. While the chain attracts significant sticky capital (high TVL z-score), it fails to convert this base into proportional protocol revenue (low fee z-score). This suggests the current capital efficiency gap is predicated on future utility or ecosystem growth rather than present cash flows. Investors should distinguish between \"infrastructure lock-in\" (high TVL) and \"economic throughput\" (fees); the latter is the primary driver of sustainable value accrual. The regulatory noise, while material for long"
-  },
-  {
-   "ts": "2026-07-10T12:07:00Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Near",
-    "Maple",
-    "Ostium"
-   ],
-   "gate": {
-    "R1": 8,
-    "R6": 9,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaple Finance's fee yield (4.86% annualized) has decoupled from its capital base, with TVL contracting by 11.5% (7d) while protocol fees expanded by 62.25% (7d), signaling a potential shift in yield composition or borrower quality rather than mere de-risking.\n\n## FILS DOMINANTS\n*   **Maple — 4.86% annualized fee-yield, the highest of the set (vs Ostium N/A, Near N/A):** TVL contracted by 11.5% (7d) to $2.26B, yet protocol fees grew 62.25% (7d) to $159K daily, indicating higher-yielding utilization or a repricing of risk despite capital flight. Capital quality is mixed; while the protocol maintains a 7.5% lending sector market share (vs Aave V3 41.7%), the rapid TVL exit suggests sticky capital is redeploying, potentially to higher-yielding alternatives or due to credit concerns (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Ostium — z=2.03 (100th pctile, n=88) for fees vs baseline, the highest relative fee expansion:** Protocol fees surged 54.79% (7d) to $115K on a 19.25% (7d) TVL increase to $61.0M. This extreme z-score deviation (z=2.03) flags the volume growth as potentially anomalous or incentivized rather than organic, requiring scrutiny of liquidity programs. Capital quality is provisional; the surge in Open Interest/Volume base is not yet proven durable (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Near — No value-accrual data available:** Governance voted to scrap developer gas rebates (source: The Defiant via read_articles), a policy adjustment impacting network security parameters. Without fee-yield or TVL data in the digest, no fundamental valuation ranking can be established for this thread.\n\n## RECONCILIATION\n*   **th_20260710_0320_near (CONFIRM):** The thesis that the ecosystem is consolidating towards prudence is CONFIRMED. The red_team_challenge argued that Zapper's shutdown and NEAR's incentive cuts might not signal broad prudence but rather specific failures. However, the data supports the consolidation thesis: NEAR's removal of gas rebates is a direct reduction in developer subsidies, and Maple's 11.5% TVL outflow alongside Zapper's closure indicates a broader capital flight from marginal or inefficient protocols. The evidence of capital contraction (Maple TVL -11.5% 7d) and subsidy removal (NEAR) outweighs the challenge's assertion that these are isolated events. Conviction increased to 0.92 (source: get_prior_assessment).\n\n## LECTURE\nThe divergence between Maple's shrinking TVL and expanding fees is a classic signal of a \"quality flight\" within a lending protocol. As capital exits (-11.5% 7d), the remaining base is likely comprised of higher-yielding, riskier loans, pushing the aggregate fee yield up (4.86%) even as the total asset base shrinks. This dynamic is distinct from a \"yield arbitrage\" rotation, where capital would move to a peer with a better risk-adjusted return; instead, the capital is leaving the sector entirely or moving to non-tracked assets. For Ostium, the z=2.03 fee deviation is a statistical outlier that demands skepticism regarding the sustainability of its volume growth without confirmation of organic user acquisition vs. liquidity mining incentives.\nKill condition: A reversal in Maple's fee growth concurrent with continued TVL decline would indicate a collapse in borrower demand rather than a repricing of risk.\n\n## RISQUE\n*   **Maple:** The 11.5% TVL outflow may accelerate if the fee expansion is driven by deteriorating loan performance (e.g., late fees) rather than healthy interest yield, leading to a solvency event for lending pools.\n*   **Ostium:** The 100th percentile fee z-score (z=2.03) suggests the current volume is unsustainable; a reversion to mean volume would cause a sharp drop in protocol revenue, invalid"
   }
  ],
  "theses": [
@@ -867,7 +867,7 @@
    "conviction": 0.88,
    "trigger": "Governance removal of developer gas rebates confirms shift to monetization.",
    "kill": "Monitor the volume of proposals requesting funding from the NEAR Protocol treasury over the next quarter, as an increase would suggest developers are seeking alternative funding so",
-   "ts": "2026-07-11T15:07:20Z",
+   "ts": "2026-07-11T18:07:51Z",
    "history": [
     {
      "ts": "07-05",
@@ -893,7 +893,7 @@
    "conviction": 0.88,
    "trigger": "Capital inflow is specific to high-quality venues (Aave V3 RWA), evidenced by TVL growth outpacing fee growth.",
    "kill": "Monitor the deployment of capital from Paradigm's new fund – specifically, the number and scale of investments made in projects demonstrably building AI applications on the Ethereu",
-   "ts": "2026-07-11T15:07:20Z",
+   "ts": "2026-07-11T18:07:51Z",
    "history": [
     {
      "ts": "07-10",
@@ -1014,7 +1014,7 @@
    "conviction": 0.0,
    "trigger": "Shift in fundamental driver to AI-integration and institutional settlement.",
    "kill": "Monitor the deployment of capital from Paradigm's new fund – specifically, the number and scale of investments made in projects demonstrably building AI applications on the Ethereu",
-   "ts": "2026-07-11T15:07:20Z",
+   "ts": "2026-07-11T18:07:51Z",
    "history": [
     {
      "ts": "07-09",
@@ -1060,10 +1060,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-10T21:07:47.704546+00:00",
-     "note": "BlackRock BUIDL TVL surged +21.03% (7d) to $3.69B (source: get_metric), capturing 23.5% sector market share (source: sector-aware peers)."
-    },
-    {
      "ts": "2026-07-11T03:10:17.484259+00:00",
      "note": "BlackRock BUIDL TVL surged 21.03% (7d) to $3.69B (source: get_metric + protocol_fees(7d) + onchain_enriched)."
     },
@@ -1078,6 +1074,10 @@
     {
      "ts": "2026-07-11T12:06:53.459028+00:00",
      "note": "BUIDL fee growth +166.75% (7d) suggests high-velocity institutional activity; Aave V3 maintains 43.0% lending share (source: get_metric + protocol_fees(7d) + onchain_enriched)."
+    },
+    {
+     "ts": "2026-07-11T18:07:51.070037+00:00",
+     "note": "ETH TVL +1.95% (7d) to $6.69B, outpacing fee growth +2.05% (7d), suggests sticky capital (source: get_metric)."
     }
    ],
    "evidence": "inq_mission_institutional · next: Correlate BUIDL deposit timestamps with known institutional transfer announcements."
@@ -1146,12 +1146,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.2,
+    "tvl": 42.9,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 41.6,
+    "tvl": 41.8,
     "yard": "TVL"
    },
    {
@@ -1184,12 +1184,12 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 7.06
+    "fy": 7.12
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.0
+    "fy": 7.04
    },
    {
     "name": "Kamino Lend",
@@ -1199,12 +1199,12 @@
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.3
+    "fy": 6.33
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.25
+    "fy": 6.24
    },
    {
     "name": "Sky Lending",
@@ -1215,11 +1215,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -1864.9
+    "d7": -1860.7
    },
    {
     "chain": "Solana",
-    "d7": 50.5
+    "d7": 50.6
    },
    {
     "chain": "Arbitrum",
@@ -1231,14 +1231,14 @@
    },
    {
     "chain": "Optimism",
-    "d7": 6.6
+    "d7": 6.7
    }
   ],
   "agg": {
    "stable_mcap_b": 298.5,
    "stable_d7_pct": 0.03,
-   "dex_vol_24h_b": 6.5,
-   "defi_tvl_b": 74.9
+   "dex_vol_24h_b": 6.4,
+   "defi_tvl_b": 74.7
   }
  },
  "robinhood": {
@@ -1251,7 +1251,7 @@
  "health": {
   "budget": {
    "day": "2026-07-11",
-   "glm": 35,
+   "glm": 37,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
