@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-12T06:48:01Z",
+ "generated_at": "2026-07-12T08:48:02Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "S",
+   "tier": "W",
    "mode": "react",
-   "ts": "2026-07-12T06:36:58Z",
-   "status": "ok",
-   "discipline": 84.0,
-   "r2_pass": true,
-   "silent": false
+   "ts": "2026-07-12T07:35:01Z",
+   "status": "killed",
+   "discipline": null,
+   "r2_pass": null,
+   "silent": true
   },
-  "runs_today": 4
+  "runs_today": 5
  },
  "runs": [
-  {
-   "ts": "2026-07-08T21:06:27Z",
-   "tier": "A",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 54.0,
-   "r2_pass": true,
-   "comps": 5,
-   "phase": null
-  },
   {
    "ts": "2026-07-08T22:10:00Z",
    "tier": "A",
@@ -458,9 +447,45 @@
    "r2_pass": true,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-07-12T07:35:01Z",
+   "tier": "W",
+   "mode": "react",
+   "status": "killed",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": null,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-12T07:35:01Z",
+   "tier": "W",
+   "mode": "react",
+   "status": "killed",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": null,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": null,
+    "R6": null,
+    "R8": null,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": null,
+    "n_unsupported_pct": null
+   },
+   "brief": "[INCOMPLETE] run killed after 18 tool calls"
+  },
   {
    "ts": "2026-07-12T06:36:58Z",
    "tier": "S",
@@ -767,35 +792,6 @@
     "n_unsupported_pct": null
    },
    "brief": "[SILENT] empty or degraded generation"
-  },
-  {
-   "ts": "2026-07-11T06:08:18Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 4,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Aave V3",
-    "Maple",
-    "BlackRock BUIDL"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaple Finance's protocol revenue efficiency has surged to a sector-leading 7.29% annualized fee-yield (7d), a 100th percentile event (z=1.73), while its capital base contracted by 11.57% (7d), signaling a fundamental shift in unit economics away from capital depth toward high-margin credit deployment.\n\n## FILS DOMINANTS\n*   Maple — 7.29% fee-yield, the highest of the set (vs Aave V3 2.49%, BlackRock BUIDL 1.77%): Protocol revenue +62.25% (7d) decoupled from TVL -11.57% (7d), suggesting capital efficiency gains via higher-yield credit markets, though the shrinking liquidity base (z=0.98 TVL) raises concerns about long-term depth (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   Aave V3 — 2.49% fee-yield, second highest of the set: TVL expanded +3.82% (7d) to $13.18B (z=1.76, 99th pctile), securing a 43.0% market share in lending, but fee growth lagged at +2.9% (7d) (z=-0.15), indicating the new capital is lower-yielding or idle (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   BlackRock BUIDL — 1.77% fee-yield, third highest of the set: TVL surged +21.03% (7d) to $3.69B (z=5.18, 100th pctile), capturing 23.4% RWA market share, with fees +166.75% (7d) (z=1.89), though the low fee-yield relative to lending peers implies value accrual is volume-driven rather than margin-driven (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   REVISE th_20260709_1520_eth: The prior thesis that institutional liquidity seeks blue-chip safety over productive deployment is partially confirmed by Aave's TVL growth outpacing fee growth, but must be revised to account for the aggressive rotation into RWAs (BUIDL +21.03% TVL 7d) which is generating significant fee volume (+166.75% 7d), suggesting capital is both risk-on and seeking regulated on-ramps.\n*   CONFIRM th_20260710_1520_near: The sector-wide contraction away from incentive-driven growth is corroborated by Maple's shrinking TVL (-11.57% 7d) despite surging revenue, implying that sustainable yield is now prioritized over bloated, unproductive capital bases.\n\n## LECTURE\nThe digest reveals a bifurcation in DeFi value accrual: \"Deep & Cheap\" (Aave) vs. \"Shallow & Rich\" (Maple). Aave V3 is absorbing capital at a massive scale (z=1.76 TVL) but suffering from margin compression (2.49% fee-yield), characteristic of a utility layer absorbing liquidity for safety. Conversely, Maple is shedding TVL but maximizing extraction from the remaining capital (7.29% fee-yield), a classic late-cycle efficiency play"
   }
  ],
  "theses": [
@@ -1165,12 +1161,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 42.8,
+    "tvl": 42.7,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 41.7,
+    "tvl": 41.4,
     "yard": "TVL"
    },
    {
@@ -1198,22 +1194,22 @@
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.27
+    "fy": 6.29
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.02
+    "fy": 6.03
    },
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 5.99
+    "fy": 6.01
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 5.93
+    "fy": 5.95
    },
    {
     "name": "Invesco USTB",
@@ -1223,7 +1219,7 @@
    {
     "name": "Ondo Yield Assets",
     "sector": "rwa",
-    "fy": 3.52
+    "fy": 3.53
    },
    {
     "name": "WisdomTree",
@@ -1234,7 +1230,7 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -1992.8
+    "d7": -1993.9
    },
    {
     "chain": "Arbitrum",
@@ -1246,18 +1242,18 @@
    },
    {
     "chain": "Polygon",
-    "d7": 9.4
+    "d7": 9.3
    },
    {
     "chain": "BSC",
-    "d7": 0.1
+    "d7": -0.0
    }
   ],
   "agg": {
    "stable_mcap_b": 298.5,
-   "stable_d7_pct": 0.08,
+   "stable_d7_pct": 0.07,
    "dex_vol_24h_b": 5.4,
-   "defi_tvl_b": 74.2
+   "defi_tvl_b": 74.0
   }
  },
  "robinhood": {
@@ -1270,7 +1266,7 @@
  "health": {
   "budget": {
    "day": "2026-07-12",
-   "glm": 16,
+   "glm": 27,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
