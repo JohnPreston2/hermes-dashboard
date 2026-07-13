@@ -1,46 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-13T04:48:01Z",
+ "generated_at": "2026-07-13T06:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "A",
-   "mode": "3phase",
-   "ts": "2026-07-13T03:06:22Z",
-   "status": "ok",
-   "discipline": 97.0,
-   "r2_pass": true,
-   "silent": false
-  },
-  "runs_today": 2
- },
- "runs": [
-  {
-   "ts": "2026-07-09T09:06:36Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-09T09:09:16Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": true,
+   "tier": "S",
+   "mode": "react",
+   "ts": "2026-07-13T06:35:01Z",
+   "status": "killed",
    "discipline": null,
    "r2_pass": null,
-   "comps": 4,
-   "phase": null
+   "silent": true
   },
+  "runs_today": 4
+ },
+ "runs": [
   {
    "ts": "2026-07-09T09:35:01Z",
    "tier": "B",
@@ -458,9 +436,85 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-13T06:05:57Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
+  },
+  {
+   "ts": "2026-07-13T06:35:01Z",
+   "tier": "S",
+   "mode": "react",
+   "status": "killed",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": null,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-13T06:35:01Z",
+   "tier": "S",
+   "mode": "react",
+   "status": "killed",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": null,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": null,
+    "R6": null,
+    "R8": null,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": null,
+    "n_unsupported_pct": null
+   },
+   "brief": "[INCOMPLETE] run killed after 15 tool calls"
+  },
+  {
+   "ts": "2026-07-13T06:05:57Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Ostium",
+    "SparkLend",
+    "Kinetiq kHYPE"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 1
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSparkLend's protocol revenue surged 16.72% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) despite a -10.38% 7d TVL contraction (source: get_metric + protocol_fees(7d) + onchain_enriched), signaling a repricing of yield on a smaller, potentially higher-quality capital base, while Ostium's TVL expanded 30.98% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) without corresponding fee growth, raising capital quality concerns.\n\n## FILS DOMINANTS\n*   **Kinetiq kHYPE — 2.145% fee-yield, the highest of the set (vs SparkLend 1.919%):** TVL declined -8.48% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) to $968.9M, ranking it 4th in sector share (3.6%) vs Lido (61.2%) (source: sector-aware peers). The capital outflow suggests rotation toward Hyperliquid native staking, though the fee-yield remains robust relative to peers.\n*   **SparkLend — 1.919% fee-yield, the second highest of the set:** Protocol fees increased 16.72% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) while TVL dropped -10.38% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) to $3.33B. This divergence indicates a potential deleveraging of lower-yield collateral (wstETH risk repricing), improving the efficiency of the remaining capital base. It holds 10.9% sector market share (source: sector-aware peers).\n*   **Ostium — Value accrual unquantified (OI/Volume base, data thin):** TVL surged 30.98% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) to $65.0M, but fees collapsed -29.43% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched). The z-score for fees is -1.61 (3rd pctile, n=107) (source: get_metric + protocol_fees(7d) + onchain_enriched), suggesting the TVL growth is likely incentivized liquidity mining rather than organic open interest expansion.\n\n## RECONCILIATION\n*   **CONFIRM th_20260713_0320_lido:** Lido's progression toward a robust, autonomously governed system via permissionless modules remains stable. The current digest data does not contradict this structural thesis; the focus remains on operational resilience rather than short-term TVL fluctuations against peers like Kinetiq.\n*   **REBUT (Red Team Challenge):** The challenge posits that Lido's penalty framework is reactive. However, the deployment of permissionless modules alongside a penalty framework represents a standard \"defense-in-depth\" strategy for decentralized systems, where on-chain enforcement acts as a necessary backstop to permissionless innovation. The structural stability of Lido's governance (as evidenced by the retirement of prior theses) supports the view that these are complementary risk-mitigation layers, not evidence of a reactive posture.\n\n## LECTURE\nThe divergence between SparkLend's rising fees and falling TVL is the critical signal here. In lending markets, TVL is a vanity metric if it is unproductive or under-collateralized; the 16.72% 7d fee growth (source: get_metric + protocol_fees(7d) + onchain_enriched) implies that the capital exiting the protocol was likely low-yield or high-risk, leaving a denser, more revenue-generative core. Conversely, Ostium's expansion is a warning sign: a 30.98% 7d TVL surge (source: get_metric + protocol_fees(7d) + onchain_enriched) paired with a -29.43% 7d fee drop (source: get_metric + protocol_fees(7d) + onchain_enriched) is the textbook signature of mercenary capital inflating the balance sheet without contributing to protocol revenue. Kinetiq's decline, while negative for TVL, has not yet eroded its fee-yield advantage, suggesting a rotation of capital rather than a loss of fundamental utility.\nKill condition: SparkLend fee-yield drops below 1.5% while TVL continues to fall, indicating a collapse in borrowing demand rathe"
+  },
   {
    "ts": "2026-07-13T03:06:22Z",
    "tier": "A",
@@ -738,64 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "## PAYSAGE\nAttention is surging toward infrastructure (105% narrative emergence) and regulatory developments (89.5% emergence), while on-chain value is concentrating in RWA tokenization and established lending protocols. Global stablecoin market cap stands at $298.5B (+0.1% 7d), indicating flat capital entry, but significant rotation is occurring within the ecosystem—particularly from Ethereum (-$1.85B stablecoins 7d) to Layer-2 solutions like Optimism (+5.0% 7d stablecoin flow) and Polygon (+1.04% 7d stablecoin flow). The RWA sector is experiencing the strongest fundamental growth with BlackRock BUIDL reaching $3.69B TVL (+21.03% 7d), while lending protocols show moderate expansion with Aave V3 at $13.24B (+3.7% 7d) and Morpho Blue at $7.18B (+2.86% 7d). Systemic stress remains MODERATE with $6.74B open interest concentrated in BTC, ETH, and HYPE, alongside critical exploit risks across multiple protocols.\n\n## FILS DOMINANTS\n1. **RWA Tokenization Acceleration**: BlackRock BUIDL's TVL surge to $3.69B (+21.03% 7d) represents the strongest fundamental movement across DeFi, backed by verified on-chain metrics. This narrative is supported by actual capital allocation rather than mere article volume, signaling institutional adoption of tokenized real-world assets.\n\n2. **Lending Sector Consolidation**: Aave V3 maintains dominance with $13.24B TVL (+3.7% 7d) and 43.0% sector market share, while Morpho Blue shows steady growth at $7.18B (+2.86% 7d). The lending narrative is fundamentally backed by these TVL increases, though SparkLend's -8.82% 7d TVL decline indicates protocol-specific fragmentation.\n\n3. **Infrastructure Narrative Surge**: The 105% emergence in infrastructure narratives (from 20 to 41 articles) is driven by launches (12 events), regulatory developments (3 events), and funding rounds (5 events). However, this narrative appears primarily article-volume driven without corresponding fundamental metrics, suggesting it may be more noise than signal.\n\n4. **Cross-Chain Capital Rotation**: Capital is actively rotating from Ethereum to Layer-2 solutions, with Optimism showing +5.0% 7d stablecoin flow and Polygon +1.04% 7d stablecoin flow. This rotation is fundamentally verified by stablecoin flow metrics, indicating a structural shift in capital allocation toward scaling solutions.\n\n## MOUVEMENTS DE THESES\n- **Near Thesis (CONFIRMED)**: The Near thesis remains confirmed with 0.92 confidence, though the kill watch shows it's \"APPROACHING\" due to project closures and asset liquidations in the broader ecosystem. The thesis strength is maintained despite these headwinds.\n\n- **ETH Thesis (CONFIRMED)**: The ETH thesis remains confirmed with 0.92 confidence, supported by continued accumulation by entities like BitMine. However, the significant stablecoin outflows from Ethereum (-$1.85B 7d) represent a potential weakening factor that bears monitoring.\n\n- **DeFi Lending Thesis (STRENGTHENING)**: The Aave thesis is strengthening with 80% confidence, supported by supply and borrow cap reductions and broader risk management trends. The +3.7% 7d TVL growth provides fundamental backing to this thesis movement.\n\n- **RWA Sector (NEW THESIS NEEDED)**: Despite BlackRock BUIDL's strong performance (+21.03% 7d TVL), there is no active thesis for the RWA sector. This represents a significant gap in the research framework given the sector's fundamental strength.\n\n## CONVERGENCES\nThe convergence between regulatory clarity and institutional adoption is most visible in the RWA sector, where BlackRock's BUIDL tokenization platform is attracting capital while regulatory narratives surge (89.5% emergence). Simultaneously, the infrastructure narrative's growth (105% emergence) intersects with the cross-chain rotation trend, as Layer-2 solutions like Optimism a"
-  },
-  {
-   "ts": "2026-07-12T06:07:38Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 59.0,
-   "r2_pass": true,
-   "comps": 4,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Near",
-    "Morpho Blue",
-    "BlackRock BUIDL"
-   ],
-   "gate": {
-    "R1": 8,
-    "R6": 5,
-    "R8": 6,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock BUIDL's fee-yield accelerated to 2.07% (7d avg) on a +21.03% TVL expansion (7d), exceeding stablecoin yields, while Morpho Blue's fee-yield rose to 5.99% (7d avg) on +2.4% TVL growth (7d), signaling a bifurcation between high-yield lending and institutional RWA adoption.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 5.99% fee-yield, the highest of the set (vs BlackRock BUIDL 2.07%, Near N/A):** TVL increased +2.4% (7d) to $7.18B, with fees up +63.96% (7d) to $726K (24h). The protocol holds 23.6% market share in the lending sector (vs Aave V3 43.4%, SparkLend 10.9%) (source: sector-aware peers). Capital quality is mixed; the +2.4% TVL growth is driven by organic yield-seeking capital, but the high utilization and"
-  },
-  {
-   "ts": "2026-07-12T03:06:43Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Morpho Blue",
-    "BlackRock BUIDL",
-    "Ostium"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock BUIDL's fee-yield accelerated to 1.64% (7d avg) on a +21.03% TVL jump (7d), outpacing stablecoin yields, while Morpho Blue's fee-yield climbed to 6.01% (7d avg) on a +46.74% fee surge (7d), signaling a capital efficiency rotation in lending markets.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 6.01% fee-yield, the highest of the set (vs BlackRock BUIDL 1.64%, Ostium N/A):** Protocol fees surged +46.74% (7d) to $650K (24h) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky, evidenced by a TVL of $7.15B (z=1.15 30d, 91st pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). The protocol commands 23.6% market share in the lending sector (source: sector-aware peers).\n*   **BlackRock BUIDL — 1.64% fee-yield, the second highest of the set (vs Morpho Blue 6.01%, Ostium N/A):** TVL increased +21.03% (7d) to $3.69B (z=3.00 30d, 100th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). Fees jumped +166.75% (7d) to $250K (24h) (source: get_metric + protocol_fees(7d) + onchain_enriched). The protocol holds 23.5% market share in the RWA sector (source: sector-aware peers).\n*   **Ostium — N/A fee-yield (OI/VOLUME base, not TVL):** TVL increased +30.74% (7d) to $65.1M (z=1.07 30d, 79th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched), but fees fell -29.43% (7d) to $27K (24h) (z=-1.61 30d, 3rd pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is provisional; the surge in TVL is not yet matched by volume or fee accrual.\n\n## RECONCILIATION\n*   **th_20260711_1520_aave (REVISE):** The thesis that \"Aave is navigating a complex period of potential ownership restructuring\" is revised. The digest shows Morpho Blue's fee-yield (6.01%) is materially higher than the sector baseline, and its market share (23.6%) is second only to Aave V3 (43.4%) (source: sector-aware peers). This indicates a capital efficiency shift away from Aave's risk-adjusted baseline towards Morpho's optimized risk parameters. The trigger is Maple's fee-yield (5.04%) surpassing sector peers, signaling a broader rotation (source: get_prior_assessment).\n*   **th_20260704_0320_aave (CONFIRM):** The thesis that \"Aave is currently prioritizing risk management and capital efficiency\" is confirmed. The digest shows Aave V3 maintains a dominant 43.4% market share (source: sector-aware peers), despite the rotation to higher-yielding protocols like Morpho Blue. This confirms Aave's position as the stable, institutional-grade baseline, even as capital seeks higher yields elsewhere.\n\n## LECTURE\nThe data reveals a bifurcation in DeFi capital allocation. Institutional-grade RWA products like BlackRock BUIDL are seeing rapid TVL accumulation (+21.03% 7d) with improving fee yields (1.64%), validating the \"institutional adoption\" thesis. However, within native DeFi lending, capital is rotating towards higher-yield, risk-optimized protocols like Morpho Blue (6.01% fee-yield) at the expense of the market leader Aave V3. This suggests that \"sticky\" capital is not just about TVL size, but about the risk-adjusted return on that capital. The fee-yield spread between Morpho Blue (6.01%) and BlackRock BUIDL (1.64%) is the key metric to watch; if it narrows, it may signal a re-pricing of risk in native lending markets.\nKill condition: Morpho Blue's fee-yield falls below 3% while Aave V3's market share drops below 35%.\n\n## RISQUE\n*   **Morpho Blue:** High utilization in critical risk pools may be indicative of stressed liquidity rather than sustainable capital efficiency. A sudden liquidity crunch could force deleveraging, impacting fee-yield.\n*   **BlackRock BUIDL:** The TVL increase may be driven by yield-chasing rotation from DeFi rather than organic inst"
   }
  ],
  "theses": [
@@ -941,6 +937,20 @@
    ]
   },
   {
+   "key": "LIDO::defi",
+   "verdict": "confirm",
+   "conviction": 0.9,
+   "trigger": "Governance stability maintained; no new data contradicts the structural resilience thesis.",
+   "kill": "Monitor the utilization rate of the new permissionless modules and the frequency of penalties applied under the CMv2 framework over the next quarter to assess their effectiveness a",
+   "ts": "2026-07-13T06:05:57Z",
+   "history": [
+    {
+     "ts": "07-13",
+     "c": 0.9
+    }
+   ]
+  },
+  {
    "key": "ETH::tokenomics",
    "verdict": "revise",
    "conviction": 0.88,
@@ -1057,10 +1067,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-12T09:07:59.541610+00:00",
-     "note": "Ostium TVL +30.7% (7d) vs fees -29.43% (7d) indicates speculative rotation, not fiat entry (source: get_metric + protocol_fees(7d) + onchain_enriched)."
-    },
-    {
      "ts": "2026-07-12T09:37:44.608488+00:00",
      "note": "Global stablecoin market cap $298.5B (+0.1% over 7d) shows minimal net new fiat entry (source: get_metric)"
     },
@@ -1075,6 +1081,10 @@
     {
      "ts": "2026-07-13T03:06:22.213384+00:00",
      "note": "Ostium's TVL grew 30.82% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) while fees fell 29.43% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched), indicating capital inflow not yet matched by trading activity."
+    },
+    {
+     "ts": "2026-07-13T06:05:57.421977+00:00",
+     "note": "Ostium TVL +30.98% 7d vs Fees -29.43% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     }
    ],
    "evidence": "inq_mission_fresh_money · next: Monitor Ostium's Open Interest (OI) growth over the next 14d."
@@ -1170,12 +1180,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 42.7,
+    "tvl": 42.4,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 41.4,
+    "tvl": 41.0,
     "yard": "TVL"
    },
    {
@@ -1185,7 +1195,7 @@
    },
    {
     "name": "dex",
-    "tvl": 9.0,
+    "tvl": 8.9,
     "yard": "VOLUME"
    },
    {
@@ -1198,7 +1208,7 @@
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 8.29
+    "fy": 8.36
    },
    {
     "name": "Hastra",
@@ -1208,50 +1218,50 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 7.15
+    "fy": 7.19
+   },
+   {
+    "name": "Sanctum Validator LSTs",
+    "sector": "lst",
+    "fy": 7.13
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.36
+    "fy": 6.4
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.08
+    "fy": 6.1
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 5.76
+    "fy": 5.78
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.53
-   },
-   {
-    "name": "Ondo Yield Assets",
-    "sector": "rwa",
-    "fy": 3.97
+    "fy": 5.56
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -2023.2
+    "d7": -2034.8
    },
    {
     "chain": "Solana",
-    "d7": -49.7
+    "d7": -50.1
    },
    {
     "chain": "Arbitrum",
-    "d7": -34.3
+    "d7": -34.5
    },
    {
     "chain": "Polygon",
-    "d7": 12.7
+    "d7": 12.6
    },
    {
     "chain": "Optimism",
@@ -1260,13 +1270,13 @@
   ],
   "agg": {
    "stable_mcap_b": 298.4,
-   "stable_d7_pct": 0.04,
+   "stable_d7_pct": 0.06,
    "dex_vol_24h_b": 5.6,
-   "defi_tvl_b": 74.0
+   "defi_tvl_b": 73.6
   }
  },
  "robinhood": {
-  "tvl_m": 134.6,
+  "tvl_m": 132.4,
   "morpho_share_pct": 63,
   "age_days": 11,
   "synth_ts": "2026-07-12T12:00:00Z",
@@ -1275,14 +1285,14 @@
  "health": {
   "budget": {
    "day": "2026-07-13",
-   "glm": 5,
+   "glm": 14,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 1,
-   "unsupported_pct_7d": 8,
+   "unsupported_pct_7d": 9,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 7
