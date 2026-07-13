@@ -1,46 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-13T08:48:02Z",
+ "generated_at": "2026-07-13T10:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "S",
-   "mode": "react",
-   "ts": "2026-07-13T06:35:01Z",
-   "status": "killed",
-   "discipline": null,
-   "r2_pass": null,
-   "silent": true
-  },
-  "runs_today": 4
- },
- "runs": [
-  {
-   "ts": "2026-07-09T09:35:01Z",
    "tier": "B",
    "mode": "react",
-   "status": "killed",
-   "silent": true,
-   "discipline": null,
-   "r2_pass": null,
-   "comps": null,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-09T12:06:13Z",
-   "tier": "A",
-   "mode": "3phase",
+   "ts": "2026-07-13T09:38:17Z",
    "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
+   "discipline": 84.0,
    "r2_pass": true,
-   "comps": 2,
-   "phase": null
+   "silent": false
   },
+  "runs_today": 6
+ },
+ "runs": [
   {
    "ts": "2026-07-09T18:07:42Z",
    "tier": "A",
@@ -458,9 +436,85 @@
    "r2_pass": null,
    "comps": null,
    "phase": null
+  },
+  {
+   "ts": "2026-07-13T09:06:36Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 92.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
+  },
+  {
+   "ts": "2026-07-13T09:38:17Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 8,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-13T09:38:17Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 8,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n**Robinhood Chain Launch: Institutional L2 Entry for Tokenized Assets** - Robinhood launched an Ethereum layer-2 network built with Arbitrum technology specifically designed for tokenized assets and crypto applications (source: read_articles). Over $70 million in ETH has been bridged to Robinhood Chain during its first week (source: read_articles). This represents a significant institutional entry into the L2 space, with Uniswap considering expanding its protocol fee to include Robinhood Chain (source: read_articles) and Arbitrum capturing 10% of fees routed to the ARB treasury (source: read_articles). The launch is driving the infrastructure narrative surge (85.7% emergence relative to prior period) (source: get_narrative).\n\n**Regulatory Surge: 178 Active Events** - Regulatory events have increased 94.6% relative to prior period, with 178 active events including SEC adding three crypto rules to its 2026 regulatory agenda targeting exchanges and broker-dealers (source: get_events, read_articles). North Carolina's budget law recognized the CFTC's regulatory authority over prediction markets (source: read_articles), while Revolut announced it will delist USDT in August due to regulatory concerns (source: read_articles). Conversely, Ripple's RLUSD stablecoin launched in Japan through SBI VC Trade following regulatory approval (source: read_articles).\n\n**RWA Tokenization Acceleration** - Tokenized SK Hynix shares were listed on Solana through Backpack, xStocks, and Ondo Finance (source: read_articles), while Backpack launched a 24/7 stock market utilizing tokenized equities (source: read_articles). BlackRock BUIDL TVL increased 21.03% over 7 days to $3.69B (source: get_metric), though this was covered in prior briefs.\n\n## RECONCILIATION\nNo active theses exist for RWA or DeFi lending sectors (source: get_thesis). The Robinhood Chain launch validates the institutional tokenization thesis but represents a new infrastructure development rather than a revision to existing sector theses.\n\n## LECTURE\n**Institutional Infrastructure Thesis** - Robinhood Chain's launch with $70M+ first-week bridging represents institutional validation of tokenization infrastructure. The chain's specific focus on tokenized assets, combined with Arbitrum technology integration and fee-sharing arrangements, suggests a structured approach to regulatory-compliant onboarding of traditional financial assets. This development signals that institutional actors are moving beyond passive investment (BlackRock BUIDL) to active infrastructure provision for tokenization.\n\nKill condition: Robinhood Chain TVL fails to exceed $100M within 30 days or major regulatory challenges emerge targeting its tokenized asset framework.\n\n## LIVE EVENTS\n- SEC crypto rule changes for exchanges and broker-dealers in 2026 regulatory agenda (source: read_articles)\n- Revolut USDT delisting in August (source: read_articles)\n- Ripple RLUSD stablecoin launch in Japan (source: read_articles)\n- Multiple critical exploit risks active across DeFi protocols (source: get_events)\n\n## SUIVI\nAdvanced inquiry **inq_mission_institutional**: Correlated USDC growth timestamps with institutional announcements - identified Robinhood Chain launch as major institutional infrastructure entry with $70M ETH bridged in first week (source: read_articles).\n\nAdvanced inquiry **inq_mission_rotation**: Confirmed capital rotation from Ethereum (-$2.03B 7d stablecoin outflow) to Polygon (+$12.65M) and Optimism (+$11.02M) (source: get_analyst_note).\n\n## OPEN QUESTIONS\n- Will Robinhood Chain's tokenized asset focus attract other institutional issuers beyond Robinhood?\n- How will SEC's 2026 regulatory agenda impact DeFi lending protocols?\n- Can RWA tokenization sustain momentum beyond BlackRock BUI"
+  },
+  {
+   "ts": "2026-07-13T09:06:36Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 92.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "BlackRock BUIDL",
+    "Ostium",
+    "Kinetiq kHYPE"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 6,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 2
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock BUIDL captured 23.6% sector market share (source: sector-aware peers) and generated a 2.36% fee-yield (7d-smoothed) (source: get_metric + protocol_fees(7d) + onchain_enriched), outpacing LST peers on yield efficiency despite Kinetiq kHYPE suffering a -10.47% TVL drawdown (7d) (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## FILS DOMINANTS\n*   **BlackRock BUIDL** — 2.36% fee-yield, the highest of the set (vs Kinetiq kHYPE 2.20%): TVL surged +21.03% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) to $3.69B, driving z=2.17 (100th pctile) relative to its baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality appears high as organic institutional adoption is the likely driver given the absence of token incentives in the digest, though token capture remains unverified.\n*   **Kinetiq kHYPE** — 2.20% fee-yield, the second highest of the set: TVL contracted -10.47% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched), hitting z=-3.17 (1th pctile) relative to baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky (LST), but the outflow suggests rotation to higher-yielding alternatives or de-risking; protocol revenue is not confirmed to accrue to the token.\n*   **Ostium** — N/A (Perp sector value base is OI/Volume, not TVL): TVL increased +28.51% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched), yet protocol fees dropped -29.43% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched), resulting in z=-1.61 (3th pctile) for fees vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is provisional as the liquidity surge is not yet supported by volume or Open Interest (OI) data (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\nNo prior theses were provided for reconciliation in this digest.\n\n## LECTURE\nThe divergence between BlackRock BUIDL's fee expansion (+222.87% 7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) and Ostium's fee contraction (-29.43% 7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) highlights a critical capital rotation: capital is flowing into RWA yield (BUIDL) rather than speculative perp liquidity (Ostium). Ostium's reliance on Nasdaq data (source: The Block via read_articles) is a fundamental moat, but without a corresponding rise in OI, the TVL surge is inefficient capital allocation. Kinetiq's outflow confirms that LSTs are competing on yield, not just security, and BUIDL's 2.36% yield sets a new floor for \"risk-free\" onchain assets.\nKill condition: BUIDL fee-yield drops below 1.5% or Ostium's OI fails to grow by 20% in the next 14 days.\n\n## RISQUE\n*   **Ostium**: The disconnect between TVL growth (+28.51% 7d) and fee generation (-29.43% 7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) suggests the liquidity is idle or incentivized, posing a risk of rapid withdrawal if incentives cease or if the \"institutional hedging layer\" (source: The Defiant via read_articles) fails to attract volume.\n*   **Kinetiq kHYPE**: Continued TVL outflows at the current rate (-10.47% 7d) (source: get_metric + protocol_fees(7d) + onchain_enriched) will erode the protocol's fee base, potentially making it uncompetitive against BUIDL's higher yield and institutional backing.\n\n## SUIVI\n*   **inq_mission_fresh_money**: Monitoring Ostium's Open Interest (OI) growth over the next 14d to determine if the TVL surge converts into active trading volume. (Next probe: Monitor Ostium's Open Interest (OI) growth over the next 14d.)"
+  },
   {
    "ts": "2026-07-13T06:35:01Z",
    "tier": "S",
@@ -742,56 +796,6 @@
     "n_unsupported_pct": null
    },
    "brief": "[SILENT] R2 could not be cleaned"
-  },
-  {
-   "ts": "2026-07-12T07:35:01Z",
-   "tier": "W",
-   "mode": "react",
-   "status": "killed",
-   "silent": true,
-   "discipline": null,
-   "r2_pass": null,
-   "comps": null,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": null,
-    "R6": null,
-    "R8": null,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": null,
-    "n_unsupported_pct": null
-   },
-   "brief": "[INCOMPLETE] run killed after 18 tool calls"
-  },
-  {
-   "ts": "2026-07-12T06:36:58Z",
-   "tier": "S",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "## PAYSAGE\nAttention is surging toward infrastructure (105% narrative emergence) and regulatory developments (89.5% emergence), while on-chain value is concentrating in RWA tokenization and established lending protocols. Global stablecoin market cap stands at $298.5B (+0.1% 7d), indicating flat capital entry, but significant rotation is occurring within the ecosystem—particularly from Ethereum (-$1.85B stablecoins 7d) to Layer-2 solutions like Optimism (+5.0% 7d stablecoin flow) and Polygon (+1.04% 7d stablecoin flow). The RWA sector is experiencing the strongest fundamental growth with BlackRock BUIDL reaching $3.69B TVL (+21.03% 7d), while lending protocols show moderate expansion with Aave V3 at $13.24B (+3.7% 7d) and Morpho Blue at $7.18B (+2.86% 7d). Systemic stress remains MODERATE with $6.74B open interest concentrated in BTC, ETH, and HYPE, alongside critical exploit risks across multiple protocols.\n\n## FILS DOMINANTS\n1. **RWA Tokenization Acceleration**: BlackRock BUIDL's TVL surge to $3.69B (+21.03% 7d) represents the strongest fundamental movement across DeFi, backed by verified on-chain metrics. This narrative is supported by actual capital allocation rather than mere article volume, signaling institutional adoption of tokenized real-world assets.\n\n2. **Lending Sector Consolidation**: Aave V3 maintains dominance with $13.24B TVL (+3.7% 7d) and 43.0% sector market share, while Morpho Blue shows steady growth at $7.18B (+2.86% 7d). The lending narrative is fundamentally backed by these TVL increases, though SparkLend's -8.82% 7d TVL decline indicates protocol-specific fragmentation.\n\n3. **Infrastructure Narrative Surge**: The 105% emergence in infrastructure narratives (from 20 to 41 articles) is driven by launches (12 events), regulatory developments (3 events), and funding rounds (5 events). However, this narrative appears primarily article-volume driven without corresponding fundamental metrics, suggesting it may be more noise than signal.\n\n4. **Cross-Chain Capital Rotation**: Capital is actively rotating from Ethereum to Layer-2 solutions, with Optimism showing +5.0% 7d stablecoin flow and Polygon +1.04% 7d stablecoin flow. This rotation is fundamentally verified by stablecoin flow metrics, indicating a structural shift in capital allocation toward scaling solutions.\n\n## MOUVEMENTS DE THESES\n- **Near Thesis (CONFIRMED)**: The Near thesis remains confirmed with 0.92 confidence, though the kill watch shows it's \"APPROACHING\" due to project closures and asset liquidations in the broader ecosystem. The thesis strength is maintained despite these headwinds.\n\n- **ETH Thesis (CONFIRMED)**: The ETH thesis remains confirmed with 0.92 confidence, supported by continued accumulation by entities like BitMine. However, the significant stablecoin outflows from Ethereum (-$1.85B 7d) represent a potential weakening factor that bears monitoring.\n\n- **DeFi Lending Thesis (STRENGTHENING)**: The Aave thesis is strengthening with 80% confidence, supported by supply and borrow cap reductions and broader risk management trends. The +3.7% 7d TVL growth provides fundamental backing to this thesis movement.\n\n- **RWA Sector (NEW THESIS NEEDED)**: Despite BlackRock BUIDL's strong performance (+21.03% 7d TVL), there is no active thesis for the RWA sector. This represents a significant gap in the research framework given the sector's fundamental strength.\n\n## CONVERGENCES\nThe convergence between regulatory clarity and institutional adoption is most visible in the RWA sector, where BlackRock's BUIDL tokenization platform is attracting capital while regulatory narratives surge (89.5% emergence). Simultaneously, the infrastructure narrative's growth (105% emergence) intersects with the cross-chain rotation trend, as Layer-2 solutions like Optimism a"
   }
  ],
  "theses": [
@@ -1094,10 +1098,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-11T21:07:33.677054+00:00",
-     "note": "BUIDL TVL +21.03% (7d) to $3.69B (z=3.31 30d) vs Ondo Yield Assets $2.57B TVL (get_metric + peers)"
-    },
-    {
      "ts": "2026-07-12T03:06:43.593460+00:00",
      "note": "BlackRock BUIDL TVL at $3.69B (z=3.00 30d, 100th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched)."
     },
@@ -1112,18 +1112,18 @@
     {
      "ts": "2026-07-12T09:37:44.608251+00:00",
      "note": "USDC supply +0.6% over 7d vs global stablecoin +0.1% (source: get_metric)"
+    },
+    {
+     "ts": "2026-07-13T09:38:17.513722+00:00",
+     "note": "Robinhood Chain launched with $70M ETH bridged in first week, built specifically for tokenized assets (source: read_articles)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Correlate USDC growth timestamps with known institutional announcements"
+   "evidence": "inq_mission_institutional · next: Monitor Robinhood Chain TVL growth and institutional partner announcements over next 30 days"
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-12T03:06:43.593111+00:00",
-     "note": "Capital rotating into Morpho Blue (fee-yield 6.01%, 23.6% market share) and BlackRock BUIDL (TVL +21.03% 7d) (source: get_metric + protocol_fees(7d) + onchain_enriched)."
-    },
     {
      "ts": "2026-07-12T06:36:58.940274+00:00",
      "note": "Capital rotating from Ethereum (-$1.85B stablecoins 7d) to Optimism (+5.0% 7d stablecoin flow) and Polygon (+1.04% 7d stablecoin flow) (source: get_analyst_note)"
@@ -1139,9 +1139,13 @@
     {
      "ts": "2026-07-13T03:06:22.212969+00:00",
      "note": "Morpho Blue's fee-yield surged to 8.257% (7d-smoothed) (source: get_metric + protocol_fees(7d) + onchain_enriched) while TVL grew only 1.21% 7d, suggesting a sharp increase in utilization or fee rates."
+    },
+    {
+     "ts": "2026-07-13T09:38:17.514029+00:00",
+     "note": "Capital rotating from Ethereum (-$2.03B 7d stablecoin outflow) to Polygon (+$12.65M) and Optimism (+$11.02M) (source: get_analyst_note)"
     }
    ],
-   "evidence": "inq_mission_rotation · next: Isolate utilization rates by collateral market on Morpho Blue."
+   "evidence": "inq_mission_rotation · next: Track stablecoin flows by chain over next 14 days to confirm rotation persistence"
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1180,12 +1184,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 42.4,
+    "tvl": 42.5,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 41.0,
+    "tvl": 41.1,
     "yard": "TVL"
    },
    {
@@ -1208,7 +1212,7 @@
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 8.37
+    "fy": 8.33
    },
    {
     "name": "Hastra",
@@ -1218,50 +1222,50 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 7.16
+    "fy": 7.13
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.1
-   },
-   {
-    "name": "Fluid Lending",
-    "sector": "lending",
-    "fy": 6.46
-   },
-   {
-    "name": "Jito Liquid Staking",
-    "sector": "lst",
-    "fy": 6.37
-   },
-   {
-    "name": "Sky Lending",
-    "sector": "lending",
-    "fy": 6.09
+    "fy": 7.04
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 5.76
+    "fy": 6.54
+   },
+   {
+    "name": "Fluid Lending",
+    "sector": "lending",
+    "fy": 6.47
+   },
+   {
+    "name": "Jito Liquid Staking",
+    "sector": "lst",
+    "fy": 6.34
+   },
+   {
+    "name": "Sky Lending",
+    "sector": "lending",
+    "fy": 6.16
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -2031.5
+    "d7": -2050.3
    },
    {
     "chain": "Solana",
-    "d7": -50.0
+    "d7": -50.6
    },
    {
     "chain": "Arbitrum",
-    "d7": -34.4
+    "d7": -34.7
    },
    {
     "chain": "Polygon",
-    "d7": 12.6
+    "d7": 12.4
    },
    {
     "chain": "Optimism",
@@ -1269,15 +1273,15 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 298.4,
-   "stable_d7_pct": 0.03,
+   "stable_mcap_b": 298.2,
+   "stable_d7_pct": -0.01,
    "dex_vol_24h_b": 5.6,
-   "defi_tvl_b": 73.5
+   "defi_tvl_b": 73.7
   }
  },
  "robinhood": {
-  "tvl_m": 132.4,
-  "morpho_share_pct": 63,
+  "tvl_m": 137.6,
+  "morpho_share_pct": 64,
   "age_days": 11,
   "synth_ts": "2026-07-12T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-12\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$131.5M**, marking an aggressive **+18.4%** daily expansion. The trajectory is vertical; TVL has effectively **10x’d** in the ten days since mainnet launch (from $1.3k on July 2). Capital concentration remains skewed towards the launch phase's primary utility: **Morpho Blue** commands **62.8%** of total chain TVL ($82.6M supplied), with borrow utilization sitting at a remarkably high **118%** (implying leveraged loops or aggressive shorting/borrowing against collateral). The remaining liquidity is fragmented across DEXs—Uniswap V3 ($24.8M) and V4 ($9.9M)—and speculative launchpads like NOXA Fun ($11.2M). The capital quality read is mixed; while the raw dollar growth is explosive, the heavy reliance on NOXA Fun and memecoin-driven volume suggests a significant portion is \"hot\" capital seeking immediate yield rather than sticky institutional deployment.\n\n## CATALYSEURS\n*   **Memecoin Frenzy & Speculative Velocity:** The viral narrative of a trader turning $800 into $1M on CASHCAT (CoinDesk) has acted as a powerful user acquisition hook, driving the massive volume spikes and liquidity migration to NOXA Fun and Pump.fun integrations. This directly explains the fragmentation of TVL outside of core lending.\n*   **Tokenized Stock Surge:** A 105% monthly surge in tokenized stock transfers to $8.4B (CoinTelegraph) validates the core product-market fit of 24/7 trading. This fundamental utility underpins the long-term stickiness of the chain, distinct from the current speculative mania.\n*   **Regulatory Compliance as a Feature:** The explicit positioning within the US GENIUS Act framework and adherence to MiCA standards provides a structural moat. Unlike permissionless chains, Robinhood Chain offers a \"safe harbor\" for capital that is otherwise regulatory-shy, encouraging the bridging of over $70M in ETH in the first week.\n*   **Institutional Signaling:** Cathie Wood’s Ark Invest divesting Robinhood equity to buy Circle (The Block) signals a market preference for the infrastructure/stablecoin layer over the brokerage interface, yet paradoxically highlights the liquidity depth Robinhood Chain brin"
@@ -1285,14 +1289,14 @@
  "health": {
   "budget": {
    "day": "2026-07-13",
-   "glm": 15,
+   "glm": 26,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 1,
-   "unsupported_pct_7d": 9,
+   "unsupported_pct_7d": 11,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 7
