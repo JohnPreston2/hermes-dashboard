@@ -1,57 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-15T08:48:01Z",
+ "generated_at": "2026-07-15T10:48:02Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "A",
-   "mode": "3phase",
-   "ts": "2026-07-15T08:45:39Z",
-   "status": "ok",
-   "discipline": 94.0,
-   "r2_pass": true,
-   "silent": false
+   "tier": "B",
+   "mode": "react",
+   "ts": "2026-07-15T09:35:01Z",
+   "status": "killed",
+   "discipline": null,
+   "r2_pass": null,
+   "silent": true
   },
-  "runs_today": 5
+  "runs_today": 8
  },
  "runs": [
-  {
-   "ts": "2026-07-11T15:07:20Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 87.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-11T18:07:51Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-11T21:07:33Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-12T00:05:59Z",
    "tier": "A",
@@ -458,9 +425,125 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-15T09:02:35Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
+  },
+  {
+   "ts": "2026-07-15T09:07:33Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 79.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
+  },
+  {
+   "ts": "2026-07-15T09:35:01Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "killed",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": null,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-15T09:35:01Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "killed",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": null,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": null,
+    "R6": null,
+    "R8": null,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": null,
+    "n_unsupported_pct": null
+   },
+   "brief": "[INCOMPLETE] run killed after 14 tool calls"
+  },
+  {
+   "ts": "2026-07-15T09:07:33Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 79.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Lido",
+    "Aave V3",
+    "BlackRock BUIDL"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 3,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock's BUIDL has surged to a record $3.69B TVL (+20.83% 7d), driving a 2.75% annualized fee-yield that now leads the set, while Aave V3 posted a +9.08% 7d TVL increase with a 2.42% fee-yield, and Lido's TVL grew +7.45% 7d despite a -0.72% dip in fees.\n\n## FILS DOMINANTS\n*   **BlackRock BUIDL — 2.75% fee-yield, the highest of the set (vs Aave 2.42%, Lido 2.33%):** TVL hit a record $3.69B (+20.83% 7d), securing a 23.7% market share in the RWA sector (vs Circle USYC 19.3%). The capital quality appears high as institutional RWA, but the sustainability of this yield versus traditional T-bill alternatives remains a key question.\n*   **Aave V3 — 2.42% fee-yield, rank 2 of 3 (vs Lido 2.33%, BUIDL 2.75%):** TVL surged +9.08% 7d to $13.67B, commanding a 43.7% lending market share (vs Morpho Blue 23.5%). The protocol's fees are at z=0.04 (71th pctile) relative to its baseline, suggesting the TVL expansion is outpacing immediate fee generation, raising questions about yield demand versus smart contract risk concentration.\n*   **Lido — 2.33% fee-yield, rank 3 of 3 (vs BUIDL 2.75%, Aave 2.42%):** TVL increased +7.45% 7d to $17.25B, maintaining a dominant 61.4% LST market share (vs Binance staked ETH 24.8%). However, fees dipped -0.72% 7d, and with the token capturing 0% of protocol fees, the low P/F multiple (0.7x, rank 1/3 vs 2.5x median) reflects future expectations rather than current value accrual.\n\n## RECONCILIATION\nNo prior theses were provided for reconciliation in this digest.\n\n## LECTURE\nThe data shows a clear divergence between TVL expansion and fee generation, particularly in Aave and Lido. While Aave's TVL is at a historical high (z=1.97 30d), its fees are only at the 71st percentile (z=0.04 30d), indicating that capital is being deployed into the protocol faster than it is generating revenue. Lido's fee decline (-0.72% 7d) amidst TVL growth suggests potential margin compression or a shift in staking activity. BlackRock BUIDL stands out with both high TVL (z=1.64 30d) and high fees (z=1.53 30d), pointing to strong, yield-driven institutional demand. The valuation multiples for Aave (4.5x P/F) and Lido (0.7x P/F) must be viewed with caution as both tokens currently capture 0% of protocol fees; any \"cheap\" or \"rich\" assessment is purely speculative on future governance actions.\nKill condition: A sustained divergence where TVL growth continues to outpace fee growth for more than 30 days, leading to compressed fee-yields across the sector without a corresponding increase in token value capture.\n\n## RISQUE\n*   **Aave V3:** The rapid TVL accumulation (+9.08% 7d) coupled with a \"critical audit urgency\" flag in the digest raises the risk of elevated smart contract risk concentration. A failure in a core market during this high-growth phase could trigger rapid capital flight.\n*   **Lido:** The -0.72% 7d fee decline alongside TVL growth could signal a structural shift in staking preferences or increased competition, potentially eroding the protocol's dominant market share over time.\n*   **BlackRock BUIDL:** As a tokenized RWA, its performance is tied to traditional financial markets. A shift in the interest rate environment or regulatory changes affecting tokenized securities could reverse the current inflows.\n\n## SUIVI\n*   **inq_mission_institutional:** Evidence shows BlackRock BUIDL's fee yield is 2.75% (7d avg), above the 2.5% threshold. Next probe: Track if the fee yield remains above 2.5% for the next 30 days."
+  },
+  {
+   "ts": "2026-07-15T09:02:35Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Lido",
+    "Aave V3",
+    "BlackRock BUIDL"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock's BUIDL has surged to a record $3.69B TVL (+20.83% 7d), driving a 2.75% annualized fee-yield that now leads the set, while Aave V3 maintains sector dominance with 43.7% lending market share and a 2.42% fee-yield.\n\n## FILS DOMINANTS\n*   **BlackRock BUIDL — 2.75% fee-yield, the highest of the set (vs Aave V3 2.42%, Lido 2.33%):** TVL expanded +20.83% 7d to $3.69B, with fees up +27.04% 7d to $307K (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is provisional as launch-incentivized flows are suspected; retention unproven. Market share in RWA is 23.7% (source: sector-aware peers).\n*   **Aave V3 — 2.42% fee-yield, rank 2 of the set:** TVL grew +9.08% 7d to $13.67B, generating $912K in fees 24h (+2.83% 7d) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital is sticky, evidenced by z=1.97 (100th pctile) TVL vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). Commands 43.7% lending market share (source: sector-aware peers).\n*   **Lido — 2.33% fee-yield, rank 3 of the set:** TVL increased +7.45% 7d to $17.25B, though fees dipped -0.72% 7d to $1.1M (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital is sticky, with z=1.66 (100th pctile) TVL vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). Holds 61.4% LST market share (source: sector-aware peers).\n\n## RECONCILIATION\n*   **th_20260704_0321_lido (Lido):** RETIRE. Thesis retired as focus shifts to new market entrants and L2 rotations; governance reinforcement now stable baseline (source: priors).\n*   **th_20260704_0321_aave (Aave):** CONFIRM. Aave V3's lending dominance has solidified with a 7.28% TVL expansion (7d) to $13.71B, capturing 43.7% sector share, while maintaining a 2.42% fee-yield (source: get_metric + protocol_fees(7d) + onchain_enriched). The protocol's sticky capital (z=1.97 TVL vs baseline) confirms the thesis on its defensive moat (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## LECTURE\nThe digest highlights a divergence in capital quality: Aave and Lido show sticky, baseline-breaking TVL (z=1.97 and z=1.66 respectively), whereas BUIDL's rapid TVL expansion (+20.83% 7d) is likely provisional and launch-incentivized. On a fee-multiple basis, Lido trades at 0.7x P/F (rank 1/3 in LST vs 2.5x median), appearing cheap relative to peers, though this reflects future fee expectations as capture_pct is 0. Aave trades at 4.5x P/F (rank 2/3 in lending vs 4.5x median), in line with the sector median. Investors should distinguish between protocol-level value accrual (strong across all three) and token-level capture (currently 0% for all), avoiding the trap of pricing tokens on current fee flows they do not receive.\nKill condition: A sustained drop in fee-yield below 1.5% for 30 days concurrent with a baseline-negative TVL trend (z < 0).\n\n## RISQUE\n*   **BUIDL:** Capital quality risk is high; the +20.83% 7d TVL surge may be transient, incentivized launch capital rather than sticky institutional allocation. Retention metrics over the next 30 days are critical (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Aave:** Smart contract risk remains elevated given the complexity of V3 across multiple deployments; a single exploit in a major market could trigger rapid deleveraging.\n*   **Lido:** Regulatory risk regarding staking as a security persists, potentially impacting validator node operations or the stETH derivative's status in key jurisdictions.\n\n## SUIVI\n*   **inq_mission_institutional:** Track if the fee yield remains above 2.5% for the next 30 days. (Evidence: BUIDL fee yield is 2.75% 7d; Aave is 2.42% 7d; Lido is 2.33% 7d. Source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **inq_mission_rotation"
+  },
   {
    "ts": "2026-07-15T08:45:39Z",
    "tier": "A",
@@ -717,99 +800,16 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nAave V3's market dominance has solidified with a 2.91% TVL expansion (7d) to $13.15B, capturing 43.5% sector share, while Circle's fee-yield compression to 0.31% (-27.64% 7d) highlights the pressure on low-yield stablecoin liquidity amidst a capital rotation toward higher-yielding lending protocols.\n\n## FILS DOMINANTS\n*   **Aave V3 — 2.504% fee-yield, the highest of the set (vs Circle 0.313%):** Protocol expanded TVL by +2.91% 7d to $13.15B, securing a 43.5% market share in lending (vs Morpho Blue 23.5%, SparkLend 11.1%) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality appears mixed; the z-score for TVL is 1.19 (83rd pctile, n=193), indicating strong accumulation, but the fee z-score is -0.34 (52nd pctile), suggesting revenue is lagging asset growth (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Circle — 0.313% fee-yield, the lowest of the set:** Protocol fees declined -27.64% 7d to $77K on a -2.94% TVL contraction to $3.01B (source: get_metric + protocol_fees(7d) + onchain_enriched). It holds 19.4% share in the stablecoin sector, trailing BlackRock BUIDL (23.7%) and Tether Gold (18.4%) (source: sector-aware peers). Capital quality is under pressure, with TVL at z=-2.24 (13th pctile, n=193), signaling a significant outflow relative to its historical baseline (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **NEAR — No value-accrual data available:** Digest lacks fee-yield and TVL metrics for NEAR, preventing a fundamental assessment of its current protocol economics or capital quality relative to peers (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **CONFIRM (th_20260704_0321_lido):** Thesis retired as focus shifts to new market entrants and L2 rotations; governance reinforcement now stable baseline (source: priors).\n*   **CONFIRM (th_20260704_0320_lido):** Governance stability maintained; no new data contradicts the structural resilience thesis (source: priors).\n*   **CONFIRM (th_20260704_0319_lido):** Governance stability maintained; no new data contradicts the structural resilience thesis (source: priors).\n\n## LECTURE\nThe divergence between Aave V3's expanding TVL base and its lagging fee z-score suggests a potential influx of \"idle\" capital seeking yield safety rather than productive borrowing demand. This is a critical distinction for lending protocols: TVL growth without a corresponding rise in fee generation (fees_vs_baseline z=-0.34) compresses the capital efficiency of the platform. In contrast, Circle's sharp fee-yield compression (0.313%) and negative TVL z-score (-2.24) indicate that capital is actively fleeing low-yield stablecoin environments, likely rotating into the higher-yielding lending opportunities seen in Aave. The market is pricing Aave's token at 4.4x P/F (rank 2/3 in lending vs 4.4x median), which is neutral on a fee-multiple basis, but crucially, the token captures 0% of protocol fees today (source: drill_valuation). This implies the current valuation is entirely a bet on future fee capture mechanisms or governance value, not current cash flow.\nKill condition: Aave's fee z-score remains negative for 30 consecutive days while TVL continues to expand, confirming unproductive capital accumulation.\n\n## RISQUE\n*   **Aave V3:** The primary risk is that the +2.91% TVL expansion is driven by incentivized liquidity mining rather than organic borrowing demand. If the capital is sticky but unproductive, the protocol's revenue will not scale with its asset base, suppressing the fee-yield and failing to justify the token's P/F multiple despite the lack of current fee capture.\n*   **Circle:** The negative TVL z-score (-2.24) and fee decline (-27.64% 7d) point to a structural loss of marke"
-  },
-  {
-   "ts": "2026-07-14T09:35:01Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "killed",
-   "silent": true,
-   "discipline": null,
-   "r2_pass": null,
-   "comps": null,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": null,
-    "R6": null,
-    "R8": null,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": null,
-    "n_unsupported_pct": null
-   },
-   "brief": "[INCOMPLETE] run killed after 14 tool calls"
-  },
-  {
-   "ts": "2026-07-14T09:08:13Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "NEAR",
-    "Morpho Blue",
-    "BlackRock BUIDL"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock BUIDL's fee-yield expanded to 2.66% (z=1.66 100th pctile, n=192) on the back of a +20.67% 7d TVL expansion to $3.68B (z=1.83 81st pctile, n=192), driving a +223.49% 7d surge in protocol fees (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## FILS DOMINANTS\n- Morpho Blue — 8.45% fee-yield, the highest of the set (vs BlackRock BUIDL 2.66%, NEAR N/A): The protocol generates $595K in daily fees (7d avg) on $7.10B TVL, commanding a 23.4% market share in the lending sector (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky, evidenced by a z=0.76 TVL score (74th pctile, n=192), though fee generation sits below baseline at z=-0.64 (18th pctile, n=192), suggesting current utilization is not yet maximizing revenue potential. The token trades at a P/F of 2.2x (rank 1/3 in lending vs 4.4x median), appearing cheap on a fee-multiple basis, but this is discounted by the fact the token captures none of the protocol's fees today (capture_pct: null) (source: drill_valuation).\n- BlackRock BUIDL — 2.66% fee-yield, the second highest of the set (vs Morpho Blue 8.45%, NEAR N/A): A +20.67% 7d TVL surge to $3.68B (z=1.83 81st pctile, n=192) has propelled protocol fees up +223.49% 7d (z=1.66 100th pctile, n=192) (source: get_metric + protocol_fees(7d) + onchain_enriched). The protocol holds a 23.6% market share in the RWA sector (source: sector-aware peers). The capital quality is provisional; the rapid TVL expansion (+20.67% 7d) suggests a short-term capital rotation rather than proven retention, raising questions about the sustainability of the elevated fee-yield. The token captures none of the protocol's fees today (source: get_metric + protocol_fees(7d) + onchain_enriched).\n- NEAR — N/A fee-yield, the lowest of the set (vs Morpho Blue 8.45%, BlackRock BUIDL 2.66%): The digest provides no value-accrual metrics (fees, TVL) for NEAR, preventing a fundamental assessment of its protocol economics relative to peers (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n- CONFIRM th_20260704_0321_lido: Thesis retired as focus shifts to new market entrants and L2 rotations; governance reinforcement now stable baseline. No new data contradicts this retirement.\n- CONFIRM th_20260704_0320_lido: Governance proposals for stETH utility and operational efficiency confirmed as stable baseline. No new data contradicts this confirmation.\n- CONFIRM th_20260704_0319_lido: Governance stability maintained; no new data contradicts the structural resilience thesis. No new data contradicts this confirmation.\n\n## LECTURE\nThe dominant theme is the divergence between fee-yield and capital quality. Morpho Blue demonstrates superior unit economics (8.45% fee-yield) with established capital (z=0.76 TVL), yet its token valuation (2.2x P/F) prices in a future that is not yet realized by the protocol's revenue capture. Conversely, BlackRock BUIDL exhibits explosive growth in both TVL (+20.67% 7d) and fees (+223.49% 7d), but the provisional nature of this capital inflow and the lack of token fee capture necessitate a cautious interpretation of its fee-yield expansion. The data underscores a critical rule: high protocol fees do not automatically equate to token value accrual. Investors must distinguish between the health of the protocol's economic engine and the governance mechanisms that direct its output to the token.\nKill condition: A sustained decline in Morpho Blue's fee-yield below 5% concurrent with a drop in TVL z-score below 0.5 for 30 consecutive days.\n\n## RISQUE\n- Morpho Blue: The primary risk is a decoupling of token value from protocol economics. The token's low P/F multiple (2.2x) is predicated on future fee capture; without a governance change to enable rev"
-  },
-  {
-   "ts": "2026-07-14T09:08:13Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Morpho Blue",
-    "BlackRock BUIDL",
-    "NEAR"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's capital efficiency has materially widened the gap against sector peers, generating an 8.45% fee-yield (7d-smoothed) that significantly outpaces the lending sector median, while BlackRock BUIDL's fee-yield spiked to 2.66% (z=1.66 100th pctile, n=192) driven by a rapid +20.67% 7d TVL expansion (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## FILS DOMINANTS\n*   **Morpho Blue — 8.45% fee-yield, the highest of the set (vs BlackRock BUIDL 2.66%, NEAR null):** Protocol generates $595K in daily fees (7d-smoothed) on a $7.10B base, securing 23.4% market share in the lending sector (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is high, evidenced by a z=0.76 (74th pctile, n=192) TVL vs baseline, indicating organic stickiness rather than transient incentives (source: get_metric + protocol_fees(7d) + onchain_enriched). The token trades at 2.2x P/F (rank 1/3 in lending vs 4.4x median), appearing cheap on a fee-multiple basis, though this reflects future expectations as the token captures none of the protocol's fees today (source: drill_valuation).\n*   **BlackRock BUIDL — 2.66% fee-yield (z=1.66 100th pctile, n=192):** The protocol recorded a +20.67% 7d TVL expansion to $3.68B, driving a +223.49% 7d surge in fees to $303K daily (source: get_metric + protocol_fees(7d) + onchain_enriched). It commands 23.6% market share in the RWA sector (source: sector-aware peers). The capital quality is provisional; the fee-yield spike is likely an acquisition premium rather than sustainable organic yield, requiring observation of retention as the z=1.83 (81th pctile, n=192) TVL vs baseline suggests a deviation from historical norms (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **NEAR — Null fee-yield:** Data shows no meaningful fee-generation or TVL base for this entity in the current digest window, rendering it incomparable on fundamental value-accrual metrics (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **REVISE th_20260714_0320_aave:** The prior thesis that Aave dominates the DeFi application layer is weakening. Morpho Blue's superior fee-yield (8.45% vs Aave's implied lower yield based on sector median) challenges Aave's dominance in capital efficiency, signaling a structural shift in lender preference toward risk-isolated markets (source: drill_valuation + get_metric + protocol_fees(7d) + onchain_enriched). Conviction revised to 0.65.\n\n## LECTURE\nThe data confirms a bifurcation in DeFi value accrual: lending protocols with risk-isolated, capital-efficient architectures (Morpho Blue) are generating materially higher fee-yields on their TVL base than generalized money markets or RWA tokenization plays. While BlackRock BUIDL shows explosive TVL growth, the 100th percentile fee-z-score (z=1.66) suggests the current yield is an outlier likely driven by new capital deployment rather than steady-state utilization. Investors should distinguish between fee-yield driven by *utilization* (Morpho) versus *acquisition* (BUIDL). For Morpho, the low P/F multiple (2.2x) relative to peers (4.4x median) is a fundamental valuation discount, but it is critical to remember the token captures 0% of these fees today, meaning the market is pricing in a future fee switch or buyback mechanism.\nKill condition: Morpho Blue's fee-yield drops below 3% for 30 consecutive days without a corresponding drop in TVL, indicating a collapse in utilization efficiency.\n\n## RISQUE\n*   **Morpho Blue:** The 8.45% fee-yield may be inflated by risky incentive stacking or high-risk lending markets; a \"de-risking\" event where lenders flee to safer generalized markets (like Aave V3) could cause a rapid reversion in fee-generation.\n*   **BlackRock BUIDL:*"
   }
  ],
  "theses": [
   {
-   "key": "LIDO::defi-lst",
+   "key": "AAVE::defi-lending",
    "verdict": "confirm",
    "conviction": 0.95,
-   "trigger": "Thesis retired as focus shifts to new market entrants and L2 rotations; governance reinforcement now stable baseline",
-   "kill": "Monitor the utilization rate of the new permissionless modules and the frequency of penalties applied under the CMv2 framework over the next quarter to assess their effectiveness a",
-   "ts": "2026-07-14T12:08:36Z",
+   "trigger": "Aave V3's lending dominance has solidified with a 7.28% TVL expansion (7d) to $13.71B, capturing 43.7% sector share, while maintaining a 2.42% fee-yield",
+   "kill": "The number of active users and total value locked (TVL) within the Aave App in Q1 2027 will indicate the level of genuine demand and adoption of real-world asset integration within",
+   "ts": "2026-07-15T09:02:35Z",
    "history": [
     {
      "ts": "07-05",
@@ -817,22 +817,27 @@
     },
     {
      "ts": "07-06",
-     "c": 0.97
-    },
-    {
-     "ts": "07-07",
-     "c": 0.95
+     "c": 0.92
     },
     {
      "ts": "07-08",
-     "c": 0.95
+     "c": 0.0
     },
     {
-     "ts": "07-10",
-     "c": 0.95
+     "ts": "07-09",
+     "c": 0.9
+    },
+    {
+     "ts": "07-12",
+     "c": 0.9
     },
     {
      "ts": "07-14",
+     "c": 0.85,
+     "v": "revise"
+    },
+    {
+     "ts": "07-15",
      "c": 0.95
     }
    ]
@@ -978,41 +983,6 @@
    ]
   },
   {
-   "key": "AAVE::defi-lending",
-   "verdict": "revise",
-   "conviction": 0.85,
-   "trigger": "Morpho Blue's superior fee-yield (8.47%) challenges Aave's dominance in capital efficiency.",
-   "kill": "The number of active users and total value locked (TVL) within the Aave App in Q1 2027 will indicate the level of genuine demand and adoption of real-world asset integration within",
-   "ts": "2026-07-14T06:07:45Z",
-   "history": [
-    {
-     "ts": "07-05",
-     "c": 0.95
-    },
-    {
-     "ts": "07-06",
-     "c": 0.92
-    },
-    {
-     "ts": "07-08",
-     "c": 0.0
-    },
-    {
-     "ts": "07-09",
-     "c": 0.9
-    },
-    {
-     "ts": "07-12",
-     "c": 0.9
-    },
-    {
-     "ts": "07-14",
-     "c": 0.85,
-     "v": "revise"
-    }
-   ]
-  },
-  {
    "key": "LIDO::defi",
    "verdict": "revise",
    "conviction": 0.85,
@@ -1074,6 +1044,44 @@
    ]
   },
   {
+   "key": "LIDO::defi-lst",
+   "verdict": "retire",
+   "conviction": 0.95,
+   "trigger": "Thesis retired as focus shifts to new market entrants and L2 rotations; governance reinforcement now stable baseline",
+   "kill": "Monitor the utilization rate of the new permissionless modules and the frequency of penalties applied under the CMv2 framework over the next quarter to assess their effectiveness a",
+   "ts": "2026-07-15T09:02:35Z",
+   "history": [
+    {
+     "ts": "07-05",
+     "c": 0.95
+    },
+    {
+     "ts": "07-06",
+     "c": 0.97
+    },
+    {
+     "ts": "07-07",
+     "c": 0.95
+    },
+    {
+     "ts": "07-08",
+     "c": 0.95
+    },
+    {
+     "ts": "07-10",
+     "c": 0.95
+    },
+    {
+     "ts": "07-14",
+     "c": 0.95
+    },
+    {
+     "ts": "07-15",
+     "c": 0.95
+    }
+   ]
+  },
+  {
    "key": "DRIFT::perpetuals",
    "verdict": "retire",
    "conviction": 0.9,
@@ -1098,10 +1106,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-14T06:37:56.540253+00:00",
-     "note": "Global stablecoin supply -$2.14B (-0.7%) 7d (source: get_metric)"
-    },
-    {
      "ts": "2026-07-14T12:08:36.734165+00:00",
      "note": "Circle (USDC) TVL -2.94% 7d vs Aave V3 +2.91% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     },
@@ -1116,6 +1120,10 @@
     {
      "ts": "2026-07-15T03:09:29.057575+00:00",
      "note": "Circle TVL contracted -3.36% 7d to $3.00B (source: get_metric)."
+    },
+    {
+     "ts": "2026-07-15T09:02:35.432497+00:00",
+     "note": "No stablecoin supply data in this digest; requires on-chain supply analysis"
     }
    ],
    "evidence": "inq_mission_fresh_money · next: Identify which specific stablecoins (USDC/USDT) are driving the outflow."
@@ -1124,10 +1132,6 @@
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-14T12:08:36.734605+00:00",
-     "note": "BlackRock BUIDL leads stablecoin sector with 23.7% share ($3.68B TVL) vs Circle 19.4% (source: sector-aware peers)"
-    },
     {
      "ts": "2026-07-14T15:08:04.310394+00:00",
      "note": "BUIDL holds 23.7% share vs Circle 19.3% in RWA sector (source: sector-aware peers)"
@@ -1143,6 +1147,10 @@
     {
      "ts": "2026-07-15T08:45:39.150593+00:00",
      "note": "BUIDL fee yield at 2.75% (+27.04% 7d) with record TVL $3.69B (source: get_metric + protocol_fees(7d) + onchain_enriched)"
+    },
+    {
+     "ts": "2026-07-15T09:02:35.432126+00:00",
+     "note": "BUIDL fee yield is 2.75% 7d; Aave is 2.42% 7d; Lido is 2.33% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     }
    ],
    "evidence": "inq_mission_institutional · next: Track if the fee yield remains above 2.5% for the next 30 days."
@@ -1151,10 +1159,6 @@
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-13T09:38:17.514029+00:00",
-     "note": "Capital rotating from Ethereum (-$2.03B 7d stablecoin outflow) to Polygon (+$12.65M) and Optimism (+$11.02M) (source: get_analyst_note)"
-    },
     {
      "ts": "2026-07-14T00:10:04.621171+00:00",
      "note": "SparkLend fees +18.14% 7d (protocol_fees 7d) vs TVL -10.77% 7d (get_metric) indicates a \"flight to yield\" within lending."
@@ -1170,6 +1174,10 @@
     {
      "ts": "2026-07-14T21:09:06.731125+00:00",
      "note": "Capital is rotating within lending from Aave V3 to Morpho Blue, evidenced by Morpho's superior fee-yield (8.24% vs 2.42%) and Aave's lagging fee growth relative to TVL expansion (source: get_metric + protocol_fees(7d) + onchain_enriched)."
+    },
+    {
+     "ts": "2026-07-15T09:02:35.432387+00:00",
+     "note": "No direct Optimism data in this digest; requires chain-specific volume/TVL check"
     }
    ],
    "evidence": "inq_mission_rotation · next: Track if Optimism inflows persist above +5% for 14 consecutive days."
@@ -1211,12 +1219,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.5,
+    "tvl": 43.6,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 43.2,
+    "tvl": 43.1,
     "yard": "TVL"
    },
    {
@@ -1244,70 +1252,70 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 6.87
+    "fy": 6.93
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 6.84
+    "fy": 6.88
    },
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 6.68
+    "fy": 6.7
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.08
+    "fy": 6.09
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 6.05
+    "fy": 6.08
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.0
+    "fy": 6.05
    },
    {
     "name": "Maple",
     "sector": "lending",
-    "fy": 5.72
+    "fy": 5.45
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -643.6
+    "d7": 139.4
    },
    {
     "chain": "Solana",
-    "d7": -179.8
+    "d7": -129.9
    },
    {
     "chain": "Arbitrum",
-    "d7": 12.9
+    "d7": 11.3
    },
    {
     "chain": "Optimism",
-    "d7": 11.2
+    "d7": 10.4
    },
    {
     "chain": "Polygon",
-    "d7": 9.3
+    "d7": 7.3
    }
   ],
   "agg": {
-   "stable_mcap_b": 296.3,
-   "stable_d7_pct": -0.33,
+   "stable_mcap_b": 296.4,
+   "stable_d7_pct": -0.29,
    "dex_vol_24h_b": 7.8,
-   "defi_tvl_b": 75.7
+   "defi_tvl_b": 75.6
   }
  },
  "robinhood": {
-  "tvl_m": 177.0,
+  "tvl_m": 175.8,
   "morpho_share_pct": 59,
   "age_days": 13,
   "synth_ts": "2026-07-14T12:00:00Z",
@@ -1316,7 +1324,7 @@
  "health": {
   "budget": {
    "day": "2026-07-15",
-   "glm": 19,
+   "glm": 34,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
