@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-16T10:48:01Z",
+ "generated_at": "2026-07-16T12:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "B",
-   "mode": "react",
-   "ts": "2026-07-16T09:37:04Z",
+   "tier": "A",
+   "mode": "3phase",
+   "ts": "2026-07-16T12:06:44Z",
    "status": "ok",
    "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 6
+  "runs_today": 7
  },
  "runs": [
-  {
-   "ts": "2026-07-12T21:07:02Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-13T00:06:32Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-07-16T12:06:44Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-16T12:06:44Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Aave V3",
+    "Lido",
+    "Maple"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaple Finance has emerged as the highest fee-yielding protocol in the current set (5.60% annualised fee-yield), surpassing Aave V3 (2.44%) and Lido (2.34%), driven by an 11.15% 7d TVL increase that places its TVL at the 98th percentile relative to its historical baseline (z=1.53) (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## FILS DOMINANTS\n*   **Maple — 5.60% fee-yield, the highest of the set (vs Aave V3 2.44%, Lido 2.34%):** TVL increased +11.15% 7d to $2.36B, a statistically significant expansion (z=1.53 30d vs baseline) (source: get_metric + protocol_fees(7d) + onchain_enriched). However, the fee-yield is not matched by fee volume growth (fees +7.52% 7d, z=0.16 vs baseline), suggesting the TVL surge may be driven by capital seeking yield rather than organic borrowing demand. Capital quality is provisional; the protocol holds 7.5% market share in the RWA sector, dominated by Aave V3 (43.9%) (source: sector-aware peers).\n*   **Aave V3 — 2.44% fee-yield, rank 2/3 in the set:** Protocol fees grew +12.99% 7d to $1.0M 24h, outpacing TVL growth (+10.11% 7d to $13.75B), indicating improving utilization efficiency (source: get_metric + protocol_fees(7d) + onchain_enriched). The protocol maintains a dominant 43.9% market share in the lending sector (source: sector-aware peers). The token trades at a P/F of 4.4x, rank 2/3 in lending vs a 4.4x sector median, but captures 0% of protocol fees (capture_pct=0.0), meaning the low multiple reflects pricing of future fee capture, not current cheapness (source: drill_valuation).\n*   **Lido — 2.34% fee-yield, rank 3/3 in the set:** TVL increased +7.84% 7d to $17.31B, with fee volume growing +5.23% 7d to $1.2M 24h (source: get_metric + protocol_fees(7d) + onchain_enriched). Lido commands 61.4% market share in the LST sector, significantly ahead of Binance staked ETH (25.1%) (source: sector-aware peers). The token is cheap on a fee-multiple basis (0.9x P/F, rank 1/3 in LST vs 2.7x median), but this is irrelevant as the token captures 0% of protocol fees today (capture_pct=0.0) (source: drill_valuation).\n\n## RECONCILIATION\n*   **CONFIRM (Thesis: Near/Alt-L1 Diversification):** The digest confirms capital rotation into alternative DeFi verticals (RWA/Lending) is active, evidenced by Maple's outlier TVL growth (z=1.53) and Aave's robust fee expansion (+12.99% 7d). This supports the broader thesis of ecosystem diversification away from pure LST plays, as capital seeks higher fee-yield opportunities (5.60% for Maple vs 2.34% for Lido) (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## LECTURE\nThe current data highlights a \"yield-chasing\" rotation within DeFi. Maple's superior fee-yield (5.60%) is attracting capital, but the disconnect between TVL growth (z=1.53) and fee growth (z=0.16) raises questions about the sustainability of this influx without a corresponding rise in borrowing activity. In contrast, Aave V3 demonstrates healthier unit economics, with fee growth (+12.99%) outpacing TVL growth (+10.11%), suggesting genuine utilization. Investors must distinguish between protocols growing TVL for yield farming (Maple risk) versus those growing via organic demand (Aave strength). Furthermore, token valuations across the set are disconnected from current protocol economics due to zero fee capture (Aave, Lido), rendering P/F multiples indicators of market sentiment toward future governance value rather than current cash flow.\nKill condition: Maple's fee-yield falls below 3.0% or Aave's fee growth turns negative for two consecutive weeks.\n\n## RISQUE\n*   **Maple:** The 11.15% 7d TVL surge is provisional capital; if driven by yield farming rather than institutional credit demand, a rapid outflow is likely once yields compress, which would decou"
+  },
   {
    "ts": "2026-07-16T09:37:04Z",
    "tier": "B",
@@ -767,35 +796,6 @@
     "n_unsupported_pct": null
    },
    "brief": "[INCOMPLETE] run killed after 14 tool calls"
-  },
-  {
-   "ts": "2026-07-15T09:07:33Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 79.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Lido",
-    "Aave V3",
-    "BlackRock BUIDL"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 3,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock's BUIDL has surged to a record $3.69B TVL (+20.83% 7d), driving a 2.75% annualized fee-yield that now leads the set, while Aave V3 posted a +9.08% 7d TVL increase with a 2.42% fee-yield, and Lido's TVL grew +7.45% 7d despite a -0.72% dip in fees.\n\n## FILS DOMINANTS\n*   **BlackRock BUIDL — 2.75% fee-yield, the highest of the set (vs Aave 2.42%, Lido 2.33%):** TVL hit a record $3.69B (+20.83% 7d), securing a 23.7% market share in the RWA sector (vs Circle USYC 19.3%). The capital quality appears high as institutional RWA, but the sustainability of this yield versus traditional T-bill alternatives remains a key question.\n*   **Aave V3 — 2.42% fee-yield, rank 2 of 3 (vs Lido 2.33%, BUIDL 2.75%):** TVL surged +9.08% 7d to $13.67B, commanding a 43.7% lending market share (vs Morpho Blue 23.5%). The protocol's fees are at z=0.04 (71th pctile) relative to its baseline, suggesting the TVL expansion is outpacing immediate fee generation, raising questions about yield demand versus smart contract risk concentration.\n*   **Lido — 2.33% fee-yield, rank 3 of 3 (vs BUIDL 2.75%, Aave 2.42%):** TVL increased +7.45% 7d to $17.25B, maintaining a dominant 61.4% LST market share (vs Binance staked ETH 24.8%). However, fees dipped -0.72% 7d, and with the token capturing 0% of protocol fees, the low P/F multiple (0.7x, rank 1/3 vs 2.5x median) reflects future expectations rather than current value accrual.\n\n## RECONCILIATION\nNo prior theses were provided for reconciliation in this digest.\n\n## LECTURE\nThe data shows a clear divergence between TVL expansion and fee generation, particularly in Aave and Lido. While Aave's TVL is at a historical high (z=1.97 30d), its fees are only at the 71st percentile (z=0.04 30d), indicating that capital is being deployed into the protocol faster than it is generating revenue. Lido's fee decline (-0.72% 7d) amidst TVL growth suggests potential margin compression or a shift in staking activity. BlackRock BUIDL stands out with both high TVL (z=1.64 30d) and high fees (z=1.53 30d), pointing to strong, yield-driven institutional demand. The valuation multiples for Aave (4.5x P/F) and Lido (0.7x P/F) must be viewed with caution as both tokens currently capture 0% of protocol fees; any \"cheap\" or \"rich\" assessment is purely speculative on future governance actions.\nKill condition: A sustained divergence where TVL growth continues to outpace fee growth for more than 30 days, leading to compressed fee-yields across the sector without a corresponding increase in token value capture.\n\n## RISQUE\n*   **Aave V3:** The rapid TVL accumulation (+9.08% 7d) coupled with a \"critical audit urgency\" flag in the digest raises the risk of elevated smart contract risk concentration. A failure in a core market during this high-growth phase could trigger rapid capital flight.\n*   **Lido:** The -0.72% 7d fee decline alongside TVL growth could signal a structural shift in staking preferences or increased competition, potentially eroding the protocol's dominant market share over time.\n*   **BlackRock BUIDL:** As a tokenized RWA, its performance is tied to traditional financial markets. A shift in the interest rate environment or regulatory changes affecting tokenized securities could reverse the current inflows.\n\n## SUIVI\n*   **inq_mission_institutional:** Evidence shows BlackRock BUIDL's fee yield is 2.75% (7d avg), above the 2.5% threshold. Next probe: Track if the fee yield remains above 2.5% for the next 30 days."
   }
  ],
  "theses": [
@@ -1160,10 +1160,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-15T09:02:35.432387+00:00",
-     "note": "No direct Optimism data in this digest; requires chain-specific volume/TVL check"
-    },
-    {
      "ts": "2026-07-15T12:08:29.688430+00:00",
      "note": "Aave V3 TVL +8.94% 7d vs fee growth +3.83% 7d (get_metric)."
     },
@@ -1178,9 +1174,13 @@
     {
      "ts": "2026-07-16T06:08:01.304529+00:00",
      "note": "No Optimism data in current digest (source: pending)"
+    },
+    {
+     "ts": "2026-07-16T12:06:44.863755+00:00",
+     "note": "Capital rotating into RWA (Maple +11.15% 7d TVL) and Lending (Aave +10.11% 7d TVL) with Maple leading fee-yield at 5.60% (source: get_metric + protocol_fees(7d) + onchain_enriched)."
     }
    ],
-   "evidence": "inq_mission_rotation · next: Track if Optimism inflows persist above +5% for 14 consecutive days."
+   "evidence": "inq_mission_rotation · next: Monitor if Maple's fee volume growth accelerates to match its TVL expansion."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1218,13 +1218,13 @@
  "macro": {
   "sectors": [
    {
-    "name": "lending",
-    "tvl": 43.5,
+    "name": "lst",
+    "tvl": 43.8,
     "yard": "TVL"
    },
    {
-    "name": "lst",
-    "tvl": 43.3,
+    "name": "lending",
+    "tvl": 43.4,
     "yard": "TVL"
    },
    {
@@ -1247,7 +1247,7 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.86
+    "fy": 7.9
    },
    {
     "name": "Hastra",
@@ -1262,7 +1262,7 @@
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.81
+    "fy": 5.85
    },
    {
     "name": "Maple",
@@ -1272,12 +1272,12 @@
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 5.5
+    "fy": 5.49
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.58
+    "fy": 5.24
    },
    {
     "name": "Invesco USTB",
@@ -1304,27 +1304,27 @@
    },
    {
     "chain": "Ethereum",
-    "d7": -3.6
+    "d7": -4.4
    }
   ],
   "agg": {
-   "stable_mcap_b": 295.9,
-   "stable_d7_pct": -0.69,
-   "dex_vol_24h_b": 7.5,
-   "defi_tvl_b": 75.2
+   "stable_mcap_b": 295.4,
+   "stable_d7_pct": -0.65,
+   "dex_vol_24h_b": 7.6,
+   "defi_tvl_b": 75.7
   }
  },
  "robinhood": {
-  "tvl_m": 192.2,
+  "tvl_m": 192.3,
   "morpho_share_pct": 60,
-  "age_days": 13,
-  "synth_ts": "2026-07-15T12:00:00Z",
-  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-15\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$178.9M**, recording a sharp **+11.9%** daily trajectory. The growth curve remains parabolic, having scaled from ~$13M at launch (July 2) to current levels in under two weeks. Capital concentration is extreme: **Morpho Blue commands ~59% of total chain TVL** ($105.6M supplied), with borrow utilization exceeding 100% ($112M borrowed), indicating aggressive leverage loops or incentivized liquidity mining. DEX liquidity is fragmented but robust, with Uniswap V3 ($31.8M) and V4 ($13.5M) capturing ~25% of non-lending TVL, while dYdX Arcus Perps holds $14.4M. The current capital profile is high-velocity, launch-incentivized capital rather than sticky, institutional RWA allocation.\n\n## CATALYSEURS\n*   **Uniswap Auctions Integration (Source: The Defiant)**: The direct integration of Uniswap auctions into the Web App has catalyzed the surge in DEX volume (now Top 5 globally). This drives the on-chain liquidity observed in Uniswap V3/V4 TVL.\n*   **Meme Coin Dominance (Source: Decrypt)**: Analyst digests confirm that early traction is primarily memecoin-driven, not tokenized stocks. This explains the high velocity of funds and the dominance of speculative DEX volume over the intended RWA use case.\n*   **Uniswap Governance Proposal (Source: Snapshot-Uniswap)**: The active temp check for protocol fee expansion on Robinhood Chain represents a structural shift. If passed, it alters the fee mechanics for the dominant liquidity layer.\n*   **AI Agent Development (Source: CoinTelegraph)**: Robinhood's development of an AI agent for traders signals a push to retain retail flow, potentially converting speculative volume into stickier platform usage long-term.\n\n## VALUE ACCRUAL\nRobinhood Chain operates without a native token, rendering the chain itself a loss-leader for the broker's ecosystem. Value capture is strictly external:\n*   **Morpho**: The primary beneficiary. With ~59% of chain TVL and >$112M in borrows, Morpho captures the lending spread and interest revenue. The current utilization suggests significant fee generation, though sustainability depends on incentive expiration.\n*   **Uniswap**: Captur"
+  "age_days": 14,
+  "synth_ts": "2026-07-16T12:00:00Z",
+  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-16\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$192.3M**, marking a robust **+10.7%** daily increase and sustaining a steep upward trajectory from the $17M launch baseline just two weeks ago. The growth curve is parabolic, with capital inflows accelerating rather than stabilizing. Morpho Blue remains the dominant force, commanding **~60.4%** of total chain TVL ($116.2M), with a striking utilization rate where borrowed assets ($123.4M) exceed supply TVL, implying aggressive leverage strategies or cross-market arbitrage are driving the initial phase. DEX liquidity is consolidating around Uniswap (V3/V4/V2), which collectively holds **~31.5%** of TVL, while dYdX's Arcus Perps sits at **~7.5%**. The capital quality read is mixed: while the presence of regulated infrastructure (Arcus, Spark) suggests institutional intent, the heavy concentration in Morpho—likely driven by early yield farming emissions—signals that current TVL is highly incentive-sensitive and \"hot\" rather than sticky.\n\n## CATALYSEURS\n*   **Uniswap Auctions Integration (The Defiant):** The direct surfacing of Robinhood Chain auctions within the Uniswap Web App acts as a primary liquidity catalyst. This bridges the gap between Robinhood's massive retail user base and deep on-chain liquidity, directly explaining the **~31.5%** TVL share held by Uniswap protocols and the surge in DEX volume.\n*   **Uniswap Governance Fee Proposal (Snapshot-Uniswap):** The active proposal to expand protocol fees to Robinhood Chain is a critical validation step. If passed, it creates a direct revenue loop for UNI holders from RH Chain activity, incentivizing further liquidity migration and solidifying the chain's status as a premium venue for swap fees.\n*   **Top-Five DEX Volume Status (The Block):** Achieving **$3.1B weekly** volume places RH Chain in the upper echelon of L2s almost immediately. This metric confirms that the TVL is not idle; it is being actively churned through perps (Arcus) and spot DEXs, generating fee revenue for underlying protocols despite the lack of a native RH token.\n*   **Ark Invest Share Sale (The Block):** While a secondary market event, Ark's divestment of $3.2M i"
  },
  "health": {
   "budget": {
    "day": "2026-07-16",
-   "glm": 28,
+   "glm": 31,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
