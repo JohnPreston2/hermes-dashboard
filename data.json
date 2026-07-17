@@ -1,46 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-17T04:48:01Z",
+ "generated_at": "2026-07-17T06:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "A",
-   "mode": "3phase",
-   "ts": "2026-07-17T03:07:42Z",
+   "tier": "S",
+   "mode": "react",
+   "ts": "2026-07-17T06:37:55Z",
    "status": "ok",
-   "discipline": 96.0,
+   "discipline": 94.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 2
+  "runs_today": 4
  },
  "runs": [
-  {
-   "ts": "2026-07-13T15:06:30Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 88.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-13T18:07:05Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-13T21:07:56Z",
    "tier": "A",
@@ -458,9 +436,85 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-17T06:06:47Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 95.6,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
+  },
+  {
+   "ts": "2026-07-17T06:37:55Z",
+   "tier": "S",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-17T06:37:55Z",
+   "tier": "S",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "## PAYSAGE\nAttention is fractured between narrative noise and fundamental reality. Stablecoin discourse dominates (+90.9% emergence) yet capital is actually exiting (-0.7% flow, z=-1.75, 8th percentile), while RWA institutional integration (+66.7% narrative) shows genuine on-chain traction (Maple +18.01% TVL to $2.42B, z=1.9, 96th percentile). Partnership events exploded (+244.4%) driven by institutional tokenization, not speculative DeFi. Systemic stress remains MODERATE ($21.5B borrowed, 7 elevated risk pools) with capital rotating from Ethereum (-$525M) to Solana (+$499M).\n\n## FILS DOMINANTS\n**Stablecoin Narrative Disconnect (NOISE)**: Stablecoin narratives surged +90.9% (7d) while global stablecoin market cap declined -0.7% to $296B (z=-1.75, 8th percentile) (source: get_board, get_metric). Both USDC (-0.2% to $73.2B) and USDT (-0.1% to $184B) contracted, indicating the narrative spike is pure article-volume without fresh fiat entry (source: get_metric).\n\n**RWA Institutional Wave (BACKED)**: RWA narratives +66.7% emergence are FUNDAMENTALLY supported by Maple Finance's +18.01% TVL surge to $2.42B (z=1.9, 96th percentile) and institutional partnerships including Morgan Stanley E*TRADE spot crypto launch, Tradable's $1B Stellar deal, and Ondo Finance + SBI Japanese asset tokenization (source: get_metric, get_narrative). This is real institutional adoption, not speculation.\n\n**Near Thesis Weakening (R6)**: My Near thesis on Bitcoin dominance weakening revised from 0.88 to 0.75 confidence due to \"Near-specific revenue data unavailable to rebut challenge; idiosyncratic stress indicators persist\" (source: get_prior_assessment). The red-team challenge correctly identified reliance on a single large capital movement rather than sustained ecosystem adoption.\n\n**AI-Crypto Thesis Gap**: Despite 165 articles ingested (7d) and active protocols (Base, Bittensor, Scroll, Solana, Tensor, Virtuals), the AI-crypto sector has ZERO active theses (source: get_dossier, get_board). Token microstructure shows low urgency (TAO 43/100, RENDER 37/100, FET 20/100), suggesting narrative volume without fundamental conviction.\n\n## MOUVEMENTS DE THESES\n**WEAKENED**: Near thesis (id: th_20260717_0320_near) - confidence dropped 0.88→0.75 due to inability to rebut red-team challenge about single capital movement dependency; trigger: \"Near-specific revenue data unavailable to rebut challenge; idiosyncratic stress indicators persist\" (source: get_prior_assessment).\n\n**GAP IDENTIFIED**: RWA sector - no active thesis despite +66.7% narrative emergence and Maple's +18.01% TVL surge (z=1.9, 96th percentile) (source: get_thesis, get_metric).\n\n**GAP IDENTIFIED**: AI-crypto sector - no active thesis despite 165 articles (7d) and active protocol development (source: get_thesis, get_dossier).\n\n## CONVERGENCES\nInstitutional tokenization (RWA) is driving the partnership explosion (+244.4%), creating a convergence between traditional finance (Morgan Stanley, Goldman Sachs, JPMorgan) and DeFi infrastructure. This institutional wave is fundamentally distinct from the stablecoin narrative noise, representing actual capital deployment rather than speculative discourse.\n\n## SOUS SURVEILLANCE\n**GENIUS Act Rulemaking Deadline (2026-07-18)**: US stablecoin framework rulemaking finalization deadline tomorrow - watch for enforcement guidance that could accelerate institutional stablecoin adoption (source: get_reg_exposure).\n\n**MiCA Stablecoin Tightening**: EU regulatory regime in force since 2026-07-01 with Revolut USDT delisting scheduled 2026-08-31 - monitor for regional stablecoin flow shifts (source: get_reg_exposure).\n\n**Morpho-Blue Liquidation Risk**: MODERATE systemic stress with 7 elevated risk pools and $21.5B borrowed across protocols; track liquidation events over next 7 da"
+  },
+  {
+   "ts": "2026-07-17T06:06:47Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 95.6,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Aave V3",
+    "Maple Finance",
+    "Solana"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nAave V3's TVL surged +9.75% (7d) to $13.52B (z=1.33 87th pctile), driving its lending market share to 43.5%, yet protocol fees dipped -0.63% (7d), suggesting the capital influx is not yet generating proportional revenue (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## FILS DOMINANTS\n*   **Aave V3 — 2.48% fee-yield (rank 1/3 in lending vs Morpho 3.3x P/F, Compound 7.8x P/F):** TVL expanded +9.75% (7d) to $13.52B, capturing 43.5% sector share, but fees declined -0.63% (7d), indicating the growth is capital-heavy rather than yield-heavy; capital quality is mixed as the surge (z=1.33) outpaces fee generation (z=0.53) (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Maple Finance — 100th percentile fee-yield (rank N/A in lending):** Protocol fee yield spiked to historical extremes (z-score 100th pctile), though specific yield % and TVL were null in the current digest; the spike implies elevated risk-taking or transient arbitrage rather than sustainable base demand (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Solana — Null fee-yield (rank N/A in stablecoins):** Net stablecoin inflow of +$499M was observed, but without corresponding fee-yield data or peer market share, the fundamental value accrual cannot be assessed relative to the capital movement (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260717_0320_near (Near): REVISE**. The prior thesis on macro influence is revised to a weakening stance (confidence 0.75 -> 0.65) as idiosyncratic stress indicators (Zapper, Empery) persist without Near-specific revenue data to rebut the challenge that large capital movements are exploratory rather than sustained adoption (source: get_prior_assessment).\n\n## LECTURE\nThe divergence between Aave's TVL expansion (+9.75% 7d) and its fee contraction (-0.63% 7d) signals a potential \"capital quality\" mismatch. The protocol is absorbing assets at a rate 1.6 standard deviations above its historical norm (z=1.33), but revenue generation lags at only 0.8 standard deviations (z=0.53). This suggests the inflow is likely liquidity-seeking or yield-chasing capital parked in low-utilization assets rather than productive borrowing demand. While the token trades at a P/F of 4.1x (rank 2/3), the 0% capture rate means this multiple prices in future fee generation, not current reality. Investors should distinguish between \"sticky\" capital (organic borrowing/lending) and \"hot\" capital (incentivized or transient liquidity); the current data favors the latter.\nKill condition: Fee-yield drops below 1.5% annualised while TVL z-score remains above 1.0 for >14 days.\n\n## RISQUE\n*   **Aave V3:** Risk of \"yieldless growth\" where TVL inflows are concentrated in idle or low-yield assets, compressing the protocol's capital efficiency and failing to translate market share dominance into fee revenue.\n*   **Maple Finance:** The 100th percentile fee-yield spike is likely unsustainable and may reflect elevated default risk premiums or one-off liquidation events rather than scalable, repeatable business volume.\n\n## SUIVI\n*   **inq_mission_fresh_money:** Evidence shows Solana net stablecoin inflows of +$499M, but the specific stablecoin drivers (USDC vs USDT) remain unidentified, limiting the ability to confirm if this is fresh fiat or cross-chain arbitrage (source: get_metric + protocol_fees(7d) + onchain_enriched). Next probe: Identify which specific stablecoins (USDC/USDT) are driving the outflow."
+  },
   {
    "ts": "2026-07-17T03:07:42Z",
    "tier": "A",
@@ -746,60 +800,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBlackRock BUIDL has overtaken Aave V3 and Lido to become the highest fee-yielding protocol in this set, generating a 3.075% annualized fee-yield (7d) on a $3.42B base, while all three protocols exhibit statistically significant TVL expansion at the 98th-99th percentile versus their historical baselines.\n\n## FILS DOMINANTS\n*   **BlackRock BUIDL — 3.075% fee-yield, the highest of the set (vs Aave V3 2.43%, Lido 2.29%):** TVL increased +11.83% 7d to $3.42B, driving fees up +28.6% 7d to $310K 24h (source: get_metric + protocol_fees(7d) + onchain_enriched). The protocol commands 22.3% market share in the RWA sector (source: sector-aware peers). Capital quality appears high as RWA flows are typically institutional, though the 2.60% fee-yield sustainability is questioned against the current regulatory regime (source: capital_questions).\n*   **Aave V3 — 2.43% fee-yield, rank 2/3 in the set:** TVL increased +10.76% 7d to $13.80B, with fees rising +13.76% 7d to $1.0M 24h (source: get_metric + protocol_fees(7d) + onchain_enriched). It holds dominant 43.9% market share in the lending sector (source: sector-aware peers). Capital quality is mixed; the digest questions if the TVL surge is organic yield-seeking or incentivized liquidity mining (source: capital_questions).\n*   **Lido — 2.29% fee-yield, rank 3/3 in the set:** TVL increased +10.44% 7d to $17.65B, while fees grew slower at +5.23% 7d to $1.2M 24h (source: get_metric + protocol_fees(7d) + onchain_enriched). It maintains a commanding 61.5% market share in the LST sector (source: sector-aware peers). Capital quality is sticky staking capital, though the digest queries if the growth is driven by staking demand or speculative positioning on ETH (source: capital_questions).\n\n## RECONCILIATION\n*   **id: inq_mission_institutional | CONFIRM.** The thesis that institutional actors are entering DeFi is supported by BlackRock BUIDL's superior fee-yield (3.075%) and top-decile fee expansion (z=1.44 30d) relative to its baseline, indicating strong demand for tokenized assets. The protocol's ability to generate higher fees on a smaller TVL base compared to lending/LST peers suggests a premium for regulated RWA exposure.\n\n## LECTURE\nThe data indicates a broad-based expansion of productive capital across all three sectors (Lending, LST, RWA), with all entities posting TVL growth above the 98th percentile of their historical baselines (z=1.87-1.93 30d). However, value accrual efficiency diverges significantly. BlackRock BUIDL's 3.075% fee-yield demonstrates that smaller, regulated TVL bases can out-earn larger, legacy DeFi bases; Aave V3's 2.43% yield is robust but lags BUIDL, while Lido's 2.29% yield suggests that its massive $17.65B TVL base is experiencing margin compression relative to its fee generation. On valuation, Aave V3 trades at 4.4x P/F (rank 2/3 in lending vs 4.4x median), a neutral valuation on a fee-multiple basis, while Lido trades at 0.9x P/F (rank 1/3 in LST vs 2.7x median), appearing cheap on a fee-multiple basis, though this is heavily discounted by the fact that the token captures 0% of protocol fees today (source: drill_valuation). Investors should distinguish between \"protocol rich\" (high fee-yield) and \"token rich\" (fee capture), as none of these tokens currently accrue the protocol fees cited.\n\nKill condition: A sustained convergence of BUIDL's fee-yield below 2.0% or a reversal in Aave/Lido TVL below their 30d baselines (z<0).\n\n## RISQUE\n*   **Aave V3:** The +10.76% 7d TVL surge may be transient if driven by liquidity mining incentives rather than organic yield demand, risking sharp outflows once incentives decay (source: capital_questions).\n*   **Lido:** Fee growth (+5.23% 7d) lagging TVL growth (+10.44% 7d) implies dilution of staking revenue"
-  },
-  {
-   "ts": "2026-07-16T06:37:44Z",
-   "tier": "S",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "## PAYSAGE\nAttention is concentrated on macro (87 articles, +55.4%) and stablecoin narratives (38 articles, +90.0%), but on-chain VALUE is moving into liquid staking and RWA protocols on Ethereum. Lido TVL sits at $17.6B (+11.05% 7d, z=1.85) and Aave at $13.8B (+11.26% 7d, z=1.93), both at 97th+ percentiles of their historical baselines (source: get_metric). BlackRock BUIDL leads RWA with $3.4B TVL (+11.83% 7d) (source: get_metric). However, aggregate stablecoin market cap stands at $295.9B (-0.8% 7d, z=-2.24), indicating net fiat outflows despite the narrative surge (source: get_metric). The landscape is characterized by capital rotation within existing DeFi rather than fresh entry, with 21 critical exploit risks active across the ecosystem (source: get_events).\n\n## FILS DOMINANTS\n1. **Liquid Staking Expansion**: Lido ($17.6B TVL, +11.05% 7d), EigenCloud (+10.44% 7d), and Rocket Pool (+10.82% 7d) are driving capital concentration in Ethereum staking derivatives (source: get_analyst_note). This narrative is FUNDAMENTALLY-BACKED by measurable TVL growth at 97th+ percentile z-scores, not merely article volume.\n\n2. **RWA Institutional Adoption**: BlackRock BUIDL ($3.4B TVL, +11.83% 7d) is outperforming traditional DeFi yield generators, with annualized fee-yield surpassing Aave V3 and Lido in recent briefs (source: get_metric, get_recent_briefs). The narrative is backed by hard TVL expansion, though the 1d -7.45% pullback suggests short-term profit-taking (source: get_metric).\n\n3. **Lending Sector Concentration**: Aave V3 ($13.8B TVL, +11.26% 7d) and Morpho Blue ($7.3B TVL, +5.75% 7d) dominate lending, with Morpho showing elevated risk pools and 826.03% average rates (source: get_metric, get_analyst_note). The narrative is fundamentally-backed but carries MODERATE systemic risk with $7.04B total open interest and 7 elevated risk pools (source: get_analyst_note).\n\n4. **Stablecoin Regulatory Pressure**: Stablecoin narrative (+90.0% article emergence) is NOT matched by on-chain reality—USDC at $73.1B (-0.3% 7d) and USDT at $184.1B (-0.0% 7d) show flat/declining supply (source: get_metric). This is NOISE driven by regulatory events (214 active regulatory events) rather than capital flows (source: get_events).\n\n## MOUVEMENTS DE THESES\n- **Near Thesis (th_20260716_0320_near)**: CONFIRMED with conviction 0.92 (up from 0.88). The thesis on capital diversification to alternative L1s remains stable despite red-team challenges about fundamental reasoning. The trigger was observed stability in Near-specific metrics and confirmation that Zapper closure/Empery Digital sale are idiosyncratic stress indicators rather than sector-wide (source: get_prior_assessment).\n\n## CONVERGENCES\n- **Ethereum Centricity**: Capital is rotating FROM Solana (-$130M 7d) TO Ethereum (+$80.9M 1d inflows), Optimism (+$10.6M 7d), and Polygon (+$8.3M 7d) (source: get_analyst_note). This convergence connects liquid staking, RWA, and lending narratives—all are Ethereum-centric yield strategies.\n- **Regulatory-Institutional Nexus**: MiCA enforcement (EU) and GENIUS Act rulemaking (US, deadline 2026-07-18) are driving institutional flows toward regulated venues like BlackRock BUIDL, creating a convergence between regulatory pressure and RWA adoption (source: get_reg_exposure).\n\n## SOUS SURVEILLANCE\n- **Systemic Risk**: Morpho Blue's elevated risk pools (826.03% avg rate) and $7.04B total OI present MODERATE stress with potential for localized cascading liquidations (source: get_analyst_note).\n- **Exploit Risk**: 21 active critical exploit risks across DeFi-RWA, DeFi-yield, and perp sectors (including Polymarket unauthorized access and Aave audit issues) (source: get_events).\n- **Fresh Money Signal**: Aggregate stablecoin flow at -0.8% 7d (z=-2.24) indicates net fiat outflows—w"
-  },
-  {
-   "ts": "2026-07-16T06:08:01Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 81.0,
-   "r2_pass": true,
-   "comps": 4,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Rocket Pool",
-    "Morpho Blue",
-    "MiCA stablecoin tightening"
-   ],
-   "gate": {
-    "R1": 8,
-    "R6": 6,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 2
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's fee-yield has compressed to 4.89% (7d) despite a 5.7% TVL expansion, signaling a capital efficiency drag, while Rocket Pool's TVL surged +10.82% (7d) to a 98th percentile z-score, though fee generation lagged significantly.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 4.89% fee-yield (7d), rank 1/3 in lending (vs Aave 2.43%, Compound 1.95%):** Protocol holds 23.4% sector TVL share ($7.35B) with a 3.5 P/F (rank 1/3 vs 4.4x median), appearing cheap on a fee-multiple basis, though fees dropped -63.58% (7d) and FDV/MCAP is 1.527, requiring an FDV-framed valuation. Capital quality is mixed as TVL growth (z=1.59 30d) outpaces fee accrual (z=-0.19 30d), suggesting recent inflows may be lower-yielding or speculative (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Rocket Pool — 0.85% fee-yield (7d), rank 3/3 in LST (vs Lido 1.95%, Ether.fi 2.70%):** TVL increased +10.82% (7d) to $1.02B (z=2.42 98th pctile), but fees are lagging (z=-0.76 2th pctile) with a 49.0 P/F (rank 3/3 vs 2.7x median), indicating the token is pricing in future utility rather than current capture. Capital quality is provisional; the surge is likely launch-incentivised or liquidity-driven rather than organic staking demand given the fee-yield disconnect (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **MiCA Stablecoin Tightening — Regulatory regime shift:** EU DeFi venues are adapting to the enforced EMT regime since July 1. This is a regional constraint (EU-licensed venues) and does not imply a global net flow; any migration would be venue-bounded (e.g., EURC/USDC share rising on"
   }
  ],
  "theses": [
@@ -853,40 +853,6 @@
     {
      "ts": "07-06",
      "c": 0.94
-    }
-   ]
-  },
-  {
-   "key": "NEAR::defi",
-   "verdict": "confirm",
-   "conviction": 0.92,
-   "trigger": "Zapper closure and Empery Digital BTC sale observed as idiosyncratic but valid stress indicators; Near-specific revenue data unavailable to rebut challenge.",
-   "kill": "Monitor the rate of new security token offerings (STOs) launched on Avalanche versus those on Bitcoin-compatible chains over the next quarter to assess the sustainability of the mi",
-   "ts": "2026-07-16T18:07:15Z",
-   "history": [
-    {
-     "ts": "07-05",
-     "c": 0.95
-    },
-    {
-     "ts": "07-07",
-     "c": 0.95
-    },
-    {
-     "ts": "07-10",
-     "c": 0.92
-    },
-    {
-     "ts": "07-11",
-     "c": 0.88
-    },
-    {
-     "ts": "07-12",
-     "c": 0.92
-    },
-    {
-     "ts": "07-16",
-     "c": 0.92
     }
    ]
   },
@@ -1006,6 +972,45 @@
    ]
   },
   {
+   "key": "NEAR::defi",
+   "verdict": "revise",
+   "conviction": 0.75,
+   "trigger": "Near-specific revenue data unavailable to rebut challenge; idiosyncratic stress indicators persist (source: get_prior_assessment)",
+   "kill": "Monitor the rate of new security token offerings (STOs) launched on Avalanche versus those on Bitcoin-compatible chains over the next quarter to assess the sustainability of the mi",
+   "ts": "2026-07-17T06:37:55Z",
+   "history": [
+    {
+     "ts": "07-05",
+     "c": 0.95
+    },
+    {
+     "ts": "07-07",
+     "c": 0.95
+    },
+    {
+     "ts": "07-10",
+     "c": 0.92
+    },
+    {
+     "ts": "07-11",
+     "c": 0.88
+    },
+    {
+     "ts": "07-12",
+     "c": 0.92
+    },
+    {
+     "ts": "07-16",
+     "c": 0.92
+    },
+    {
+     "ts": "07-17",
+     "c": 0.75,
+     "v": "revise"
+    }
+   ]
+  },
+  {
    "key": "AAVE::defi",
    "verdict": "revise",
    "conviction": 0.65,
@@ -1110,14 +1115,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-14T15:08:04.310102+00:00",
-     "note": "USDC TVL -3.39% 7d to $3.00B, signaling capital exit/rotation (source: get_metric + protocol_fees(7d) + onchain_enriched)"
-    },
-    {
-     "ts": "2026-07-14T21:09:06.731545+00:00",
-     "note": "Aggregate TVL across the top 3 protocols increased by +$1.1B (7d), suggesting net new capital entry into the sector (source: get_metric)."
-    },
-    {
      "ts": "2026-07-15T03:09:29.057575+00:00",
      "note": "Circle TVL contracted -3.36% 7d to $3.00B (source: get_metric)."
     },
@@ -1128,18 +1125,22 @@
     {
      "ts": "2026-07-16T09:37:04.584643+00:00",
      "note": "USDC supply"
+    },
+    {
+     "ts": "2026-07-17T06:06:47.082334+00:00",
+     "note": "Solana net stablecoin inflow +$499M observed, but driver composition unknown (source: get_metric + protocol_fees(7d) + onchain_enriched)."
+    },
+    {
+     "ts": "2026-07-17T06:37:55.894473+00:00",
+     "note": "USDC supply -0.2% (7d) to $73.2B, USDT supply -0.1% (7d) to $184B, global stablecoin flow -0.7% to $296B (z=-1.75, 8th percentile) (source: get_metric)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Identify which specific stablecoins (USDC/USDT) are driving the outflow."
+   "evidence": "inq_mission_fresh_money · next: Monitor DAI/USDS/USDE supply for divergent institutional vs retail patterns"
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-16T03:07:54.840777+00:00",
-     "note": "BlackRock BUIDL fee-yield 2.60% (7d), highest in set; fees z=1.43 (100th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched)."
-    },
     {
      "ts": "2026-07-16T06:08:01.304149+00:00",
      "note": "Morpho Blue fee-yield 4.89% 7d, Rocket Pool 0.85% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched)"
@@ -1155,9 +1156,13 @@
     {
      "ts": "2026-07-16T18:07:15.076022+00:00",
      "note": "No new institutional vault integrations found on Morpho Blue in current digest."
+    },
+    {
+     "ts": "2026-07-17T06:37:55.894680+00:00",
+     "note": "Morgan Stanley E*TRADE spot crypto launch, Tradable $1B Stellar deal, Ondo Finance + SBI Japanese asset tokenization (source: get_narrative)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Check for new institutional vault integrations or custody announcements on Morpho Blue."
+   "evidence": "inq_mission_institutional · next: Track TVL flows into institutional RWA vaults vs retail DeFi protocols"
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
@@ -1228,7 +1233,7 @@
    },
    {
     "name": "lst",
-    "tvl": 42.9,
+    "tvl": 42.8,
     "yard": "TVL"
    },
    {
@@ -1251,17 +1256,17 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.76
+    "fy": 7.75
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.15
+    "fy": 7.16
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 7.13
+    "fy": 7.12
    },
    {
     "name": "Hastra",
@@ -1271,12 +1276,12 @@
    {
     "name": "Maple",
     "sector": "lending",
-    "fy": 6.41
+    "fy": 6.42
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.21
+    "fy": 6.2
    },
    {
     "name": "Sky Lending",
@@ -1292,11 +1297,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -518.5
+    "d7": -517.6
    },
    {
     "chain": "Solana",
-    "d7": 369.0
+    "d7": 369.1
    },
    {
     "chain": "Optimism",
@@ -1313,13 +1318,13 @@
   ],
   "agg": {
    "stable_mcap_b": 296.1,
-   "stable_d7_pct": -0.69,
+   "stable_d7_pct": -0.7,
    "dex_vol_24h_b": 6.5,
-   "defi_tvl_b": 75.1
+   "defi_tvl_b": 75.0
   }
  },
  "robinhood": {
-  "tvl_m": 207.8,
+  "tvl_m": 209.6,
   "morpho_share_pct": 64,
   "age_days": 13,
   "synth_ts": "2026-07-16T12:00:00Z",
@@ -1328,14 +1333,14 @@
  "health": {
   "budget": {
    "day": "2026-07-17",
-   "glm": 5,
+   "glm": 14,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 3,
-   "unsupported_pct_7d": 20,
+   "unsupported_pct_7d": 19,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 4
