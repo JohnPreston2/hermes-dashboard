@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-17T16:48:01Z",
+ "generated_at": "2026-07-17T18:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-17T15:07:15Z",
+   "ts": "2026-07-17T18:09:49Z",
    "status": "ok",
-   "discipline": 95.6,
-   "r2_pass": true,
-   "silent": false
+   "discipline": null,
+   "r2_pass": null,
+   "silent": true
   },
-  "runs_today": 8
+  "runs_today": 9
  },
  "runs": [
-  {
-   "ts": "2026-07-14T06:37:56Z",
-   "tier": "S",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 6,
-   "phase": null
-  },
   {
    "ts": "2026-07-14T09:08:13Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 2,
    "phase": null
+  },
+  {
+   "ts": "2026-07-17T18:09:49Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-17T18:09:49Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Morpho Blue",
+    "Kinetiq kHYPE",
+    "Visa"
+   ],
+   "gate": {
+    "R1": null,
+    "R6": null,
+    "R8": null,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": null,
+    "n_unsupported_pct": null
+   },
+   "brief": "[SILENT] R2 could not be cleaned"
+  },
   {
    "ts": "2026-07-17T15:07:15Z",
    "tier": "A",
@@ -771,35 +800,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nAave V3's protocol-level value accrual accelerated to a 94th percentile z-score (z=1.91 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched), driven by a +10.7% 7d TVL surge that outpaces its fee-yield growth, raising questions about capital quality.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 5.495% fee-yield, the highest of the set (vs Aave 2.465%, Rocket Pool 0.871%):** TVL expanded +4.22% 7d to $7.29B (source: get_metric + protocol_fees(7d) + onchain_enriched), securing 23.3% market share in lending (source: sector-aware peers). However, fees dropped -79.29% 7d, suggesting a capital rotation into lower-yielding markets or a temporary utilization dip. Capital quality is sticky (z=1.29 91st pctile TVL vs baseline), but the fee divergence warrants monitoring.\n*   **Aave V3 — 2.465% fee-yield, rank 2/3 in lending (vs Morpho 5.495%, Compound 7.9% median):** Protocol fees grew +13.09% 7d to $1.0M 24h (source: get_metric + protocol_fees(7d) + onchain_enriched), alongside a +10.7% 7d TVL surge to $13.61B (source: get_metric + protocol_fees(7d) + onchain_enriched). It commands 43.6% sector TVL share (source: sector-aware peers). The token trades at 4.4x P/F (rank 2/3 vs 4.4x median) (source: drill_valuation), but captures 0% of protocol fees (capture_pct=0) (source: drill_valuation), meaning the multiple reflects future expectations, not current accrual. The rapid TVL increase (+10.7% 7d) is provisional; retention is unproven.\n*   **Rocket Pool — 0.871% fee-yield, the lowest of the set (vs Morpho 5.495%, Aave 2.465%):** Fees spiked +82.58% 7d to $24K 24h (source: get_metric + protocol_fees(7d) + onchain_enriched), while TVL grew +7.67% 7d to $994.4M (source: get_metric + protocol_fees(7d) + onchain_enriched). It holds 3.5% share in liquid staking (source: sector-aware peers). The token is expensive on a fee-multiple basis at 49.0x P/F (rank 3/3 vs 2.7x median) (source: drill_valuation), despite capturing 0% of fees (capture_pct=null) (source: drill_valuation). The fee spike is noisy (24h_single_day basis) (source: get_metric + protocol_fees(7d) + onchain_enriched), requiring confirmation.\n\n## RECONCILIATION\n*   **CONFIRM (id: inq_mission_rotation):** Capital is rotating within lending, evidenced by Morpho Blue's superior fee-yield (5.495%) vs Aave (2.465%) despite lower TVL share (23.3% vs 43.6%) (source: get_metric + protocol_fees(7d) + onchain_enriched; sector-aware peers). This confirms the thesis that capital seeks yield efficiency over legacy dominance. The rotation is backed by fundamentals (fee-yield spread), not art.\n*   **REVISE (id: inq_mission_institutional):** The trigger for institutional entry was \"fee yield remains above 2.5% for 30 days\". Aave V3 (2.465%) is marginally below this threshold, while Morpho Blue (5.495%) is well above. The thesis is revised: institutional-grade yield is present in the sector (Morpho), but not uniformly across all blue-chips (Aave). The inquiry shifts to tracking if Aave's yield reverts upward to confirm broad sector adoption.\n\n## LECTURE\nThe lending sector is bifurcating between yield-efficiency (Morpho) and liquidity-safety (Aave). Morpho Blue's 5.495% fee-yield (source: get_metric + protocol_fees(7d) + onchain_enriched) demonstrates that capital can be deployed more productively than in legacy protocols, justifying its 23.3% market share (source: sector-aware peers). However, Aave's 94th percentile fee z-score (z=1.91 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched) indicates robust, albeit lower-yielding, demand. The critical risk is token valuation: neither Aave (4.4x P/F) nor Rocket Pool (49.0x P/F) (source: drill_valuation) captures protocol fees, rendering their multiples speculative on future governance switches. Value accrual i"
-  },
-  {
-   "ts": "2026-07-16T13:56:28Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 96.7,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Aave V3",
-    "Sanctum Validator LSTs",
-    "SparkLend"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 7,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nAave V3's protocol-level value accrual accelerated to a 94th percentile z-score (z=1.93 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched), driven by a +10.39% 7d TVL surge (source: get_metric + protocol_fees(7d) + onchain_enriched) concurrent with the V4 launch on Avalanche (source: CoinTelegraph), while SparkLend's fee generation decelerated significantly (-27.38% 7d fees) (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## FILS DOMINANTS\n*   **Sanctum Validator LSTs — 12.43% annualised fee-yield, the highest of the set (vs Aave V3 2.46%, SparkLend 1.78%):** Protocol generated $375K in 24h fees (source: get_metric + protocol_fees(7d) + onchain_enriched) on a $1.10B TVL base (source: get_metric + protocol_fees(7d) + onchain_enriched), securing 3.9% market share in liquid staking (source: sector-aware peers). Capital quality is mixed as TVL contracted -2.55% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) despite fee growth, suggesting yield compression or lower staking volumes; token capture is UNKNOWN (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Aave V3 — 2.46% annualised fee-yield, rank 2 of the set (vs SparkLend 1.78%):** Protocol generated $1.0M in 24h fees (source: get_metric + protocol_fees(7d) + onchain_enriched) on a $13.62B TVL base (source: get_metric + protocol_fees(7d) + onchain_enriched), commanding 43.6% sector market share (source: sector-aware peers). The +10.39% 7d TVL surge (source: get_metric + protocol_fees(7d) + onchain_enriched) is provisional capital quality—potentially incentivized by the V4 launch on Avalanche (source: CoinTelegraph)—and requires utilization data to confirm organic demand; token captures 0% of protocol fees today (source: drill_valuation).\n*   **SparkLend — 1.78% annualised fee-yield, the lowest of the set:** Protocol generated $142K in 24h fees (source: get_metric + protocol_fees(7d) + onchain_enriched) on a $3.55B TVL base (source: get_metric + protocol_fees(7d) + onchain_enriched), holding 11.4% market share (source: sector-aware peers). Capital quality is under pressure with fees down -27.38% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) and TVL down -2.43% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched); token capture is UNKNOWN (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\nNo prior theses were provided for reconciliation in this digest.\n\n## LECTURE\nThe divergence in fee-yields is stark: Sanctum Validator LSTs generates 12.43% (source: get_metric + protocol_fees(7d) + onchain_enriched) versus Aave V3's 2.46% (source: get_metric + protocol_fees(7d) + onchain_enriched), highlighting the structural premium of liquid staking revenue models over lending in the current cycle. Aave V3's expansion to Avalanche via V4 (source: CoinTelegraph) is a material mechanism shift aimed at capturing tokenized credit markets, but the immediate +10.39% 7d TVL spike (source: get_metric + protocol_fees(7d) + onchain_enriched) must be scrutinized for organic utilization versus mercenary capital. SparkLend's underperformance (z=-0.90 30d fees) (source: get_metric + protocol_fees(7d) + onchain_enriched) signals a potential rotation of capital toward higher-yielding or newer lending architectures like Morpho Blue. Investors must distinguish between protocol revenue growth and token value accrual; Aave's token currently captures 0% of fees (source: drill_valuation), rendering its 4.4x P/F multiple (source: drill_valuation) a bet on future governance capture rather than current cash flow.\nKill condition: Aave V3's fee-yield drops below 1.5% annualised for 30 consecutive days.\n\n## RISQUE\n*   **Aave V3:** The +10.39% 7d TVL surge (source: get_metric + pro"
   }
  ],
  "theses": [
@@ -838,6 +838,20 @@
     },
     {
      "ts": "07-15",
+     "c": 0.95
+    }
+   ]
+  },
+  {
+   "key": "AAVE::lending",
+   "verdict": "confirm",
+   "conviction": 0.95,
+   "trigger": "Aave V3 maintains 43.4% sector TVL share and 2.42% fee-yield, confirming lending dominance.",
+   "kill": "The number of active users and total value locked (TVL) within the Aave App in Q1 2027 will indicate the level of genuine demand and adoption of real-world asset integration within",
+   "ts": "2026-07-17T18:09:49Z",
+   "history": [
+    {
+     "ts": "07-17",
      "c": 0.95
     }
    ]
@@ -1142,10 +1156,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-16T15:09:05.045010+00:00",
-     "note": "Aave fee-yield is 2.465% (below 2.5% target), while Morpho Blue fee-yield is 5.495% (source: get_metric + protocol_fees(7d) + onchain_enriched)."
-    },
-    {
      "ts": "2026-07-16T18:07:15.076022+00:00",
      "note": "No new institutional vault integrations found on Morpho Blue in current digest."
     },
@@ -1160,18 +1170,18 @@
     {
      "ts": "2026-07-17T15:07:15.344759+00:00",
      "note": "Visa launched a stablecoin platform, but adoption metrics are undefined (source: read_articles)"
+    },
+    {
+     "ts": "2026-07-17T18:09:49.354274+00:00",
+     "note": "Visa platform active but lacks transparent TVL/fee metrics; net new fiat impact unconfirmed."
     }
    ],
-   "evidence": "inq_mission_institutional · next: Track adoption metrics of Visa's stablecoin platform and OUSD market share growth"
+   "evidence": "inq_mission_institutional · next: Track OUSD market share growth and on-chain settlement volume."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-16T21:06:44.022977+00:00",
-     "note": "Aave V3 TVL +9.65% 7d to $13.56B; Fees +6.1% 7d to $961K (source: get_metric + protocol_fees 7d)"
-    },
     {
      "ts": "2026-07-17T00:06:26.920684+00:00",
      "note": "Aave V3 TVL surged +9.94% 7d (z=1.49 30d) alongside supply cap increases on USDC/ETH (source: Aave Governance via read_articles)."
@@ -1187,9 +1197,13 @@
     {
      "ts": "2026-07-17T15:07:15.345245+00:00",
      "note": "Aave V3 TVL +1.64% 7d to $13.39B (source: get_metric + protocol_fees(7d) + onchain_enriched)"
+    },
+    {
+     "ts": "2026-07-17T18:09:49.354566+00:00",
+     "note": "Kinetiq kHYPE TVL -13.58% 7d (z=-2.29), confirming structural rotation out of Hyperliquid L1 LSTs."
     }
    ],
-   "evidence": "inq_mission_rotation · next: Analyze specific asset composition of Aave TVL inflow"
+   "evidence": "inq_mission_rotation · next: Analyze destination of outflows (Ethereum LSTs vs. Lending)."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1228,12 +1242,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 42.8,
+    "tvl": 43.1,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 42.1,
+    "tvl": 42.6,
     "yard": "TVL"
    },
    {
@@ -1256,17 +1270,17 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.69
+    "fy": 7.67
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.23
+    "fy": 7.18
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 7.21
+    "fy": 7.14
    },
    {
     "name": "Hastra",
@@ -1276,12 +1290,12 @@
    {
     "name": "Maple",
     "sector": "lending",
-    "fy": 6.78
+    "fy": 6.75
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.28
+    "fy": 6.22
    },
    {
     "name": "Sky Lending",
@@ -1291,17 +1305,17 @@
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.98
+    "fy": 5.91
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -512.1
+    "d7": -506.1
    },
    {
     "chain": "Solana",
-    "d7": 369.3
+    "d7": 369.5
    },
    {
     "chain": "Optimism",
@@ -1309,18 +1323,18 @@
    },
    {
     "chain": "Polygon",
-    "d7": 10.9
+    "d7": 11.0
    },
    {
     "chain": "Arbitrum",
-    "d7": 8.9
+    "d7": 9.0
    }
   ],
   "agg": {
    "stable_mcap_b": 296.1,
-   "stable_d7_pct": -0.62,
+   "stable_d7_pct": -0.64,
    "dex_vol_24h_b": 6.5,
-   "defi_tvl_b": 74.5
+   "defi_tvl_b": 74.8
   }
  },
  "robinhood": {
@@ -1333,7 +1347,7 @@
  "health": {
   "budget": {
    "day": "2026-07-17",
-   "glm": 29,
+   "glm": 32,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
@@ -1343,7 +1357,7 @@
    "unsupported_pct_7d": 19,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
-   "silent_r2_7d": 3
+   "silent_r2_7d": 4
   }
  }
 }
