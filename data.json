@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-18T14:48:01Z",
+ "generated_at": "2026-07-18T16:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-18T12:07:15Z",
+   "ts": "2026-07-18T15:09:04Z",
    "status": "ok",
-   "discipline": 95.6,
+   "discipline": 85.6,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 7
+  "runs_today": 8
  },
  "runs": [
-  {
-   "ts": "2026-07-15T03:09:29Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 74.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-15T06:08:20Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-18T15:09:04Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 85.6,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-18T15:09:04Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 85.6,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Morpho Blue",
+    "Lido",
+    "Compound V3"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's protocol fee-yield has surged to 5.59% annualized (7d), the highest among the monitored lending/LST set, outpacing Lido's 2.42% and Compound V3's 1.84%, driven by a +13.53% fee expansion over 7 days against a TVL baseline in the 98th percentile (z=1.44), signaling a potential shift in capital efficiency or risk-premia within its lending markets.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 5.59% fee-yield, the highest of the set (vs Lido 2.42%, Compound V3 1.84%):** Protocol fees increased +13.53% 7d while TVL grew +2.77% 7d, reaching $7.37B. The valuation shows a P/F of 3.1x (rank 1/3 in lending vs 4.0x median), appearing cheap on a fee-multiple basis, though the token captures 0% of protocol fees today (capture_pct=0). Capital quality is mixed; TVL is at a historical high (z=1.44 30d), but the fee expansion (z=-0.45 30d) lags the TVL surge, suggesting the yield spike may be driven by specific market utilization rather than broad-based organic growth.\n*   **Lido — 2.42% fee-yield, rank 2 of the set:** Protocol fees rose +2.04% 7d on a +2.58% 7d TVL increase to $16.91B, maintaining a dominant 61.7% market share in liquid staking. The token trades at a P/F of 0.7x (rank 1/3 in LST vs 3.5x median), a premium discount relative to peers, yet with 0% fee capture (capture_pct=0), this low multiple reflects market pricing of future utility rather than current cash flow. Capital quality is high, with both TVL and fees sitting in the top decile of their historical baselines (z=0.93 TVL, z=0.97 fees).\n*   **Compound V3 — 1.84% fee-yield, the lowest of the set:** Fees declined -4.35% 7d on a -0.66% 7d TVL dip to $1.14B, resulting in a P/F of 7.8x (rank 3/3 in lending vs 4.0x median), indicating a rich valuation on a fee-multiple basis despite underperformance. The token captures 0% of fees (capture_pct=0). Capital quality is stagnant, with metrics hovering near historical medians (z=-0.23 TVL, z=-0.20 fees), and the protocol holds only 3.7% lending market share.\n\n## RECONCILIATION\n*   **id: systemic_risk_morpho (REVISE)** | Prior thesis flagged systemic risk at a critical utilization threshold. The current data shows fee-yield expanding (+13.53% 7d) while TVL grows (+2.77% 7d), suggesting the protocol is currently generating higher revenue per unit of capital rather than experiencing a liquidity crunch. However, the fee baseline (z=-0.45 30d) remains below the TVL expansion (z=1.44 30d), implying the yield spike is not yet normalized or sustainable. We REVISE the thesis to monitor the *duration* of this yield spread; if fee growth reverts to match the lower baseline while TVL remains elevated, the risk of yield compression for suppliers increases.\n*   **id: lido_dominance (CONFIRM)** | Lido's 61.7% market share and top-decile fee generation (z=0.97 30d) confirm its continued dominance in the liquid staking sector. The lack of token capture (0%) remains a key divergence between protocol health and token value accrual, but the fundamental thesis of protocol-level dominance is validated by the sustained high TVL and fee metrics relative to peers.\n\n## LECTURE\nThe divergence between protocol revenue and token value accrual is the defining characteristic of this set. Morpho Blue and Lido are generating superior fee-yields (5.59% and 2.42% respectively) and hold significant market share (23.6% and 61.7%), yet their tokens capture none of this cash flow. This creates a valuation paradox: Morpho trades at a \"cheap\" 3.1x P/F relative to its lending peers, while Lido trades at a deep-discount 0.7x P/F, but both multiples are disconnected from actual shareholder yield. The market is clearly pricing these tokens on *future* utility or governance potential rather than current income. For Compound V3, the rich 7.8x P"
+  },
   {
    "ts": "2026-07-18T12:07:15Z",
    "tier": "A",
@@ -771,31 +800,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nAave V3 solidified its market dominance with a 2.51% annualised fee-yield (7d-smoothed) and 43.4% sector TVL share, while Base faces a regional regulatory constraint from MiCA that is driving a hypothesized venue-bounded migration from USDT to compliant assets like USDC/EURC, though global stablecoin floats remain unaffected.\n\n## FILS DOMINANTS\n*   **Aave V3 — 2.51% fee-yield, the highest of the set (vs Base 0.37%):** TVL increased +6.7% 7d to $13.35B (z=1.03 86th pctile), securing a 43.4% market share in lending (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is high as the protocol operates at the 86th percentile for TVL vs baseline, though the token captures 0% of these fees today (capture_pct=0), meaning the 4.1x P/F multiple (rank 2/3 vs 4.1x median) prices in future fee generation, not current value accrual (source: drill_valuation).\n*   **Base — 0.37% fee-yield, the lowest of the set (vs Aave 2.51%):** Fees grew +4.06% 7d to $60K (z=0.81 88th pctile) on a stable $5.94B TVL base (z=0.61 68th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky relative to baseline, but the chain is subject to a compliance constraint regime (MiCA) forcing the delisting of USDT pairs on EU venues, creating a regional headwind for specific liquidity pairs rather than a systemic threat to total DeFi TVL (source: drill_reg).\n*   **MiCA stablecoin tightening — N/A (Regulatory regime, not a fee-generating protocol):** This regime acts as a compliance constraint on EU venues, forcing a migration from USDT to compliant alternatives (USDC/EURC) (source: drill_reg). The effect is strictly regional; global USDT float is stable (+2%), refuting any thesis of a global net flow out of USDT (source: drill_reg).\n\n## RECONCILIATION\n*   **Thesis: Organic Demand vs Transient Incentives (Aave V3):** REVISE. The +6.7% 7d TVL growth (z=1.03 86th pctile) alongside a high 2.51% fee-yield suggests organic capital deployment rather than mercenary liquidity, as high fee-yield typically correlates with genuine utilization rather than idle incentivized capital (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Thesis: Systemic Exploit Risk on Base:** RETIRE. The digest flags no systemic exploit risk; the primary material development is the regulatory constraint from MiCA. The stable TVL (z=0.61 68th pctile) and fee growth (z=0.81 88th pctile) indicate fundamental operational stability despite the regulatory noise (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## LECTURE\nThe market is mispricing the regulatory impact on Base by conflating regional venue constraints with global float dynamics. The MiCA regime forces a substitution effect (USDT -> USDC/EURC) within EU-licensed venues, a hypothesis confirmed by rising EURC/USDC share on EUR-denominated volume, but this is bounded by the reality that the EU is a fraction of the global USDT float (source: drill_reg). Consequently, the fee-yield on Base (0.37%) remains robust relative to its baseline (z=0.81 88th pctile), suggesting the infra-protocol is capturing value from the increased activity of compliant assets even as specific pairs are delisted. For Aave, the 4.1x P/F multiple is effectively a forward-looking indicator, as the token currently captures none of the protocol's substantial 2.51% fee-yield; investors are paying for the *option* of a fee switch, not current cash flow.\nKill condition: Aave's fee-yield dropping below 1.0% (7d-smoothed) or Base's TVL z-score falling below 0.2 (30d) indicating capital flight.\n\n## RISQUE\n*   **Aave V3:** Valuation risk is elevated as the 4.1x P/F multiple (rank 2/3) assumes a future fee capture mechanism (capture_pct=0). If governance fails to implem"
-  },
-  {
-   "ts": "2026-07-17T09:37:36Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 82.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 8,
-    "R6": 7,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\nVisa has launched a stablecoin platform enabling banks and fintech companies to integrate stablecoin payments and treasury operations into its network, providing services to over 200 million merchants (source: read_articles). The platform is backing Open USD (OUSD), creating direct competition for Circle's USDC (source: read_articles). Visa expects stablecoins to play a role in powering micro-commerce within an AI agentic economy (source: read_articles). This development occurs alongside a notable regulatory shift, with multiple jurisdictions (UK, Hong Kong, Taiwan) reserving regulated stablecoin issuance to banks (source: get_reg_exposure).\n\n## RECONCILIATION\n\nNo prior theses on stablecoins exist to reconcile against.\n\n## LECTURE\n\nVisa's entry into the stablecoin space represents a structural shift in the payments landscape, moving stablecoins from a crypto-native tool to a mainstream payment rail. By backing OUSD and providing access to its 200 million merchant network, Visa is effectively creating a bridge between traditional finance and DeFi that could accelerate institutional adoption of stablecoins. This development is particularly significant given the regulatory trend toward bank-issued stablecoins in multiple jurisdictions. The timing suggests Visa is positioning itself ahead of the GENIUS Act implementation in the US (expected full enforcement in 2027-01) and other regulatory frameworks coming online globally.\n\nHowever, the current stablecoin market dynamics show declining supplies across major stablecoins (USDC -0.2%, USDT -0.1%, DAI -0.3%, USDS -11.9% in 7d), suggesting net fiat is exiting crypto rather than entering (source: get_metric). This creates a paradox where institutional infrastructure is being built during a period of capital outflow, potentially indicating a longer-term strategic positioning rather than immediate demand.\n\nKill condition: If OUSD fails to gain meaningful market share (less than 5% of USDC market cap) within 6 months of launch, or if Visa withdraws its support for the platform.\n\n## LIVE EVENTS\n\nCritical exploit risks remain active across multiple protocols, including Base, Aave, and several unidentified protocols (source: get_events). Aave V3 continues to show strong TVL growth (+9.75% 7d to $13.52B) despite protocol fees dipping -0.63% (7d), suggesting the capital influx is liquidity migration rather than immediate revenue generation (source: get_recent_briefs).\n\n## SUIVI\n\nAdvanced inquiry on fresh money patterns by monitoring stablecoin supply metrics. Found that major stablecoins (USDC, USDT, DAI, USDS) are all experiencing declining supplies over the past 7 days, suggesting net fiat is exiting crypto rather than entering. This contradicts the narrative of institutional adoption and indicates a potential disconnect between infrastructure development and capital flows.\n\n## OPEN QUESTIONS\n\n1. Will Visa's entry into the stablecoin space trigger a new wave of institutional adoption, or will it remain limited to existing crypto users?\n2. How will Circle respond to the competitive threat from Visa-backed OUSD?\n3. What impact will the declining stablecoin supplies have on DeFi liquidity and yields in the short term?"
   }
  ],
  "theses": [
@@ -1191,10 +1195,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-17T15:07:15.345245+00:00",
-     "note": "Aave V3 TVL +1.64% 7d to $13.39B (source: get_metric + protocol_fees(7d) + onchain_enriched)"
-    },
-    {
      "ts": "2026-07-17T18:09:49.354566+00:00",
      "note": "Kinetiq kHYPE TVL -13.58% 7d (z=-2.29), confirming structural rotation out of Hyperliquid L1 LSTs."
     },
@@ -1209,6 +1209,10 @@
     {
      "ts": "2026-07-18T12:07:15.028708+00:00",
      "note": "Sanctum TVL -4.07% 7d vs Morpho Blue TVL +2.43% 7d (source: get_metric)"
+    },
+    {
+     "ts": "2026-07-18T15:09:04.429652+00:00",
+     "note": "Morpho Blue TVL at z=1.44 (98th pctile) and fees +13.53% 7d suggests capital inflow into lending."
     }
    ],
    "evidence": "inq_mission_rotation · next: Analyze destination of outflows (Ethereum LSTs vs. Lending)."
@@ -1278,7 +1282,7 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.73
+    "fy": 7.74
    },
    {
     "name": "Hastra",
@@ -1293,12 +1297,12 @@
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 5.59
+    "fy": 5.58
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.52
+    "fy": 5.53
    },
    {
     "name": "Maple",
@@ -1319,28 +1323,28 @@
   "flows": [
    {
     "chain": "Solana",
-    "d7": 419.5
+    "d7": 419.6
    },
    {
     "chain": "Ethereum",
-    "d7": -376.2
+    "d7": -373.2
    },
    {
     "chain": "Arbitrum",
-    "d7": -38.7
+    "d7": -38.6
    },
    {
     "chain": "Polygon",
-    "d7": 11.6
+    "d7": 11.7
    },
    {
     "chain": "Optimism",
-    "d7": -1.7
+    "d7": -1.6
    }
   ],
   "agg": {
-   "stable_mcap_b": 296.4,
-   "stable_d7_pct": -0.67,
+   "stable_mcap_b": 296.5,
+   "stable_d7_pct": -0.68,
    "dex_vol_24h_b": 6.6,
    "defi_tvl_b": 75.3
   }
@@ -1355,14 +1359,14 @@
  "health": {
   "budget": {
    "day": "2026-07-18",
-   "glm": 38,
+   "glm": 41,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 3,
-   "unsupported_pct_7d": 18,
+   "unsupported_pct_7d": 17,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 3
