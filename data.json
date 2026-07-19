@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-19T14:48:02Z",
+ "generated_at": "2026-07-19T16:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-19T12:06:26Z",
+   "ts": "2026-07-19T15:07:35Z",
    "status": "ok",
-   "discipline": 95.6,
+   "discipline": 96.7,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 8
+  "runs_today": 9
  },
  "runs": [
-  {
-   "ts": "2026-07-16T00:07:44Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-16T03:07:54Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 2,
    "phase": null
+  },
+  {
+   "ts": "2026-07-19T15:07:35Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 96.7,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-19T15:07:35Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 96.7,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "SparkLend",
+    "Solana",
+    "Base"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSparkLend's TVL surged +7.25% 7d to $3.56B, yet protocol fees collapsed -18.5% 7d, driving its fee-yield to 1.62% (z=-0.53), significantly lagging peers and signaling potential capital inefficiency or transient, incentivized flows.\n\n## FILS DOMINANTS\n*   **SparkLend — 1.62% fee-yield, the highest of the set (vs Base 0.36%):** TVL expanded +7.25% 7d to $3.56B (z=0.23), but protocol fees fell -18.5% 7d to $147K, creating a negative divergence between capital base and revenue. Capital quality is questionable; the fee-yield decoupling suggests the inflows may be yield-chasing or launch-incentivized rather than organic, sticky deposits. (source: get_metric + protocol_fees(7d) + onchain_enriched)\n*   **Base — 0.36% fee-yield, the lowest of the set:** TVL grew +1.02% 7d to $6.11B (z=1.10, 88th pctile), with fees up +1.36% 7d to $59K. While capital accumulation is strong relative to its historical baseline, the fee-yield is exceptionally thin (0.36%), indicating the base is currently a low-yield capital sink. Capital quality appears stickier than SparkLend given the fee alignment, but the absolute value accrual is weak. (source: get_metric + protocol_fees(7d) + onchain_enriched)\n*   **Solana — No fee-yield data available:** The digest reports a +16.91% 7d stablecoin net flow, but lacks the necessary fee-yield or TVL data to rank its value accrual. The capital quality inquiry remains open regarding whether this flow is fresh fiat entry or arbitrage migration. (source: get_metric + protocol_fees(7d) + onchain_enriched)\n\n## RECONCILIATION\n*   **REVISE (id: thesis_sparklend_efficiency):** The prior thesis that SparkLend's TVL growth signaled efficient capital deployment is revised. The -18.5% 7d drop in fees amidst +7.25% 7d TVL growth (source: get_metric + protocol_fees(7d) + onchain_enriched) confirms a red_team_challenge that the surge is driven by low-quality or incentivized capital, not productive utilization.\n\n## LECTURE\nThe divergence between SparkLend's expanding TVL and contracting fees is a warning sign for capital efficiency. In lending, fee-yield is the primary proxy for utilization and risk-adjusted returns; a 1.62% yield on a $3.56B base is sub-optimal relative to the sector's risk profile. Base, while boasting a high TVL z-score (1.10), generates minimal fee-yield (0.36%), suggesting it is acting more as a liquidity warehouse than a high-yield engine. Investors should prioritize protocols where TVL expansion correlates with fee growth, rather than treating TVL as a standalone success metric.\nKill condition: SparkLend's fee-yield drops below 1.0% or TVL contracts by >5% while fees remain flat.\n\n## RISQUE\n*   **SparkLend:** Risk of \"ghost liquidity\" where TVL is inflated by mercenary capital that flees once incentives decay, leading to a sudden collapse in utilization metrics.\n*   **Base:** Regulatory exposure to MiCA stablecoin tightening (regime: compliance_constraint) could force venue-specific liquidity shifts (USDT -> USDC/EURC) within the EU, though this is regionally bounded and does not imply a global net flow. (source: drill_reg)\n*   **Solana:** The +16.91% 7d stablecoin flow may be transient arbitrage rather than sustainable fiat entry, risking a sharp reversal if cross-chain rate differentials normalize.\n\n## SUIVI\n*   **inq_mission_rotation:** Evidence shows SparkLend's fee-yield (1.62%) is decoupling from its TVL growth (+7.25% 7d), supporting the rotation thesis that capital is moving into lower-yield or incentivized positions. Next probe: Monitor if this decoupling persists or reverses over the next 7 days. (source: get_metric + protocol_fees(7d) + onchain_enriched)\n*   **inq_mission_fresh_money:** Evidence shows Solana net stablecoin flows +16.91% 7d, but without fee-yield data, the "
+  },
   {
    "ts": "2026-07-19T12:06:26Z",
    "tier": "A",
@@ -767,35 +796,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's protocol fee-yield has surged to 5.59% annualized (7d), the highest among the monitored lending/LST set, outpacing Lido's 2.42% and Compound V3's 1.84%, driven by a +13.53% fee expansion over 7 days against a TVL baseline in the 98th percentile (z=1.44), signaling a potential shift in capital efficiency or risk-premia within its lending markets.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 5.59% fee-yield, the highest of the set (vs Lido 2.42%, Compound V3 1.84%):** Protocol fees increased +13.53% 7d while TVL grew +2.77% 7d, reaching $7.37B. The valuation shows a P/F of 3.1x (rank 1/3 in lending vs 4.0x median), appearing cheap on a fee-multiple basis, though the token captures 0% of protocol fees today (capture_pct=0). Capital quality is mixed; TVL is at a historical high (z=1.44 30d), but the fee expansion (z=-0.45 30d) lags the TVL surge, suggesting the yield spike may be driven by specific market utilization rather than broad-based organic growth.\n*   **Lido — 2.42% fee-yield, rank 2 of the set:** Protocol fees rose +2.04% 7d on a +2.58% 7d TVL increase to $16.91B, maintaining a dominant 61.7% market share in liquid staking. The token trades at a P/F of 0.7x (rank 1/3 in LST vs 3.5x median), a premium discount relative to peers, yet with 0% fee capture (capture_pct=0), this low multiple reflects market pricing of future utility rather than current cash flow. Capital quality is high, with both TVL and fees sitting in the top decile of their historical baselines (z=0.93 TVL, z=0.97 fees).\n*   **Compound V3 — 1.84% fee-yield, the lowest of the set:** Fees declined -4.35% 7d on a -0.66% 7d TVL dip to $1.14B, resulting in a P/F of 7.8x (rank 3/3 in lending vs 4.0x median), indicating a rich valuation on a fee-multiple basis despite underperformance. The token captures 0% of fees (capture_pct=0). Capital quality is stagnant, with metrics hovering near historical medians (z=-0.23 TVL, z=-0.20 fees), and the protocol holds only 3.7% lending market share.\n\n## RECONCILIATION\n*   **id: systemic_risk_morpho (REVISE)** | Prior thesis flagged systemic risk at a critical utilization threshold. The current data shows fee-yield expanding (+13.53% 7d) while TVL grows (+2.77% 7d), suggesting the protocol is currently generating higher revenue per unit of capital rather than experiencing a liquidity crunch. However, the fee baseline (z=-0.45 30d) remains below the TVL expansion (z=1.44 30d), implying the yield spike is not yet normalized or sustainable. We REVISE the thesis to monitor the *duration* of this yield spread; if fee growth reverts to match the lower baseline while TVL remains elevated, the risk of yield compression for suppliers increases.\n*   **id: lido_dominance (CONFIRM)** | Lido's 61.7% market share and top-decile fee generation (z=0.97 30d) confirm its continued dominance in the liquid staking sector. The lack of token capture (0%) remains a key divergence between protocol health and token value accrual, but the fundamental thesis of protocol-level dominance is validated by the sustained high TVL and fee metrics relative to peers.\n\n## LECTURE\nThe divergence between protocol revenue and token value accrual is the defining characteristic of this set. Morpho Blue and Lido are generating superior fee-yields (5.59% and 2.42% respectively) and hold significant market share (23.6% and 61.7%), yet their tokens capture none of this cash flow. This creates a valuation paradox: Morpho trades at a \"cheap\" 3.1x P/F relative to its lending peers, while Lido trades at a deep-discount 0.7x P/F, but both multiples are disconnected from actual shareholder yield. The market is clearly pricing these tokens on *future* utility or governance potential rather than current income. For Compound V3, the rich 7.8x P"
-  },
-  {
-   "ts": "2026-07-18T12:07:15Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 95.6,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Morpho Blue",
-    "Sanctum Validator LSTs",
-    "Maple"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSanctum Validator LSTs generated a 12.57% annualised fee-yield (24h), the highest in the set, driven by a +235,780.38% fee spike 7d, while Morpho Blue expanded TVL to $7.34B (+2.43% 7d) at a 96th percentile z-score, maintaining a 5.61% fee-yield.\n\n## FILS DOMINANTS\n*   Sanctum Validator LSTs — 12.57% fee-yield, the highest of the set (vs Morpho Blue 5.61%, Maple 5.52%): Fee generation spiked +235,780.38% 7d (source: protocol_fees 7d), though this is based on a noisy 24h single-day metric; TVL declined -4.07% 7d (source: get_metric). Capital quality is provisional as the fee spike lacks duration.\n*   Morpho Blue — 5.61% fee-yield, rank 2 of 3 (vs Maple 5.52%, Sanctum 12.57%): TVL grew to $7.34B (+2.43% 7d), placing it at z=1.35 (96th pctile, n=241) relative to baseline (source: get_metric). Protocol fees increased +45.62% 7d (source: protocol_fees 7d). Capital quality is high, supported by organic TVL expansion, though the 'INFINIFIUSDC' pool's 1662.45% avg_rate warrants monitoring for distress.\n*   Maple — 5.52% fee-yield, rank 3 of 3 (vs Morpho Blue 5.61%, Sanctum 12.57%): TVL is $2.26B (-0.74% 7d), with fees declining -44.99% 7d (source: protocol_fees 7d). Capital quality is sticky, holding 7.3% lending market share (source: sector-aware peers), despite the recent fee volatility.\n\n## RECONCILIATION\n*   **SYSTEMIC RISK EMERGENCE: Morpho Blue at Critical Utilization Threshold (id: prior_morpho_util)**: REVISE. While the 'INFINIFIUSDC' pool exhibits a 1662.45% avg_rate, the protocol's overall TVL expanded (+2.43% 7d) to a 96th percentile z-score, suggesting capital inflows are offsetting the specific pool's risk signals rather than indicating systemic contagion. The fee-yield remains robust at 5.61% (source: get_metric + protocol_fees 7d).\n\n## LECTURE\nThe divergence between Sanctum's explosive fee growth and TVL contraction highlights a \"yield-chase\" dynamic where short-term revenue spikes do not immediately translate to sticky capital. In contrast, Morpho Blue demonstrates \"sticky capital\" characteristics, with TVL growth (z=1.35) outpacing fee growth (z=-0.22), indicating a valuation expansion phase rather than pure yield extraction. Maple's fee decline (-44.99% 7d) amidst stable TVL suggests compression in lending spreads or utilization, a fundamental headwind for yield-dependent models. Investors should prioritize protocols where fee-yield is supported by baseline-relative TVL expansion (Morpho) over those relying on transient fee spikes (Sanctum).\nKill condition: Morpho Blue TVL z-score drops below 0.5 while fee-yield falls below 4%.\n\n## RISQUE\n*   **Sanctum Validator LSTs**: The +235,780.38% fee spike 7d is likely non-recurring; reversion to mean could severely depress the 12.57% yield figure, misleading capital quality assessments.\n*   **Morpho Blue**: The 1662.45% rate on the 'INFINIFIUSDC' pool suggests potential pre-liquidation distress; a liquidation event could trigger rapid TVL outflows if correlated assets are impacted.\n*   **Maple**: Sustained fee compression (-44.99% 7d) may indicate reduced borrower demand or increased competition, pressuring the 5.52% fee-yield and potentially eroding market share.\n\n## SUIVI\n*   **inq_mission_rotation**: Evidence of capital rotation is mixed; Sanctum (LST) saw TVL outflows (-4.07% 7d) while Morpho (Lending) saw inflows (+2.43% 7d), suggesting a rotation from LSTs to Lending. Next probe: Analyze destination of outflows (Ethereum LSTs vs. Lending)."
   }
  ],
  "theses": [
@@ -979,7 +979,7 @@
    "verdict": "confirm",
    "conviction": 0.85,
    "trigger": "Digital asset ecosystem demonstrating diversification of capital and functionality beyond Bitcoin, with increasing activity on alternative layer-1 blockchains.",
-   "kill": "The volume of security token offerings (STOs) launched on Avalanche over the next quarter will indicate the sustainability of capital flow away from more established platforms.",
+   "kill": "Monitor the frequency and scope of enforcement actions taken by the CFTC and SEC regarding crypto exchanges and trading platforms over the next quarter, as an increase would confir",
    "ts": "2026-07-18T21:05:44Z",
    "history": [
     {
@@ -1150,10 +1150,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-18T09:07:27.390835+00:00",
-     "note": "Solana stablecoin inflows are driven by both CEX ramps and bridges, though exact split is unclear."
-    },
-    {
      "ts": "2026-07-18T21:05:44.676767+00:00",
      "note": "Solana stablecoin inflows of $419M require origin analysis (CEX vs bridge) to assess stickiness (source: capital_questions)."
     },
@@ -1168,9 +1164,13 @@
     {
      "ts": "2026-07-19T09:36:56.133205+00:00",
      "note": "Global stablecoin market cap -0.7% 7d to $296.4B, with Solana +$420.9M inflows vs Ethereum -$310M outflows, indicating chain rotation not fresh fiat (source: get_metric, get_analyst_note)"
+    },
+    {
+     "ts": "2026-07-19T15:07:35.116608+00:00",
+     "note": "Solana stablecoin net flow +16.91% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Track if Solana stablecoin inflows sustain or reverse in next 7 days"
+   "evidence": "inq_mission_fresh_money · next: Track if Solana stablecoin inflows sustain or reverse in next 7 days."
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
@@ -1204,10 +1204,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-19T00:07:07.754728+00:00",
-     "note": "Capital rotating from generic lending (Aave V3 fees -1.65% 7d) to high-yield lending (Morpho Blue fees +16.45% 7d)."
-    },
-    {
      "ts": "2026-07-19T06:07:32.220597+00:00",
      "note": "SparkLend TVL +9.13% 7d vs fees -20.05% 7d suggests rotation into low-yield capital; Aave V3 holds 43.6% share vs SparkLend 11.5% (source: get_metric + sector-aware peers)."
     },
@@ -1222,6 +1218,10 @@
     {
      "ts": "2026-07-19T12:06:26.104796+00:00",
      "note": "SparkLend fees -25.08% 7d vs TVL +9.79% 7d; Morpho Blue fees -20.56% 7d vs TVL +4.35% 7d (source: protocol_fees 7d)"
+    },
+    {
+     "ts": "2026-07-19T15:07:35.116270+00:00",
+     "note": "SparkLend fee-yield 1.62% vs TVL +7.25% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     }
    ],
    "evidence": "inq_mission_rotation · next: Monitor if SparkLend's fee-yield continues to decouple from its TVL growth in next 7 days."
@@ -1296,12 +1296,7 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 6.94
-   },
-   {
-    "name": "Sanctum Validator LSTs",
-    "sector": "lst",
-    "fy": 6.9
+    "fy": 6.92
    },
    {
     "name": "Hastra",
@@ -1309,9 +1304,14 @@
     "fy": 6.9
    },
    {
+    "name": "Sanctum Validator LSTs",
+    "sector": "lst",
+    "fy": 6.87
+   },
+   {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.09
+    "fy": 6.07
    },
    {
     "name": "Sky Lending",
@@ -1321,7 +1321,7 @@
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 5.58
+    "fy": 5.6
    },
    {
     "name": "Fluid Lending",
@@ -1332,15 +1332,15 @@
   "flows": [
    {
     "chain": "Solana",
-    "d7": 420.7
+    "d7": 420.8
    },
    {
     "chain": "Ethereum",
-    "d7": -317.0
+    "d7": -312.7
    },
    {
     "chain": "Arbitrum",
-    "d7": -35.2
+    "d7": -35.1
    },
    {
     "chain": "Polygon",
@@ -1348,12 +1348,12 @@
    },
    {
     "chain": "BSC",
-    "d7": 3.8
+    "d7": 4.3
    }
   ],
   "agg": {
    "stable_mcap_b": 296.4,
-   "stable_d7_pct": -0.7,
+   "stable_d7_pct": -0.71,
    "dex_vol_24h_b": 4.6,
    "defi_tvl_b": 75.8
   }
@@ -1368,7 +1368,7 @@
  "health": {
   "budget": {
    "day": "2026-07-19",
-   "glm": 36,
+   "glm": 38,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
