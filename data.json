@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-20T14:48:01Z",
+ "generated_at": "2026-07-20T16:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-20T12:07:10Z",
+   "ts": "2026-07-20T15:06:51Z",
    "status": "ok",
-   "discipline": 97.0,
+   "discipline": 94.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 7
+  "runs_today": 8
  },
  "runs": [
-  {
-   "ts": "2026-07-16T18:07:15Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-16T21:06:44Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-20T15:06:51Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-20T15:06:51Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "NEAR",
+    "Binance staked ETH",
+    "JustLend V1"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBinance staked ETH's protocol revenue collapsed (-48.85% 7d fees) despite a surge in capital (+5.53% 7d TVL), creating a divergence between asset base and yield generation, while JustLend V1's fees expanded (+20.85% 7d fees) on a flat capital base (-0.24% 7d TVL).\n\n## FILS DOMINANTS\n*   **Binance staked ETH** — 1.919% fee-yield, the highest of the set (vs JustLend V1 0.768%): Protocol fees crashed -48.85% 7d (z=0.15 7d, 73rd pctile) while TVL expanded +5.53% 7d (z=1.17 7d, 93rd pctile) to $6.96B, capturing 24.9% market share in liquid staking (vs Lido 61.6%) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky (institutional custody), but the token captures none of these protocol fees today (capture_pct is null).\n*   **JustLend V1** — 0.768% fee-yield, the second highest of the set: Protocol fees rose +20.85% 7d (z=-0.87 7d, 27th pctile) on a stable TVL of $3.26B (-0.24% 7d, z=0.54 7d, 61st pctile), holding 10.3% market share in lending (vs Aave V3 43.6%) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky (established TVL), but the token captures none of these protocol fees today (capture_pct is null).\n*   **NEAR** — No fee-yield available (null): No fundamental valuation data available in the digest to assess value accrual or capital quality (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **inq_mission_fresh_money**: REVISE. The surge in Binance staked ETH TVL (+5.53% 7d) alongside a -48.85% drop in 7d fees suggests capital rotation into yield-bearing assets is occurring, but it is not driving proportional protocol revenue, implying the \"fresh money\" is yield-seeking rather than utility-driven. This contradicts the prior hypothesis that fresh capital inflows would correlate with fee expansion.\n\n## LECTURE\nThe divergence in Binance staked ETH—expanding TVL versus collapsing fees—signals that capital is flowing into the asset for staking rewards or balance sheet positioning rather than for on-chain utility or transaction volume. This is a \"capital parking\" behavior. JustLend V1's fee expansion on flat TVL indicates improved utilization or rate spread capture within the existing capital base. Regulatory pressure (MiCA) is forcing venue-specific migration (USDT to USDC/EURC in the EU), but this is a regional constraint, not a global net flow; global USDT supply remains stable (+2%), so do not extrapolate EU venue delistings to a systemic DeFi liquidity drain.\n\nKill condition: Binance staked ETH fee-yield drops below 1.0% while TVL continues to rise, confirming capital is purely dormant.\n\n## RISQUE\n*   **Binance staked ETH**: Regulatory risk is material but regionally bounded. The MiCA regime (in_force_enforced) acts as a compliance constraint in the EU, forcing USDT delisting and inferring a migration to USDC/EURC on EU venues. However, this flow is bounded by the offshore float; global USDT is stable. A \"flow_inferred\" hypothesis suggests checking for rising EURC/USDC share on EUR-denominated volume, but this is a condition to monitor, not a confirmed outcome (source: drill_reg, CoinTelegraph).\n*   **JustLend V1**: Valuation risk is high as the token captures 0% of protocol fees; any \"cheap\" assessment is invalid as it prices future fee generation, not current cash flow.\n\n## SUIVI\n*   **inq_mission_fresh_money**: Evidence shows Binance staked ETH TVL +5.53% 7d (z=1.17) while fees -48.85% 7d (z=0.15), indicating capital inflows are not driving fee generation (source: get_metric + protocol_fees(7d) + onchain_enriched). Next probe: Analyze if the TVL increase correlates with an increase in staked ETH ratio or a shift from other LSTs to confirm rotation vs fresh fiat entry."
+  },
   {
    "ts": "2026-07-20T12:07:10Z",
    "tier": "A",
@@ -771,31 +800,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue has overtaken SparkLend in total value locked (TVL) while delivering significantly superior fee-yields, highlighting a capital efficiency divergence in the lending sector where SparkLend's TVL expansion is not translating into protocol revenue.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 5.57% fee-yield, the highest of the set (vs SparkLend 1.58%):** TVL reached $7.47B (+4.35% 7d), ranking 1st in the lending sector by fee-yield. The protocol commands 23.7% market share (source: sector-aware peers), second only to Aave V3. Capital quality appears sticky as TVL sits at z=1.70 (100th pctile) despite a 20.56% dip in fees over the week, suggesting robust base utilization rather than transient liquidity mining.\n*   **SparkLend — 1.58% fee-yield, the lowest of the set (vs Morpho Blue 5.57%):** TVL surged to $3.64B (+9.79% 7d), but protocol fees collapsed -25.08% 7d (source: protocol_fees 7d). This widening disconnect between capital inflows and value accrual raises questions about capital quality; the growth may be driven by low-yield or incentivized liquidity rather than organic yield-seeking behavior. It holds 11.5% sector market share (source: sector-aware peers).\n\n## RECONCILIATION\n*   **REVISE th_20260719_0320_aave (Aave V4 expansion):** The thesis that Aave is strengthening its position is revised to incorporate sector-wide fee compression evidence. While Aave remains dominant by TVL, the observed divergence in peer protocols (SparkLend fees -25.08% 7d vs TVL +9.79% 7d) confirms that new capital entering the lending sector is increasingly price-sensitive and yield-dilutive, pressuring protocol-level revenue across the stack (source: protocol_fees 7d).\n\n## LECTURE\nThe lending sector is exhibiting a classic \"growth without profit\" signal. SparkLend's TVL surge is fundamentally disconnected from its fee generation, implying that the marginal capital is low-turnover or seeking sub-market yields, potentially due to risk-off positioning or specific incentive structures. In contrast, Morpho Blue's ability to maintain a 5.57% fee-yield on a larger base ($7.47B) indicates superior capital efficiency and risk pricing. Investors should prioritize protocols where TVL expansion correlates with fee growth, as this indicates organic demand for leverage and borrowing, rather than passive capital parking.\nKill condition: SparkLend fee-yield remains below 1.0% for two consecutive weeks while TVL continues to expand.\n\n## RISQUE\n*   **Liquidity Risk (Morpho Blue):** Elevated fee-yields (5.57%) often correlate with high utilization rates. If utilization approaches maximum capacity, liquidity stress could force liquidations or rate spikes, potentially deterring new borrowers and causing rapid TVL outflows.\n*   **Yield Dilution (SparkLend):** The current fee-yield of 1.58% is near the lower bound of the sector. If the inflow of low-yield capital persists, the protocol's revenue base may become insufficient to cover operational costs or incentivize liquidity providers, leading to a degradation of service quality.\n\n## SUIVI\n*   **inq_mission_rotation:** Fee-yield deterioration is confirmed in SparkLend (-25.08% 7d fees) but not yet in Morpho Blue (-20.56% 7d fees on a growing base). Next probe: Monitor if SparkLend's fee-yield continues to decouple from its TVL growth over the next 7 days (source: protocol_fees 7d)."
-  },
-  {
-   "ts": "2026-07-19T09:36:56Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 96.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 9,
-    "R8": 8,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\n**CRITICAL EXPLOIT RISK SURGE ACROSS DEFI-RWA AND LENDING PROTOCOLS**\n\nA cluster of critical exploit risks has emerged across multiple DeFi protocols, with 18 active exploit_risk events flagged in the past 14 days. The most urgent threats include:\n\n- **Base chain exploit** (critical urgency, 62.3h old, 90% confidence) - active drain/exploit detected\n- **DeFi-RWA sector exploit** (critical urgency, 86.3h old, 90% confidence) - active drain/exploit affecting RWA protocols\n- **Sky protocol hack** (critical urgency, 44.3h old, 70% confidence) - potential vulnerability in lending protocol\n- **Ondo Finance hack** (critical urgency, 44.3h old, 70% confidence) - RWA protocol under active threat\n- **Lido audit concern** (critical urgency, 38.3h old, 70% confidence) - liquid staking protocol security review\n\nThis security crisis coincides with the sector rotation narrative where capital has been flowing into lending protocols (+9.68% 7d TVL for SparkLend to $3.64B) and RWA tokenization (84% of financial firms prioritizing tokenization). The exploit risks particularly threaten the RWA narrative, which was already showing weakness with major RWA protocols experiencing TVL declines: BlackRock BUIDL (-6.78% 7d), Circle USYC (-3.64% 7d), and Tether Gold (-2.03% 7d) (source: get_analyst_note).\n\n## RECONCILIATION\n\n**CONFIRM Aave Thesis (id: th_20260704_0320_aave)**: The prior Aave thesis on risk management and capital efficiency remains valid despite the exploit risks. Aave V3 TVL increased +3.69% 7d to $13.73B (z=1.48, 96th pctile), confirming lending sector dominance. However, the red team challenge regarding increased operational complexity from onboarding new asset types (PAXG, PT-AUSD-8OCT2026) becomes more relevant given the current exploit environment. The thesis is CONFIRMED with conviction 0.92, but the key risk of \"exploits or bad debt events eroding user confidence\" is now materially higher.\n\n**REVISE RWA Narrative**: The weakening RWA narrative (evidenced by TVL declines in major protocols) combined with critical exploit risks in the DeFi-RWA sector suggests the institutional adoption thesis may be facing headwinds. While 84% of financial firms prioritize tokenization (source: read_articles), on-chain execution is encountering security challenges.\n\n## LECTURE\n\n**The Security-Risk Paradox in DeFi Sector Rotation**\n\nThe current market shows a paradox where capital is rotating into lending protocols and RWA tokenization precisely when security risks are escalating. SparkLend's TVL surge (+9.68% 7d) and fee-yield deterioration (-21.49% 7d) suggests capital may be chasing yield without adequately pricing security risk. The cluster of exploit risks across Base, DeFi-RWA, Sky, Ondo, and Lido represents a systemic threat that could trigger rapid capital reversals if any major exploit materializes.\n\nThe regulatory landscape adds another layer of complexity, with 204 active regulatory events including high-urgency items targeting defi-lending bans and Polymarket restrictions. This regulatory pressure, combined with security vulnerabilities, creates a fragile environment for the sector rotation narrative.\n\n**Kill condition**: If any of the critical exploit risks materialize into actual fund drains >$10M, or if regulatory actions result in protocol shutdowns, the sector rotation thesis will be invalidated and capital will rapidly exit affected protocols.\n\n## LIVE EVENTS\n\n- **Critical**: Base chain exploit (62.3h old, 90% confidence) - active drain/exploit\n- **Critical**: DeFi-RWA sector exploit (86.3h old, 90% confidence) - active drain/exploit  \n- **Critical**: Sky protocol hack (44.3h old, 70% confidence) - lending protocol vulnerability\n- **Critical**: Ondo Finance hack (44.3h old, 70% confidence) - RWA protocol"
   }
  ],
  "theses": [
@@ -804,7 +808,7 @@
    "verdict": "confirm",
    "conviction": 0.95,
    "trigger": "Aave V3's lending dominance has solidified with a 7.28% TVL expansion (7d) to $13.71B, capturing 43.7% sector share, while maintaining a 2.42% fee-yield",
-   "kill": "The number of successful formal risk parameter changes proposed and enacted via Aave Governance over the next 30 days, indicating the protocol's responsiveness to emerging threats ",
+   "kill": "Monitor the utilization rates of the PAXG market within the Global Dollar Hub in Aave V4 over the next two weeks for evidence of genuine demand and integration.",
    "ts": "2026-07-15T09:02:35Z",
    "history": [
     {
@@ -843,7 +847,7 @@
    "verdict": "confirm",
    "conviction": 0.95,
    "trigger": "Aave V3 TVL +3.69% 7d to $13.73B (z=1.48, 96th pctile), confirming lending sector dominance and capital efficiency.",
-   "kill": "The number of successful formal risk parameter changes proposed and enacted via Aave Governance over the next 30 days, indicating the protocol's responsiveness to emerging threats ",
+   "kill": "Monitor the utilization rates of the PAXG market within the Global Dollar Hub in Aave V4 over the next two weeks for evidence of genuine demand and integration.",
    "ts": "2026-07-19T07:40:58Z",
    "history": [
     {
@@ -960,7 +964,7 @@
    "verdict": "revise",
    "conviction": 0.75,
    "trigger": "Fee compression on new TVL (Morpho Blue fees -78.94% 7d vs TVL +3.42% 7d).",
-   "kill": "The number of successful formal risk parameter changes proposed and enacted via Aave Governance over the next 30 days, indicating the protocol's responsiveness to emerging threats ",
+   "kill": "Monitor the utilization rates of the PAXG market within the Global Dollar Hub in Aave V4 over the next two weeks for evidence of genuine demand and integration.",
    "ts": "2026-07-20T09:07:25Z",
    "history": [
     {
@@ -1016,7 +1020,7 @@
    "verdict": "revise",
    "conviction": 0.5,
    "trigger": "Lack of fundamental data (fees/TVL) in the digest to support infrastructure thesis.",
-   "kill": "Monitor the frequency and scope of enforcement actions taken by the CFTC and SEC regarding crypto exchanges and trading platforms over the next quarter, as an increase would confir",
+   "kill": "Monitor the number of dApps actively utilizing the Execution Delegation Framework (EDF) post-implementation, as a low adoption rate would indicate limited practical impact.",
    "ts": "2026-07-20T12:07:10Z",
    "history": [
     {
@@ -1169,10 +1173,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-19T09:36:56.133205+00:00",
-     "note": "Global stablecoin market cap -0.7% 7d to $296.4B, with Solana +$420.9M inflows vs Ethereum -$310M outflows, indicating chain rotation not fresh fiat (source: get_metric, get_analyst_note)"
-    },
-    {
      "ts": "2026-07-19T15:07:35.116608+00:00",
      "note": "Solana stablecoin net flow +16.91% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     },
@@ -1187,9 +1187,13 @@
     {
      "ts": "2026-07-20T09:07:25.269598+00:00",
      "note": "Sanctum fees +84,534% 7d (protocol_fees 7d) suggests high on-chain activity, but SparkLend fee-yield compression (1.57%) indicates capital may be rotating internally rather than entering as fresh fiat."
+    },
+    {
+     "ts": "2026-07-20T15:06:51.493310+00:00",
+     "note": "Binance staked ETH TVL +5.53% 7d (z=1.17) while fees -48.85% 7d (z=0.15), indicating capital inflows are not driving fee generation (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Track if Solana stablecoin inflows correlate with an increase in protocol fees or transaction volume to confirm fresh money entry."
+   "evidence": "inq_mission_fresh_money · next: Analyze if the TVL increase correlates with an increase in staked ETH ratio or a shift from other LSTs to confirm rotation vs fresh fiat entry."
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
@@ -1282,12 +1286,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 44.0,
+    "tvl": 43.7,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 43.4,
+    "tvl": 43.0,
     "yard": "TVL"
    },
    {
@@ -1302,11 +1306,16 @@
    },
    {
     "name": "perp",
-    "tvl": 1.8,
+    "tvl": 1.7,
     "yard": "OI/VOL"
    }
   ],
   "fee_yield": [
+   {
+    "name": "Euler V2",
+    "sector": "lending",
+    "fy": 8.18
+   },
    {
     "name": "Hastra",
     "sector": "rwa",
@@ -1315,7 +1324,7 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.77
+    "fy": 5.78
    },
    {
     "name": "Maple",
@@ -1325,56 +1334,51 @@
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.35
+    "fy": 5.37
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.69
+    "fy": 4.7
    },
    {
     "name": "Jupiter Lend",
     "sector": "lending",
-    "fy": 3.84
+    "fy": 3.87
    },
    {
     "name": "WisdomTree",
     "sector": "rwa",
     "fy": 3.7
-   },
-   {
-    "name": "Invesco USTB",
-    "sector": "rwa",
-    "fy": 3.66
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -458.0
+    "d7": -448.4
    },
    {
     "chain": "Solana",
-    "d7": 418.5
+    "d7": 418.9
    },
    {
     "chain": "Arbitrum",
-    "d7": -35.4
-   },
-   {
-    "chain": "BSC",
-    "d7": -3.8
+    "d7": -35.3
    },
    {
     "chain": "Optimism",
     "d7": -3.6
+   },
+   {
+    "chain": "Polygon",
+    "d7": 2.8
    }
   ],
   "agg": {
-   "stable_mcap_b": 296.2,
-   "stable_d7_pct": -0.66,
+   "stable_mcap_b": 296.3,
+   "stable_d7_pct": -0.63,
    "dex_vol_24h_b": 5.4,
-   "defi_tvl_b": 76.1
+   "defi_tvl_b": 75.8
   }
  },
  "robinhood": {
@@ -1387,7 +1391,7 @@
  "health": {
   "budget": {
    "day": "2026-07-20",
-   "glm": 29,
+   "glm": 32,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
