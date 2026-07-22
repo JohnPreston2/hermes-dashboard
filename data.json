@@ -1,46 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-22T08:48:01Z",
+ "generated_at": "2026-07-22T10:48:02Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "A",
-   "mode": "3phase",
-   "ts": "2026-07-22T06:46:37Z",
+   "tier": "B",
+   "mode": "react",
+   "ts": "2026-07-22T09:37:11Z",
    "status": "ok",
-   "discipline": 96.7,
+   "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 7
+  "runs_today": 9
  },
  "runs": [
-  {
-   "ts": "2026-07-19T00:07:07Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-19T03:06:59Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 96.7,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-19T06:07:32Z",
    "tier": "A",
@@ -458,9 +436,85 @@
    "r2_pass": true,
    "comps": 2,
    "phase": null
+  },
+  {
+   "ts": "2026-07-22T09:09:03Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
+  },
+  {
+   "ts": "2026-07-22T09:37:11Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-22T09:37:11Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n## WHAT CHANGED\nMorpho launched \"Midnight,\" a fixed-rate, fixed-term lending protocol on Base, representing a structural expansion of onchain credit markets beyond variable-rate lending (source: read_articles). The protocol introduces fixed rates and defined maturities alongside Morpho Blue's existing variable-rate markets, addressing a key gap in DeFi lending infrastructure (source: read_articles). Concurrently, Morpho released a new Markets App allowing users to set their own rates and terms, initially on Base (source: read_articles). This launch coincides with a +176.9% surge in lending sector narratives (the largest across all sectors) and follows Galaxy's launch of Galaxy Curator, a Morpho-based platform providing Fireblocks' institutional clients access to onchain yield (source: read_articles).\n\n## RECONCILIATION\nCONFIRM th_20260704_0320_aave (Aave): The Aave thesis remains confirmed with 0.92 conviction, despite the emergence of Morpho's fixed-rate competition. Aave V3 continues to demonstrate protocol expansion with $13.95B TVL (z=1.47, 95th percentile) (source: get_board). The red team challenge about prioritizing TVL growth over sustainable risk-adjusted returns is not rebutted by new evidence but does not invalidate the thesis given continued fee generation (source: get_prior_assessment).\n\n## LECTURE\nMorpho's Midnight launch represents a maturation of DeFi lending markets from purely variable-rate products to fixed-rate, fixed-term instruments that better serve institutional capital allocation needs. This structural expansion addresses a key limitation of existing DeFi lending protocols, which have primarily offered variable-rate markets that expose borrowers and lenders to interest rate volatility. The introduction of fixed rates on Base, a chain favored for its lower transaction costs, could attract institutional capital seeking predictable yield profiles. The partnership with Galaxy to provide Fireblocks' institutional clients access to Morpho-based yield further validates this institutional focus (source: read_articles). However, the success of Midnight will depend on achieving sufficient liquidity depth to offer competitive fixed rates relative to traditional finance alternatives. The slight decline in global stablecoin flow (-0.1% over 7d) suggests this expansion is not yet driven by significant new fiat entering crypto but rather by reallocation within existing capital (source: get_metric).\n\nKill condition: Midnight fails to achieve $500M TVL within 90 days of launch, indicating insufficient institutional adoption for fixed-rate products.\n\n## LIVE EVENTS\n- Exploit risk: Multiple critical exploit risks remain active across the ecosystem, with the most recent being a flash loan exploit 26.3 hours ago (source: get_board).\n- Regulatory: 186 active regulatory events are currently tracked, though none specifically related to the Morpho Midnight launch (source: get_board).\n\n## SUIVI\n- Fresh money inquiry: Global stablecoin flow decreased slightly (-0.1% over 7d to $296.1B), with USDC supply increasing (+0.2%) while USDT decreased (-0.1%), suggesting marginal institutional-adjacent capital inflows offsetting retail outflows (source: get_metric).\n- Institutional inquiry: Galaxy launched Galaxy Curator, a Morpho-based platform providing Fireblocks' institutional clients access to onchain yield, indicating continued institutional infrastructure development (source: read_articles).\n- Rotation inquiry: Lending sector narratives surged +176.9%, the largest across all sectors, with Morpho Blue reaching $7.51B TVL (z=1.48, 96th percentile), indicating capital rotation toward lending protocols (source: get_board, get_metric).\n\n## OPEN QUESTIONS\n- Will Midnight's fixed-rate model attract significant institutional ca"
+  },
+  {
+   "ts": "2026-07-22T09:09:03Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "NEAR",
+    "Solana",
+    "Aave V3"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 7,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\nAave V3's capital efficiency is deteriorating as TVL expansion ($13.95B, z=1.47, 95th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched) significantly outpaces fee generation ($949K 24h, z=0.59, 84th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). This divergence indicates the recent growth is supply-driven—likely from governance supply cap adjustments—rather than organic borrowing demand, keeping the annualized fee yield flat at 2.47% (source: get_metric + protocol_fees(7d) + onchain_enriched). With 0% token capture (source: drill_valuation), the protocol's P/F multiple of 4.3 (source: drill_valuation) prices future accrual, not current revenue. NEAR and Solana data are null in this digest; no assessment on AI-hacking or stablecoin flows is possible without on-chain enrichment.\n\nFalsifiability: Fee growth (z-score) converging with or exceeding TVL growth would invalidate the supply-driven expansion thesis."
+  },
   {
    "ts": "2026-07-22T06:46:37Z",
    "tier": "A",
@@ -746,64 +800,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nAave's protocol revenue generation remains robust with a 2.44% annualized fee-yield (7d avg) on a massive $13.98B TVL base, even as governance actively manages risk parameters post-Kelp, while SparkLend continues to capture displaced capital with over $1B in deposits since the exploit (source: The Defiant).\n\n## FILS DOMINANTS\n*   **Aave — 2.44% fee-yield (rank 1/3 in lending vs Morpho/Compound):** Protocol revenue is solid at $942K 24h fees (+2.55% 7d), supported by a dominant 43.7% market share of lending TVL. Capital quality is high, evidenced by TVL sitting at the 98th percentile relative to its historical baseline (z=1.58), though the token currently captures 0% of these fees (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **SparkLend — N/A (Peer Context):** While specific fee-yield data for SparkLend is not in this digest, it is the primary beneficiary of capital rotation from Aave, having attracted over $1B in deposits following the Kelp exploit (source: The Defiant). This migration suggests sticky capital seeking perceived safety, positioning SparkLend as a high-quality alternative within the lending sector.\n*   **Solana — N/A (Data Gap):** The digest lacks the necessary fee-yield and TVL data to rank Solana's stablecoin sector performance or assess capital quality relative to peers.\n\n## RECONCILIATION\nNo prior theses were provided for reconciliation in this digest.\n\n## LECTURE\nThe Aave protocol demonstrates strong fundamental value accrual with a 2.44% fee-yield, yet the market currently prices the AAVE token at a P/F multiple of 4.3x (rank 1/3 in lending vs 5.1x median), which appears cheap on a fee-multiple basis. However, this \"cheapness\" is illusory because the token captures 0% of protocol fees today; the valuation is purely a bet on future fee capture via governance (e.g., a fee switch). The dominance in market share (43.7%) and the high baseline TVL (z=1.58) confirm the protocol's sticky, institutional-grade capital quality, despite recent exploit-related headwinds. The migration of over $1B to SparkLend highlights competitive risk but also confirms the stickiness of lending capital within the sector rather than exiting DeFi.\nKill condition: A sustained drop in fee-yield below 1.5% or a failure to restore governance-mandated risk caps leading to further TVL outflows to peers.\n\n## RISQUE\n*   **Governance Execution Risk:** The reliance on LlamaRisk recommendations for cap adjustments indicates a reactive posture to market conditions; a failure to dynamically manage liquidity could lead to further insolvency risks.\n*   **Competitive Displacement:** SparkLend's ability to attract over $1B in deposits post-exploit suggests a permanent shift in sentiment for certain risk profiles, threatening Aave's long-term market share if not addressed.\n*   **Token Value Accrual Gap:** The fundamental disconnect between robust protocol fees and 0% token capture creates a valuation ceiling for the token until governance enables revenue sharing.\n\n## SUIVI\n*   **inq_mission_rotation:** Capital rotation is evident from Aave to SparkLend, with SparkLend gaining >$1B TVL post-Kelp (source: The Defiant). This confirms rotation within the lending vertical backed by fundamental safety concerns rather than fresh fiat entry. Next probe: Analyze the asset composition of these inflows to determine if they are native ETH migrations or stablecoin redeployments."
-  },
-  {
-   "ts": "2026-07-21T18:07:21Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 95.6,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "SparkLend",
-    "Solana",
-    "NEAR"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSparkLend's TVL surged +8.7% 7d to $3.71B (z=1.47, 97th pctile), a statistically significant expansion relative to its historical baseline, yet protocol fees declined -17.23% 7d, indicating a capital quality deterioration where new deposits are yielding less than the historical average.\n\n## FILS DOMINANTS\n*   **SparkLend — 1.48% annualised fee-yield (7d avg), the only quantified yield in the set (vs Solana/NEAR null):** TVL expanded +8.7% 7d to $3.71B (z=1.47, 97th pctile), but fees fell -17.23% 7d (z=-0.55, 39th pctile), suggesting the inflow is capital-inefficient or incentivized rather than organic yield-seeking. Capital quality is provisional; the protocol captures fees, but token capture is unknown (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Solana — Null fee-yield (data unavailable):** Reported $549M net stablecoin inflow, but without fee-yield or take-rate data, the economic impact on the protocol's value accrual cannot be assessed. Capital quality is indeterminate pending fee data (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **NEAR — Null fee-yield (data unavailable):** AI-assisted hacking risks are flagged, but with no available fee-yield or TVL data, the fundamental impact on protocol security or retention is unquantified. Capital quality is indeterminate (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260720_1520_aave (CONFIRM):** Aave's dominance is confirmed by peer data; SparkLend holds 11.5% market share vs Aave V3's 43.8% (source: sector-aware peers). SparkLend's TVL surge (+8.7% 7d) occurred alongside a fee decline (-17.23% 7d), reinforcing the thesis that Aave's focus on capital efficiency is a superior driver of sustainable value accrual compared to volume-chasing. The divergence in SparkLend's TVL and fee trends validates the stability of Aave's risk-adjusted positioning.\n\n## LECTURE\nThe SparkLend data presents a classic \"growth without value\" signal. A TVL expansion at the 97th percentile (z=1.47) coupled with fee generation at the 39th percentile (z=-0.55) implies that the marginal capital being deployed is low-yield. This is characteristic of either mercenary capital chasing short-term incentives or a shift in asset composition towards lower-yielding collateral (e.g., stablecoins). For a lending protocol, value accrual is a function of utilization and yield on assets; growing the balance sheet without increasing income compresses the fee-yield (1.48%), making the protocol less attractive on a fundamental basis relative to peers who maintain yield during growth. The token's valuation is currently disconnected from these protocol economics as capture is unknown, but the underlying fundamental health is flashing a cautionary signal on capital efficiency.\nKill condition: Fee-yield drops below 1.0% annualized while TVL continues to expand, confirming a capital rot dynamic.\n\n## RISQUE\n*   **SparkLend:** The primary risk is \"capital rot\"—the scenario where the +8.7% TVL increase is driven by low-yield or incentivized deposits that dilute the overall protocol fee-yield. If the -17.23% fee decline persists, the protocol becomes a \"capital trap\" where TVL is high but value accrual is stagnant.\n*   **Solana:** The risk is misattributing capital rotation as fresh fiat entry. Without fee data to confirm economic activity, the $549M stablecoin inflow could be a zero-sum rotation from other L1s, generating no net new value for the sector.\n*   **NEAR:** The specific risk is that AI-assisted hacking exploits create a \"security premium,\" where the cost of capital (risk-free rate demanded by users) rises faster than protocol revenues, compressing net yields even if TVL is stable.\n\n## SUIVI\n*   **inq_mission_fre"
-  },
-  {
-   "ts": "2026-07-21T15:08:10Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 96.7,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "NEAR",
-    "Sanctum Validator LSTs",
-    "SparkLend"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSanctum Validator LSTs generated a 6.76% annualized fee-yield (7d avg), the highest in the set, driven by a fee surge of +1,064,930.56% 7d, while SparkLend expanded TVL to $3.71B (+10.15% 7d) despite a -15.92% 7d decline in protocol fees.\n\n## FILS DOMINANTS\n*   **Sanctum Validator LSTs — 6.76% fee-yield, the highest of the set (vs SparkLend 1.48%, NEAR null):** Protocol fees spiked +1,064,930.56% 7d to $383K 24h (source: get_metric + protocol_fees(7d) + onchain_enriched), with TVL up +5.95% 7d to $1.16B. Capital quality is provisional; the fee spike is a 7d anomaly (z=0.74 30d vs baseline) and retention is unproven. The token captures none of these fees today (capture_pct: null).\n*   **SparkLend — 1.48% fee-yield, rank 2/3 (vs Sanctum 6.76%, NEAR null):** TVL grew +10.15% 7d to $3.71B (z=1.51 30d, 98th pctile vs baseline), while fees fell -15.92% 7d to $149K 24h (z=-0.42 30d, 47th pctile vs baseline) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital is sticky (market share 11.5% in lending), but the token captures none of the protocol's revenue (capture_pct: null).\n*   **NEAR — Null fee-yield, rank 3/3:** No fundamental fee-yield or TVL data available in the digest to support an infrastructure thesis (source: get_metric + protocol_fees(7d) + onchain_enriched). The protocol's value accrual is unquantified with current data.\n\n## RECONCILIATION\n*   **REVISE th_20260719_0320_near (Near Protocol Infrastructure):** The thesis that Near Protocol is actively enhancing infrastructure is revised to a conviction of 0.5 (WEAK). The digest provides no fundamental data (fees/TVL) to support the claim, and a standing red-team challenge highlights a potential misallocation of resources away from security amidst recent industry exploits (source: get_prior_assessment). The lack of measurable value accrual (fee-yield null) invalidates the previous confidence.\n\n## LECTURE\nThe divergence between Sanctum's explosive fee growth and SparkLend's TVL expansion highlights a capital rotation risk: Sanctum's fee yield is a statistical outlier (z=0.74) that may not persist, whereas SparkLend is accruing capital (TVL z=1.51) without immediate fee revenue. In both cases, the token does not capture the protocol's value, rendering current P/F multiples meaningless; any valuation is a bet on future governance-enabled fee capture, not current fundamentals.\nKill condition: Sanctum's fee-yield reverts below 1% annualized without a corresponding TVL decline, or SparkLend's TVL growth reverses (-5% 7d) while fees remain negative.\n\n## RISQUE\n*   **Sanctum Validator LSTs:** Fee-yield sustainability risk; the current 6.76% yield is driven by a volatile 7d fee spike (+1M% 7d) that is statistically noisy (z=0.74 vs baseline) and may not represent recurring revenue.\n*   **SparkLend:** Value accrual disconnect risk; the protocol is growing its productive base (TVL +10.15% 7d) but fee revenue is contracting (-15.92% 7d), suggesting capital is not being efficiently deployed or utilized for yield generation.\n*   **NEAR:** Information asymmetry risk; the inability to measure fee-yield or TVL trends makes it impossible to assess fundamental protocol health or security resource allocation relative to peers.\n\n## SUIVI\n*   **inq_mission_fresh_money:** SparkLend's +10.15% 7d TVL growth (z=1.51 30d) suggests fresh capital entry into lending on its underlying chain, but the -15.92% 7d fee decline implies this capital is idle or low-yield. Next probe: Analyze the asset composition of SparkLend's TVL to determine if the growth is driven by stablecoins or native assets (source: onchain_enriched)."
   }
  ],
  "theses": [
@@ -886,9 +882,9 @@
    "key": "AAVE::lending",
    "verdict": "confirm",
    "conviction": 0.92,
-   "trigger": "Aave V3 fees +4.9% 7d (z=0.5, 81st pctile) and continued protocol expansion despite red team challenge about TVL growth prioritization",
+   "trigger": "Aave V3 continues to demonstrate protocol expansion with $13.95B TVL (z=1.47, 95th percentile) despite emergence of Morpho's fixed-rate competition (source: get_board)",
    "kill": "Monitor the utilization rates of the PAXG market within the Global Dollar Hub in Aave V4 over the next two weeks for evidence of genuine demand and integration.",
-   "ts": "2026-07-22T06:38:08Z",
+   "ts": "2026-07-22T09:37:11Z",
    "history": [
     {
      "ts": "07-17",
@@ -956,9 +952,9 @@
    "key": "AAVE::defi",
    "verdict": "revise",
    "conviction": 0.85,
-   "trigger": "TVL growth (z=1.61) outpacing fee growth (z=0.50) suggests supply-driven expansion over organic demand, partially validating red-team concerns on capital efficiency.",
+   "trigger": "TVL growth (z=1.47) outpacing fee growth (z=0.59) suggests supply-driven expansion over organic demand.",
    "kill": "Monitor the utilization rates of the PAXG market within the Global Dollar Hub in Aave V4 over the next two weeks for evidence of genuine demand and integration.",
-   "ts": "2026-07-22T06:41:04Z",
+   "ts": "2026-07-22T09:09:03Z",
    "history": [
     {
      "ts": "07-08",
@@ -1196,10 +1192,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-22T03:07:13.945890+00:00",
-     "note": "Maple fees -7.59% 7d vs TVL +1.57% 7d (z=-1.02 fees), indicating capital rotation into lower-yield positions, not fresh fiat. (source: get_metric + protocol_fees(7d))"
-    },
-    {
      "ts": "2026-07-22T06:07:31.700912+00:00",
      "note": "Compound V3 fees +44.97% 7d (z=4.61) outpace TVL +0.82% 7d (z=1.38), suggesting organic efficiency over fresh capital; Rocket Pool TVL +2.86% 7d (z=1.73) with stable fees. (source: get_metric + protocol_fees(7d) + onchain_enriched)"
     },
@@ -1214,18 +1206,18 @@
     {
      "ts": "2026-07-22T06:46:37.321093+00:00",
      "note": "Solana stablecoin inflows +26.68% (source: capital_questions)"
+    },
+    {
+     "ts": "2026-07-22T09:37:11.014335+00:00",
+     "note": "Global stablecoin flow decreased slightly (-0.1% over 7d to $296.1B), with USDC supply increasing (+0.2%) while USDT decreased (-0.1%) (source: get_metric)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Analyze USDC/USDT supply changes by chain to confirm regional vs global flow patterns."
+   "evidence": "inq_mission_fresh_money · next: Analyze stablecoin supply changes by chain to identify regional flow patterns"
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-17T21:05:28.718703+00:00",
-     "note": "BlackRock BUIDL holds 23.4% RWA sector TVL share ($3.61B) (source: sector-aware peers)"
-    },
     {
      "ts": "2026-07-18T06:37:19.687568+00:00",
      "note": "RWA narrative shows 52.6% emergence with major financial institutions like Morgan Stanley launching spot crypto trading and SBI acquiring Singaporean crypto platform Coinhako after MAS approval (source: get_narrative)"
@@ -1241,22 +1233,18 @@
     {
      "ts": "2026-07-22T06:38:08.234481+00:00",
      "note": "BlackRock BUIDL TVL -9.41% 7d to $3.34B despite institutional narrative; regulatory regimes tightening (MiCA, GENIUS) (source: get_metric, get_reg_exposure)"
+    },
+    {
+     "ts": "2026-07-22T09:37:11.014558+00:00",
+     "note": "Galaxy launched Galaxy Curator, a Morpho-based platform providing Fireblocks' institutional clients access to onchain yield (source: read_articles)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Analyze on-chain settlement volume and holder concentration for BUIDL/USYC to differentiate sticky capital from yield-chasing"
+   "evidence": "inq_mission_institutional · next: Monitor TVL and user growth on Galaxy Curator to assess institutional adoption"
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-21T21:49:43.670798+00:00",
-     "note": "Aave V3 TVL +2.66% 7d (z=1.58) vs SparkLend +8.7% 7d (z=1.47) shows sector-specific expansion (source: get_metric + protocol_fees(7d) + onchain_enriched)"
-    },
-    {
-     "ts": "2026-07-21T21:53:20.162606+00:00",
-     "note": "Solana stablecoin net flow +23.3% (source: capital_questions)."
-    },
     {
      "ts": "2026-07-22T00:07:00.048626+00:00",
      "note": "Lido Fees +6.06% 7d vs TVL +2.99% 7d shows efficiency gains, not just rotation (source: get_metric + protocol_fees(7d) + onchain_enriched)."
@@ -1268,9 +1256,17 @@
     {
      "ts": "2026-07-22T06:41:04.682630+00:00",
      "note": "Aave TVL +3.24% 7d (z=1.61) driven by supply cap increases, while fees lag at z=0.50, indicating potential rotation into lower-yield assets or mercenary capital."
+    },
+    {
+     "ts": "2026-07-22T09:09:03.632644+00:00",
+     "note": "Aave TVL (z=1.47) outpaces fees (z=0.59) while Morpho Blue holds 23.5% share ($7.51B) (source: sector-aware peers)"
+    },
+    {
+     "ts": "2026-07-22T09:37:11.014653+00:00",
+     "note": "Lending sector narratives surged +176.9%, with Morpho Blue reaching $7.51B TVL (z=1.48, 96th percentile) (source: get_board, get_metric)"
     }
    ],
-   "evidence": "inq_mission_rotation · next: Analyze asset-level utilization rates within Aave V3 to determine if new TVL is idle or productive."
+   "evidence": "inq_mission_rotation · next: Compare utilization rates across lending protocols to determine if rotation is yield-chasing or risk-mitigation driven"
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1308,12 +1304,12 @@
  "macro": {
   "sectors": [
    {
-    "name": "lending",
+    "name": "lst",
     "tvl": 44.6,
     "yard": "TVL"
    },
    {
-    "name": "lst",
+    "name": "lending",
     "tvl": 44.5,
     "yard": "TVL"
    },
@@ -1342,7 +1338,7 @@
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 7.58
+    "fy": 7.57
    },
    {
     "name": "Hastra",
@@ -1365,32 +1361,32 @@
     "fy": 5.26
    },
    {
+    "name": "Kamino Lend",
+    "sector": "lending",
+    "fy": 4.38
+   },
+   {
     "name": "Centrifuge Protocol",
     "sector": "rwa",
     "fy": 4.0
-   },
-   {
-    "name": "Kamino Lend",
-    "sector": "lending",
-    "fy": 3.79
    }
   ],
   "flows": [
    {
     "chain": "Solana",
-    "d7": 629.7
+    "d7": 629.5
    },
    {
     "chain": "Ethereum",
-    "d7": -235.3
+    "d7": -240.8
    },
    {
     "chain": "Arbitrum",
-    "d7": -33.1
+    "d7": -33.2
    },
    {
     "chain": "Polygon",
-    "d7": -9.2
+    "d7": -9.3
    },
    {
     "chain": "Optimism",
@@ -1399,13 +1395,13 @@
   ],
   "agg": {
    "stable_mcap_b": 296.1,
-   "stable_d7_pct": -0.06,
+   "stable_d7_pct": -0.08,
    "dex_vol_24h_b": 6.3,
    "defi_tvl_b": 77.0
   }
  },
  "robinhood": {
-  "tvl_m": 315.0,
+  "tvl_m": 315.6,
   "morpho_share_pct": 62,
   "age_days": 13,
   "synth_ts": "2026-07-21T12:00:00Z",
@@ -1414,7 +1410,7 @@
  "health": {
   "budget": {
    "day": "2026-07-22",
-   "glm": 24,
+   "glm": 33,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
