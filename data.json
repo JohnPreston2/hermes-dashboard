@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-23T02:48:01Z",
+ "generated_at": "2026-07-23T04:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-23T00:08:10Z",
+   "ts": "2026-07-23T03:08:17Z",
    "status": "ok",
-   "discipline": 84.0,
+   "discipline": 96.7,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 1
+  "runs_today": 2
  },
  "runs": [
-  {
-   "ts": "2026-07-19T12:06:26Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 95.6,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-19T15:07:35Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-23T03:08:17Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 96.7,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-23T03:08:17Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 96.7,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "NEAR",
+    "SparkLend",
+    "USDC"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 7,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\nSparkLend's capital quality is deteriorating despite a surge in deposits; TVL grew +6.31% 7d (z=1.54, 99th pctile) while protocol fees only increased +4.07% 7d (z=-0.09, 60th pctile), resulting in a suppressed 1.443% annualized fee-yield (source: get_metric + protocol_fees(7d) + onchain_enriched). This divergence answers the capital question in the negative: the inflow is likely transient or low-utility capital (parking) rather than organic yield-seeking borrowing, as revenue is not scaling with the liquidity base. The protocol holds 11.6% sector share, trailing Aave V3 (43.5%) and Morpho Blue (23.5%) (source: sector-aware peers).\n\nUSDC faces a bifurcated regulatory landscape: MiCA compliance is driving a regional venue rotation in the EU (e.g., OKX Europe USDT->USDC conversion), but this is bounded by global data showing USDT up +2% (~$186B) while USDC is down -1.5% (~$73B) (source: drill_reg). The \"Open USD\" consortium introduces a high-materiality competitive threat, aiming to disrupt Circle's reserve income model (source: CoinTelegraph). NEAR data is null; no assessment on exploit-related liquidity flight.\n\nFalsification: SparkLend fee growth must accelerate (z-score > 1) relative to TVL to confirm organic yield demand; otherwise, the capital is classified as transient."
+  },
   {
    "ts": "2026-07-23T00:08:10Z",
    "tier": "A",
@@ -771,35 +800,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nCompound V3's protocol fees surged +44.97% 7d, reaching a z-score of 4.61 (99th pctile), signaling a statistically significant deviation in yield generation relative to its historical baseline, while Rocket Pool's fee generation lagged its TVL expansion.\n\n## FILS DOMINANTS\n*   **Rocket Pool — 4.38% fee-yield, the highest of the set (vs Compound V3 1.90%):** TVL sits at z=1.73 (97th pctile) while fees lag at z=-0.42 (57th pctile), indicating capital accumulation outpacing fee generation; capital quality appears sticky given the high TVL percentile, but the fee-yield decoupling is a concern; token captures none of these fees (capture_pct null) (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Compound V3 — 1.90% fee-yield, rank 2 of 2:** Fees exploded +44.97% 7d (z=4.61 99th pctile) on a TVL base of z=1.38 (90th pctile), suggesting strong utilization; token captures 0% of fees (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **NEAR — Null fee-yield, rank 3 of 3:** No fundamental fee or TVL data available in the digest to assess value-accrual or capital quality; protocol valuation cannot be determined from the provided metrics (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260722_0320_near (NEAR Infrastructure Thesis):** REVISE. The prior thesis linking AI development to NEAR infrastructure value is weakened by the absence of fundamental data (fees/TVL) in the digest. The red-team challenge regarding exploit risks (AI-assisted hacking) cannot be quantified or rebutted without on-chain security metrics or fee data to gauge systemic impact. The lack of value-accrual data forces a downgrade in conviction until protocol-level fundamentals are observable.\n\n## LECTURE\nRocket Pool and Compound V3 both trade at rich multiples relative to their sectors (RPL 9.7x P/F rank 3/3 vs 3.1x median; COMP 7.4x P/F rank 3/3 vs 4.3x median) despite capturing 0% of protocol fees. This suggests the market is pricing governance rights or future accrual mechanisms rather than current cash flow. Rocket Pool's divergence—high TVL z-score (1.73) vs low fee z-score (-0.42)—flags potential capital inefficiency, whereas Compound's convergence (Fee z=4.61 vs TVL z=1.38) indicates strong current utilization. The premium on RPL is particularly notable given its lower fee-yield relative to its TVL base compared to historical norms.\nKill condition: Rocket Pool fee z-score drops below -1.0 while TVL remains elevated, or Compound V3 fee z-score reverts below 1.0 without a corresponding TVL decline.\n\n## RISQUE\n*   **Rocket Pool:** Thesis-specific risk of fee-yield decoupling; if the high TVL base (z=1.73) does not translate to fee growth, the capital quality may be lower than the TVL implies, rendering the 9.7x P/F multiple unjustified.\n*   **Compound V3:** The extreme fee spike (z=4.61) risks being a transient volatility event (e.g., liquidation cascade) rather than a structural shift in demand; sustainability of this yield is unproven.\n*   **NEAR:** Systemic security risk from AI-assisted hacking remains a qualitative threat that cannot be measured due to the lack of fundamental data in the digest.\n\n## SUIVI\n*   **inq_mission_fresh_money:** Assessing if the TVL surge in Rocket Pool (z=1.73) and Compound V3 (z=1.38) is driven by specific pool incentives or organic deposit growth. Next probe: Analyze on-chain settlement volume and holder concentration to differentiate sticky capital from yield-chasing flows."
-  },
-  {
-   "ts": "2026-07-22T06:07:31Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 95.6,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "NEAR",
-    "Rocket Pool",
-    "Compound V3"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nCompound V3's protocol revenue accelerated sharply, with fees rising +44.97% 7d to a 99th percentile z-score (z=4.61) relative to its historical baseline, signaling a material expansion in lending demand or yield capture efficiency outpacing its TVL growth.\n\n## FILS DOMINANTS\n*   **Rocket Pool — 4.38% fee-yield, the highest of the set (vs Compound V3 1.90%):** TVL expanded +2.86% 7d to $1.02B, placing it at the 97th percentile (z=1.73) vs baseline, indicating strong capital retention. The protocol generates robust fee-yield, but the token captures none of this value today (capture_pct=0).\n*   **Compound V3 — 1.90% fee-yield, the second highest of the set (vs Rocket Pool 4.38%):** Fees surged +44.97% 7d to $80K, a statistically significant deviation (z=4.61 30d) from baseline, while TVL grew only +0.82% to $1.18B. This divergence suggests improved capital efficiency or utilization rather than mere inflows. The token captures 0% of protocol fees.\n*   **NEAR — No fee-yield data available:** The digest lacks fundamental fee/TVL metrics for NEAR, preventing a valuation ranking. The capital question regarding AI-assisted hacking risks remains open due to this data absence.\n\n## RECONCILIATION\n*   **th_20260722_0320_near (NEAR Infrastructure Thesis):** REVISE. The prior thesis linking NEAR to AI/quantum tailwinds is weakened by the absence of fundamental protocol data (fees/TVL) in the current digest. Without measurable value accrual metrics, the conviction drops to 0.5, pending evidence of on-chain utility or revenue generation.\n\n## LECTURE\nThe divergence in Compound V3—fees at a 99th percentile historical high while TVL remains elevated but stable—points to a shift in the quality of capital rather than just quantity. Rocket Pool maintains the highest fee-yield in this set, yet its P/F multiple of 9.7x (rank 3/3 in LST vs 3.1x median) suggests the market is pricing in future growth or a premium for decentralization that current fee capture does not support. In both cases, the disconnect between strong protocol fundamentals and zero token value capture (capture_pct=0) highlights a governance risk: the tokens are currently speculative assets on the protocol's success, not entitlements to its cash flow.\nKill condition: Protocol fees falling below baseline z-score for 30 consecutive days while token capture remains at 0%.\n\n## RISQUE\n*   **Rocket Pool:** Valuation risk; the token trades at a rich 9.7x P/F (rank 3/3) despite capturing 0% of the 4.38% fee-yield, implying the market is pricing in a future fee switch that has not occurred.\n*   **Compound V3:** Competitive pressure; despite the fee surge, Compound holds only 3.7% market share in lending, dwarfed by Aave V3 (43.8%), making its revenue gains vulnerable to share erosion.\n*   **NEAR:** Information asymmetry; the inability to measure fee-yield or TVL vs baseline obscures whether the chain is benefiting from the hypothesized AI/quantum tailwinds.\n\n## SUIVI\n*   **inq_mission_fresh_money:** Assessed Rocket Pool and Compound V3 TVL surges. Rocket Pool's +2.86% 7d TVL (z=1.73) and Compound's +0.82% 7d TVL (z=1.38) are both high vs baseline, but the fee divergence in Compound (+44.97% 7d) suggests organic yield optimization rather than fresh incentive-driven fiat entry. Next probe: Analyze if the TVL surge is driven by specific pool incentives or organic deposit growth."
   }
  ],
  "theses": [
@@ -1193,10 +1193,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-22T06:38:08.234134+00:00",
-     "note": "Global stablecoin supply -0.1% 7d to $296.13B (z=-1.27, 9th pctile), Ethereum outflows -$239M 7d, Solana inflows +$629M 7d (source: get_metric, get_analyst_note)"
-    },
-    {
      "ts": "2026-07-22T06:46:37.321093+00:00",
      "note": "Solana stablecoin inflows +26.68% (source: capital_questions)"
     },
@@ -1211,9 +1207,13 @@
     {
      "ts": "2026-07-22T18:10:30.676599+00:00",
      "note": "Binance staked ETH TVL -0.06% 7d (flat) but fees +10.0% 7d, suggesting existing capital is becoming more productive rather than new capital entering (source: get_metric + protocol_fees 7d)."
+    },
+    {
+     "ts": "2026-07-23T03:08:17.460325+00:00",
+     "note": "Global stablecoin supply shows USDT +2% vs USDC -1.5%, indicating net new fiat is not entering USDC despite regulatory tailwinds. (source: drill_reg)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Analyze stablecoin supply changes by chain to identify regional flow patterns."
+   "evidence": "inq_mission_fresh_money · next: Analyze chain-specific stablecoin supply to map non-USDC growth."
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
@@ -1306,12 +1306,12 @@
   "sectors": [
    {
     "name": "lst",
-    "tvl": 45.0,
+    "tvl": 44.8,
     "yard": "TVL"
    },
    {
     "name": "lending",
-    "tvl": 44.4,
+    "tvl": 44.7,
     "yard": "TVL"
    },
    {
@@ -1334,12 +1334,22 @@
    {
     "name": "Morpho Blue",
     "sector": "lending",
-    "fy": 11.32
+    "fy": 11.34
    },
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.26
+    "fy": 8.27
+   },
+   {
+    "name": "Sanctum Validator LSTs",
+    "sector": "lst",
+    "fy": 6.99
+   },
+   {
+    "name": "Binance Staked SOL",
+    "sector": "lst",
+    "fy": 6.57
    },
    {
     "name": "Hastra",
@@ -1349,33 +1359,23 @@
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.05
-   },
-   {
-    "name": "Fluid Lending",
-    "sector": "lending",
-    "fy": 5.32
-   },
-   {
-    "name": "Sky Lending",
-    "sector": "lending",
-    "fy": 4.97
+    "fy": 6.11
    },
    {
     "name": "Maple",
     "sector": "lending",
-    "fy": 4.27
+    "fy": 5.61
    },
    {
-    "name": "Centrifuge Protocol",
-    "sector": "rwa",
-    "fy": 3.98
+    "name": "Sky Lending",
+    "sector": "lending",
+    "fy": 5.51
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": 336.1
+    "d7": 335.5
    },
    {
     "chain": "Solana",
@@ -1395,30 +1395,30 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 297.3,
-   "stable_d7_pct": 0.55,
-   "dex_vol_24h_b": 6.6,
-   "defi_tvl_b": 77.3
+   "stable_mcap_b": 297.1,
+   "stable_d7_pct": 0.39,
+   "dex_vol_24h_b": 6.5,
+   "defi_tvl_b": 77.2
   }
  },
  "robinhood": {
-  "tvl_m": 322.0,
+  "tvl_m": 319.2,
   "morpho_share_pct": 63,
-  "age_days": 14,
+  "age_days": 13,
   "synth_ts": "2026-07-22T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-22\n\n## ÉTAT ON-CHAIN\nChain TVL has surged to **$318.5M**, marking a robust **+12.3%** daily increase and a significant acceleration from the $267M–$274M range observed over the previous three days. The trajectory is steeply parabolic, with TVL effectively doubling in the last week (from ~$159M on July 15). Capital concentration remains extreme: **Morpho Blue** commands **62.7%** of total chain TVL ($199.8M), with a highly utilized lending book where borrowed assets ($187.3M) represent **93.9%** of supplied capital. This indicates aggressive yield-seeking behavior rather than passive liquidity provision. Outside of Morpho, liquidity is fragmented across DEXs (Uniswap V3/V4/V2 aggregating ~$78M) and derivatives (Arcus Perps + Lighter Perps totaling ~$27.6M). The capital quality is currently **mixed**; while the Morpho utilization suggests sticky, yield-driven capital, the rapid TVL expansion correlates with launch incentives and the novelty of tokenized equities, suggesting a portion of the inflows is hot, tactical capital rather than long-term institutional sticky deposits.\n\n## CATALYSEURS\n*   **Institutional Tokenization Validation (DTCC Pilot):** The DTCC's commencement of production tokenized stock trades with JPMorgan, BlackRock, and Goldman Sachs serves as the structural catalyst for Robinhood Chain's RWA narrative. This legitimizes the 24/7 tokenized stock product, directly fueling the on-chain TVL surge as users bridge traditional equity exposure into the Morpho lending markets.\n*   **Bernstein Price Target Revision:** Bernstein raising the Robinhood price target to $160, explicitly citing Robinhood Chain as a revenue driver, acts as a sentiment catalyst. This traditional finance endorsement bridges the gap to crypto-native degens, accelerating capital rotation into the chain's ecosystem.\n*   **Collateral Utility Expansion (Lighter):** Lighter's integration of tokenized equities as collateral for perpetuals creates a recursive loop for capital efficiency. This development directly supports the high utilization rates seen in Morpho, as users can now leverage equity positions for perps exposure without leaving the chain.\n* "
  },
  "health": {
   "budget": {
    "day": "2026-07-23",
-   "glm": 3,
+   "glm": 5,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 2,
-   "unsupported_pct_7d": 18,
+   "unsupported_pct_7d": 17,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 2
