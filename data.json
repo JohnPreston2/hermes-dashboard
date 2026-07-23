@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-23T08:48:01Z",
+ "generated_at": "2026-07-23T10:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "S",
+   "tier": "B",
    "mode": "react",
-   "ts": "2026-07-23T06:38:14Z",
+   "ts": "2026-07-23T09:39:19Z",
    "status": "ok",
    "discipline": 84.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 4
+  "runs_today": 5
  },
  "runs": [
-  {
-   "ts": "2026-07-19T21:07:37Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-20T00:07:05Z",
    "tier": "A",
@@ -458,9 +447,45 @@
    "r2_pass": true,
    "comps": 6,
    "phase": null
+  },
+  {
+   "ts": "2026-07-23T09:39:19Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-23T09:39:19Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 8,
+    "R6": 9,
+    "R8": 7,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\n\nA wave of exploit risks has emerged across multiple DeFi protocols, representing a systemic threat to the ecosystem. The most significant incidents include:\n\n1. AFX Trade protocol on Arbitrum was exploited for $24 million via a bridge exploit (source: The Block, 2026-07-23)\n2. The Balance stablecoin collapsed 99% after a $1 million exploit drained its bitcoin vaults by manipulating the price feed (source: CoinDesk, 2026-07-22)\n3. Ostium will reopen trading on July 23 after a $23.8 million vault exploit, with positions marked to live market price (source: The Defiant, 2026-07-23)\n4. Allbridge Core halted its protocol after a $1.65 million flash loan exploit where a $1.12 million loan from Kamino was used to manipulate stablecoin pools (source: The Defiant, 2026-07-23)\n\nThese exploits highlight ongoing vulnerabilities in bridge infrastructure, price feed manipulation, and flash loan mechanisms across the DeFi ecosystem.\n\n## RECONCILIATION\n\nCONFIRM: Lending sector thesis remains intact despite exploit risks. Aave V3 continues to show strength with TVL increasing by 0.82% (7d) (source: get_analyst_note). Morpho Blue's expansion with new products like Midnight (fixed-rate lending on Base) and Birch Hill (institutional credit underwriting) demonstrates continued innovation in the lending sector (source: read_articles).\n\nCONFIRM: Capital rotation thesis toward Ethereum and Solana continues. Ethereum saw stablecoin inflows increase by 0.44% (7d), totaling $76.3B, while Solana saw stablecoin inflows increase by 6.65% (7d), totaling $3.0B (source: get_analyst_note). Meanwhile, Arbitrum experienced capital outflows of -5.43% (7d stablecoin flow) (source: get_analyst_note).\n\n## LECTURE\n\nThe recent wave of exploits across multiple DeFi protocols underscores the persistent security challenges facing the ecosystem despite its maturation. Bridge exploits remain a critical vulnerability, as demonstrated by the $24 million AFX Trade exploit on Arbitrum. Price feed manipulation continues to pose risks to stablecoin protocols, evidenced by the Balance stablecoin collapse. Flash loan exploits, while smaller in magnitude ($1.65 million in the Allbridge case), remain a concern due to their potential to manipulate market prices across protocols.\n\nThese security challenges are occurring against a backdrop of continued capital rotation toward more established ecosystems (Ethereum) and emerging chains (Solana), suggesting that market participants may be seeking safer harbors amid these security concerns. The regulatory landscape is also evolving rapidly, with MiCA stablecoin tightening now in force and active enforcement in the EU, and the GENIUS Act (US stablecoin framework) approaching its rulemaking finalization deadline (2026-07-18) (source: get_reg_exposure).\n\nKill condition: If bridge exploits exceed $100 million in aggregate value within a 30-day window, or if a major stablecoin (top 5 by market cap) experiences a depegging event greater than 5% due to an exploit, this would indicate a systemic security failure requiring immediate reassessment of DeFi's security model.\n\n## LIVE EVENTS\n\n1. Exploit risk: AFX Trade protocol on Arbitrum (exploit, drain) - critical urgency (source: get_events)\n2. Exploit risk: Unknown protocol (hack, breach) - critical urgency (source: get_events)\n3. Exploit risk: Bitcoin (exploit, drain) - critical urgency (source: get_events)\n4. Exploit risk: Unknown-refined (vulnerability, breach) - critical urgency (source: get_events)\n5. Exploit risk: Unknown protocol (hack, exploit) - critical urgency (source: get_events)\n\n## SUIVI\n\n- inq_mission_fresh_money: Confirmed that net new fiat is entering crypto, with global stablecoin market cap at $297B (+0.4% 7d) (source: get_metric). USDC supply grew to"
+  },
   {
    "ts": "2026-07-23T06:38:14Z",
    "tier": "S",
@@ -771,35 +796,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\nMorpho Blue has captured 23.5% of the lending sector's TVL, reaching $7.55B (z=1.64, 98th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched), with a 7.53% annualized fee yield (7d avg) (source: get_metric + protocol_fees(7d) + onchain_enriched) that suggests organic yield demand rather than transient incentivized liquidity. While the protocol's Price-to-Fee multiple of 2.3 (Rank 1/3) appears cheap relative to the sector median of 4.3 (source: drill_valuation), this valuation is disconnected from token holder economics as capture_pct is currently 0 (source: drill_valuation), implying the multiple prices future accrual mechanisms rather than present cash flow. This organic growth thesis is falsified if the fee yield drops below 2% while TVL remains stable, indicating capital is yield-insensitive."
-  },
-  {
-   "ts": "2026-07-22T06:41:04Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "NEAR",
-    "Aave",
-    "Solana"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 7,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\nAave's TVL expansion has reached a statistical extreme (z=1.61, 98th pctile), driven by governance-led supply cap increases rather than organic demand, creating a divergence between capital size and efficiency. While TVL sits at $14.04B (+3.24% 7d), protocol fees of $945K (+4.9% 7d) show a lower z-score (z=0.50), indicating that the massive balance sheet expansion is outpacing income generation relative to historical norms. This validates the red-team challenge regarding TVL prioritization: the protocol is opening capacity (Risk Stewards actions), but the fee yield (2.45%) is not accelerating at the same rate as deposits. Valuation remains speculative on future accrual, with a 4.3x price-to-fee multiple and 0% current token capture. Falsification occurs if fee yield collapses as TVL holds, confirming mercenary capital inflows."
   }
  ],
  "theses": [
@@ -1193,10 +1189,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-22T06:46:37.321093+00:00",
-     "note": "Solana stablecoin inflows +26.68% (source: capital_questions)"
-    },
-    {
      "ts": "2026-07-22T09:37:11.014335+00:00",
      "note": "Global stablecoin flow decreased slightly (-0.1% over 7d to $296.1B), with USDC supply increasing (+0.2%) while USDT decreased (-0.1%) (source: get_metric)"
     },
@@ -1211,6 +1203,10 @@
     {
      "ts": "2026-07-23T03:08:17.460325+00:00",
      "note": "Global stablecoin supply shows USDT +2% vs USDC -1.5%, indicating net new fiat is not entering USDC despite regulatory tailwinds. (source: drill_reg)"
+    },
+    {
+     "ts": "2026-07-23T09:39:19.022056+00:00",
+     "note": "Global stablecoin market cap at $297B (+0.4% 7d); USDC supply grew to $74.2B (+1.4% 7"
     }
    ],
    "evidence": "inq_mission_fresh_money · next: Analyze chain-specific stablecoin supply to map non-USDC growth."
@@ -1305,12 +1301,12 @@
  "macro": {
   "sectors": [
    {
-    "name": "lending",
-    "tvl": 44.6,
+    "name": "lst",
+    "tvl": 44.8,
     "yard": "TVL"
    },
    {
-    "name": "lst",
+    "name": "lending",
     "tvl": 44.5,
     "yard": "TVL"
    },
@@ -1332,24 +1328,19 @@
   ],
   "fee_yield": [
    {
-    "name": "Morpho Blue",
-    "sector": "lending",
-    "fy": 11.37
-   },
-   {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.28
+    "fy": 8.29
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.02
+    "fy": 7.0
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 6.62
+    "fy": 6.6
    },
    {
     "name": "Hastra",
@@ -1359,7 +1350,7 @@
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.11
+    "fy": 6.12
    },
    {
     "name": "Maple",
@@ -1370,12 +1361,17 @@
     "name": "Sky Lending",
     "sector": "lending",
     "fy": 5.51
+   },
+   {
+    "name": "Fluid Lending",
+    "sector": "lending",
+    "fy": 5.33
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": 331.6
+    "d7": 333.7
    },
    {
     "chain": "Solana",
@@ -1396,14 +1392,14 @@
   ],
   "agg": {
    "stable_mcap_b": 297.0,
-   "stable_d7_pct": 0.37,
+   "stable_d7_pct": 0.36,
    "dex_vol_24h_b": 6.5,
-   "defi_tvl_b": 77.2
+   "defi_tvl_b": 77.1
   }
  },
  "robinhood": {
-  "tvl_m": 314.0,
-  "morpho_share_pct": 66,
+  "tvl_m": 314.9,
+  "morpho_share_pct": 67,
   "age_days": 13,
   "synth_ts": "2026-07-22T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-22\n\n## ÉTAT ON-CHAIN\nChain TVL has surged to **$318.5M**, marking a robust **+12.3%** daily increase and a significant acceleration from the $267M–$274M range observed over the previous three days. The trajectory is steeply parabolic, with TVL effectively doubling in the last week (from ~$159M on July 15). Capital concentration remains extreme: **Morpho Blue** commands **62.7%** of total chain TVL ($199.8M), with a highly utilized lending book where borrowed assets ($187.3M) represent **93.9%** of supplied capital. This indicates aggressive yield-seeking behavior rather than passive liquidity provision. Outside of Morpho, liquidity is fragmented across DEXs (Uniswap V3/V4/V2 aggregating ~$78M) and derivatives (Arcus Perps + Lighter Perps totaling ~$27.6M). The capital quality is currently **mixed**; while the Morpho utilization suggests sticky, yield-driven capital, the rapid TVL expansion correlates with launch incentives and the novelty of tokenized equities, suggesting a portion of the inflows is hot, tactical capital rather than long-term institutional sticky deposits.\n\n## CATALYSEURS\n*   **Institutional Tokenization Validation (DTCC Pilot):** The DTCC's commencement of production tokenized stock trades with JPMorgan, BlackRock, and Goldman Sachs serves as the structural catalyst for Robinhood Chain's RWA narrative. This legitimizes the 24/7 tokenized stock product, directly fueling the on-chain TVL surge as users bridge traditional equity exposure into the Morpho lending markets.\n*   **Bernstein Price Target Revision:** Bernstein raising the Robinhood price target to $160, explicitly citing Robinhood Chain as a revenue driver, acts as a sentiment catalyst. This traditional finance endorsement bridges the gap to crypto-native degens, accelerating capital rotation into the chain's ecosystem.\n*   **Collateral Utility Expansion (Lighter):** Lighter's integration of tokenized equities as collateral for perpetuals creates a recursive loop for capital efficiency. This development directly supports the high utilization rates seen in Morpho, as users can now leverage equity positions for perps exposure without leaving the chain.\n* "
@@ -1411,7 +1407,7 @@
  "health": {
   "budget": {
    "day": "2026-07-23",
-   "glm": 17,
+   "glm": 24,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
