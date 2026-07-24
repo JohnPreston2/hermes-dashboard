@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-24T16:48:01Z",
+ "generated_at": "2026-07-24T18:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-24T12:09:20Z",
+   "ts": "2026-07-24T18:08:21Z",
    "status": "ok",
-   "discipline": 97.0,
+   "discipline": 94.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 5
+  "runs_today": 6
  },
  "runs": [
-  {
-   "ts": "2026-07-20T15:06:51Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-20T18:07:04Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 4,
    "phase": null
+  },
+  {
+   "ts": "2026-07-24T18:08:21Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-24T18:08:21Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Near",
+    "Binance staked ETH",
+    "JustLend V1"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 1
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBinance staked ETH solidified its position as the dominant centralized liquid staking token (LST) with a 24.7% market share, generating a 1.974% annualized protocol fee-yield (7d-smoothed), while JustLend V1 maintained its lending sector standing with a 0.642% fee-yield despite a 25.07% dip in 7d fees.\n\n## FILS DOMINANTS\n*   **Binance staked ETH — 1.974% annualized fee-yield, the highest of the set (vs JustLend V1 0.642%):** Protocol holds $6.88B TVL (+1.87% 7d) and commands 24.7% sector market share (source: sector-aware peers). Capital quality is sticky, evidenced by a z=0.67 (68th pctile) TVL ranking vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). The token captures none of these protocol fees today (capture_pct is null), meaning the current valuation reflects future fee-generation expectations rather than current accrual.\n*   **JustLend V1 — 0.642% annualized fee-yield, the lowest of the set:** Protocol holds $3.26B TVL (+1.69% 7d) and holds 10.4% market share in lending (source: sector-aware peers). Fees declined -25.07% 7d, resulting in a z=-0.23 (35th pctile) fees ranking vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky (z=0.46 TVL vs baseline), but the token captures none of the protocol's fees (capture_pct is null).\n\n## RECONCILIATION\n*   **Thesis: Institutional adoption of regulated venues drives stablecoin flows.** REVISE+trigger. Recent regulatory developments confirm a venue-bounded migration. OKX Europe's technical move to allow USDT to USDC conversion (source: CoinTelegraph) and ESMA's addition of 14 new CASPs to the MiCA register (source: CoinTelegraph) support the hypothesis of a regional shift. However, this is strictly a regional venue effect; global USDT float remains stable (+2%), refuting a global net flow thesis. The trigger for revision is the confirmation of venue-specific compliance mechanisms (USDT->USDC conversion tools) rather than a macro liquidity shift.\n\n## LECTURE\nThe fundamental divergence between Binance staked ETH and JustLend V1 highlights the importance of sector-specific unit economics. Binance staked ETH's fee-yield of 1.974% is supported by a high-quality capital base (68th pctile TVL vs baseline), whereas JustLend V1's lower yield (0.642%) is coupled with a recent fee contraction (-25.07% 7d). Investors must distinguish between protocol revenue and token value accrual; neither token currently captures its protocol fees, rendering P/F multiples a measure of future expectations rather than current cash flow. Regulatory pressure in the EU (MiCA) is creating a bifurcated market: compliant venues are seeing USDT->USDC migration, but this is a regional flow bounded by the offshore float, not a systemic de-risking of the asset class.\nKill condition: A sustained drop in Binance staked ETH's TVL below its 30d baseline (z < -1.0) concurrent with a rise in Lido's market share above 65%.\n\n## RISQUE\n*   **Binance staked ETH:** Regulatory risk remains the primary vector. While the MiCA regime is a compliance constraint in the EU, the inferred flow of USDT->USDC is a hypothesis bounded by the global float. If the regulatory scope expands beyond EU venues or if major offshore exchanges adopt similar compliance measures, the \"regional\" constraint could become a \"global\" headwind, impacting the underlying liquidity of the staked asset.\n*   **JustLend V1:** The primary risk is the sustainability of its fee-yield amidst declining fee generation (-25.07% 7d). If this trend persists, the protocol's value accrual will erode, potentially leading to capital rotation to higher-yielding lending peers like Aave V3 (43.2% market share) or Morpho Blue (23.6% market share).\n\n## SUIVI\n*   **inq_mission_rotation:** E"
+  },
   {
    "ts": "2026-07-24T12:09:20Z",
    "tier": "A",
@@ -763,35 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\nSparkLend's capital quality is deteriorating despite a surge in deposits; TVL grew +6.31% 7d (z=1.54, 99th pctile) while protocol fees only increased +4.07% 7d (z=-0.09, 60th pctile), resulting in a suppressed 1.443% annualized fee-yield (source: get_metric + protocol_fees(7d) + onchain_enriched). This divergence answers the capital question in the negative: the inflow is likely transient or low-utility capital (parking) rather than organic yield-seeking borrowing, as revenue is not scaling with the liquidity base. The protocol holds 11.6% sector share, trailing Aave V3 (43.5%) and Morpho Blue (23.5%) (source: sector-aware peers).\n\nUSDC faces a bifurcated regulatory landscape: MiCA compliance is driving a regional venue rotation in the EU (e.g., OKX Europe USDT->USDC conversion), but this is bounded by global data showing USDT up +2% (~$186B) while USDC is down -1.5% (~$73B) (source: drill_reg). The \"Open USD\" consortium introduces a high-materiality competitive threat, aiming to disrupt Circle's reserve income model (source: CoinTelegraph). NEAR data is null; no assessment on exploit-related liquidity flight.\n\nFalsification: SparkLend fee growth must accelerate (z-score > 1) relative to TVL to confirm organic yield demand; otherwise, the capital is classified as transient."
-  },
-  {
-   "ts": "2026-07-23T00:08:10Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "NEAR",
-    "Rocket Pool",
-    "Aave V3"
-   ],
-   "gate": {
-    "R1": 8,
-    "R6": 9,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nAave V3's protocol revenue accelerated to a 2.467% fee-yield (7d avg), outpacing Rocket Pool's 4.399% yield on a significantly larger capital base, while Rocket Pool's valuation appears rich on a fundamental multiple basis relative to sector peers despite strong protocol-level economics.\n\n## FILS DOMINANTS\n- Rocket Pool — 4.399% fee-yield, the highest of the set (vs Aave V3 2.467%): TVL is stable at $1.02B (z=1.47 30d), but the token trades at 9.3x fees (rank 3/3 in LST vs 3.2x median) — rich on a fee-multiple basis. Capital quality is high (sticky staking), though the token captures none of the protocol's fees today (capture_pct=0).\n- Aave V3 — 2.467% fee-yield (rank 2 in set): TVL expanded +0.96% 7d to $13.93B (z=1.39 30d), capturing 43.6% sector market share. The token trades at 4.4x fees (rank 2/3 in lending vs 4.4x median), but captures 0% of protocol revenue. Capital quality is high (z=0.60 for fees vs baseline), indicating organic demand.\n- NEAR — 0.0% fee-yield (rank 3 in set): No fundamental fee-yield data available in the digest; protocol valuation cannot be assessed on a fee-multiple basis. Capital quality is indeterminate from current data.\n\n## RECONCILIATION\n- REVISE th_20260722_1520_near: The prior thesis linking NEAR to AI infrastructure trends is weakened by the absence of fundamental protocol metrics (fees/TVL) in the current digest. Without evidence of value accrual or capital quality, the conviction drops to 0.5. The red_team_challenge regarding exploit risks remains unaddressed due to data insufficiency.\n\n## LECTURE\nThe divergence between protocol-level value accrual and token valuation is stark in this set. Rocket Pool generates the highest fee-yield (4.399%) but is priced at a premium (9.3x P/F) compared to the sector median (3.2x), suggesting the market is pricing in future fee capture or speculative utility rather than current cash flow. Aave V3 offers a more balanced profile with solid yield (2.467%) and a valuation in line with the sector median (4.4x), yet the token still captures no revenue. Investors must distinguish between the health of the protocol's economic engine and the token's claim on those cash flows.\nKill condition: Aave V3 fee-yield drops below 1.5% for 30d consecutive.\n\n## RISQUE\n- Rocket Pool: Valuation risk is elevated; the 9.3x P/F multiple (rank 3/3) implies high expectations for future fee capture that are not currently realized.\n- Aave V3: Regulatory risk remains a background factor for lending protocols, though no specific adverse news is present in the current digest.\n- NEAR: Smart contract architecture risk is a primary concern given the capital question; the lack of fee data obscures the economic impact of any potential exploits.\n\n## SUIVI\n- inq_mission_rotation: Monitor utilization rates on Morpho Blue's new markets to assess if capital rotation is backed by fundamental yield improvements or speculative positioning. (Next probe: Analyze utilization rates on Morpho Blue's new \"Midnight\" market)."
   }
  ],
  "theses": [
@@ -1244,10 +1244,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-24T00:06:17.743087+00:00",
-     "note": "Morpho Blue fees -44.29% 7d vs TVL +2.3% 7d (z=1.26 30d) implies rotation into passive lending, not borrowing demand (source: get_metric + protocol_fees(7d) + onchain_enriched)."
-    },
-    {
      "ts": "2026-07-24T06:07:36.034546+00:00",
      "note": "Aave V3 TVL z=1.01 (80th pctile) and fees +2.58% 7d indicate strong lending fundamentals (source: get_metric + protocol_fees(7d) + onchain_enriched)."
     },
@@ -1262,9 +1258,13 @@
     {
      "ts": "2026-07-24T12:09:20.440893+00:00",
      "note": "Lido (LST) TVL +5.21% 7d vs SparkLend (Lending) TVL +5.44% 7d (source: get_metric) shows parallel growth, not clear rotation."
+    },
+    {
+     "ts": "2026-07-24T18:08:21.358748+00:00",
+     "note": "JustLend V1 fees -25.07% 7d vs Binance staked ETH stable; Lending TVL growth +1.69% 7d vs LST +1.87% 7d."
     }
    ],
-   "evidence": "inq_mission_rotation · next: Compare lending protocol TVL 7d growth vs perp DEX volume 7d growth."
+   "evidence": "inq_mission_rotation · next: Compare lending protocol TVL growth rates against LST TVL growth to determine if capital is rotating from lending to staking due to yield differentials."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1303,12 +1303,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.8,
+    "tvl": 43.9,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 43.3,
+    "tvl": 43.4,
     "yard": "TVL"
    },
    {
@@ -1331,12 +1331,12 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.96
+    "fy": 7.95
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.22
+    "fy": 6.17
    },
    {
     "name": "Sky Lending",
@@ -1346,22 +1346,22 @@
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.51
+    "fy": 5.48
    },
    {
     "name": "Maple",
     "sector": "lending",
-    "fy": 4.41
+    "fy": 4.4
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.33
+    "fy": 4.31
    },
    {
     "name": "Jupiter Lend",
     "sector": "lending",
-    "fy": 3.91
+    "fy": 3.93
    },
    {
     "name": "WisdomTree",
@@ -1372,30 +1372,30 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -776.8
+    "d7": -772.2
    },
    {
     "chain": "Solana",
-    "d7": 198.8
+    "d7": 199.0
    },
    {
     "chain": "Polygon",
-    "d7": -45.3
+    "d7": -45.2
    },
    {
     "chain": "Arbitrum",
-    "d7": -4.7
+    "d7": -4.6
    },
    {
     "chain": "Optimism",
-    "d7": 4.1
+    "d7": 4.2
    }
   ],
   "agg": {
-   "stable_mcap_b": 296.9,
-   "stable_d7_pct": 0.25,
+   "stable_mcap_b": 296.7,
+   "stable_d7_pct": 0.19,
    "dex_vol_24h_b": 6.7,
-   "defi_tvl_b": 75.6
+   "defi_tvl_b": 75.8
   }
  },
  "robinhood": {
@@ -1408,17 +1408,17 @@
  "health": {
   "budget": {
    "day": "2026-07-24",
-   "glm": 26,
+   "glm": 29,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 2,
-   "unsupported_pct_7d": 14,
+   "unsupported_pct_7d": 15,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
-   "silent_r2_7d": 2
+   "silent_r2_7d": 1
   }
  }
 }
