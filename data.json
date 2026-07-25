@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-25T08:48:01Z",
+ "generated_at": "2026-07-25T10:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "S",
+   "tier": "B",
    "mode": "react",
-   "ts": "2026-07-25T06:38:00Z",
+   "ts": "2026-07-25T09:38:33Z",
    "status": "ok",
-   "discipline": 94.0,
+   "discipline": 84.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 3
+  "runs_today": 4
  },
  "runs": [
-  {
-   "ts": "2026-07-21T03:07:03Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-21T06:07:06Z",
    "tier": "A",
@@ -458,9 +447,45 @@
    "r2_pass": true,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-07-25T09:38:33Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-25T09:38:33Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\n**SEC 2026 Crypto Regulatory Agenda: Systemic Oversight Expansion**\nThe SEC added three crypto rules to its 2026 regulatory agenda, targeting proposed rules as soon as July, with specific focus on exchanges and broker-dealers (source: read_articles). This represents a material escalation in regulatory oversight, moving from enforcement to rulemaking. SEC Commissioner Peirce explicitly stated that onchain vaults and lending activities could trigger securities laws (source: read_articles), creating direct regulatory exposure for DeFi lending protocols. The agenda follows the SEC's settlement with Coinbase regarding texts from former Chair Gary Gensler related to Ethereum (source: read_articles), signaling continued scrutiny of major exchanges.\n\n**Critical Security Cascade Across Major Chains**\nThirty-nine active exploit risks are currently tracked, with critical urgency flags on Ethereum (exploit, vulnerability, drain), Arbitrum (hack, exploit, drain), and Bitcoin (exploit, drain) (source: get_events). These alerts span 26-68 hours old, indicating sustained vulnerability rather than isolated incidents. The concentration of critical risks across the three largest chains suggests either coordinated probing or systemic vulnerability in shared infrastructure components.\n\n**Bitcoin Staking Upgrade Passes with 99% Approval**\nThe Stacks Bitcoin staking upgrade vote passed with 99% approval, with most exchanges preparing for the hard fork (source: read_articles). This represents a fundamental shift in Bitcoin's utility from passive store-of-value to yield-generating asset. Concurrently, a $15 million quantum defense fund was established by Strategy and BlackRock to research post-quantum cryptography (source: read_articles), addressing the quantum computing threat highlighted by Cardano's Hoskinson.\n\n## RECONCILIATION\n\n**Aave Thesis (th_20260725_0320_aave): CONFIRM**\nPrior thesis: \"Aave's continued adjustments to supply caps highlight a proactive approach to risk management within the V3 market\" (confidence: 0.92). The SEC Commissioner's statement that onchain vaults and lending activities could trigger securities laws directly validates the risk management focus. However, the critical exploit risk flag on Ethereum (source: get_events) introduces new systemic risk that could impact Aave's collateral base. The thesis remains confirmed but with increased sensitivity to regulatory developments.\n\n**RWA Sector: NEW THESIS REQUIRED**\nDespite 47.1% emergence in narrative count (source: get_board) and Spiko's TVL surge of +92.61% to $2.26B (source: get_board), there is no active thesis for the RWA sector. The regulatory developments around Morgan Stanley (ban) and the broader SEC agenda suggest institutional RWA adoption faces significant headwinds. A new thesis is warranted to track whether regulatory pressure or institutional demand dominates the sector's trajectory.\n\n## LECTURE\n\n**Regulatory-Driven DeFi Transformation**\nThe SEC's 2026 agenda marks the transition from reactive enforcement to proactive rulemaking in crypto. By targeting exchanges and broker-dealers first, the SEC is attacking the on-ramps before addressing onchain protocols. Commissioner Peirce's statement about onchain vaults and lending triggering securities laws creates a direct path for regulatory oversight of DeFi lending protocols without requiring new legislation. This suggests that protocols with centralized governance or identifiable entities (like Aave) face higher regulatory risk than truly decentralized protocols.\n\nThe critical exploit risks across Ethereum, Arbitrum, and Bitcoin occurring simultaneously with regulatory expansion creates a dual pressure point: protocols must address both security vulnerabilities and compliance requiremen"
+  },
   {
    "ts": "2026-07-25T06:38:00Z",
    "tier": "S",
@@ -767,31 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBinance staked ETH's protocol fundamentals strengthened with a 1.905% annualized fee-yield (7d avg) and +0.95% TVL growth (7d), positioning it as the dominant value-accrual thread in this set, while JustLend V1 experienced a sharp -48.23% fee contraction (7d) despite TVL expansion, signaling deteriorating unit-economics.\n\n## FILS DOMINANTS\n*   **Binance staked ETH — 1.905% fee-yield, the highest of the set (vs JustLend V1 0.662%):** TVL grew +0.95% (7d) to $7.14B, outperforming its baseline (z=1.36 30d). The protocol holds 24.7% market share in liquid staking (source: sector-aware peers), second only to Lido. Capital quality appears sticky as it sits at the 93rd percentile for TVL vs baseline (z=1.36 30d), though token capture of these fees remains unverified by governance data (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **JustLend V1 — 0.662% fee-yield, rank 2/2 in the set:** TVL increased +1.83% (7d) to $3.31B, but protocol fees collapsed -48.23% (7d), dragging its fee-vs-baseline to the 34th percentile (z=-0.29 30d). It commands 10.4% lending market share (source: sector-aware peers). The divergence between growing TVL and collapsing fees suggests capital is either idle or low-yield, raising concerns about capital efficiency and stickiness (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **NEAR — Data Unavailable:** The digest reports null TVL and fee metrics, preventing a fundamental assessment of value accrual or capital quality relative to peers (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **Thesis: Lending Sector Efficiency (id: implicit from recent briefs):** REVISE. The JustLend V1 data (-48.23% fees 7d) contradicts the broader narrative of lending efficiency gains seen in peers like Maple Finance. While sector narrative volume is high, this thread confirms that capital rotation is not universally improving unit-economics; specific protocols are suffering fee degradation despite TVL inflows.\n*   **Thesis: Institutional Adoption via Regulated Venues (id: inq_mission_institutional):** CONFIRM. The regulatory digest for Binance staked ETH confirms that EU-licensed venues (e.g., OKX Europe) are actively enforcing MiCA compliance by facilitating USDT->USDC conversions (source: CoinTelegraph). This confirms the mechanism of institutional/regulatory flow migration, though the scale remains regionally bounded to the EU.\n\n## LECTURE\nThe primary fundamental divergence in this set is the decoupling of TVL from fee generation in JustLend V1. A +1.83% TVL increase alongside a -48.23% fee drop indicates that capital is being deployed into low-yield or idle positions, diluting the protocol's revenue efficiency. In contrast, Binance staked ETH demonstrates robust baseline resilience (z=1.36 TVL vs baseline) and superior fee yield (1.905%), validating its quality as a liquid staking asset, although the lack of token capture data means the P/F multiple cannot be assessed. The regulatory environment for Binance staked ETH is a tailwind for compliance but a constraint for USDT-dependent flows; the inferred migration to USDC/EURC is a regional venue effect, not a global float shift, and must be bounded as such.\n\nKill condition: JustLend V1 fee-yield drops below 0.5% annualized for 30 consecutive days.\n\n## RISQUE\n*   **JustLend V1:** Structural risk of capital inefficiency; if the -48.23% fee trend (7d) persists, the protocol becomes a \"capital trap\" where TVL is high but revenue generation is near-zero, potentially triggering sticky capital exits.\n*   **Binance staked ETH:** Regulatory constraint risk; while the protocol fundamentals are strong, the MiCA regime (in_force_enforced) creates a venue-bounded headwind for EU-based liquidity,"
-  },
-  {
-   "ts": "2026-07-23T09:39:19Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 8,
-    "R6": 9,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\n\nA wave of exploit risks has emerged across multiple DeFi protocols, representing a systemic threat to the ecosystem. The most significant incidents include:\n\n1. AFX Trade protocol on Arbitrum was exploited for $24 million via a bridge exploit (source: The Block, 2026-07-23)\n2. The Balance stablecoin collapsed 99% after a $1 million exploit drained its bitcoin vaults by manipulating the price feed (source: CoinDesk, 2026-07-22)\n3. Ostium will reopen trading on July 23 after a $23.8 million vault exploit, with positions marked to live market price (source: The Defiant, 2026-07-23)\n4. Allbridge Core halted its protocol after a $1.65 million flash loan exploit where a $1.12 million loan from Kamino was used to manipulate stablecoin pools (source: The Defiant, 2026-07-23)\n\nThese exploits highlight ongoing vulnerabilities in bridge infrastructure, price feed manipulation, and flash loan mechanisms across the DeFi ecosystem.\n\n## RECONCILIATION\n\nCONFIRM: Lending sector thesis remains intact despite exploit risks. Aave V3 continues to show strength with TVL increasing by 0.82% (7d) (source: get_analyst_note). Morpho Blue's expansion with new products like Midnight (fixed-rate lending on Base) and Birch Hill (institutional credit underwriting) demonstrates continued innovation in the lending sector (source: read_articles).\n\nCONFIRM: Capital rotation thesis toward Ethereum and Solana continues. Ethereum saw stablecoin inflows increase by 0.44% (7d), totaling $76.3B, while Solana saw stablecoin inflows increase by 6.65% (7d), totaling $3.0B (source: get_analyst_note). Meanwhile, Arbitrum experienced capital outflows of -5.43% (7d stablecoin flow) (source: get_analyst_note).\n\n## LECTURE\n\nThe recent wave of exploits across multiple DeFi protocols underscores the persistent security challenges facing the ecosystem despite its maturation. Bridge exploits remain a critical vulnerability, as demonstrated by the $24 million AFX Trade exploit on Arbitrum. Price feed manipulation continues to pose risks to stablecoin protocols, evidenced by the Balance stablecoin collapse. Flash loan exploits, while smaller in magnitude ($1.65 million in the Allbridge case), remain a concern due to their potential to manipulate market prices across protocols.\n\nThese security challenges are occurring against a backdrop of continued capital rotation toward more established ecosystems (Ethereum) and emerging chains (Solana), suggesting that market participants may be seeking safer harbors amid these security concerns. The regulatory landscape is also evolving rapidly, with MiCA stablecoin tightening now in force and active enforcement in the EU, and the GENIUS Act (US stablecoin framework) approaching its rulemaking finalization deadline (2026-07-18) (source: get_reg_exposure).\n\nKill condition: If bridge exploits exceed $100 million in aggregate value within a 30-day window, or if a major stablecoin (top 5 by market cap) experiences a depegging event greater than 5% due to an exploit, this would indicate a systemic security failure requiring immediate reassessment of DeFi's security model.\n\n## LIVE EVENTS\n\n1. Exploit risk: AFX Trade protocol on Arbitrum (exploit, drain) - critical urgency (source: get_events)\n2. Exploit risk: Unknown protocol (hack, breach) - critical urgency (source: get_events)\n3. Exploit risk: Bitcoin (exploit, drain) - critical urgency (source: get_events)\n4. Exploit risk: Unknown-refined (vulnerability, breach) - critical urgency (source: get_events)\n5. Exploit risk: Unknown protocol (hack, exploit) - critical urgency (source: get_events)\n\n## SUIVI\n\n- inq_mission_fresh_money: Confirmed that net new fiat is entering crypto, with global stablecoin market cap at $297B (+0.4% 7d) (source: get_metric). USDC supply grew to"
   }
  ],
  "theses": [
@@ -1210,10 +1210,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-23T09:39:19.022056+00:00",
-     "note": "Global stablecoin market cap at $297B (+0.4% 7d); USDC supply grew to $74.2B (+1.4% 7"
-    },
-    {
      "ts": "2026-07-24T06:37:39.295761+00:00",
      "note": "Global stablecoin flow flat at +0.2% (7d) to $296.67B (source: get_metric)"
     },
@@ -1228,18 +1224,18 @@
     {
      "ts": "2026-07-25T06:38:00.021296+00:00",
      "note": "Global stablecoin flow flat (+0.2% to $296.7B, z=-0.68, 37th percentile) despite RWA narrative surge (+41.2%) and Spiko TVL +92.6% (source: get_metric)"
+    },
+    {
+     "ts": "2026-07-25T09:38:33.480875+00:00",
+     "note": "Global stablecoin market cap at $296.7B (+0.1% over 7d), USDC supply at $73.6B (+0.3% over 7d) (source: get_metric)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Monitor if BitMEX shutdown (2026-09-23) accelerates stablecoin flows from Ethereum to other chains, particularly Solana."
+   "evidence": "inq_mission_fresh_money · next: Monitor stablecoin flows by chain to identify which networks are attracting new capital"
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-24T06:37:39.296026+00:00",
-     "note": "Spiko TVL surged 92.09% (7d) to $2.24B (z=4.86, 99th pctile) (source: get_metric)"
-    },
     {
      "ts": "2026-07-24T09:38:20.079935+00:00",
      "note": "Spiko's TVL surge of 92.09% (7d) to $2.24B indicates continued institutional adoption in the RWA sector (source: get_metric)"
@@ -1255,18 +1251,18 @@
     {
      "ts": "2026-07-25T06:38:00.021617+00:00",
      "note": "ONDO fees surged +626.9% to $255K 24h (z=0.28, 85th percentile) but stablecoin flow flat, suggesting internal rotation not institutional adoption (source: get_metric)"
+    },
+    {
+     "ts": "2026-07-25T09:38:33.481371+00:00",
+     "note": "Morgan Stanley regulatory event (ban) (source: get_events)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Check ONDO governance for institutional partnership confirmations and analyze fee growth composition (issuance vs. deposit)."
+   "evidence": "inq_mission_institutional · next: Track institutional RWA fund launches and regulatory approvals to assess adoption headwinds"
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-24T12:09:20.440893+00:00",
-     "note": "Lido (LST) TVL +5.21% 7d vs SparkLend (Lending) TVL +5.44% 7d (source: get_metric) shows parallel growth, not clear rotation."
-    },
     {
      "ts": "2026-07-24T18:08:21.358748+00:00",
      "note": "JustLend V1 fees -25.07% 7d vs Binance staked ETH stable; Lending TVL growth +1.69% 7d vs LST +1.87% 7d."
@@ -1282,6 +1278,10 @@
     {
      "ts": "2026-07-25T06:38:00.021711+00:00",
      "note": "Capital rotating from Ethereum (-$622M 7d) to Solana (+$419M 7d) with R"
+    },
+    {
+     "ts": "2026-07-25T09:38:33.481520+00:00",
+     "note": "RWA sector emergence +47.1%, Spiko TVL +92.61% to $2.26B (source: get_board)"
     }
    ],
    "evidence": "inq_mission_rotation · next: Analyze ONDO fee growth composition (issuance vs. deposit)."
@@ -1323,7 +1323,7 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.9,
+    "tvl": 43.8,
     "yard": "TVL"
    },
    {
@@ -1338,7 +1338,7 @@
    },
    {
     "name": "dex",
-    "tvl": 9.0,
+    "tvl": 8.9,
     "yard": "VOLUME"
    },
    {
@@ -1351,7 +1351,7 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.06
+    "fy": 8.23
    },
    {
     "name": "Hastra",
@@ -1392,11 +1392,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -623.1
+    "d7": -625.6
    },
    {
     "chain": "Solana",
-    "d7": 419.3
+    "d7": 419.2
    },
    {
     "chain": "Polygon",
@@ -1404,7 +1404,7 @@
    },
    {
     "chain": "Arbitrum",
-    "d7": -35.7
+    "d7": -35.8
    },
    {
     "chain": "Optimism",
@@ -1415,12 +1415,12 @@
    "stable_mcap_b": 296.7,
    "stable_d7_pct": 0.13,
    "dex_vol_24h_b": 6.5,
-   "defi_tvl_b": 75.5
+   "defi_tvl_b": 75.4
   }
  },
  "robinhood": {
-  "tvl_m": 325.0,
-  "morpho_share_pct": 69,
+  "tvl_m": 326.2,
+  "morpho_share_pct": 68,
   "age_days": 13,
   "synth_ts": "2026-07-24T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-24\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$313.8M**, recording a daily increase of **+2.8%**. The trajectory remains sharply upward, having more than doubled from ~$111M to ~$318M over the last 14 days (timestamped 1783728000 to 1784851200). Capital concentration is extreme: **Morpho Blue** commands **66.8%** of total chain TVL ($209.5M supplied), with utilization rates near saturation ($207.1M borrowed). This dominance indicates that current inflows are primarily yield-seeking behavior targeting lending incentives rather than diversified DeFi activity. Secondary protocols trail significantly, with Uniswap V3 ($29.2M) and Arcus Perps ($17.3M) comprising the remainder of the \"real\" economy, while long-tail DEXs and bridges account for negligible capital allocation. The quality of capital is currently \"hot\" and incentive-driven, evidenced by the rapid TVL expansion coinciding with product launches rather than organic sticky deposit growth.\n\n## CATALYSEURS\n*   **Tokenized Stock Expansion (Arcus & Lighter):** The launch of 24/7 trading for 95+ stock tokens on Arcus and the beta perpetual markets has directly fueled the on-chain volume spike. Concurrently, Lighter's integration of Robinhood's tokenized equities as collateral has expanded the utility loop, allowing these RWAs to be leveraged rather than just held. This directly correlates with the surge in TVL and the high utilization rates seen in Morpho lending markets.\n*   **RWA Sector Momentum:** Tokenized stocks across venues (Ondo, Backed, Robinhood Chain) hitting an all-time high of $2.3B validates the structural demand for 24/7 equity exposure. This sector-wide tailwind provides the fundamental liquidity base supporting Robinhood Chain's specific TVL growth.\n*   **Institutional Validation (Bernstein):** Bernstein raising Robinhood's price target to $160, specifically citing tokenization and prediction markets, signals to institutional allocators that the chain is a viable vector for regulated crypto exposure, encouraging fresh capital deployment.\n\n## VALUE ACCRUAL\nValue accrual is structurally bifurcated and **excludes the chain operator itself**. Robinhood has no native cha"
@@ -1428,7 +1428,7 @@
  "health": {
   "budget": {
    "day": "2026-07-25",
-   "glm": 12,
+   "glm": 19,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
@@ -1438,7 +1438,7 @@
    "unsupported_pct_7d": 14,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
-   "silent_r2_7d": 1
+   "silent_r2_7d": 0
   }
  }
 }
