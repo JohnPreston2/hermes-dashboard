@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-25T16:48:01Z",
+ "generated_at": "2026-07-25T18:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-25T12:07:54Z",
+   "ts": "2026-07-25T18:07:42Z",
    "status": "ok",
-   "discipline": 97.0,
-   "r2_pass": true,
-   "silent": false
+   "discipline": null,
+   "r2_pass": null,
+   "silent": true
   },
-  "runs_today": 5
+  "runs_today": 6
  },
  "runs": [
-  {
-   "ts": "2026-07-21T06:37:58Z",
-   "tier": "S",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 6,
-   "phase": null
-  },
   {
    "ts": "2026-07-21T09:07:26Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 4,
    "phase": null
+  },
+  {
+   "ts": "2026-07-25T18:07:42Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": 4,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-25T18:07:42Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": 4,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Spiko",
+    "Lido",
+    "SparkLend"
+   ],
+   "gate": {
+    "R1": null,
+    "R6": null,
+    "R8": null,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": null,
+    "n_unsupported_pct": null
+   },
+   "brief": "[SILENT] R2 could not be cleaned"
+  },
   {
    "ts": "2026-07-25T12:07:54Z",
    "tier": "A",
@@ -763,35 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's protocol fundamentals are diverging: TVL is expanding at a rate 1.26 standard deviations above its 30-day baseline (z=1.26 30d), reaching $7.48B and securing 23.7% market share in the lending sector, while fee generation has contracted by 44.29% over the last 7 days (source: get_metric + protocol_fees(7d) + onchain_enriched). This suggests capital inflows are likely driven by yield-seeking behavior rather than borrowing demand, pressuring the protocol's fee-yield to 3.13% (7d avg) despite the asset base growth (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## FILS DOMINANTS\n*   Morpho Blue — 3.13% annualized fee-yield (7d avg), rank 1/1 in this set: TVL grew +2.3% 7d to $7.48B (z=1.26 30d), capturing 23.7% sector market share (vs Aave V3 at 43.4%), but fees dropped -44.29% 7d (z=-0.53 30d). The valuation is rich on a P/F basis at 5.5x (rank 2/3 vs 5.5x sector median), though this is framed on FDV (fdv_mcap=1.53) and the token captures none of the protocol's fees today (capture_pct=null). Capital quality is provisional as the high TVL coupled with falling fees implies transient incentive farming or low-rotation deposits rather than sticky, organic utilization (source: get_metric + protocol_fees(7d) + onchain_enriched; drill_valuation).\n*   Near — No value-accrual data available in the digest (fees/TVL null). The recent exploit activity raises questions about systemic security failures versus isolated smart contract risks, but without fundamental unit economics (fee-yield, take-rate), no relative valuation or capital quality assessment can be anchored (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   MiCA stablecoin tightening — No value-accrual data available (fees/TVL null). The regulatory regime shift (EMT enforcement) is a potential tailwind for EU-licensed venues, but any inferred liquidity migration from offshore issuers remains a hypothesis bounded by the offshore float, not a confirmed flow (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260723_0320_near (Near AI/Security Inflection)**: REVISE. The thesis that Near is at a critical inflection point due to AI and security concerns is weakened by the absence of fundamental data in the digest. Without protocol fees or TVL metrics, we cannot quantify the economic impact of the security model or validate the infrastructure thesis. Conviction lowered to 0.5 due to lack of fundamental data (fees/TVL) to support the infrastructure thesis (source: priors).\n*   **th_20260723_1520_aave (Aave Risk Management)**: CONFIRM. The digest's peer data shows Aave V3 maintaining a dominant 43.4% market share ($13.73B TVL) against Morpho Blue's 23.7%, supporting the thesis that Aave's risk management focus is sustaining its leading position despite competitive pressure. The prior brain verdict of \"strengthening\" is consistent with the observed market share stability (source: peers; priors).\n\n## LECTURE\nThe divergence between Morpho Blue's TVL expansion (z=1.26 30d) and its fee contraction (-44.29% 7d) is the defining signal here. A 3.13% fee-yield on a $7.48B base is not inherently weak, but the sharp negative fee skew relative to TVL growth indicates that the capital flowing in is either seeking passive yield (lending-only) or is incentivized, rather than generating revenue through borrowing activity. For a lending protocol, value accrual is driven by the spread between lender and borrower rates; if borrowing demand isn't keeping pace with supply growth, the protocol's revenue base (fees) will suffer even as the asset base (TVL) inflates. The valuation multiple of 5.5x P/F (rank 2/3) is effectively pricing in future fee capture or growth that current fundamentals (falling fees) d"
-  },
-  {
-   "ts": "2026-07-23T18:07:02Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 96.7,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "Near",
-    "Morpho Blue",
-    "Spiko"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko recorded a +91.39% 7d TVL surge (z=13.28 100th pctile), driving its RWA sector market share to 14.1%, while Morpho Blue's fee-yield of 3.131% leads the set despite a -43.44% 7d fee decline.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 3.131% fee-yield, the highest of the set (vs Spiko 1.093%):** TVL grew +2.82% 7d to $7.49B (z=1.28 89th pctile), securing 23.6% lending market share (vs Aave V3 43.5%). Capital quality is mixed; the protocol generates robust fees, but the token captures none of this value today (capture_pct=0), and valuation is rich on an FDV basis (P/F 5.5, rank 2/3 vs 5.5 median; fdv_mcap 1.526).\n*   **Spiko — 1.093% fee-yield (rank 2/3):** TVL surged +91.39% 7d to $2.23B (z=13.28 100th pctile), capturing 14.1% RWA market share (vs BlackRock BUIDL 21.2%). The fee-yield is low relative to the capital base, and the token's value capture is unknown. The rapid TVL expansion suggests provisional capital inflows requiring retention verification.\n*   **Near — No fundamental data available:** The digest carries null values for TVL and fees, preventing a fundamental assessment of the protocol's value accrual or capital quality relative to peers.\n\n## RECONCILIATION\n*   **th_20260723_0320_near (Near AI/Infra):** REVISE to conviction 0.5. The prior thesis on AI convergence is unsupported by current fundamental data; the digest reports null TVL and fees, failing to validate infrastructure activity or value accrual (source: get_metric).\n*   **th_20260704_0320_aave (Aave Risk Mgmt):** RETIRE. The thesis is stable and superseded by current sector focus; Aave V3 maintains dominance with 43.5% market share, but Morpho Blue's higher fee-yield (3.131% vs Aave's implied lower yield) shifts the fundamental lens to capital efficiency (source: sector-aware peers).\n\n## LECTURE\nThe RWA sector is experiencing a capital rotation event, evidenced by Spiko's extreme TVL deviation (z=13.28). However, the fee-yield of 1.093% indicates that this capital is not yet generating proportional revenue, characteristic of speculative positioning or low-yield regulatory wrappers. In lending, Morpho Blue demonstrates superior unit economics with a 3.131% fee-yield, yet the disconnect between protocol fees and token value capture (capture_pct=0) creates a valuation divergence where the P/F multiple (5.5) prices in future accrual that does not currently exist.\nKill condition: Spiko's fee-yield remains below 0.5% for 30 days despite high TVL, indicating permanent low-yield capital.\n\n## RISQUE\n*   **Morpho Blue:** Valuation risk is elevated; the token trades at a premium P/F (5.5) on an FDV basis (1.526) without current fee capture, making the multiple sensitive to any reduction in protocol revenue.\n*   **Spiko:** Capital quality risk is high; the 91% TVL surge (z=13.28) is an outlier that lacks a corresponding fee increase, suggesting the inflows are transient or incentivized rather than sticky institutional capital.\n*   **Near:** Information risk; the lack of fee/TVL data obscures whether the chain is suffering from capital flight or smart contract isolation following recent exploit activity.\n\n## SUIVI\n*   **inq_mission_institutional:** Monitor Spiko's user growth and deposit sizes to verify if the +91.39% TVL surge (z=13.28) represents institutional entry or speculative retail flows (source: get_metric).\n*   **inq_mission_rotation:** Analyze the -43.44% 7d fee drop in Morpho Blue to determine if capital is rotating to lower-yield RWA assets like Spiko or exiting the lending sector entirely (source: protocol_fees 7d)."
   }
  ],
  "theses": [
@@ -1125,12 +1125,8 @@
    "conviction": 0.0,
    "trigger": "No live reg news or corroboration found in digest.",
    "kill": "",
-   "ts": "2026-07-24T12:09:20Z",
+   "ts": "2026-07-25T18:07:42Z",
    "history": [
-    {
-     "ts": "07-07",
-     "c": 0.92
-    },
     {
      "ts": "07-10",
      "c": 0.92
@@ -1165,6 +1161,10 @@
     },
     {
      "ts": "07-24",
+     "c": 0.0
+    },
+    {
+     "ts": "07-25",
      "c": 0.0
     }
    ]
@@ -1237,10 +1237,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-24T09:38:20.079935+00:00",
-     "note": "Spiko's TVL surge of 92.09% (7d) to $2.24B indicates continued institutional adoption in the RWA sector (source: get_metric)"
-    },
-    {
      "ts": "2026-07-24T12:09:20.440755+00:00",
      "note": "SparkLend fees +16.72% 7d (source: protocol_fees 7d) indicates higher activity, potentially institutional, but requires custody data to confirm."
     },
@@ -1255,9 +1251,13 @@
     {
      "ts": "2026-07-25T09:38:33.481371+00:00",
      "note": "Morgan Stanley regulatory event (ban) (source: get_events)"
+    },
+    {
+     "ts": "2026-07-25T18:07:42.103318+00:00",
+     "note": "Spiko TVL +92.65% 7d (z=2.78 30d) to $2.26B, 14.2% RWA share (source: get_metric + landscape_category)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Track institutional RWA fund launches and regulatory approvals to assess adoption headwinds"
+   "evidence": "inq_mission_institutional · next: Analyze Spiko deposit composition for organic vs. incentivized sources."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
@@ -1351,7 +1351,7 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.22
+    "fy": 8.21
    },
    {
     "name": "Hastra",
@@ -1361,17 +1361,17 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.66
+    "fy": 5.65
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.55
+    "fy": 5.54
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.29
+    "fy": 4.28
    },
    {
     "name": "WisdomTree",
@@ -1381,7 +1381,7 @@
    {
     "name": "Ondo Yield Assets",
     "sector": "rwa",
-    "fy": 3.49
+    "fy": 3.48
    },
    {
     "name": "Invesco USTB",
@@ -1392,11 +1392,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -624.5
+    "d7": -626.3
    },
    {
     "chain": "Solana",
-    "d7": 419.2
+    "d7": 419.1
    },
    {
     "chain": "Polygon",
@@ -1413,9 +1413,9 @@
   ],
   "agg": {
    "stable_mcap_b": 296.7,
-   "stable_d7_pct": 0.08,
+   "stable_d7_pct": 0.09,
    "dex_vol_24h_b": 6.6,
-   "defi_tvl_b": 75.7
+   "defi_tvl_b": 75.8
   }
  },
  "robinhood": {
@@ -1428,7 +1428,7 @@
  "health": {
   "budget": {
    "day": "2026-07-25",
-   "glm": 25,
+   "glm": 29,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
@@ -1438,7 +1438,7 @@
    "unsupported_pct_7d": 14,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
-   "silent_r2_7d": 0
+   "silent_r2_7d": 1
   }
  }
 }
