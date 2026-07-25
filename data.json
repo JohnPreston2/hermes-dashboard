@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-25T02:48:01Z",
+ "generated_at": "2026-07-25T04:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -800,7 +800,7 @@
    "verdict": "confirm",
    "conviction": 0.95,
    "trigger": "Aave V3's lending dominance has solidified with a 7.28% TVL expansion (7d) to $13.71B, capturing 43.7% sector share, while maintaining a 2.42% fee-yield",
-   "kill": "Monitor the implementation and subsequent utilization rates of the increased supply caps on Aave V3 markets for evidence of increased liquidity and protocol engagement, indicating ",
+   "kill": "The volume of assets deposited into Aave V3 by institutions identified as holding greater than $10 million in Aave tokens over the next 30 days will indicate the effectiveness of t",
    "ts": "2026-07-15T09:02:35Z",
    "history": [
     {
@@ -919,7 +919,7 @@
    "verdict": "confirm",
    "conviction": 0.85,
    "trigger": "TVL growth (z=1.47) outpacing fee growth (z=0.59) suggests supply-driven expansion over organic demand.",
-   "kill": "Monitor the implementation and subsequent utilization rates of the increased supply caps on Aave V3 markets for evidence of increased liquidity and protocol engagement, indicating ",
+   "kill": "The volume of assets deposited into Aave V3 by institutions identified as holding greater than $10 million in Aave tokens over the next 30 days will indicate the effectiveness of t",
    "ts": "2026-07-24T00:06:17Z",
    "history": [
     {
@@ -976,7 +976,7 @@
    "verdict": "revise",
    "conviction": 0.85,
    "trigger": "Repeated exploit_risk events without confirmed formal verification metrics.",
-   "kill": "The volume of developer activity and funding allocated to blockchain security audits and quantum-resistant cryptography solutions over the next quarter will indicate whether the in",
+   "kill": "The level of investment allocated to quantum-resistant cryptography and security audits across major DeFi protocols in the next quarter, as a measurable indicator of proactive risk",
    "ts": "2026-07-25T00:07:30Z",
    "history": [
     {
@@ -1053,7 +1053,7 @@
    "verdict": "revise",
    "conviction": 0.52,
    "trigger": "Divergence between regulatory clearance and -15.76% fee decline 7d.",
-   "kill": "Monitor the actual launch date and trading volumes of the London Stock Exchange's overnight trading platform in 2027, as a delay or low participation would indicate a lack of insti",
+   "kill": "Monitor the volume of trading activity on the London Stock Exchange following the launch of overnight trading in 2027, specifically looking for increased participation from institu",
    "ts": "2026-07-25T00:07:30Z",
    "history": [
     {
@@ -1174,7 +1174,7 @@
    "verdict": "retire",
    "conviction": 0.0,
    "trigger": "Aave V3 continues to demonstrate protocol expansion with $13.95B TVL (z=1.47, 95th percentile) despite emergence of Morpho's fixed-rate competition (source: get_board).",
-   "kill": "Monitor the implementation and subsequent utilization rates of the increased supply caps on Aave V3 markets for evidence of increased liquidity and protocol engagement, indicating ",
+   "kill": "The volume of assets deposited into Aave V3 by institutions identified as holding greater than $10 million in Aave tokens over the next 30 days will indicate the effectiveness of t",
    "ts": "2026-07-23T18:07:02Z",
    "history": [
     {
@@ -1324,7 +1324,7 @@
    },
    {
     "name": "lst",
-    "tvl": 43.4,
+    "tvl": 43.3,
     "yard": "TVL"
    },
    {
@@ -1334,7 +1334,7 @@
    },
    {
     "name": "dex",
-    "tvl": 8.9,
+    "tvl": 9.0,
     "yard": "VOLUME"
    },
    {
@@ -1357,12 +1357,12 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.68
+    "fy": 5.69
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.55
+    "fy": 5.56
    },
    {
     "name": "WisdomTree",
@@ -1382,17 +1382,17 @@
    {
     "name": "Ondo Yield Assets",
     "sector": "rwa",
-    "fy": 3.48
+    "fy": 3.49
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -622.5
+    "d7": -624.1
    },
    {
     "chain": "Solana",
-    "d7": 419.3
+    "d7": 419.2
    },
    {
     "chain": "Polygon",
@@ -1400,7 +1400,7 @@
    },
    {
     "chain": "Arbitrum",
-    "d7": -35.7
+    "d7": -35.8
    },
    {
     "chain": "Optimism",
@@ -1408,16 +1408,16 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 296.8,
-   "stable_d7_pct": 0.11,
+   "stable_mcap_b": 296.7,
+   "stable_d7_pct": 0.13,
    "dex_vol_24h_b": 6.5,
    "defi_tvl_b": 75.6
   }
  },
  "robinhood": {
-  "tvl_m": 323.5,
+  "tvl_m": 325.5,
   "morpho_share_pct": 68,
-  "age_days": 14,
+  "age_days": 13,
   "synth_ts": "2026-07-24T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-24\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$313.8M**, recording a daily increase of **+2.8%**. The trajectory remains sharply upward, having more than doubled from ~$111M to ~$318M over the last 14 days (timestamped 1783728000 to 1784851200). Capital concentration is extreme: **Morpho Blue** commands **66.8%** of total chain TVL ($209.5M supplied), with utilization rates near saturation ($207.1M borrowed). This dominance indicates that current inflows are primarily yield-seeking behavior targeting lending incentives rather than diversified DeFi activity. Secondary protocols trail significantly, with Uniswap V3 ($29.2M) and Arcus Perps ($17.3M) comprising the remainder of the \"real\" economy, while long-tail DEXs and bridges account for negligible capital allocation. The quality of capital is currently \"hot\" and incentive-driven, evidenced by the rapid TVL expansion coinciding with product launches rather than organic sticky deposit growth.\n\n## CATALYSEURS\n*   **Tokenized Stock Expansion (Arcus & Lighter):** The launch of 24/7 trading for 95+ stock tokens on Arcus and the beta perpetual markets has directly fueled the on-chain volume spike. Concurrently, Lighter's integration of Robinhood's tokenized equities as collateral has expanded the utility loop, allowing these RWAs to be leveraged rather than just held. This directly correlates with the surge in TVL and the high utilization rates seen in Morpho lending markets.\n*   **RWA Sector Momentum:** Tokenized stocks across venues (Ondo, Backed, Robinhood Chain) hitting an all-time high of $2.3B validates the structural demand for 24/7 equity exposure. This sector-wide tailwind provides the fundamental liquidity base supporting Robinhood Chain's specific TVL growth.\n*   **Institutional Validation (Bernstein):** Bernstein raising Robinhood's price target to $160, specifically citing tokenization and prediction markets, signals to institutional allocators that the chain is a viable vector for regulated crypto exposure, encouraging fresh capital deployment.\n\n## VALUE ACCRUAL\nValue accrual is structurally bifurcated and **excludes the chain operator itself**. Robinhood has no native cha"
  },
