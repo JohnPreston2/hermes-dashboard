@@ -1,46 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-26T04:48:01Z",
+ "generated_at": "2026-07-26T06:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "A",
-   "mode": "3phase",
-   "ts": "2026-07-26T00:06:30Z",
+   "tier": "S",
+   "mode": "react",
+   "ts": "2026-07-26T06:38:59Z",
    "status": "ok",
-   "discipline": 95.6,
+   "discipline": 84.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 1
+  "runs_today": 3
  },
  "runs": [
-  {
-   "ts": "2026-07-21T09:37:14Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 86.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-21T12:07:32Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-21T15:08:10Z",
    "tier": "A",
@@ -458,9 +436,85 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-26T06:06:08Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.4,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
+  },
+  {
+   "ts": "2026-07-26T06:38:59Z",
+   "tier": "S",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 6,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-26T06:38:59Z",
+   "tier": "S",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 6,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "## PAYSAGE\nAttention is concentrated on the intersection of **Regulatory Regime Shift** and **Institutional RWA Adoption**, while on-chain value is consolidating in compliant venues and liquidity conditions are tightening across major lending protocols. Global stablecoin supply is flatlining at $296.6B (+0.1% 7d), indicating a pause in net new fiat entry, yet capital is actively rotating into RWA protocols like Spiko (+92.65% 7d TVL) and Invesco USTB (+9.33% 7d TVL), suggesting a preference for tokenized real-world yield over native DeFi speculation.\n\n## FILS DOMINANTS\n1.  **Regulatory Onslaught**: The regulatory narrative has exploded (+93.2% emergence) with 193 active events (source: get_events). This is grounded in the enforcement of MiCA in the EU and the finalization of the US GENIUS Act rulemaking (deadline 2026-07-18) (source: get_reg_exposure). The narrative is backed by the sheer volume of legislative activity, not just article count.\n2.  **RWA Capital Rotation**: The RWA narrative (+52.9% emergence) is materially backed by TVL expansion. Spiko leads with a +92.65% 7d TVL surge to $2.26B (z=2.50), while Invesco USTB grew +9.33% (source: get_metric). This rotation is occurring despite flat aggregate stablecoin supply, implying a shift from existing crypto capital rather than fresh fiat.\n3.  **Liquidity Tightening**: Aave maintains high TVL at $13.79B (z=1.04, 87th pctile) (source: get_metric), but systemic risk is elevated with borrow utilization hitting 98.2% across multiple protocols (source: get_analyst_note). This divergence—high value locked alongside tightening liquidity—signals fragility rather than health.\n\n## MOUVEMENTS DE THESES\n*   **Aave (th_20260704_0320_aave)**: **REVISE**. The prior assessment retired the thesis as \"stable\" based on TVL expansion. However, new evidence of 98.2% borrow utilization (source: get_analyst_note) contradicts the stability narrative,"
+  },
+  {
+   "ts": "2026-07-26T06:06:08Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.4,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "NEAR",
+    "Spiko",
+    "MiCA stablecoin tightening"
+   ],
+   "gate": {
+    "R1": 8,
+    "R6": 9,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 1
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko's TVL surged +92.65% 7d to $2.26B (z=2.50, 99th pctile) (source: get_metric), driving a 4.08% annualized fee-yield (source: protocol_fees 7d) and securing 14.2% market share in the RWA sector (source: sector-aware peers), though the capital quality remains provisional pending incentive analysis.\n\n## FILS DOMINANTS\n*   **Spiko — 4.08% fee-yield, the highest of the set (vs NEAR null, MiCA null):** TVL surged +92.65% 7d to $2.26B (z=2.50, 99th pctile) (source: get_metric), generating $253K in 24h fees (z=2.12, 93rd pctile) (source: protocol_fees 7d). The protocol holds 14.2% sector TVL share, ranking 4th behind BlackRock BUIDL (21.6%), Circle USYC (18.8%), and Tether Gold (18.1%) (source: sector-aware peers). Capital quality is provisional; the rapid TVL expansion suggests potential launch-incentivized deposits rather than purely organic institutional adoption.\n*   **NEAR — Null fee-yield (data unavailable):** Recent exploit risk events raise concerns about protocol resilience, but current fee-yield and TVL data are insufficient to quantify the impact on capital efficiency or outflows (source: get_metric).\n*   **MiCA stablecoin tightening — Null fee-yield (data unavailable):** The enforcement of the EMT regime is a regulatory constraint, but current data does not show a measurable migration of liquidity or value accrual metrics for this thread (source: get_metric).\n\n## RECONCILIATION\n*   **th_20260726_0320_aave (REVISE):** We REVISE the thesis that Aave's active management of supply caps demonstrates a commitment to stability. The standing red-team challenge argues that frequent adjustments imply flawed initial risk assessments or unpredictable market reactions. We confirm this challenge: the correlation between Risk Steward interventions and parameter instability outweighs the narrative of proactive control, particularly as TVL growth (z=1.47) outpaces fee growth (z=0.59), suggesting supply-driven expansion over organic demand (source: get_board). Conviction lowered to 0.85.\n\n## LECTURE\nThe Spiko expansion is statistically anomalous (z=2.50 7d TVL), yet the fee-yield of 4.08% provides a fundamental anchor for the valuation. However, the \"organic\" nature of this growth is the critical variable. In RWA, a high fee-yield coupled with a sharp TVL spike often signals deposit incentives rather than sustainable yield on underlying assets. The protocol's 14.2% market share is a strong position, but without token capture confirmation (fee switch status unknown), the P/F multiple cannot be assessed. The NEAR and MiCA threads are currently data-silent on value accrual, rendering fundamental valuation impossible; they remain monitoring items for capital quality signals.\nKill condition: Spiko's TVL retention rate drops below 50% of the +92.65% 7d surge within the next 30 days, indicating incentivized capital flight.\n\n## RISQUE\n*   **Spiko:** The primary risk is that the +92.65% 7d TVL surge is incentivized rather than organic. If deposits are yield-chasing, the protocol's fee-yield will collapse upon incentive removal, eroding the 4.08% annualized yield and the 14.2% market share.\n*   **NEAR:** The specific risk is accelerated outflows due to the recent exploit event. Without current fee-yield or TVL data, we cannot measure the resilience of the capital base.\n*   **MiCA:** The risk is a venue-bounded liquidity migration. The enforcement of the EMT regime may drive flows from EU venues to offshore jurisdictions, but this is a regional effect, not a global net flow, and requires confirmation via EURC/USDC share metrics on EU-denominated volume.\n\n## SUIVI\n*   **inq_mission_institutional:** Analyzing Spiko deposit composition for organic vs. incentivized sources. The +92.65% 7d TVL surge (source: get_metric) nec"
+  },
   {
    "ts": "2026-07-26T00:06:30Z",
    "tier": "A",
@@ -738,60 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF: ## WHAT CHANGED\nBitMEX, a major cryptocurrency exchange, announced it will shut down permanently on September 23, 2026, following a strategic review by its owner, HDR Global Trading (source: read_articles). The BMEX token price crashed approximately 90% following the announcement (source: read_articles). This development is likely driving the surge in the lending narrative (+76.5% emergence) as market participants anticipate the effects on lending markets and potential capital reallocation.\n\n## RECONCILIATION\n- CONFIRM th_20260723_032_near (Near): Critical exploit risks for Near validate the thesis that sustainability depends on proactive security measures. The confidence remains at 0.9, with the trajectory showing strengthening over the past week (source: get_prior_assessment).\n- No active theses exist for the lending sector, which explains why the +76.5% narrative surge wasn't anticipated by existing research (source: get_thesis).\n\n## LECTURE\nThe BitMEX shutdown represents a significant structural change in the crypto landscape, potentially triggering a reallocation of capital from centralized exchanges to DeFi lending protocols. This could explain the surge in lending narrative emergence (+76.5%) as market participants anticipate increased demand for decentralized lending solutions. The 90% crash in BMEX token price indicates rapid market adjustment to this news. However, this capital reallocation may be constrained by the systemic exploit risks currently affecting multiple protocols, including Ethereum, Arbitrum, and Bitcoin (source: get_events). The moderate stress level in the system, with $7.58B total open interest and negative stablecoin flows on Ethereum (-$966M 1d), suggests fragility that could be exacerbated by the BitMEX shutdown (source: get_analyst_note).\n\nKill condition: If lending protocol TVL doesn't increase by at least 5% in the next 7 days despite the BitMEX shutdown announcement, the narrative surge is likely noise rather than a fundamental shift.\n\n## LIVE EVENTS\n- Critical exploit risks across multiple protocols: Ethereum, Arbitrum, and Bitcoin (source: get_events)\n- 208 active regulatory events, including high-urgency items related to Polymarket, Base, and various bills (source: get_events)\n- Morpho launched several new products: Birch Hill (institutional credit underwriting), Midnight (fixed-rate lending on Base), and a new Markets App (source: read_articles)\n\n## SUIVI\n- Advanced inq_mission_fresh_money: Confirmed net stablecoin outflow from Ethereum (-$966M 1d) with inflows to Solana ($59.8M 1d) and Optimism ($1.67M 1d) (source: get_analyst_note).\n- Advanced inq_mission_institutional: Spiko's TVL surge of 92.09% (7d) to $2.24B indicates continued institutional adoption in the RWA sector (source: get_metric).\n- Advanced inq_mission_rotation: Capital is rotating from Ethereum to Solana and other chains, with lending protocols like Morpho Blue showing 3.02% growth (7d) (source: get_analyst_note).\n\n## OPEN QUESTIONS\n- How will the BitMEX shutdown specifically affect lending protocol TVL and utilization rates in the next 30 days?\n- Will the systemic exploit risks constrain the potential capital reallocation from centralized exchanges to DeFi lending?\n- What regulatory implications might arise from the BitMEX shutdown, and how will they affect the broader DeFi ecosystem?"
-  },
-  {
-   "ts": "2026-07-24T06:37:39Z",
-   "tier": "S",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "## PAYSAGE\nAttention is sharply divided between the surging lending narrative (+76.5% emergence) and the RWA sector's fundamental value explosion, with Spiko's TVL surging 92.09% (7d) to $2.24B (source: get_metric). Global stablecoin flow remains flat at +0.2% (7d), indicating no significant new fiat entering crypto (source: get_metric), suggesting the current activity is capital rotation rather than fresh investment. Systemic stress is moderate with $22.08B borrowed across protocols and elevated risk in Aave V3 ($10.84B borrowed) and Morpho Blue ($3.94B borrowed) (source: get_analyst_note).\n\n## FILS DOMINANTS\n1. **RWA Sector Explosion**: Spiko's TVL surge of 92.09% (7d) to $2.24B (z=4.86, 99th pctile) represents the strongest fundamental movement across all sectors (source: get_metric). This is backed by BlackRock BUIDL's 2.39% (1d) TVL increase and Circle USYC at $2.96B (source: get_analyst_note). The narrative is strongly supported by on-chain fundamentals.\n\n2. **Lending Narrative Surge**: The lending sector shows +76.5% narrative emergence (source: get_board), but fundamentals are mixed. Aave V3 TVL increased 2.22% (7d) to $13.77B (source: get_metric), while Morpho Blue TVL increased 3.1% (7d) to $7.51B (source: get_metric). However, both showed 1d declines (-1.03% and -0.24% respectively), suggesting the narrative may be ahead of fundamentals.\n\n3. **Capital Rotation to Solana**: Capital is rotating from Ethereum (-$967M 1d stablecoin outflow) to Solana (+$59.7M 1d stablecoin inflow) (source: get_analyst_note). This represents a structural shift away from Ethereum's high gas fees toward alternative chains, though the overall stablecoin supply remains flat.\n\n4. **Regulatory Pressure**: Regulatory events dominate the landscape with 211 active events (source: get_events), including high-urgency issues affecting Polymarket, Base, and broader DeFi-yield sectors. This represents a significant headwind for ecosystem growth despite the positive fundamental movements in RWA and lending.\n\n## MOUVEMENTS DE THESES\n- **Near Thesis (th_20260723_0320_near)**: STRENGTHENED to 0.9 conviction. The thesis that Near's sustainability depends on proactive security measures is being validated by critical exploit risks (source: get_prior_assessment). The red-team challenge regarding ongoing vulnerabilities remains unaddressed, requiring evidence of formal verification progress.\n\n- **RWA Sector**: NO ACTIVE THESIS exists despite Spiko's massive TVL surge and strong fundamentals. This represents a significant gap in the research program that should be addressed given the sector's 14.1% market share and demonstrable value accrual.\n\n- **Lending Sector**: NO ACTIVE THESIS exists despite the +76.5% narrative surge and mixed fundamental signals. The divergence between narrative volume and actual TVL growth suggests this sector requires closer monitoring.\n\n## CONVERGENCES\nThe convergence of RWA growth and lending sector activity suggests institutional capital is seeking yield through regulated on-chain credit markets. Spiko's surge alongside Morpho Blue's expansion indicates capital is flowing into protocols that offer institutional-grade infrastructure. However, this is occurring against a backdrop of regulatory pressure and capital rotation away from Ethereum, creating a complex risk-reward landscape where institutional adoption is competing with regulatory headwinds.\n\n## SOUS SURVEILLANCE\n- **Spiko's Sustainability**: Monitor whether Spiko's 92.09% TVL surge is sustained or represents a temporary inflow. The next probe should examine user growth and retention metrics.\n- **Ethereum Outflows**: Track whether the -$967M 1d stablecoin outflow from Ethereum accelerates or reverses, as this could signal a more permanent shift in chain dominance.\n- **Regulatory "
-  },
-  {
-   "ts": "2026-07-24T06:07:36Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Near",
-    "Sanctum Validator LSTs",
-    "Aave V3"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSanctum Validator LSTs generated a 13.07% annualized fee-yield (7d-smoothed), the highest of the set, driven by a fee spike (z=1.41 100th pctile), while Aave V3 maintained dominant lending market share (43.4%) with a 2.49% fee-yield; Near protocol fundamentals remain absent from the digest, preventing a fundamental assessment of its infrastructure thesis.\n\n## FILS DOMINANTS\n*   **Sanctum Validator LSTs — 13.07% annualized fee-yield, the highest of the set (vs Aave V3 2.49%, Near N/A):** Fee generation spiked significantly (z=1.41 100th pctile 30d) (source: get_metric + protocol_fees(7d) + onchain_enriched), though TVL lagged at z=-0.86 (21st pctile). Capital quality is provisional as the token captures none of the protocol's fees today (capture_pct=0) (source: drill_valuation).\n*   **Aave V3 — 2.49% annualized fee-yield, rank 2/3 in the set (vs Sanctum 13.07%, Near N/A):** Protocol fees grew +2.58% 7d (source: get_metric + protocol_fees(7d) + onchain_enriched) on a strong capital base ($13.72B TVL, z=1.01 80th pctile). Capital quality is high with 43.4% sector market share (source: sector-aware peers), but the token captures none of these fees (capture_pct=0) (source: drill_valuation).\n*   **Near — N/A fee-yield, rank 3/3 in the set:** The digest provides no fee or TVL data, rendering a fundamental valuation impossible. The protocol's value accrual is unknown (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260723_0320_near (REVISE):** The thesis that Near is at an inflection point due to AI/security convergence is REVISED to a neutral stance. The digest lacks fundamental data (fees/TVL) to support the infrastructure thesis (source: get_metric + protocol_fees(7d) + onchain_enriched). Furthermore, a standing red-team challenge flags a critical \"exploit_risk\" (source: prior_assessment), which cannot be rebutted without data on the percentage of core smart contracts undergoing formal verification. The thesis is retired pending fundamental data.\n\n## LECTURE\nThe divergence between protocol revenue and token value accrual is stark in this set. Sanctum Validator LSTs and Aave V3 are generating robust protocol fees (13.07% and 2.49% respectively), yet their tokens capture 0% of this value (source: drill_valuation). Investors are pricing future fee-generation or governance utility, not current cash flow. For Near, the absence of fundamental metrics in the digest is a critical data gap; without fee-yield or TVL baselines, any infrastructure thesis is speculative, especially given the unresolved exploit risk highlighted in the red team challenge.\nKill condition: Aave V3 token capture remains at 0% for >90 days; Sanctum Validator LSTs fee-yield drops below 5% annualized; Near fails to publish verifiable formal verification metrics for >50% of core contracts.\n\n## RISQUE\n*   **Sanctum Validator LSTs:** Fee-yield volatility is high (7d fee change is an artifact of a near-zero base); retention of the fee spike is unproven. Token value is decoupled from protocol revenue (capture_pct=0).\n*   **Aave V3:** Regulatory headwinds are material; the SEC's Peirce warned that DeFi vaults and onchain lending strategies may fall under securities laws (source: CoinDesk), which could constrain growth or increase compliance costs.\n*   **Near:** Smart contract infrastructure risk is unquantified due to data absence; the protocol remains vulnerable to exploits until formal verification coverage is disclosed.\n\n## SUIVI\n*   **inq_mission_rotation:** Evidence shows Aave V3 TVL is expanding (z=1.01 80th pctile) while fees grew +2.58% 7d, suggesting capital stickiness in lending (source: get_metric + protocol_fees(7d) + onchain_enriched). Next probe: Compare Aave V3 utilization rate trends agains"
   }
  ],
  "theses": [
@@ -916,17 +916,12 @@
   },
   {
    "key": "AAVE::defi",
-   "verdict": "confirm",
+   "verdict": "revise",
    "conviction": 0.85,
-   "trigger": "TVL growth (z=1.47) outpacing fee growth (z=0.59) suggests supply-driven expansion over organic demand.",
+   "trigger": "Frequent supply cap adjustments imply flawed risk assessments, confirmed by red-team challenge; TVL growth outpacing fee growth suggests supply-driven expansion.",
    "kill": "The volume of assets deposited into Aave V3 by institutions identified as holding greater than $10 million in Aave tokens over the next 30 days will indicate the effectiveness of t",
-   "ts": "2026-07-24T00:06:17Z",
+   "ts": "2026-07-26T06:06:08Z",
    "history": [
-    {
-     "ts": "07-09",
-     "c": 0.65,
-     "v": "revise"
-    },
     {
      "ts": "07-12",
      "c": 0.65,
@@ -968,6 +963,11 @@
     {
      "ts": "07-24",
      "c": 0.85
+    },
+    {
+     "ts": "07-26",
+     "c": 0.85,
+     "v": "revise"
     }
    ]
   },
@@ -1237,10 +1237,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-25T06:07:38.477667+00:00",
-     "note": "ONDO fee spike (+626.89% 7d) suggests activity, but token capture is null (source: get_metric + protocol_fees(7d))."
-    },
-    {
      "ts": "2026-07-25T06:38:00.021617+00:00",
      "note": "ONDO fees surged +626.9% to $255K 24h (z=0.28, 85th percentile) but stablecoin flow flat, suggesting internal rotation not institutional adoption (source: get_metric)"
     },
@@ -1255,6 +1251,10 @@
     {
      "ts": "2026-07-26T00:06:30.849711+00:00",
      "note": "Spiko TVL +92.65% 7d to $2.26B (source: get_metric) confirms capital inflows into RWA."
+    },
+    {
+     "ts": "2026-07-26T06:06:08.908872+00:00",
+     "note": "Spiko TVL surged +92.65% 7d to $2.26B (z=2.50) with 4.08% fee-yield (source: get_metric + protocol_fees 7d), raising questions on organic vs. incentivized capital."
     }
    ],
    "evidence": "inq_mission_institutional · next: Analyze Spiko deposit composition for organic vs. incentivized sources."
@@ -1323,12 +1323,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 44.1,
+    "tvl": 44.2,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 43.8,
+    "tvl": 43.9,
     "yard": "TVL"
    },
    {
@@ -1351,37 +1351,37 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.36
+    "fy": 8.35
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.42
+    "fy": 6.41
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.11
+    "fy": 6.12
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.7
+    "fy": 5.69
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 5.45
+    "fy": 5.43
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 4.87
+    "fy": 4.85
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 4.78
+    "fy": 4.77
    },
    {
     "name": "WisdomTree",
@@ -1392,11 +1392,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -593.0
+    "d7": -595.8
    },
    {
     "chain": "Solana",
-    "d7": 419.1
+    "d7": 419.0
    },
    {
     "chain": "Polygon",
@@ -1413,13 +1413,13 @@
   ],
   "agg": {
    "stable_mcap_b": 296.6,
-   "stable_d7_pct": 0.07,
+   "stable_d7_pct": 0.06,
    "dex_vol_24h_b": 4.7,
    "defi_tvl_b": 76.1
   }
  },
  "robinhood": {
-  "tvl_m": 330.5,
+  "tvl_m": 332.3,
   "morpho_share_pct": 69,
   "age_days": 13,
   "synth_ts": "2026-07-25T12:00:00Z",
@@ -1428,14 +1428,14 @@
  "health": {
   "budget": {
    "day": "2026-07-26",
-   "glm": 3,
+   "glm": 11,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
    "ungrounded_dollar_7d": 2,
-   "unsupported_pct_7d": 15,
+   "unsupported_pct_7d": 16,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 1
