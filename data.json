@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-26T10:48:01Z",
+ "generated_at": "2026-07-26T12:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "B",
-   "mode": "react",
-   "ts": "2026-07-26T09:36:47Z",
+   "tier": "A",
+   "mode": "3phase",
+   "ts": "2026-07-26T12:06:40Z",
    "status": "ok",
-   "discipline": 87.0,
+   "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 5
+  "runs_today": 6
  },
  "runs": [
-  {
-   "ts": "2026-07-21T21:06:54Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 88.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-21T21:49:43Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-07-26T12:06:40Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-26T12:06:40Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Spiko",
+    "NEAR",
+    "Aave"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko's TVL surged +92.64% 7d to $2.26B, driving a 4.09% fee-yield that ranks highest in the set, though the fee base remains noisy; Aave maintains dominant lending market share (43.4%) with a 2.52% fee-yield, while NEAR protocol fees are unquantified in the current dataset.\n\n## FILS DOMINANTS\n*   **Spiko — 4.09% fee-yield, the highest of the set (vs Aave 2.52%, NEAR null):** TVL expanded +92.64% 7d to $2.26B (z=2.38 30d), reaching 14.1% market share in the RWA sector (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is provisional; the rapid scale coincides with a reported connection of EU regulated T-bill funds to Coinbase stablecoin rails (source: CoinTelegraph via read_articles), but retention is unproven.\n*   **Aave — 2.52% fee-yield, rank 2 in the set (vs Spiko 4.09%, NEAR null):** Protocol holds 43.4% lending market share (source: sector-aware peers) with $13.78B TVL (z=1.02 30d). Capital quality is sticky; the protocol generates $956K in 24h fees (source: get_metric + protocol_fees(7d) + onchain_enriched). The token trades at a P/F of 4.1x, rank 1/3 in lending vs 6.0x median — cheap on a fee-multiple basis, though capture_pct is 0.0 (source: drill_valuation).\n*   **NEAR — Null fee-yield, rank 3 in the set:** Protocol economics are not quantified in the current digest (fees_24h_usd: null). The sector is \"infra\" with 0.0% reported market share (source: sector-aware peers). Capital quality is indeterminate; the digest flags a query regarding whether protocol security is compromised or if a breach is contained, but no corroborating fee data exists to assess impact (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260723_0320_ondo (Ondo): RETIRE** — The thesis regarding Ondo's infrastructure adoption is retired (verdict: weakening) due to a divergence between regulatory clearance and lack of token fee capture (capture_pct: null) despite fee growth (source: get_prior_assessment). The current brief focuses on Spiko and Aave; no new evidence challenges this retirement.\n\n## LECTURE\nSpiko's fee-yield advantage (4.09% vs Aave 2.52%) is statistically significant (z=2.12 30d for fees), yet the \"ARTIFACT\" flag on the 7d fee growth (~3076%) signals a low/noisy base that demands skepticism regarding sustainability. The capital inflow is likely venue-bounded to EU-regulated rails rather than a global demand shift. Aave's valuation (4.1x P/F) is attractive relative to peers (Morpho 6.0x, Compound 7.3x), but the 0.0% capture rate means the multiple prices future fee generation, not current accrual.\nKill condition: Spiko's fee-yield falling below 2.0% or Aave's P/F expanding above 6.0x without a change in capture status.\n\n## RISQUE\n*   **Spiko:** The +92.64% 7d TVL move is provisional; if deposits are incentivized rather than organic, the fee-yield will compress upon incentive cessation (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Aave:** The \"cheap\" 4.1x P/F multiple is a valuation trap if the governance fee switch remains off (capture_pct: 0.0), as the token does not accrue the protocol's $956K daily revenue (source: drill_valuation).\n*   **NEAR:** The null fee data precludes a fundamental assessment of the protocol's security or economic health; the \"contained breach\" hypothesis remains untested (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## SUIVI\n*   **inq_mission_institutional:** Analyzing Spiko deposit composition to distinguish organic vs. incentivized sources. Evidence: Spiko TVL +92.64% 7d to $2.26B (z=2.38 30d) with 14.1% RWA market share (source: get_metric + protocol_fees(7d) + onchain_enriched). Next_probe: Verify if the TVL surge correlates with specific EU-regulated fund on-ramps or generic"
+  },
   {
    "ts": "2026-07-26T09:36:47Z",
    "tier": "B",
@@ -759,35 +788,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko's TVL surged +92.59% 7d to $2.26B, driving its fee-yield to 0.33% (7d-smoothed), though the fee growth is an artifact of a near-zero base; meanwhile, ONDO's fee-yield leads the set at 3.04% despite a -15.76% 7d fee decline, suggesting a divergence between capital accumulation and revenue generation in the RWA sector.\n\n## FILS DOMINANTS\n*   **ONDO — 3.04% fee-yield, the highest of the set (vs Spiko 0.33%):** TVL is flat (-0.3% 7d) at $2.56B, holding a 16.1% market share in RWA (vs BlackRock BUIDL 21.6%). Capital quality appears sticky as the negative TVL delta is marginal, but the -15.76% drop in fees 7d raises questions about near-term revenue velocity (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Spiko — 0.33% fee-yield, rank 2 of the set:** TVL spiked +92.59% 7d to $2.26B, capturing 14.2% market share in RWA. The move is statistically extreme (z=3.50 30d TVL vs baseline), but the fee-yield is low and the fee growth is an artifact (~3096% 7d from a near-zero base), indicating the capital influx is likely provisional or incentivized rather than organic, revenue-generating deployment (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **NEAR — No value-accrual data available:** The protocol lacks current fee-yield or TVL metrics in the digest, preventing a fundamental ranking. The focus remains on security risks rather than economic output (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n*   **th_20260723_0320_near (REVISE):** The thesis that AI advancements signal a critical inflection for crypto is revised to specifically prioritize smart contract security as a precondition for sustainability. The standing red-team challenge highlights repeated \"exploit_risk\" events for NEAR. Without data on the percentage of core contracts undergoing formal verification, the thesis is revised to reflect that NEAR is currently exhibiting specific vulnerability rather than just general sector exposure (source: get_prior_assessment).\n*   **th_20260723_0320_ondo (REVISE):** The thesis linking infrastructure developments to Ondo's strength is revised to a weakening stance. The standing red-team challenge notes regulatory clearance for Ondo's broker-dealer, yet the digest shows a -15.76% drop in fees 7d and a fee-yield (3.04%) that, while leading the set, is not translating into positive fee momentum. The divergence between regulatory progress and fee velocity warrants a reduction in conviction (source: get_prior_assessment).\n\n## LECTURE\nThe RWA sector is displaying a classic \"capital-rich, revenue-poor\" divergence. Spiko's massive TVL expansion (+92.59% 7d) is statistically anomalous (z=3.50) yet generates negligible fee-yield (0.33%), strongly suggesting the inflows are launch-incentivized or \"parking\" capital rather than productive deployment. In contrast, ONDO maintains a superior 3.04% fee-yield on a stable $2.56B base, implying its capital is higher quality (sticky) even as fee velocity slows. Valuation-wise, ONDO trades at a P/F of 24.6x (rank 1/1 in RWA vs 24.6x median), which is rich on a fee-multiple basis, particularly since the token captures none of these protocol fees today (capture_pct: null). Investors are pricing in future fee capture or regulatory moats that are not yet reflected in current token economics.\nKill condition: A sustained convergence of Spiko's TVL growth with a sub-0.1% fee-yield for >30 days would confirm the capital is purely mercenary.\n\n## RISQUE\n*   **Spiko:** The risk is that the +92.59% TVL surge is entirely incentivized liquidity mining. If the fee-yield remains at 0.33% (or lower) as the TVL baseline grows, it confirms the capital is non-productive and will likely exit upon incentive removal, causing a sharp TV"
-  },
-  {
-   "ts": "2026-07-24T18:08:21Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Near",
-    "Binance staked ETH",
-    "JustLend V1"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBinance staked ETH solidified its position as the dominant centralized liquid staking token (LST) with a 24.7% market share, generating a 1.974% annualized protocol fee-yield (7d-smoothed), while JustLend V1 maintained its lending sector standing with a 0.642% fee-yield despite a 25.07% dip in 7d fees.\n\n## FILS DOMINANTS\n*   **Binance staked ETH — 1.974% annualized fee-yield, the highest of the set (vs JustLend V1 0.642%):** Protocol holds $6.88B TVL (+1.87% 7d) and commands 24.7% sector market share (source: sector-aware peers). Capital quality is sticky, evidenced by a z=0.67 (68th pctile) TVL ranking vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). The token captures none of these protocol fees today (capture_pct is null), meaning the current valuation reflects future fee-generation expectations rather than current accrual.\n*   **JustLend V1 — 0.642% annualized fee-yield, the lowest of the set:** Protocol holds $3.26B TVL (+1.69% 7d) and holds 10.4% market share in lending (source: sector-aware peers). Fees declined -25.07% 7d, resulting in a z=-0.23 (35th pctile) fees ranking vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky (z=0.46 TVL vs baseline), but the token captures none of the protocol's fees (capture_pct is null).\n\n## RECONCILIATION\n*   **Thesis: Institutional adoption of regulated venues drives stablecoin flows.** REVISE+trigger. Recent regulatory developments confirm a venue-bounded migration. OKX Europe's technical move to allow USDT to USDC conversion (source: CoinTelegraph) and ESMA's addition of 14 new CASPs to the MiCA register (source: CoinTelegraph) support the hypothesis of a regional shift. However, this is strictly a regional venue effect; global USDT float remains stable (+2%), refuting a global net flow thesis. The trigger for revision is the confirmation of venue-specific compliance mechanisms (USDT->USDC conversion tools) rather than a macro liquidity shift.\n\n## LECTURE\nThe fundamental divergence between Binance staked ETH and JustLend V1 highlights the importance of sector-specific unit economics. Binance staked ETH's fee-yield of 1.974% is supported by a high-quality capital base (68th pctile TVL vs baseline), whereas JustLend V1's lower yield (0.642%) is coupled with a recent fee contraction (-25.07% 7d). Investors must distinguish between protocol revenue and token value accrual; neither token currently captures its protocol fees, rendering P/F multiples a measure of future expectations rather than current cash flow. Regulatory pressure in the EU (MiCA) is creating a bifurcated market: compliant venues are seeing USDT->USDC migration, but this is a regional flow bounded by the offshore float, not a systemic de-risking of the asset class.\nKill condition: A sustained drop in Binance staked ETH's TVL below its 30d baseline (z < -1.0) concurrent with a rise in Lido's market share above 65%.\n\n## RISQUE\n*   **Binance staked ETH:** Regulatory risk remains the primary vector. While the MiCA regime is a compliance constraint in the EU, the inferred flow of USDT->USDC is a hypothesis bounded by the global float. If the regulatory scope expands beyond EU venues or if major offshore exchanges adopt similar compliance measures, the \"regional\" constraint could become a \"global\" headwind, impacting the underlying liquidity of the staked asset.\n*   **JustLend V1:** The primary risk is the sustainability of its fee-yield amidst declining fee generation (-25.07% 7d). If this trend persists, the protocol's value accrual will erode, potentially leading to capital rotation to higher-yielding lending peers like Aave V3 (43.2% market share) or Morpho Blue (23.6% market share).\n\n## SUIVI\n*   **inq_mission_rotation:** E"
   }
  ],
  "theses": [
@@ -1083,21 +1083,6 @@
    ]
   },
   {
-   "key": "ONDO::defi",
-   "verdict": "revise",
-   "conviction": 0.52,
-   "trigger": "Divergence between regulatory clearance and lack of token fee capture (capture_pct: null) despite +626.89% 7d fee growth.",
-   "kill": "",
-   "ts": "2026-07-25T12:07:54Z",
-   "history": [
-    {
-     "ts": "07-25",
-     "c": 0.52,
-     "v": "revise"
-    }
-   ]
-  },
-  {
    "key": "LIDO::defi-lst",
    "verdict": "retire",
    "conviction": 0.92,
@@ -1202,6 +1187,25 @@
      "c": 0.0
     }
    ]
+  },
+  {
+   "key": "ONDO::defi",
+   "verdict": "retire",
+   "conviction": 0.0,
+   "trigger": "Divergence between regulatory clearance and lack of token fee capture (capture_pct: null) despite +626.89% 7d fee growth.",
+   "kill": "",
+   "ts": "2026-07-26T12:06:40Z",
+   "history": [
+    {
+     "ts": "07-25",
+     "c": 0.52,
+     "v": "revise"
+    },
+    {
+     "ts": "07-26",
+     "c": 0.0
+    }
+   ]
   }
  ],
  "inquiries": [
@@ -1237,10 +1241,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-25T18:07:42.103318+00:00",
-     "note": "Spiko TVL +92.65% 7d (z=2.78 30d) to $2.26B, 14.2% RWA share (source: get_metric + landscape_category)"
-    },
-    {
      "ts": "2026-07-26T00:06:30.849711+00:00",
      "note": "Spiko TVL +92.65% 7d to $2.26B (source: get_metric) confirms capital inflows into RWA."
     },
@@ -1255,9 +1255,13 @@
     {
      "ts": "2026-07-26T09:36:47.858351+00:00",
      "note": "Circle expanding institutional partnerships (Kakao, Toss Bank) while facing regulatory headwinds (Clarity Act) and competition"
+    },
+    {
+     "ts": "2026-07-26T12:06:40.292934+00:00",
+     "note": "Spiko TVL +92.64% 7d to $2.26B (z=2.38 30d) with 14.1% RWA market share (source: get_metric + protocol_fees(7d) + onchain_enriched)."
     }
    ],
-   "evidence": "inq_mission_institutional · next: Analyze Spiko deposit composition to distinguish organic vs. incentivized sources."
+   "evidence": "inq_mission_institutional · next: Verify if the TVL surge correlates with specific EU-regulated fund on-ramps or generic incentive programs."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
@@ -1366,22 +1370,22 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.7
+    "fy": 5.69
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 5.43
+    "fy": 5.42
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 4.85
+    "fy": 4.86
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 4.77
+    "fy": 4.76
    },
    {
     "name": "Kamino Lend",
@@ -1392,11 +1396,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -591.6
+    "d7": -592.6
    },
    {
     "chain": "Solana",
-    "d7": 419.2
+    "d7": 419.1
    },
    {
     "chain": "Polygon",
@@ -1414,21 +1418,21 @@
   "agg": {
    "stable_mcap_b": 296.6,
    "stable_d7_pct": 0.08,
-   "dex_vol_24h_b": 4.7,
+   "dex_vol_24h_b": 4.6,
    "defi_tvl_b": 76.1
   }
  },
  "robinhood": {
-  "tvl_m": 332.7,
-  "morpho_share_pct": 69,
-  "age_days": 13,
-  "synth_ts": "2026-07-25T12:00:00Z",
-  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-25\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$327.7M**, marking a robust **5.6%** daily increase and a consistent upward trajectory from $125M just two weeks ago. The capital composition remains highly concentrated, with **Morpho Blue** commanding **68.7%** of total TVL ($225.1M supplied, $206.3M borrowed). This indicates a leverage-heavy environment where the majority of locked capital is deployed in lending markets rather than idle liquidity. DEXs (Uniswap V3/V4/V2) collectively hold ~$71.7M (21.9%), while derivatives protocols (Arcus Perps, Lighter Perps) account for ~$27.9M (8.5%). The rapid TVL expansion suggests capital is sticky and incentivized by yield opportunities in the Morpho markets, likely driven by the demand to borrow against newly tokenized stock assets.\n\n## CATALYSEURS\n*   **Regulatory Clearance for Tokenized Stocks:** Ondo's Oasis Pro Markets received US clearance to offer tokenized stocks (The Defiant). This regulatory catalyst directly underpins the on-chain surge, legitimizing the **24/7 tokenized stock trading** now live on the chain.\n*   **Arcus & Lighter Product Expansion:** The launch of **Arcus** (24/7 trading for 95+ stock tokens) and **Lighter** (accepting stock tokens as collateral) provides the fundamental utility for the capital influx (The Block). This explains the sharp rise in TVL and user activity as users bridge assets to access these markets.\n*   **User Adoption Milestone:** Robinhood Chain surpassed Base in daily active users, hitting **324,000** (The Defiant). This user growth is the behavioral consequence of the product launches, shifting speculative volume from memecoins (~$9B cumulative DEX volume) to regulated asset trading.\n*   **Security Incident:** The hack of CEO Vlad Tenev's X account (CoinDesk) highlights the persistent reputational risks in the sector but has not yet deterred the on-chain capital accumulation, suggesting a focus on utility over social sentiment.\n\n## VALUE ACCRUAL\n**Robinhood Chain has no native token**, meaning the protocol itself does not capture direct fee revenue for holders. The primary beneficiary of current activity is **Morpho**, which captures the lendin"
+  "tvl_m": 333.1,
+  "morpho_share_pct": 70,
+  "age_days": 14,
+  "synth_ts": "2026-07-26T12:00:00Z",
+  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-26\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$333.1M**, recording a **+2.5%** daily uptick. The trajectory remains steeply upward, nearly doubling from ~$133M on July 7 to current levels, indicating aggressive capital deployment in the first three weeks post-mainnet. Capital concentration is extreme: **Morpho Blue commands ~69.6%** of total chain TVL ($231.7M supplied), with a utilization rate of **93.1%** ($215.7M borrowed). This suggests the current capital base is highly \"sticky\" and utility-driven rather than speculative liquidity farming. Outside of Morpho, liquidity is fragmented across Uniswap V3/V4 ($52.4M combined) and the newly launched Arcus Perps ($17.5M). The dominance of lending over DEX liquidity implies a capital structure currently optimized for yield/collateralization rather than pure speculation.\n\n## CATALYSEURS\n*   **Arcus Product Launch (The Block):** The deployment of 24/7 tokenized US stocks and perpetual markets is the primary driver for the surge in Daily Active Users (DAUs) to 324k (surpassing Base). This directly correlates with the inflow into Arcus Perps TVL ($17.5M) and provides the underlying collateral demand for Morpho lending.\n*   **Regulatory Clearance for Ondo’s Oasis Pro (The Defiant):** Authorization to offer tokenized stocks in the US validates the RWA (Real World Asset) thesis underpinning Robinhood Chain. This regulatory green light structurally de-risks the on-chain equity narrative, encouraging institutional-grade capital to bridge onto the L2.\n*   **Joseph DeLong Order Book DEX (The Defiant):** The announcement of a new order book DEX introduces a competing venue to the existing AMM model (Uniswap), likely to attract the high-frequency trading segment that overlaps with Robinhood’s traditional user base.\n*   **Executive Account Compromise (CoinDesk):** The hacking of CEO Vlad Tenev’s X account to promote a memecoin highlights the persistent social engineering risks in the ecosystem. However, the lack of correlation between this event and a dip in TVL suggests market maturity; capital is ignoring off-chain noise to focus on on-chain utility.\n\n## VALUE ACCRUAL\nRobinhood Chain operates wit"
  },
  "health": {
   "budget": {
    "day": "2026-07-26",
-   "glm": 25,
+   "glm": 28,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
