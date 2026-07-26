@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-26T08:48:01Z",
+ "generated_at": "2026-07-26T10:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "W",
+   "tier": "B",
    "mode": "react",
-   "ts": "2026-07-26T07:38:10Z",
+   "ts": "2026-07-26T09:36:47Z",
    "status": "ok",
-   "discipline": 94.0,
+   "discipline": 87.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 4
+  "runs_today": 5
  },
  "runs": [
-  {
-   "ts": "2026-07-21T18:07:21Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 95.6,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-21T21:06:54Z",
    "tier": "A",
@@ -458,9 +447,45 @@
    "r2_pass": true,
    "comps": 6,
    "phase": null
+  },
+  {
+   "ts": "2026-07-26T09:36:47Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 87.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-26T09:36:47Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 87.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 1
+   },
+   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\n**Critical Circle Exploit Risk Emerges Amidst Regulatory Tailwinds**\n\nA critical exploit risk event targeting Circle (USDC issuer) emerged 20.3 hours ago, marking a significant threat to the stablecoin ecosystem (source: get_events). This development is particularly notable given Circle's simultaneous regulatory positioning: the company benefits from MiCA compliance in the EU (tailwind for USDC/EURC adoption) and faces potential long-term impacts from the US Clarity Act (source: get_reg_exposure). The exploit risk arrives as USDC supply shows modest growth (+0.2% 7d to $73.55B) and Circle faces new competitive pressure from Visa's stablecoin platform launch (source: read_articles). Circle also suspended Heka Funds due to concerns over market manipulation involving Tether's $800 million investment, adding to the operational uncertainty (source: read_articles).\n\n## RECONCILIATION\n\nNo prior theses were reconciled in this run as no active thesis existed for Circle (source: get_prior_assessment).\n\n## LECTURE\n\n**DeFi Liquidity Stress Intensifies Amid Chain Rotation**\n\nDeFi markets are experiencing MODERATE stress with 98.2% borrow utilization across multiple protocols, indicating tightening liquidity conditions (source: get_analyst_note). Hotspots include Aave-v3 ($10.897B borrowed, 3.00% avg rate) and Morpho-Blue ($3.997B borrowed, 8.01% avg rate) (source: get_analyst_note). This stress is accompanied by a significant capital rotation: stablecoin flows are leaving Ethereum (-$595.7M 7d) while entering Solana (+$418.9M 7d) (source: get_analyst_note). The elevated borrow utilization increases the risk of liquidation cascades, particularly in elevated risk pools like USDC (10.44% APY on Aave-v3) and HYPERUSDCA (source: get_analyst_note). Despite these stress indicators, Aave's TVL remains stable at $13.78B (+0.34% 7d) and leverage has actually decreased to 52.18% (-4.3% 3d), suggesting some deleveraging is occurring (source: get_metric).\n\nKill condition: Borrow utilization drops below 90% across major protocols OR stablecoin flows reverse direction (Ethereum inflows positive for 7d).\n\n## LIVE EVENTS\n\n- **Critical Exploit Risks**: Circle exploit risk (20.3h old), Ethereum exploit risk (68.3h old), Arbitrum exploit risk (68.3h old) (source: get_events)\n- **Regulatory Activity**: 191 active regulatory events, including defi-perps regulation, bills, and senate actions (source: get_events)\n- **Partnership**: Circle partnered with Kakao and Toss Bank for stablecoin payment rails in South Korea (source: read_articles)\n\n## SUIVI\n\n**inq_mission_fresh_money**: Advanced with evidence that stablecoin flows are leaving Ethereum (-$595.7M 7d) while entering Solana (+$418.9M 7d), confirming a chain rotation pattern (source: get_analyst_note). Global stablecoin market cap shows slight growth (+0.1% 7d to $296.6B), indicating net new fiat is entering but selectively (source: get_metric).\n\n**inq_mission_institutional**: Advanced with evidence that Circle is expanding institutional partnerships (Kakao, Toss Bank) while facing regulatory headwinds (Clarity Act) and competition (Visa's stablecoin platform) (source: read_articles, get_reg_exposure).\n\n## OPEN QUESTIONS\n\n- What is the specific nature of the Circle exploit risk and what mitigation measures are being implemented?\n- Will the capital rotation from Ethereum to Solana accelerate or reverse given the moderate stress levels?\n- How will Visa's stablecoin platform launch impact Circle's market position and USDC adoption?"
+  },
   {
    "ts": "2026-07-26T07:38:10Z",
    "tier": "W",
@@ -763,35 +788,6 @@
     "n_unsupported_pct": 1
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nBinance staked ETH solidified its position as the dominant centralized liquid staking token (LST) with a 24.7% market share, generating a 1.974% annualized protocol fee-yield (7d-smoothed), while JustLend V1 maintained its lending sector standing with a 0.642% fee-yield despite a 25.07% dip in 7d fees.\n\n## FILS DOMINANTS\n*   **Binance staked ETH — 1.974% annualized fee-yield, the highest of the set (vs JustLend V1 0.642%):** Protocol holds $6.88B TVL (+1.87% 7d) and commands 24.7% sector market share (source: sector-aware peers). Capital quality is sticky, evidenced by a z=0.67 (68th pctile) TVL ranking vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). The token captures none of these protocol fees today (capture_pct is null), meaning the current valuation reflects future fee-generation expectations rather than current accrual.\n*   **JustLend V1 — 0.642% annualized fee-yield, the lowest of the set:** Protocol holds $3.26B TVL (+1.69% 7d) and holds 10.4% market share in lending (source: sector-aware peers). Fees declined -25.07% 7d, resulting in a z=-0.23 (35th pctile) fees ranking vs baseline (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky (z=0.46 TVL vs baseline), but the token captures none of the protocol's fees (capture_pct is null).\n\n## RECONCILIATION\n*   **Thesis: Institutional adoption of regulated venues drives stablecoin flows.** REVISE+trigger. Recent regulatory developments confirm a venue-bounded migration. OKX Europe's technical move to allow USDT to USDC conversion (source: CoinTelegraph) and ESMA's addition of 14 new CASPs to the MiCA register (source: CoinTelegraph) support the hypothesis of a regional shift. However, this is strictly a regional venue effect; global USDT float remains stable (+2%), refuting a global net flow thesis. The trigger for revision is the confirmation of venue-specific compliance mechanisms (USDT->USDC conversion tools) rather than a macro liquidity shift.\n\n## LECTURE\nThe fundamental divergence between Binance staked ETH and JustLend V1 highlights the importance of sector-specific unit economics. Binance staked ETH's fee-yield of 1.974% is supported by a high-quality capital base (68th pctile TVL vs baseline), whereas JustLend V1's lower yield (0.642%) is coupled with a recent fee contraction (-25.07% 7d). Investors must distinguish between protocol revenue and token value accrual; neither token currently captures its protocol fees, rendering P/F multiples a measure of future expectations rather than current cash flow. Regulatory pressure in the EU (MiCA) is creating a bifurcated market: compliant venues are seeing USDT->USDC migration, but this is a regional flow bounded by the offshore float, not a systemic de-risking of the asset class.\nKill condition: A sustained drop in Binance staked ETH's TVL below its 30d baseline (z < -1.0) concurrent with a rise in Lido's market share above 65%.\n\n## RISQUE\n*   **Binance staked ETH:** Regulatory risk remains the primary vector. While the MiCA regime is a compliance constraint in the EU, the inferred flow of USDT->USDC is a hypothesis bounded by the global float. If the regulatory scope expands beyond EU venues or if major offshore exchanges adopt similar compliance measures, the \"regional\" constraint could become a \"global\" headwind, impacting the underlying liquidity of the staked asset.\n*   **JustLend V1:** The primary risk is the sustainability of its fee-yield amidst declining fee generation (-25.07% 7d). If this trend persists, the protocol's value accrual will erode, potentially leading to capital rotation to higher-yielding lending peers like Aave V3 (43.2% market share) or Morpho Blue (23.6% market share).\n\n## SUIVI\n*   **inq_mission_rotation:** E"
-  },
-  {
-   "ts": "2026-07-24T12:09:20Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 4,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Near",
-    "Lido",
-    "SparkLend"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nLido's protocol fundamentals strengthened with a 2.4% annualized fee-yield (7d-smoothed) and dominant 62.2% market share in liquid staking, yet the token captures 0% of these fees, rendering its 0.8x P/F multiple a reflection of future expectations rather than current value accrual.\n\n## FILS DOMINANTS\n*   **Lido — 2.40% fee-yield, the highest of the set (vs SparkLend 1.50%):** Protocol fees grew +2.09% 7d (source: protocol_fees 7d) while TVL expanded +5.21% 7d (source: get_metric), reaching a z-score of 1.43 on fees vs baseline (93rd pctile, n=313). Capital quality is high, evidenced by a 62.2% market share (source: sector-aware peers) and a z=1.22 TVL vs baseline (89th pctile). The token does not capture these fees (capture_pct: 0.0), trading at a P/F of 0.8x (rank 1/3 in LST vs 3.1x median) (source: drill_valuation).\n*   **SparkLend — 1.50% fee-yield, the second highest of the set:** Protocol fees surged +16.72% 7d (source: protocol_fees 7d) on a +5.44% 7d TVL increase (source: get_metric), indicating strong utilization. It holds 11.5% market share in the lending sector (source: sector-aware peers). Capital quality is sticky, with TVL vs baseline at z=0.87 (79th pctile). Token capture is unknown from the provided data.\n*   **Near — No fee-yield data available:** Fundamental data is absent in the digest (tvl_usd: null, fees_24h_usd: null) (source: get_metric), preventing a relative valuation ranking. The narrative focus remains on the AI-security intersection, but current unit economics cannot be assessed.\n\n## RECONCILIATION\n*   **th_20260723_0320_near (REVISE):** The thesis that Near's AI narrative is intact despite exploit risks is revised to a status of \"strengthening\" (confidence 0.9). The critical exploit risks cited in the prior assessment (source: get_prior_assessment) validate the dependency on proactive security measures, though the lack of current fee/TVL data in the digest prevents a quantitative confirmation of economic resilience.\n*   **th_20260704_0321_lido (RETIRE):** The thesis regarding Lido's reinforcement of governance in response to MiCA is retired. The digest carries no `reg` block or `reg_articles` to corroborate regulatory shifts or competitive impacts from Binance (source: priors), leaving the thesis without live evidence.\n*   **th_20260704_0320_lido (RETIRE):** The thesis on Lido's focus on stETH utility is retired. No corroborating developments or governance proposals were present in the digest to support ongoing operational enhancements (source: priors).\n\n## LECTURE\nThe divergence between Lido's dominant protocol economics (2.4% fee-yield, 62.2% share) and its token's zero fee capture is the defining fundamental characteristic. The token is valued at a low 0.8x P/F multiple (rank 1/3) not because the protocol is cheap, but because the token currently accrues no revenue. SparkLend's +16.72% fee growth 7d suggests improving utilization in the lending sector, yet its 1.5% yield trails Lido's productivity. For Near, the absence of TVL and fee data in the digest creates a blind spot; the AI narrative cannot be valued on fundamentals without these inputs.\nKill condition: Lido token enables fee capture (capture_pct > 0) without a corresponding expansion in protocol revenue or market share.\n\n## RISQUE\n*   **Lido:** The primary risk is structural value leakage; the token's 0% capture rate means future value accrual is binary on governance changes (fee switch) rather than incremental on protocol growth. A failure to implement accrual mechanisms renders the 0.8x P/F multiple irrelevant to intrinsic value.\n*   **SparkLend:** Fee growth (+16.72% 7d) may be volatile or mean-reverting; the z-score of 0.23 on fees vs baseline (68th pctile) suggests performance is not yet a statistically "
   }
  ],
  "theses": [
@@ -1214,10 +1210,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-24T09:38:20.079554+00:00",
-     "note": "Net stablecoin outflow from Ethereum (-$966M 1d) with inflows to Solana ($59.8M 1d) and Optimism ($1.67M 1d) (source: get_analyst_note)"
-    },
-    {
      "ts": "2026-07-24T12:09:20.440406+00:00",
      "note": "SparkLend TVL +5.44% 7d (source: get_metric) suggests capital retention, but net new fiat entry requires stablecoin supply data not in this digest."
     },
@@ -1232,6 +1224,10 @@
     {
      "ts": "2026-07-26T07:38:10.390116+00:00",
      "note": "Solana +$419.1M 7d stablecoin inflow; Ethereum -$595.7M 7d outflow (source: get_analyst_note)"
+    },
+    {
+     "ts": "2026-07-26T09:36:47.858021+00:00",
+     "note": "Stablecoin flows leaving Ethereum (-$595.7M 7d) while entering Solana (+$418.9M 7d); global stablecoin market cap +0.1% 7d to $296.6B (source: get_analyst_note, get_metric)"
     }
    ],
    "evidence": "inq_mission_fresh_money · next: Monitor if Ethereum outflows accelerate or stabilize over the next 7d."
@@ -1240,10 +1236,6 @@
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-25T09:38:33.481371+00:00",
-     "note": "Morgan Stanley regulatory event (ban) (source: get_events)"
-    },
     {
      "ts": "2026-07-25T18:07:42.103318+00:00",
      "note": "Spiko TVL +92.65% 7d (z=2.78 30d) to $2.26B, 14.2% RWA share (source: get_metric + landscape_category)"
@@ -1259,6 +1251,10 @@
     {
      "ts": "2026-07-26T07:38:10.390462+00:00",
      "note": "Spiko TVL +92.65% 7d to $2.26B (source: get_metric)"
+    },
+    {
+     "ts": "2026-07-26T09:36:47.858351+00:00",
+     "note": "Circle expanding institutional partnerships (Kakao, Toss Bank) while facing regulatory headwinds (Clarity Act) and competition"
     }
    ],
    "evidence": "inq_mission_institutional · next: Analyze Spiko deposit composition to distinguish organic vs. incentivized sources."
@@ -1327,12 +1323,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 44.1,
+    "tvl": 44.2,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 43.8,
+    "tvl": 43.9,
     "yard": "TVL"
    },
    {
@@ -1355,7 +1351,7 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.35
+    "fy": 8.34
    },
    {
     "name": "Fluid Lending",
@@ -1365,42 +1361,42 @@
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.12
+    "fy": 6.11
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.69
+    "fy": 5.7
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 5.44
+    "fy": 5.43
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 4.86
+    "fy": 4.85
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 4.78
+    "fy": 4.77
    },
    {
-    "name": "WisdomTree",
-    "sector": "rwa",
-    "fy": 3.71
+    "name": "Kamino Lend",
+    "sector": "lending",
+    "fy": 4.21
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -596.5
+    "d7": -591.6
    },
    {
     "chain": "Solana",
-    "d7": 419.0
+    "d7": 419.2
    },
    {
     "chain": "Polygon",
@@ -1417,13 +1413,13 @@
   ],
   "agg": {
    "stable_mcap_b": 296.6,
-   "stable_d7_pct": 0.07,
+   "stable_d7_pct": 0.08,
    "dex_vol_24h_b": 4.7,
    "defi_tvl_b": 76.1
   }
  },
  "robinhood": {
-  "tvl_m": 332.3,
+  "tvl_m": 332.7,
   "morpho_share_pct": 69,
   "age_days": 13,
   "synth_ts": "2026-07-25T12:00:00Z",
@@ -1432,13 +1428,13 @@
  "health": {
   "budget": {
    "day": "2026-07-26",
-   "glm": 18,
+   "glm": 25,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
-   "ungrounded_dollar_7d": 2,
+   "ungrounded_dollar_7d": 1,
    "unsupported_pct_7d": 16,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
