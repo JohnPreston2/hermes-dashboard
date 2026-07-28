@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-27T22:48:01Z",
+ "generated_at": "2026-07-28T00:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-27T18:06:35Z",
+   "ts": "2026-07-28T00:06:46Z",
    "status": "ok",
-   "discipline": 94.0,
+   "discipline": 96.7,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 6
+  "runs_today": 1
  },
  "runs": [
-  {
-   "ts": "2026-07-22T06:46:37Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 96.7,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-22T09:09:03Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 2,
    "phase": null
+  },
+  {
+   "ts": "2026-07-28T00:06:46Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 96.7,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-28T00:06:46Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 96.7,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Spiko",
+    "Lido",
+    "Maple"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko's TVL surged +80.32% 7d to $2.21B (z=1.82 30d), yet the protocol's fee-yield sits at just 0.95% annualized, significantly lagging the capital inflow rate and raising questions about the quality of the new deposits.\n\n## FILS DOMINANTS\n*   **Lido — 2.35% fee-yield, the highest of the set (vs Spiko 0.95%, Maple 0.82%):** Protocol fees grew +9.55% 7d to $1.2M 24h (z=2.02 30d), outpacing TVL growth (+4.08% 7d). The token trades at a P/F of 0.8x, rank 1/3 in liquid staking vs a 2.9x sector median — cheap on a fee-multiple basis, though the token captures 0% of these fees today (source: drill_valuation).\n*   **Spiko — 0.95% fee-yield (rank 2/3):** TVL jumped +80.32% 7d to $2.21B, but fees are volatile with a -0.51 z-score vs baseline (source: get_metric). The capital quality is provisional; the surge is likely incentive-driven given the disconnect between TVL expansion and fee generation.\n*   **Maple — 0.82% fee-yield, the lowest of the set:** TVL is stable at $2.36B (+4.51% 7d), but fees collapsed -92.52% 7d (z=-0.97 30d), indicating a sharp contraction in lending activity or yield source (source: protocol_fees 7d).\n\n## RECONCILIATION\n*   **th_20260704_0321_lido (Lido Strategic Reinforcement):** RETIRE. The thesis posited governance enhancements in response to regulatory shifts. While Lido maintains dominant market share (62.4% of LST TVL), the digest carries no `reg` block or corroborating news to support the regulatory catalyst, and the fee-yield strength (2.35%) is driven by base expansion rather than governance mechanics (source: peers).\n*   **th_20260704_0320_lido (Lido stETH Utility):** RETIRE. The thesis focused on stETH utility improvements. Current data shows strong fundamental fee generation (z=2.02 30d), but this is not explicitly linked to new utility integrations in the digest, rendering the specific utility thesis obsolete as a primary driver.\n\n## LECTURE\nThe divergence between Spiko's TVL surge (+80.32% 7d) and its fee-yield (0.95%) is a red flag for capital quality. In RWA, high TVL with low yield often indicates \"lazy\" capital seeking yield via deposit incentives rather than organic institutional adoption. Conversely, Lido's 2.35% fee-yield on a massive $18.19B base demonstrates high capital efficiency, yet the 0% token capture means the current P/F multiple (0.8x) is pricing in a future fee switch that does not exist. Investors are paying for governance optionality, not current cash flow.\nKill condition: Spiko's fee-yield remains below 1.5% despite TVL retention >30d.\n\n## RISQUE\n*   **Spiko:** Risk of \"ghost\" TVL where deposits are transient and flee once incentives drop, evidenced by the fee-yield (0.95%) failing to track the TVL z-score (1.82).\n*   **Lido:** Regulatory risk remains opaque; the absence of `reg` data in the digest means the MiCA impact on market share vs Binance (24.8%) is unquantified.\n*   **Maple:** The -92.52% fee collapse (7d) suggests a potential credit event or liquidity crunch in the underlying lending markets that is not reflected in the stable TVL.\n\n## SUIVI\n*   **inq_mission_institutional:** Evidence: Spiko's +80.32% TVL surge (z=1.82) is the primary signal of institutional-style capital entry, but the low fee-yield (0.95%) suggests it may be incentivized rather than organic (source: get_metric). Next_probe: Analyze the on-chain depositors to Spiko to identify if the inflows originate from known institutional wallets or mercenary capital pools."
+  },
   {
    "ts": "2026-07-27T18:06:35Z",
    "tier": "A",
@@ -763,31 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "## PAYSAGE\nAttention has aggressively pivoted from \"Infra\" (-47% narrative emergence) to \"Regulatory Regime Shift\" (+93% event emergence) and \"Institutional RWA Adoption\" (+53% narrative emergence). On-chain value is consolidating in compliant yield-bearing venues: RWA protocols like Spiko ($2.26B TVL, +92.65% 7d) and BlackRock BUIDL ($3.44B TVL) are absorbing capital, while Lending (Aave V3, $13.79B TVL) remains a bedrock despite tightening liquidity. A distinct capital rotation is underway from Ethereum (-$595.7M 7d stablecoin flow) to Solana (+$419.1M 7d stablecoin flow), driven by regional regulatory pressures and yield-seeking behavior.\n\n## FILS DOMINANTS\n1.  **Regulatory Onslaught:** The surge in regulatory events (114 active, +93% emergence) is the dominant structural force. This is backed by the enforcement of MiCA in the EU (EMT regime in force since 2026-07-01), the finalization of the US GENIUS Act rulemaking (deadline 2026-07-18), and the passage of the UK cryptoasset regime. (source: get_reg_exposure).\n2.  **RWA Capital Influx:** The RWA sector is experiencing explosive growth, led by Spiko. Spiko's TVL surged +92.65% (7d) to $2.26B (z=2.46, 99th pctile), a hard fundamental shift that validates the narrative surge. BlackRock BUIDL holds steady at $3.44B TVL. (source: get_metric).\n3.  **Chain Rotation:** Capital is fleeing Ethereum for Solana. Ethereum saw -$595.7M in 7d stablecoin outflows, while Solana attracted +$419.1M. This rotation is backed by on-chain flow data and correlates with the regulatory narrative, as market participants seek venues perceived as more compliant or efficient. (source: get_analyst_note).\n4.  **Lending Tightening:** Systemic stress is \"MODERATE\" due to 98.2% borrow utilization across Aave V3 ($10.9B borrowed) and Morpho-Blue ($4.0B borrowed). This tightening is a fundamental risk factor emerging from the capital rotation. (source: get_analyst_note).\n\n## MOUVEMENTS DE THESES\n*   **Aave (LENDING):** STRENGTHENED. The prior assessment \"retired\" the thesis with a verdict of \"stable\". Current data confirms this stability: Aave V3 TVL is $13.79B (+0.45% 7d), and it remains the #1 ranked protocol in the sector by P/F (4.1). The protocol is successfully navigating the liquidity tightening. (source: get_metric, get_prior_assessment).\n*   **RWA (RWA_DEFI):** WEAKENED / GAP. The sector is booming (Spiko/BUIDL), yet the thesis book shows **no active thesis** for `rwa_defi`. The dossier mentions a weakening thesis on Ondo (conf 65%), but the explosive growth of Spiko suggests the research thesis has failed to capture the current alpha or is outdated. (source: get_board, get_dossier).\n*   **AI-Crypto (AI_CRYPTO):** RETIRED / DORMANT. The narrative count is 0, and the sector is listed as having \"NO active thesis\". The convergence of Bitcoin and AI mentioned in the board's \"other\" top thesis (BTC, conf 0.88) appears isolated from the broader \"ai_crypto\" sector narrative. (source: get_board, get_narrative).\n\n## CONVERGENCES\nThe **Regulatory Onslaught** is the primary catalyst driving the other threads. It is forcing the **Chain Rotation** (capital moving to Solana/USDC-friendly venues) and fueling the **RWA Capital Influx** (flight to compliant, institutional-grade assets). The **Lending Tightening** is a symptom of this rotation, as liquidity drains from Ethereum-based markets.\n\n## SOUS SURVEILLANCE\n*   **Spiko's Sustainability:** The +92% TVL surge in Spiko is extreme. We must determine if this is organic institutional inflow or incentivized \"mercenary capital.\" (Invalidation: Spiko TVL reverses >50% of gains within 30d).\n*   **Ethereum Outflows:** Monitor if the -$595M 7d stablecoin outflow from Ethereum accelerates or stabilizes. (Invalidation: Ethereum outflows exceed $1B in the next 7d).\n*   **Liquida"
-  },
-  {
-   "ts": "2026-07-26T06:38:59Z",
-   "tier": "S",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 6,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "## PAYSAGE\nAttention is concentrated on the intersection of **Regulatory Regime Shift** and **Institutional RWA Adoption**, while on-chain value is consolidating in compliant venues and liquidity conditions are tightening across major lending protocols. Global stablecoin supply is flatlining at $296.6B (+0.1% 7d), indicating a pause in net new fiat entry, yet capital is actively rotating into RWA protocols like Spiko (+92.65% 7d TVL) and Invesco USTB (+9.33% 7d TVL), suggesting a preference for tokenized real-world yield over native DeFi speculation.\n\n## FILS DOMINANTS\n1.  **Regulatory Onslaught**: The regulatory narrative has exploded (+93.2% emergence) with 193 active events (source: get_events). This is grounded in the enforcement of MiCA in the EU and the finalization of the US GENIUS Act rulemaking (deadline 2026-07-18) (source: get_reg_exposure). The narrative is backed by the sheer volume of legislative activity, not just article count.\n2.  **RWA Capital Rotation**: The RWA narrative (+52.9% emergence) is materially backed by TVL expansion. Spiko leads with a +92.65% 7d TVL surge to $2.26B (z=2.50), while Invesco USTB grew +9.33% (source: get_metric). This rotation is occurring despite flat aggregate stablecoin supply, implying a shift from existing crypto capital rather than fresh fiat.\n3.  **Liquidity Tightening**: Aave maintains high TVL at $13.79B (z=1.04, 87th pctile) (source: get_metric), but systemic risk is elevated with borrow utilization hitting 98.2% across multiple protocols (source: get_analyst_note). This divergence—high value locked alongside tightening liquidity—signals fragility rather than health.\n\n## MOUVEMENTS DE THESES\n*   **Aave (th_20260704_0320_aave)**: **REVISE**. The prior assessment retired the thesis as \"stable\" based on TVL expansion. However, new evidence of 98.2% borrow utilization (source: get_analyst_note) contradicts the stability narrative,"
   }
  ],
  "theses": [
@@ -1145,12 +1149,8 @@
    "conviction": 0.0,
    "trigger": "No live reg news or corroboration found in digest.",
    "kill": "",
-   "ts": "2026-07-25T18:07:42Z",
+   "ts": "2026-07-28T00:06:46Z",
    "history": [
-    {
-     "ts": "07-10",
-     "c": 0.92
-    },
     {
      "ts": "07-14",
      "c": 0.9
@@ -1185,6 +1185,10 @@
     },
     {
      "ts": "07-25",
+     "c": 0.0
+    },
+    {
+     "ts": "07-28",
      "c": 0.0
     }
    ]
@@ -1242,10 +1246,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-27T00:06:59.613091+00:00",
-     "note": "Spiko's fee composition analysis pending; recent brief noted 4.09% fee-yield on $2.26B TVL (source: your_recent_briefs)"
-    },
-    {
      "ts": "2026-07-27T06:07:13.742566+00:00",
      "note": "Galaxy launched Galaxy Curator, providing institutional clients access to onchain yield through Morpho (source: CoinDesk)."
     },
@@ -1260,9 +1260,13 @@
     {
      "ts": "2026-07-27T18:06:35.728064+00:00",
      "note": "No new data in digest."
+    },
+    {
+     "ts": "2026-07-28T00:06:46.784554+00:00",
+     "note": "Spiko TVL +80.32% 7d to $2.21B (z=1.82) with low fee-yield 0.95% suggests incentivized inflows (source: get_metric)."
     }
    ],
-   "evidence": "inq_mission_institutional · next: Monitor which specific crypto firms begin M&A discussions or compliance integrations."
+   "evidence": "inq_mission_institutional · next: Analyze Spiko depositor wallet types for institutional vs mercenary traits."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
@@ -1328,12 +1332,12 @@
   "sectors": [
    {
     "name": "lst",
-    "tvl": 45.2,
+    "tvl": 44.3,
     "yard": "TVL"
    },
    {
     "name": "lending",
-    "tvl": 44.4,
+    "tvl": 44.2,
     "yard": "TVL"
    },
    {
@@ -1356,27 +1360,27 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.22
+    "fy": 8.21
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.46
+    "fy": 6.47
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 5.97
+    "fy": 5.96
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.84
+    "fy": 5.88
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.2
+    "fy": 4.22
    },
    {
     "name": "WisdomTree",
@@ -1397,11 +1401,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -786.4
+    "d7": -779.7
    },
    {
     "chain": "Solana",
-    "d7": 418.4
+    "d7": 418.7
    },
    {
     "chain": "Polygon",
@@ -1409,31 +1413,31 @@
    },
    {
     "chain": "Arbitrum",
-    "d7": -34.7
+    "d7": -34.6
    },
    {
     "chain": "Optimism",
-    "d7": -34.2
+    "d7": -34.1
    }
   ],
   "agg": {
    "stable_mcap_b": 296.0,
-   "stable_d7_pct": -0.16,
+   "stable_d7_pct": -0.14,
    "dex_vol_24h_b": 5.5,
-   "defi_tvl_b": 76.5
+   "defi_tvl_b": 75.5
   }
  },
  "robinhood": {
-  "tvl_m": 337.8,
-  "morpho_share_pct": 69,
+  "tvl_m": 334.3,
+  "morpho_share_pct": 70,
   "age_days": 14,
   "synth_ts": "2026-07-27T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-27\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$337.8M**, marking a **+2.2%** daily increase and sustaining a robust upward trajectory from ~$160M just 13 days ago (source: on-chain trajectory). The capital composition is heavily concentrated: **Morpho Blue** commands **69.4%** of total chain TVL ($234.5M supplied), with an exceptionally high utilization rate of **94.2%** ($220.9M borrowed). This indicates that the chain's growth is not merely liquidity stacking, but active credit deployment. DEX liquidity remains fragmented but present, with Uniswap V4 and V3 holding ~$27.5M and ~$27.4M respectively, while derivatives via Arcus Perps and Lighter sit at ~$17.6M each. The quality of capital appears sticky, driven by regulated yield opportunities rather than transient incentive farming.\n\n## CATALYSEURS\n*   **Tokenized Stock Expansion (Product):** Reports indicate a fivefold increase in trading size for tokenized stocks (CoinDesk). This directly correlates with the sustained TVL inflow, as the 24/7 tokenized equity feature drives sticky capital into the ecosystem, specifically fueling the demand for borrowing/lending loops seen on Morpho.\n*   **DEX Infrastructure Maturation (Launch):** Joseph DeLong (ex-Sushi CTO) is launching an order book DEX on Robinhood Chain (The Defiant). This structural addition addresses the liquidity fragmentation observed in the on-chain data, potentially shifting volume away from simple AMM pools (Uniswap) toward more sophisticated venue types, impacting future fee distribution.\n*   **Regulatory Precedent (Regulatory):** Ondo's Oasis Pro Markets received clearance to offer tokenized stocks in the US (The Defiant). This validates the regulatory viability of Robinhood Chain's core value proposition, reducing the discount associated with regulatory uncertainty and encouraging institutional capital deployment.\n*   **User Acquisition (Product):** Robinhood Chain has surpassed Base in daily active users (The Defiant). This metric shift explains the steady organic growth in TVL, suggesting that the chain is successfully converting its massive retail user base into on-chain participants, bypassing the need for merc"
  },
  "health": {
   "budget": {
-   "day": "2026-07-27",
-   "glm": 30,
+   "day": "2026-07-28",
+   "glm": 3,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
