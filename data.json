@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-28T02:48:01Z",
+ "generated_at": "2026-07-28T04:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -800,7 +800,7 @@
    "verdict": "confirm",
    "conviction": 0.95,
    "trigger": "Aave V3's lending dominance has solidified with a 7.28% TVL expansion (7d) to $13.71B, capturing 43.7% sector share, while maintaining a 2.42% fee-yield",
-   "kill": "The volume of assets deposited into Aave V3 by institutions identified as holding greater than $10 million in Aave tokens over the next 30 days will indicate the effectiveness of t",
+   "kill": "Monitor the total value locked (TVL) in Aave V3 specifically from verified institutional entities over the next quarter to assess the impact of these risk management adjustments.",
    "ts": "2026-07-15T09:02:35Z",
    "history": [
     {
@@ -875,7 +875,7 @@
    "verdict": "confirm",
    "conviction": 0.92,
    "trigger": "Aave V3 TVL holds at $13.79B (z=1.04, 87th pctile) with 1.07% 1d growth, confirming the \"stable\" verdict from the prior assessment.",
-   "kill": "The volume of assets deposited into Aave V3 by institutions identified as holding greater than $10 million in Aave tokens over the next 30 days will indicate the effectiveness of t",
+   "kill": "Monitor the total value locked (TVL) in Aave V3 specifically from verified institutional entities over the next quarter to assess the impact of these risk management adjustments.",
    "ts": "2026-07-26T07:38:10Z",
    "history": [
     {
@@ -957,7 +957,7 @@
    "verdict": "revise",
    "conviction": 0.85,
    "trigger": "Frequent supply cap adjustments imply flawed risk assessments, confirmed by red-team challenge; TVL growth outpacing fee growth suggests supply-driven expansion.",
-   "kill": "The volume of assets deposited into Aave V3 by institutions identified as holding greater than $10 million in Aave tokens over the next 30 days will indicate the effectiveness of t",
+   "kill": "Monitor the total value locked (TVL) in Aave V3 specifically from verified institutional entities over the next quarter to assess the impact of these risk management adjustments.",
    "ts": "2026-07-26T06:06:08Z",
    "history": [
     {
@@ -1014,7 +1014,7 @@
    "verdict": "revise",
    "conviction": 0.85,
    "trigger": "Reactive risk management via simultaneous module/penalty launch suggests underlying operational vulnerabilities.",
-   "kill": "",
+   "kill": "Monitor the rate of ETH consolidation into Curated Module v2 over the next 30 days, specifically tracking any significant deviations from projected timelines or reported issues wit",
    "ts": "2026-07-14T15:08:04Z",
    "history": [
     {
@@ -1092,7 +1092,7 @@
    "verdict": "retire",
    "conviction": 0.92,
    "trigger": "stETH utility improvements stabilized; no longer a primary alpha driver.",
-   "kill": "",
+   "kill": "Monitor the rate of ETH consolidation into Curated Module v2 over the next 30 days, specifically tracking any significant deviations from projected timelines or reported issues wit",
    "ts": "2026-07-15T15:08:03Z",
    "history": [
     {
@@ -1148,7 +1148,7 @@
    "verdict": "retire",
    "conviction": 0.0,
    "trigger": "No live reg news or corroboration found in digest.",
-   "kill": "",
+   "kill": "Monitor the rate of ETH consolidation into Curated Module v2 over the next 30 days, specifically tracking any significant deviations from projected timelines or reported issues wit",
    "ts": "2026-07-28T00:06:46Z",
    "history": [
     {
@@ -1332,12 +1332,12 @@
   "sectors": [
    {
     "name": "lst",
-    "tvl": 43.8,
+    "tvl": 43.6,
     "yard": "TVL"
    },
    {
     "name": "lending",
-    "tvl": 43.7,
+    "tvl": 43.6,
     "yard": "TVL"
    },
    {
@@ -1360,12 +1360,12 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.44
+    "fy": 8.47
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.56
+    "fy": 6.57
    },
    {
     "name": "Hastra",
@@ -1375,62 +1375,62 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.88
+    "fy": 5.9
+   },
+   {
+    "name": "Sanctum Validator LSTs",
+    "sector": "lst",
+    "fy": 5.57
+   },
+   {
+    "name": "Binance Staked SOL",
+    "sector": "lst",
+    "fy": 4.86
+   },
+   {
+    "name": "Jito Liquid Staking",
+    "sector": "lst",
+    "fy": 4.78
    },
    {
     "name": "Centrifuge Protocol",
     "sector": "rwa",
     "fy": 3.76
-   },
-   {
-    "name": "WisdomTree",
-    "sector": "rwa",
-    "fy": 3.72
-   },
-   {
-    "name": "Kamino Lend",
-    "sector": "lending",
-    "fy": 3.63
-   },
-   {
-    "name": "Invesco USTB",
-    "sector": "rwa",
-    "fy": 3.54
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -819.0
+    "d7": -825.5
    },
    {
     "chain": "Solana",
-    "d7": 388.4
+    "d7": 388.1
    },
    {
     "chain": "Polygon",
-    "d7": -44.1
+    "d7": -44.2
    },
    {
     "chain": "Arbitrum",
-    "d7": -36.2
+    "d7": -36.3
    },
    {
     "chain": "Optimism",
-    "d7": -32.0
+    "d7": -32.1
    }
   ],
   "agg": {
-   "stable_mcap_b": 295.9,
-   "stable_d7_pct": -0.06,
+   "stable_mcap_b": 295.0,
+   "stable_d7_pct": -0.42,
    "dex_vol_24h_b": 7.3,
-   "defi_tvl_b": 75.2
+   "defi_tvl_b": 75.0
   }
  },
  "robinhood": {
-  "tvl_m": 334.3,
+  "tvl_m": 332.9,
   "morpho_share_pct": 70,
-  "age_days": 14,
+  "age_days": 13,
   "synth_ts": "2026-07-27T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-27\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$337.8M**, marking a **+2.2%** daily increase and sustaining a robust upward trajectory from ~$160M just 13 days ago (source: on-chain trajectory). The capital composition is heavily concentrated: **Morpho Blue** commands **69.4%** of total chain TVL ($234.5M supplied), with an exceptionally high utilization rate of **94.2%** ($220.9M borrowed). This indicates that the chain's growth is not merely liquidity stacking, but active credit deployment. DEX liquidity remains fragmented but present, with Uniswap V4 and V3 holding ~$27.5M and ~$27.4M respectively, while derivatives via Arcus Perps and Lighter sit at ~$17.6M each. The quality of capital appears sticky, driven by regulated yield opportunities rather than transient incentive farming.\n\n## CATALYSEURS\n*   **Tokenized Stock Expansion (Product):** Reports indicate a fivefold increase in trading size for tokenized stocks (CoinDesk). This directly correlates with the sustained TVL inflow, as the 24/7 tokenized equity feature drives sticky capital into the ecosystem, specifically fueling the demand for borrowing/lending loops seen on Morpho.\n*   **DEX Infrastructure Maturation (Launch):** Joseph DeLong (ex-Sushi CTO) is launching an order book DEX on Robinhood Chain (The Defiant). This structural addition addresses the liquidity fragmentation observed in the on-chain data, potentially shifting volume away from simple AMM pools (Uniswap) toward more sophisticated venue types, impacting future fee distribution.\n*   **Regulatory Precedent (Regulatory):** Ondo's Oasis Pro Markets received clearance to offer tokenized stocks in the US (The Defiant). This validates the regulatory viability of Robinhood Chain's core value proposition, reducing the discount associated with regulatory uncertainty and encouraging institutional capital deployment.\n*   **User Acquisition (Product):** Robinhood Chain has surpassed Base in daily active users (The Defiant). This metric shift explains the steady organic growth in TVL, suggesting that the chain is successfully converting its massive retail user base into on-chain participants, bypassing the need for merc"
  },
