@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-28T14:48:02Z",
+ "generated_at": "2026-07-28T16:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -800,7 +800,7 @@
    "verdict": "confirm",
    "conviction": 0.95,
    "trigger": "Aave V3's lending dominance has solidified with a 7.28% TVL expansion (7d) to $13.71B, capturing 43.7% sector share, while maintaining a 2.42% fee-yield",
-   "kill": "Monitor the total value locked (TVL) in Aave V3 specifically from verified institutional entities over the next quarter to assess the impact of these risk management adjustments.",
+   "kill": "Monitor the frequency and magnitude of supply cap adjustments made by Aave Risk Stewards over the next two weeks, as a sustained decrease in adjustment activity would suggest incre",
    "ts": "2026-07-15T09:02:35Z",
    "history": [
     {
@@ -875,7 +875,7 @@
    "verdict": "confirm",
    "conviction": 0.92,
    "trigger": "Aave V3 TVL holds at $13.79B (z=1.04, 87th pctile) with 1.07% 1d growth, confirming the \"stable\" verdict from the prior assessment.",
-   "kill": "Monitor the total value locked (TVL) in Aave V3 specifically from verified institutional entities over the next quarter to assess the impact of these risk management adjustments.",
+   "kill": "Monitor the frequency and magnitude of supply cap adjustments made by Aave Risk Stewards over the next two weeks, as a sustained decrease in adjustment activity would suggest incre",
    "ts": "2026-07-26T07:38:10Z",
    "history": [
     {
@@ -971,7 +971,7 @@
    "verdict": "revise",
    "conviction": 0.85,
    "trigger": "Frequent supply cap adjustments imply flawed risk assessments, confirmed by red-team challenge; TVL growth outpacing fee growth suggests supply-driven expansion.",
-   "kill": "Monitor the total value locked (TVL) in Aave V3 specifically from verified institutional entities over the next quarter to assess the impact of these risk management adjustments.",
+   "kill": "Monitor the frequency and magnitude of supply cap adjustments made by Aave Risk Stewards over the next two weeks, as a sustained decrease in adjustment activity would suggest incre",
    "ts": "2026-07-26T06:06:08Z",
    "history": [
     {
@@ -1028,7 +1028,7 @@
    "verdict": "revise",
    "conviction": 0.85,
    "trigger": "Reactive risk management via simultaneous module/penalty launch suggests underlying operational vulnerabilities.",
-   "kill": "Monitor the rate of ETH consolidation into Curated Module v2 over the next 30 days, specifically tracking any significant deviations from projected timelines or reported issues wit",
+   "kill": "Monitor the on-chain metrics related to the adoption rate and performance of Curated Module v2, specifically tracking any increases in validator centralization or deviations from e",
    "ts": "2026-07-14T15:08:04Z",
    "history": [
     {
@@ -1107,7 +1107,7 @@
    "verdict": "retire",
    "conviction": 0.92,
    "trigger": "stETH utility improvements stabilized; no longer a primary alpha driver.",
-   "kill": "Monitor the rate of ETH consolidation into Curated Module v2 over the next 30 days, specifically tracking any significant deviations from projected timelines or reported issues wit",
+   "kill": "Monitor the on-chain metrics related to the adoption rate and performance of Curated Module v2, specifically tracking any increases in validator centralization or deviations from e",
    "ts": "2026-07-15T15:08:03Z",
    "history": [
     {
@@ -1163,7 +1163,7 @@
    "verdict": "retire",
    "conviction": 0.0,
    "trigger": "No live reg news or corroboration found in digest.",
-   "kill": "Monitor the rate of ETH consolidation into Curated Module v2 over the next 30 days, specifically tracking any significant deviations from projected timelines or reported issues wit",
+   "kill": "Monitor the on-chain metrics related to the adoption rate and performance of Curated Module v2, specifically tracking any increases in validator centralization or deviations from e",
    "ts": "2026-07-28T00:06:46Z",
    "history": [
     {
@@ -1346,13 +1346,13 @@
  "macro": {
   "sectors": [
    {
-    "name": "lending",
-    "tvl": 43.7,
+    "name": "lst",
+    "tvl": 43.6,
     "yard": "TVL"
    },
    {
-    "name": "lst",
-    "tvl": 43.6,
+    "name": "lending",
+    "tvl": 43.5,
     "yard": "TVL"
    },
    {
@@ -1362,7 +1362,7 @@
    },
    {
     "name": "dex",
-    "tvl": 8.9,
+    "tvl": 8.8,
     "yard": "VOLUME"
    },
    {
@@ -1375,12 +1375,12 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.97
+    "fy": 7.94
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.59
+    "fy": 6.6
    },
    {
     "name": "Hastra",
@@ -1395,32 +1395,32 @@
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 5.57
+    "fy": 5.61
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 4.86
+    "fy": 4.9
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 4.78
+    "fy": 4.81
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.28
+    "fy": 4.29
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -825.5
+    "d7": -829.1
    },
    {
     "chain": "Solana",
-    "d7": 388.1
+    "d7": 387.9
    },
    {
     "chain": "Polygon",
@@ -1428,7 +1428,7 @@
    },
    {
     "chain": "Arbitrum",
-    "d7": -36.3
+    "d7": -36.4
    },
    {
     "chain": "Optimism",
@@ -1436,10 +1436,10 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 294.9,
-   "stable_d7_pct": -0.41,
+   "stable_mcap_b": 295.0,
+   "stable_d7_pct": -0.42,
    "dex_vol_24h_b": 7.4,
-   "defi_tvl_b": 75.0
+   "defi_tvl_b": 75.4
   }
  },
  "robinhood": {
@@ -1459,7 +1459,7 @@
   },
   "gate": {
    "ungrounded_dollar_7d": 1,
-   "unsupported_pct_7d": 10,
+   "unsupported_pct_7d": 9,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
    "silent_r2_7d": 2
