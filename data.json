@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-28T22:48:01Z",
+ "generated_at": "2026-07-29T00:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-28T19:45:16Z",
+   "ts": "2026-07-29T00:06:53Z",
    "status": "ok",
-   "discipline": 95.6,
+   "discipline": 87.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 9
+  "runs_today": 1
  },
  "runs": [
-  {
-   "ts": "2026-07-23T06:07:04Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-23T06:38:14Z",
    "tier": "S",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-29T00:06:53Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 87.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-29T00:06:53Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 87.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Spiko",
+    "Aave V3",
+    "NEAR"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 1,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko's TVL surged +78.95% 7d to $2.20B (z=1.64 76th pctile), capturing 13.9% market share in the RWA sector, while Aave V3 expanded protocol fees +5.24% 7d to $975K (z=0.94 89th pctile) despite a -0.56% 7d TVL contraction, signaling improved capital efficiency.\n\n## FILS DOMINANTS\n*   **Aave V3 — 2.518% fee-yield, the highest of the set (vs Spiko 1.153%):** Protocol fees expanded +5.24% 7d to $975K (source: protocol_fees 7d) while TVL contracted -0.56% 7d to $13.90B (source: get_metric). Risk Stewards actively managed supply caps (source: Aave Governance via read_articles), optimizing the base. Capital quality is high; the protocol holds 43.5% lending market share (source: sector-aware peers). The token trades at 4.4x P/F (rank 1/3 in lending vs 6.5x median), cheap on a fee-multiple basis, though capture_pct is 0% (source: drill_valuation).\n*   **Spiko — 1.153% fee-yield (rank 2/3):** TVL surged +78.95% 7d to $2.20B (z=1.64 76th pctile) (source: get_metric), securing 13.9% RWA market share (source: sector-aware peers). The capital quality is provisional; the surge is linked to EU regulated T-bill funds on Coinbase rails (source: CoinTelegraph via read_articles), but the depositor composition (institutional vs. arbitrage) remains unverified. Fee-yield is 1.153% (source: onchain_enriched).\n*   **NEAR — No value-accrual data available:** Digest provided null economics for NEAR (source: get_metric), preventing a fundamental ranking or fee-yield calculation. Peer market share is 0.0% (source: sector-aware peers).\n\n## RECONCILIATION\nNo prior theses were found in the digest to confirm, revise, or retire (source: get_prior_assessment).\n\n## LECTURE\nThe divergence between Aave's fee expansion and TVL contraction suggests improved yield extraction from a shrinking but more productive capital base, a positive signal for protocol efficiency. Spiko's rapid TVL growth is a strong headline, but without wallet analysis, the \"institutional\" narrative remains a hypothesis; the +79% move could be yield farming rather than sticky capital. The valuation gap for Aave (4.4x P/F vs 6.5x median) is notable, but the 0% capture rate means the market is pricing future fee switches, not current cash flow.\nKill condition: Spiko TVL drops below $1.8B or Aave protocol fees fall below $800K 24h.\n\n## RISQUE\n*   **Spiko:** Capital quality risk—the +78.95% 7d TVL surge may be transient yield farming rather than sticky institutional allocation; retention is unproven (source: get_metric).\n*   **Aave V3:** Regulatory risk via parameter changes—Risk Stewards are actively adjusting supply/borrow caps (source: Aave Governance via read_articles), which if mismanaged could constrain revenue growth.\n*   **NEAR:** Data opacity risk—null fee and TVL metrics (source: get_metric) prevent any assessment of fundamental viability or market share impact.\n\n## SUIVI\n*   **inq_mission_institutional:** Evidence: Spiko TVL surged +78.95% 7d to $2.20B (source: get_metric), linked to EU T-bill funds (source: CoinTelegraph via read_articles). Next_probe: Analyze Spiko depositor wallet types to confirm institutional vs. retail comp."
+  },
   {
    "ts": "2026-07-28T19:45:16Z",
    "tier": "A",
@@ -771,31 +800,6 @@
     "n_unsupported_pct": 1
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko's TVL surged +93.09% 7d to $2.27B, driving a fee-yield of 4.075% (the highest in the set) and placing fees at a z-score of 2.12 (93rd pctile), signaling a material expansion in tokenized asset activity that outpaces peers in the RWA sector.\n\n## FILS DOMINANTS\n*   **Spiko — 4.075% fee-yield, the highest of the set (vs Rocket Pool 1.284%, JustLend V1 0.605%):** TVL increased +93.09% 7d to $2.27B (z=2.06 100th pctile) with protocol fees of $253K 24h (z=2.12 93rd pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is provisional; the rapid scale requires verification of organic institutional adoption versus short-term yield incentives, as the digest flags the surge magnitude as an outlier.\n*   **Rocket Pool — 1.284% fee-yield, rank 2 of the set:** TVL grew +4.88% 7d to $1.03B (z=1.79 100th pctile), though fees lagged with a z-score of -0.56 (22nd pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). The protocol trades at a P/F of 5.9x, rank 3/3 in LST vs a 3.1x sector median — rich on a fee-multiple basis, particularly as the token captures none of the protocol's fees today (capture_pct: null) (source: drill_valuation).\n*   **JustLend V1 — 0.605% fee-yield, the lowest of the set:** TVL increased +2.71% 7d to $3.33B (z=0.91 91st pctile), securing 10.3% market share in lending (4th by TVL behind Aave V3, Morpho Blue, SparkLend) (source: sector-aware peers). Fee generation contracted -2.47% 7d (z=-1.31 13th pctile), indicating weak value accrual relative to capital deployed (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\nNo prior theses were active for this specific set of threads in the provided digest; therefore, no reconciliation is required.\n\n## LECTURE\nThe RWA sector is demonstrating superior unit economics relative to LST and Lending in this sample, with Spiko's 4.075% fee-yield nearly doubling Rocket Pool's and nearly 7x JustLend V1's. However, valuation discipline is critical: Rocket Pool's 5.9x P/F multiple (rank 3/3) prices in significant future fee capture or growth that is not currently realized by the token, unlike Lido (0.8x P/F). For Spiko, the primary research focus shifts to capital stickiness; a 93% TVL surge in 7 days is statistically anomalous (z=2.06) and risks classification as mercenary capital until proven otherwise.\nKill condition: Spiko's TVL retention rate drops below 50% of the +93% inflow within 30 days, or Rocket Pool's P/F compresses below the sector median without a corresponding increase in token-accrued revenue.\n\n## RISQUE\n*   **Spiko:** Capital quality risk is elevated; the +93.09% 7d TVL surge may be driven by transient yield-seeking rather than permanent institutional allocation, which could reverse rapidly if incentives shift (source: get_metric + onchain_enriched).\n*   **Rocket Pool:** Valuation risk is high; the token trades at a premium 5.9x P/F (vs 3.1x median) despite capturing 0% of protocol fees, leaving the valuation exposed to any failure in governance to implement fee capture mechanisms (source: drill_valuation).\n*   **JustLend V1:** Value accrual risk is prominent; the protocol generates the lowest fee-yield (0.605%) in the set despite holding the largest TVL ($3.33B), suggesting capital inefficiency or competitive pressure from higher-yielding venues (source: get_metric + protocol_fees(7d)).\n\n## SUIVI\n*   **inq_mission_rotation:** Evidence shows Spiko (RWA) fee-yield at 4.075% significantly outperforming JustLend V1 (Lending) at 0.605% and Rocket Pool (LST) at 1.284%, suggesting a capital rotation towards RWA verticals backed by higher fee generation (source: get_metric + protocol_fees(7d)). Next probe: Verify issuance vs. deposit incentive split in Spiko's fee compositio"
-  },
-  {
-   "ts": "2026-07-27T09:37:28Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 74.0,
-   "r2_pass": true,
-   "comps": 9,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 8,
-    "R6": 9,
-    "R8": 7,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\nThe U.S. Securities and Exchange Commission (SEC) has added three crypto-focused rulemakings to its 2026 Unified Regulatory Agenda and is planning rule changes specifically for cryptocurrency exchanges and broker-dealers (source: read_articles). This development comes alongside Europe's MiCA regulation and the UK's crypto framework, which analysts predict could lead to increased mergers and acquisitions within the crypto industry (source: read_articles). These regulatory shifts represent a significant pivot from infrastructure-focused narratives to regulatory regime considerations, with regulatory event emergence up +77.8% in the past week (source: get_board).\n\n## RECONCILIATION\nNo prior theses were directly tested against these specific regulatory developments in this run. The observed narrative shift from \"Infra\" (-47.8% emergence) to \"Regulatory Regime Shift\" (+80.6% event emergence) and \"Institutional RWA Adoption\" (+52.9% narrative emergence) aligns with the increased regulatory activity (source: get_recent_briefs).\n\n## LECTURE\nThe SEC's 2026 Unified Regulatory Agenda represents a critical inflection point for the crypto industry. The addition of three crypto-focused rulemakings and planned changes for exchanges and broker-dealers suggests a move toward comprehensive regulatory frameworks rather than piecemeal enforcement. This development, combined with MiCA in Europe and the UK's crypto framework, indicates a global trend toward formalized crypto regulation. The prediction that these regulatory frameworks could drive M&A activity is logical as smaller firms may struggle with compliance costs, while larger institutions with existing regulatory expertise may acquire them to expand their crypto offerings. This regulatory clarity may also accelerate institutional RWA adoption, as evidenced by BlackRock BUIDL ($3.44B TVL) and Circle USYC ($3.00B TVL) (source: get_analyst_note).\n\nKill condition: If the SEC delays or withdraws these rulemakings from its 2026 agenda, or if crypto exchanges successfully lobby against the proposed changes, the regulatory clarity thesis would be weakened.\n\n## LIVE EVENTS\n- SEC added three crypto-focused rulemakings to its 2026 Unified Regulatory Agenda (source: read_articles)\n- SEC planning rule changes for cryptocurrency exchanges and broker-dealers (source: read_articles)\n- North Carolina's budget law recognizes CFTC's regulatory authority over prediction markets (source: read_articles)\n- Europe's MiCA regulation and UK's crypto framework potentially driving M&A activity (source: read_articles)\n\n## SUIVI\n- Advanced inquiry on institutional money by examining regulatory developments that could impact institutional adoption\n- No new measurements were taken for the fresh money inquiry in this run\n\n## OPEN QUESTIONS\n- What specific areas will the three crypto-focused SEC rulemakings address?\n- How will crypto exchanges and broker-dealers prepare for the planned rule changes?\n- Which firms are best positioned to benefit from potential M&A activity driven by regulatory compliance costs?"
   }
  ],
  "theses": [
@@ -1351,17 +1355,17 @@
   "sectors": [
    {
     "name": "lst",
-    "tvl": 44.5,
+    "tvl": 44.3,
     "yard": "TVL"
    },
    {
     "name": "lending",
-    "tvl": 44.1,
+    "tvl": 43.7,
     "yard": "TVL"
    },
    {
     "name": "rwa",
-    "tvl": 22.9,
+    "tvl": 23.0,
     "yard": "TVL"
    },
    {
@@ -1387,52 +1391,52 @@
     "fy": 6.51
    },
    {
+    "name": "Sky Lending",
+    "sector": "lending",
+    "fy": 6.24
+   },
+   {
     "name": "Hastra",
     "sector": "rwa",
     "fy": 6.09
    },
    {
-    "name": "Sky Lending",
-    "sector": "lending",
-    "fy": 5.9
-   },
-   {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 5.49
+    "fy": 5.55
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 4.79
+    "fy": 4.85
    },
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 4.71
+    "fy": 4.77
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.24
+    "fy": 4.27
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -837.5
+    "d7": -830.4
    },
    {
     "chain": "Solana",
-    "d7": 387.5
+    "d7": 387.9
    },
    {
     "chain": "Polygon",
-    "d7": -44.3
+    "d7": -44.2
    },
    {
     "chain": "Arbitrum",
-    "d7": -36.5
+    "d7": -36.4
    },
    {
     "chain": "Optimism",
@@ -1441,13 +1445,13 @@
   ],
   "agg": {
    "stable_mcap_b": 294.9,
-   "stable_d7_pct": -0.44,
+   "stable_d7_pct": -0.46,
    "dex_vol_24h_b": 7.4,
-   "defi_tvl_b": 75.9
+   "defi_tvl_b": 75.4
   }
  },
  "robinhood": {
-  "tvl_m": 334.8,
+  "tvl_m": 334.9,
   "morpho_share_pct": 71,
   "age_days": 14,
   "synth_ts": "2026-07-28T12:00:00Z",
@@ -1455,8 +1459,8 @@
  },
  "health": {
   "budget": {
-   "day": "2026-07-28",
-   "glm": 44,
+   "day": "2026-07-29",
+   "glm": 2,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
