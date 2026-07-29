@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-29T10:48:01Z",
+ "generated_at": "2026-07-29T12:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "B",
-   "mode": "react",
-   "ts": "2026-07-29T09:37:32Z",
-   "status": "ok",
-   "discipline": 87.0,
-   "r2_pass": true,
-   "silent": false
-  },
-  "runs_today": 4
- },
- "runs": [
-  {
-   "ts": "2026-07-23T18:07:02Z",
    "tier": "A",
    "mode": "3phase",
+   "ts": "2026-07-29T12:08:00Z",
    "status": "ok",
-   "silent": false,
-   "discipline": 96.7,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
+   "discipline": null,
+   "r2_pass": null,
+   "silent": true
   },
+  "runs_today": 5
+ },
+ "runs": [
   {
    "ts": "2026-07-24T00:06:17Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 8,
    "phase": null
+  },
+  {
+   "ts": "2026-07-29T12:08:00Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": 4,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-29T12:08:00Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": true,
+   "discipline": null,
+   "r2_pass": null,
+   "comps": 4,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Spiko",
+    "Rocket Pool",
+    "JustLend V1"
+   ],
+   "gate": {
+    "R1": null,
+    "R6": null,
+    "R8": null,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": null,
+    "n_unsupported_pct": null
+   },
+   "brief": "[SILENT] R2 could not be cleaned"
+  },
   {
    "ts": "2026-07-29T09:37:32Z",
    "tier": "B",
@@ -763,35 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "## PAYSAGE\nAttention has aggressively pivoted from \"Infra\" (-38.1% narrative emergence) to \"Regulatory Regime Shift\" (+66.7% event emergence) and \"Institutional RWA Adoption\" (+112.5% narrative emergence). On-chain value is concentrating in tokenized real-world assets, with BlackRock BUIDL reaching $3.44B TVL (+3.08% 7d) and Circle USYC at $3.01B (+1.54% 7d), while global stablecoin supply contracts to $294.94B (-0.4% 7d, z=-2.08), indicating capital rotation rather than fresh fiat entry. The lending sector shows mixed signals with Aave V3 TVL declining to $13.72B (-2.05% 7d) even as Morpho Blue demonstrates fee growth efficiency.\n\n## FILS DOMINANTS\n1. **Institutional RWA Adoption**: BlackRock BUIDL ($3.44B TVL, +3.08% 7d) and Circle USYC ($3.01B TVL, +1.54% 7d) are absorbing capital despite overall stablecoin outflows, with narrative emergence up 112.5% - this is backed by actual TVL growth, not just article volume. (source: get_metric)\n\n2. **Regulatory Regime Shift**: Regulatory events now dominate the landscape (+66.7% emergence), with MiCA enforcement active in EU, GENIUS Act rulemaking deadline approaching (2026-07-18), and multiple jurisdictions (UK, Hong Kong, Taiwan) implementing stablecoin frameworks. This is driving regional capital flows, particularly EU venue adjustments. (source: get_reg_exposure)\n\n3. **Capital Rotation from Ethereum**: Ethereum is experiencing stablecoin outflows (-$53.69M 1d per analyst note) while Solana shows inflows, representing a chain rotation pattern. This is occurring despite Aave V3 maintaining substantial TVL ($13.72B) and fee generation (2.48% annualized yield). (source: get_analyst_note, get_metric)\n\n4. **Systemic Stress Concentration**: Moderate stress levels with $7.63B open interest and 6 elevated risk pools, particularly Morpho-Blue (HYPERUSDCA pool) and Aave-v3 (USDC pool), creating potential cascade risks as capital rotates away from Ethereum. (source: get_analyst_note)\n\n## MOUVEMENTS DE THESES\n- **NEAR Thesis (WEAKENING)**: Confidence dropped from 0.95 to 0.75 due to regulatory concerns (\"regulatory · Near (bill)\" events) and ecosystem exploit risks (Dango perpetual exchange collapse). The thesis on ecosystem resilience is being challenged by increasing regulatory scrutiny. (source: get_prior_assessment)\n\n- **BTC Thesis (STABLE)**: Confidence maintained at 0.91 with continued investment from Bitcoin treasury firms into AI infrastructure. The convergence narrative remains intact despite broader market volatility. (source: get_prior_assessment)\n\n## CONVERGENCES\nThe regulatory regime shift is directly enabling institutional RWA adoption, as compliant frameworks (MiCA, GENIUS) create pathways for traditional finance to enter crypto through tokenized assets. This convergence explains why RWA narratives are strengthening (+112.5%) while infrastructure narratives decline (-38.1%) - capital is flowing into regulated, yield-bearing real-world assets rather than pure DeFi infrastructure. The chain rotation from Ethereum to Solana may be partially driven by regulatory arbitrage as different jurisdictions implement varying crypto frameworks.\n\n## SOUS SURVEILLANCE\n- **Spiko's Fee-Yield Disconnect**: TVL surged +80.32% 7d to $2.21B yet fee-yield sits at just 0.95% annualized, significantly lagging capital inflow rate - monitor if this represents sustainable growth or mercenary capital. (source: get_board, get_recent_briefs)\n\n- **Morpho Blue Liquidation Risk**: Elevated risk pools with high utilization could trigger cascading liquidations impacting Aave-v3 collateral, particularly as Ethereum experiences stablecoin outflows. (source: get_analyst_note)\n\n- **GENIUS Act Rulemaking Deadline (2026-07-18)**: US stablecoin framework finalization could accelerate institutional adoption or create complia"
-  },
-  {
-   "ts": "2026-07-28T06:07:15Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Aave V3",
-    "Binance staked ETH",
-    "Morpho Blue"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's protocol fees grew +10.53% 7d, outpacing Aave V3's +4.7% 7d growth, while Binance staked ETH saw fees decline -2.21% 7d, signaling a shift in yield generation efficiency within the lending sector relative to liquid staking (source: protocol_fees 7d).\n\n## FILS DOMINANTS\n*   **Morpho Blue — 2.70% fee-yield, the highest of the set (vs Aave V3 2.55%, Binance staked ETH 2.31%):** Protocol fees expanded +10.53% 7d on a $7.47B TVL base, driving a fee-yield z-score of -0.45 (36th pctile, n=313) which implies the current fee generation is historically low relative to its own baseline despite the weekly uptick. Capital quality is high with TVL at z=0.98 (80th pctile), though the token captures none of these fees (capture_pct null) and trades at an FDV multiple of 1.53x, requiring a future fee switch for fundamental value accrual (source: get_metric + protocol_fees(7d) + drill_valuation).\n*   **Aave V3 — 2.55% fee-yield, rank 2/3 in the set:** Protocol fees increased +4.7% 7d to $970K 24h on a $13.71B base, maintaining a dominant 43.5% market share in the lending sector. The token is cheap on a fee-multiple basis at 4.3x P/F (rank 1/3 in lending vs 6.3x median), but this low multiple reflects a capture_pct of 0.0% (the token accrues no protocol revenue today), pricing in future governance-enabled value capture rather than current cash flow (source: get_metric + protocol_fees(7d) + drill_valuation).\n*   **Binance staked ETH — 2.31% fee-yield, the lowest of the set:** Fees declined -2.21% 7d to $497K 24h on a $6.97B base, with fee generation sitting at the historical median (z=0.03, 52nd pctile). The protocol holds 24.8% market share in liquid staking, but token capture is unknown, and the protocol faces a compliance constraint in the EU under the MiCA regime (forced USDT delisting), which may drive a venue-bounded migration of trading balances to USDC/EURC on EU-licensed venues (source: get_metric + protocol_fees(7d) + drill_reg).\n\n## RECONCILIATION\n*   **CONFIRM (id: lending_fee_yield_dominance):** The thesis that lending protocols offer superior fee-yields compared to liquid staking alternatives is CONFIRMED. Morpho Blue (2.70%) and Aave V3 (2.55%) both outperform Binance staked ETH (2.31%) on annualized fee-yield, validating the sector's fundamental revenue efficiency on a relative basis (source: get_metric + protocol_fees(7d)).\n*   **REVISE (id: aave_token_valuation_thesis):** REVISE the thesis on Aave's valuation attractiveness. While Aave trades at a \"cheap\" 4.3x P/F multiple (rank 1/3), this is structurally tied to a 0.0% capture rate. The valuation is not a call on current fundamentals but a bet on the *probability* of a fee switch; without it, the multiple is disconnected from protocol revenue (source: drill_valuation).\n\n## LECTURE\nThe digest reveals a decoupling of protocol revenue and token value across the dominant threads. Morpho Blue is generating the highest fee-yield (2.70%) in the set with growing fee momentum (+10.53% 7d), yet its token does not capture this value. Aave V3, while generating slightly lower yield (2.55%), commands a dominant market share (43.5%) and trades at a low P/F multiple (4.3x), but again, this is a function of zero revenue capture, not an undervaluation of cash flows. Binance staked ETH lags in yield (2.31%) and faces regulatory headwinds in the EU (MiCA), creating a venue-specific risk for USDT-denominated liquidity. The fundamental read is that the *protocols* are healthy and generating yield, but the *tokens* are largely speculative instruments awaiting governance mechanisms (fee switches) to bridge the gap. The capital quality in Morpho and Aave is high (TVL z-scores >0.77), but the investment case rests entirely on the timeline and likelihood of value "
   }
  ],
  "theses": [
@@ -1346,12 +1346,12 @@
   "sectors": [
    {
     "name": "lst",
-    "tvl": 44.5,
+    "tvl": 44.3,
     "yard": "TVL"
    },
    {
     "name": "lending",
-    "tvl": 44.2,
+    "tvl": 44.1,
     "yard": "TVL"
    },
    {
@@ -1374,12 +1374,12 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.91
+    "fy": 7.85
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.54
+    "fy": 6.55
    },
    {
     "name": "Hastra",
@@ -1389,12 +1389,12 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.92
+    "fy": 5.93
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.25
+    "fy": 4.26
    },
    {
     "name": "WisdomTree",
@@ -1415,11 +1415,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -923.1
+    "d7": -923.9
    },
    {
     "chain": "Solana",
-    "d7": 388.2
+    "d7": 388.1
    },
    {
     "chain": "Polygon",
@@ -1436,22 +1436,22 @@
   ],
   "agg": {
    "stable_mcap_b": 294.7,
-   "stable_d7_pct": -0.49,
+   "stable_d7_pct": -0.5,
    "dex_vol_24h_b": 7.3,
    "defi_tvl_b": 76.0
   }
  },
  "robinhood": {
-  "tvl_m": 336.4,
-  "morpho_share_pct": 71,
-  "age_days": 13,
-  "synth_ts": "2026-07-28T12:00:00Z",
-  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-28\n\n## ÉTAT ON-CHAIN\nTotal Value Locked (TVL) sits at **$334.8M**, recording a daily increase of 1.0%. The trajectory remains firmly upward, having grown ~92% from the $173.8M level just two weeks ago (2026-07-15). Capital concentration is extreme: **Morpho Blue** commands **71.3%** of total chain TVL ($238.8M supplied), with borrow utilization at **93.2%** ($222.5M borrowed). This indicates a highly leveraged environment where supply is almost entirely absorbed by demand. Outside of Morpho, liquidity is fragmented; Uniswap V3/V4 combine for ~$50M, while Arcus Perps and Lighter Perps hold ~$28M combined. The dominance of Morpho suggests current TVL is heavily incentive-driven or yield-seeking rather than organic, diversified ecosystem growth.\n\n## CATALYSEURS\n*   **Tokenized Stock Volume Surge (Product):** Reports indicate trading size for tokenized stocks on Robinhood Chain has increased fivefold (CoinDesk). This directly correlates with the sustained TVL growth, suggesting the 24/7 stock narrative is successfully attracting real capital flow into the ecosystem.\n*   **DEX Expansion & Competition (Launch):** Joseph DeLong (ex-Sushi CTO) is launching an order book DEX on-chain (The Defiant). This adds competitive pressure to existing venues like Arcus and Uniswap, likely driving up fee yields and liquidity incentives in the short term.\n*   **Regulatory Clearance for Competitors (Regulatory):** Ondo’s Oasis Pro Markets received clearance to offer tokenized stocks in the US (The Defiant). While external to Robinhood, this validates the regulatory pathway for RWAs, reducing the perceived risk premium for institutional capital entering the Robinhood Chain ecosystem.\n*   **User Adoption Metric (Product):** The chain has surpassed Base in daily active users (The Defiant). This shift in user base provides the fundamental demand layer supporting the lending and trading volumes observed on-chain.\n\n## VALUE ACCRUAL\nRobinhood Chain operates without a native token; the protocol itself captures no direct fee revenue. Value accrual is entirely externalized to third-party protocols. **Morpho** is the primary beneficiary, capturing the spread on"
+  "tvl_m": 342.5,
+  "morpho_share_pct": 72,
+  "age_days": 14,
+  "synth_ts": "2026-07-29T12:00:00Z",
+  "synth": "## ROBINHOOD CHAIN — DAILY 2026-07-29\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$342.5M**, recording a robust **+3.6%** daily uptick. The trajectory is distinctly upward, having climbed from ~$188M at the start of the recorded period (July 15) to current levels, marking an 82% expansion in two weeks. Capital concentration is extreme: **Morpho Blue dominates with ~71.8% of total chain TVL** ($245.8M supplied), with borrow utilization sitting at a healthy **91.8%** ($225.7M borrowed). This indicates a highly leveraged environment where capital efficiency is prioritized over diversification. Beyond Morpho, liquidity is fragmented among early-stage infrastructure: Uniswap V3/V4 ($50.8M combined), Spark Savings ($18.8M), and Arcus Perps ($18.1M). The capital profile suggests a mix of sticky, yield-seeking institutional capital (Morpho) and launch-incentivized speculative flow (DEXs/Perps).\n\n## CATALYSEURS\n*   **Tokenized Stock Surge (Product):** Trading volume for tokenized stocks on Robinhood Chain has increased fivefold (CoinDesk). This directly correlates with the sustained TVL growth, as these assets require on-chain liquidity and likely utilize Morpho for leverage/borrowing against RWA collateral.\n*   **Regulatory Clearance for RWA (Regulatory):** Ondo's Oasis Pro Markets received clearance to offer tokenized stocks in the US (The Defiant). This structural catalyst validates the \"24/7 tokenized stock\" value proposition of Robinhood Chain, providing a compliant on-ramp for institutional capital.\n*   **Infrastructure Expansion (Launch):** Joseph DeLong (ex-Sushi CTO) is launching an order book DEX on-chain (The Defiant). This addresses the current fragmentation in DEX liquidity and aims to capture the volume currently leaking to AMMs.\n*   **Strategic Partnerships (Partnership):** Talks with Crypto.com to add prediction markets (CoinTelegraph). This expands the product suite beyond simple spot/perps, though it introduces regulatory complexity.\n*   **Security Incident (Regulatory/Reputational):** The hack of CEO Vlad Tenev's X account to promote a fake memecoin (CoinDesk) highlights the persistent vector of social engineering risks, which could invite stricter KYC/AML"
  },
  "health": {
   "budget": {
    "day": "2026-07-29",
-   "glm": 20,
+   "glm": 25,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
@@ -1461,7 +1461,7 @@
    "unsupported_pct_7d": 11,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
-   "silent_r2_7d": 2
+   "silent_r2_7d": 3
   }
  }
 }
