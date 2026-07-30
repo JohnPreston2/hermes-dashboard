@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-29T22:48:01Z",
+ "generated_at": "2026-07-30T00:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-29T18:09:16Z",
+   "ts": "2026-07-30T00:07:25Z",
    "status": "ok",
-   "discipline": 97.0,
+   "discipline": 96.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 6
+  "runs_today": 1
  },
  "runs": [
-  {
-   "ts": "2026-07-24T06:07:36Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-24T06:37:39Z",
    "tier": "S",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-30T00:07:25Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 96.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-30T00:07:25Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 96.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Aave",
+    "Binance staked ETH",
+    "Morpho Blue"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 9,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMorpho Blue's fee-yield has surged to 2.69% (7d), surpassing Aave (2.55%) and Binance staked ETH (2.30%) to rank first in this set, driven by a +6.62% fee expansion over the last week against a backdrop of flat TVL, signaling improved capital efficiency rather than mere deposit growth.\n\n## FILS DOMINANTS\n*   **Morpho Blue — 2.69% fee-yield, the highest of the set (vs Aave 2.55%, Binance staked ETH 2.30%):** Protocol fees increased +6.62% 7d to $575K 24h (source: protocol_fees 7d), outpacing TVL growth (+0.96% 7d), pushing the fee-yield to 2.69% (source: get_metric). Capital quality is sticky, evidenced by a high TVL z-score of 1.30 (96th pctile, n=379) (source: get_metric), though the token captures 0% of these fees today (source: drill_valuation).\n*   **Aave — 2.55% fee-yield, rank 2 in the set:** Protocol fees grew +2.24% 7d to $962K 24h (source: protocol_fees 7d) while TVL contracted -1.3% 7d, resulting in a robust 2.55% fee-yield (source: get_metric). Capital quality remains high with a TVL z-score of 0.89 (80th pctile, n=379) (source: get_metric). The token trades at a P/F of 4.3x (rank 1/3 in lending vs 6.4x median), appearing cheap on a fee-multiple basis, but captures 0% of protocol revenue (source: drill_valuation).\n*   **Binance staked ETH — 2.30% fee-yield, rank 3 in the set:** Fee-yield sits at 2.30% (source: get_metric) with fees down -0.77% 7d to $512K 24h (source: protocol_fees 7d) and TVL down -2.47% 7d. Capital quality is strong (z=0.73, 75th pctile) (source: get_metric). The protocol faces a compliance constraint in the EU due to MiCA stablecoin tightening, which may venue-bound flows away from USDT pairs, though this is a regional effect, not a global net flow (source: drill_reg).\n\n## RECONCILIATION\n*   **CONFIRM (Thesis: Lending Efficiency):** The divergence between Morpho Blue's fee growth (+6.62% 7d) and Aave's TVL contraction (-1.3% 7d) confirms that capital is rotating toward more efficient, permissionless lending markets. Morpho's superior fee-yield (2.69% vs 2.55%) validates the thesis that modular risk engines are capturing value from legacy money markets.\n*   **REVISE (Thesis: Institutional Inflow via LSTs):** The contraction in Binance staked ETH's TVL (-2.47% 7d) alongside the regulatory pressure in the EU (MiCA regime) suggests that institutional flows are currently constrained by compliance venues rather than seeking yield aggressively. The thesis is revised to reflect that institutional entry is gated by regulatory clarity, specifically regarding stablecoin usage on licensed venues.\n\n## LECTURE\nThe dominance of fee-yield as the primary differentiator in this set—Morpho leading at 2.69%—highlights a market phase where capital efficiency outweighs sheer scale. Aave's continued dominance in market share (43.6% of lending TVL) (source: sector-aware peers) is being challenged by Morpho's higher yield generation, suggesting a shift in \"quality of capital\" where lenders prefer markets that extract more fees per unit of risk. The regulatory headwind for Binance staked ETH in the EU is a critical constraint; while the global float remains stable, venue-bounded migration to compliant assets (USDC/EURC) is a structural tailwind for compliant DeFi protocols, not a price signal.\nKill condition: Morpho Blue's fee-yield drops below Aave's for 7 consecutive days.\n\n## RISQUE\n*   **Morpho Blue:** High FDV/MCAP ratio (1.526) (source: drill_valuation) indicates significant future dilution risk, which could pressure token valuation even if protocol fundamentals remain strong.\n*   **Aave:** The recent supply cap proposal (implied by capital_questions) suggests utilization risk may be nearing critical levels in key markets; a failure to manage this could lead to reduced fee generation if l"
+  },
   {
    "ts": "2026-07-29T18:09:16Z",
    "tier": "A",
@@ -771,31 +800,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko's TVL surged +80.23% 7d to $2.21B (source: get_metric), driven by a single-source report linking EU-regulated T-bill funds to Coinbase stablecoin rails (CoinTelegraph via read_articles), positioning it as a key RWA conduit for European capital.\n\n## FILS DOMINANTS\n*   **Aave — 2.55% fee-yield, the highest of the set (vs Spiko 1.15%):** Protocol generated $961K in fees 24h (source: get_metric) with a 43.5% market share in lending (source: sector-aware peers). Capital quality is high (z=0.88 78th pctile 30d), though TVL dipped -2.16% 7d, warranting a check on yield arbitrage vs fundamental shift.\n*   **Spiko — 1.15% fee-yield (rank 2/3):** TVL jumped +80.23% 7d to $2.21B (source: get_metric), capturing 13.9% share of the RWA sector (source: sector-aware peers). The move is provisional; the fee-yield is lower than Aave, and the capital quality is sticky by regulation (EU T-bills) rather than on-chain incentives, though the rapid TVL spike requires retention monitoring.\n*   **Near — No fee-yield data available:** The protocol lacks current fee-yield metrics in the digest (source: get_metric). Market share data is also absent (source: sector-aware peers), preventing a fundamental valuation ranking relative to peers at this time.\n\n## RECONCILIATION\n*   **th_20260728_0320_near (REVISE):** We REVISE the thesis on Near's institutional consolidation resilience. The prior conviction (0.75) is downgraded due to the identified regulatory headwinds (\"regulatory · Near (bill)\" events) and ecosystem risks (Dango collapse). We REBUT the standing red_team challenge—which argued regulatory scrutiny could overshadow internal drivers—by explicitly incorporating the \"regulatory bill\" as a structural headwind in the updated thesis, acknowledging that without specific contingency plans, the resilience case is weakened against adverse regulatory outcomes.\n\n## LECTURE\nThe Spiko development highlights the \"venue-bounded\" nature of regulatory flows. The integration with Coinbase rails suggests a potential migration of EU-denominated capital into on-chain T-bills, but this is a regional venue effect, not a global net flow shift. For Aave, the high fee-yield relative to peers confirms its dominance in capital efficiency, but the token remains fundamentally disconnected from this value (capture_pct 0.0), meaning current valuation (P/F 4.3x) prices in future fee capture, not current reality.\nKill condition: Spiko's TVL reverts below $1.5B within 30d, indicating the Coinbase rail integration failed to retain sticky capital.\n\n## RISQUE\n*   **Spiko:** The +80.23% 7d TVL surge is based on a single-source claim (CoinTelegraph); if the integration with Coinbase rails is delayed or rejected, the \"sticky\" regulatory capital narrative collapses, leading to rapid outflows.\n*   **Aave:** The -2.16% 7d TVL decline, while minor against a high baseline (z=0.88), could signal the start of a rotation to higher-yielding RWA products like Spiko if the yield arbitrage widens.\n*   **Near:** The specific \"regulatory bill\" cited in the reconciliation remains a black box; if passed, it could structurally constrain NEAR's operational capacity, rendering the \"institutional consolidation\" thesis moot.\n\n## SUIVI\n*   **inq_mission_institutional:** Advancing analysis of depositor wallet types in BlackRock BUIDL and Circle USYC to confirm institutional vs. retail composition. Next probe: Analyze Spiko's new TVL inflows to determine if they originate from known institutional custodial wallets or retail-driven Coinbase rails."
-  },
-  {
-   "ts": "2026-07-28T09:38:31Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 15,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\nSECURITIZE REGISTERS AS SEC INVESTMENT ADVISER, SIGNALING INSTITUTIONAL RWA MATURATION: Securitize registered its capital affiliate as an SEC Investment Adviser, effective July 22, 2026 (source: read_articles). This regulatory milestone coincides with sustained growth in institutional RWA protocols: BlackRock BUIDL TVL reached $3.44B (+3.08% 7d) and Circle USYC TVL reached $3.01B (+1.54% 7d) (source: get_metric). Notably, this institutional RWA expansion is occurring despite overall stablecoin contraction, with global stablecoin supply declining to $294.94B (-0.4% 7d, z=-2.04) and USDC supply decreasing 1.1% over the same period (source: get_metric). The regulatory landscape is simultaneously tightening, with the EU's MiCA regime now in force with active enforcement since July 1, 2026, and the US GENIUS Act in rulemaking with a statutory finalization deadline of July 18, 2026 (source: get_reg_exposure).\n\n## RECONCILIATION\nNo prior theses exist for the RWA sector (source: get_thesis), so this represents a new research thread rather than a reconciliation of existing positions.\n\n## LECTURE\nINSTITUTIONAL RWA DIVERGENCE FROM BROADER MARKET: The divergence between institutional RWA growth (BlackRock BUIDL +3.08%, Circle USYC +1.54%) and overall stablecoin contraction (-0.4% global, -1.1% USDC) suggests a rotation from general crypto speculation to regulated, institutional-grade DeFi products. This pattern aligns with the regulatory trend where multiple jurisdictions (UK, Hong Kong, Taiwan) are de-facto reserving regulated stablecoin issuance to banks, creating a structural advantage for institutional-grade protocols that can navigate the evolving compliance landscape. The Securitize SEC Investment Adviser registration represents a verifiable on-chain footprint of institutional actors entering DeFi, moving beyond mere narrative to measurable regulatory compliance.\n\nKill condition: Institutional RWA TVL (BlackRock BUIDL + Circle USYC) declines while global stablecoin supply grows for two consecutive weeks, indicating the rotation has reversed.\n\n## LIVE EVENTS\n- Regulatory: Securitize registered as SEC Investment Adviser (effective July 22, 2026) (source: read_articles)\n- Regulatory: EU MiCA regime in force with active enforcement since July 1, 2026 (source: get_reg_exposure)\n- Regulatory: US GENIUS Act in rulemaking with statutory finalization deadline July 18, 2026 (source: get_reg_exposure)\n- Launch: Ondo launched new execution network called Ondo Network (source: read_articles)\n\n## SUIVI\nAdvanced inquiry \"inq_mission_institutional\" with new evidence: BlackRock BUIDL TVL at $3.44B (+3.08% 7d) and Circle USYC at $3.01B (+1.54% 7d) showing institutional RWA growth despite overall stablecoin contraction (source: get_metric).\n\n## OPEN QUESTIONS\n- Will the institutional RWA growth continue as regulatory frameworks like MiCA and GENIUS are fully implemented?\n- How will the bank-centric stablecoin issuance model in multiple jurisdictions impact crypto-native issuers?\n- Is the rotation from Ethereum to Solana stablecoin flows temporary or structural?"
   }
  ],
  "theses": [
@@ -1264,10 +1268,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-28T12:06:49.566548+00:00",
-     "note": "Spiko TVL +80.23% 7d ($2.21B) linked to Coinbase rails (CoinTelegraph) + 13.9% RWA market share (sector-aware peers)"
-    },
-    {
      "ts": "2026-07-28T19:42:07.387897+00:00",
      "note": "Spiko TVL +79.05% 7d to $2.21B (source: get_metric) driven by reported EU-regulated integration"
     },
@@ -1282,18 +1282,18 @@
     {
      "ts": "2026-07-29T09:37:32.512098+00:00",
      "note": "Major financial institutions including BlackRock, Fidelity, Franklin Templeton, Goldman Sachs, and SoFi endorsed the Clarity Act (source: read_articles)"
+    },
+    {
+     "ts": "2026-07-30T00:07:25.932597+00:00",
+     "note": "EU MiCA regime forcing USDT delisting on licensed venues (source: drill_reg)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Analyze Spiko depositor wallet types to confirm institutional vs. retail composition"
+   "evidence": "inq_mission_institutional · next: Track EURC/USDC market share on EU-denominated volume to confirm migration."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-28T19:42:07.388308+00:00",
-     "note": "Aave fees +4.67% 7d (source: protocol_fees 7d) vs TVL -0.66% 7d (source: get_metric)"
-    },
     {
      "ts": "2026-07-28T19:45:16.136128+00:00",
      "note": "Morpho Blue fees +7.08% 7d (source: protocol_fees 7d) on flat TVL +0.6% 7d (source: get_metric)"
@@ -1309,9 +1309,13 @@
     {
      "ts": "2026-07-29T09:37:32.512263+00:00",
      "note": "Capital rotating from Ethereum (-$934M 7d stablecoin flow) to Solana (+$387M 7d stablecoin flow) (source: get_analyst_note)"
+    },
+    {
+     "ts": "2026-07-30T00:07:25.932086+00:00",
+     "note": "Morpho Blue fees +6.62% 7d vs Aave TVL -1.3% 7d (source: protocol_fees 7d, get_metric)"
     }
    ],
-   "evidence": "inq_mission_rotation · next: Analyze Sanctum validator route composition to identify if outflows were specific to underperforming nodes"
+   "evidence": "inq_mission_rotation · next: Monitor if the fee-yield spread between Morpho and Aave widens or narrows over the next 14d."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1349,13 +1353,13 @@
  "macro": {
   "sectors": [
    {
-    "name": "lending",
-    "tvl": 43.7,
+    "name": "lst",
+    "tvl": 44.0,
     "yard": "TVL"
    },
    {
-    "name": "lst",
-    "tvl": 43.6,
+    "name": "lending",
+    "tvl": 43.8,
     "yard": "TVL"
    },
    {
@@ -1378,32 +1382,32 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.79
+    "fy": 7.96
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.55
+    "fy": 6.54
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.21
+    "fy": 6.2
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.97
+    "fy": 5.96
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.29
+    "fy": 4.28
    },
    {
     "name": "Jupiter Lend",
     "sector": "lending",
-    "fy": 4.03
+    "fy": 4.13
    },
    {
     "name": "WisdomTree",
@@ -1419,11 +1423,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -921.6
+    "d7": -927.6
    },
    {
     "chain": "Solana",
-    "d7": 388.2
+    "d7": 388.0
    },
    {
     "chain": "Polygon",
@@ -1435,18 +1439,18 @@
    },
    {
     "chain": "Arbitrum",
-    "d7": -9.8
+    "d7": -9.9
    }
   ],
   "agg": {
-   "stable_mcap_b": 294.7,
-   "stable_d7_pct": -0.86,
+   "stable_mcap_b": 294.5,
+   "stable_d7_pct": -0.91,
    "dex_vol_24h_b": 7.3,
    "defi_tvl_b": 75.2
   }
  },
  "robinhood": {
-  "tvl_m": 342.5,
+  "tvl_m": 344.8,
   "morpho_share_pct": 72,
   "age_days": 14,
   "synth_ts": "2026-07-29T12:00:00Z",
@@ -1454,8 +1458,8 @@
  },
  "health": {
   "budget": {
-   "day": "2026-07-29",
-   "glm": 29,
+   "day": "2026-07-30",
+   "glm": 3,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
