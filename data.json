@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-31T08:48:01Z",
+ "generated_at": "2026-07-31T10:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "S",
+   "tier": "B",
    "mode": "react",
-   "ts": "2026-07-31T06:38:43Z",
+   "ts": "2026-07-31T09:37:44Z",
    "status": "ok",
-   "discipline": 94.0,
+   "discipline": 84.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 3
+  "runs_today": 4
  },
  "runs": [
-  {
-   "ts": "2026-07-25T12:07:54Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 4,
-   "phase": null
-  },
   {
    "ts": "2026-07-25T18:07:42Z",
    "tier": "A",
@@ -458,9 +447,45 @@
    "r2_pass": true,
    "comps": 5,
    "phase": null
+  },
+  {
+   "ts": "2026-07-31T09:37:44Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 8,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-31T09:37:44Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 8,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\n**Bitcoin Wallet Drain Security Alert: Coldcard Mk3 Vulnerability**\nA critical security vulnerability has emerged in Coldcard Mk3 hardware wallets, linked to a $38 million Bitcoin wallet drain (594 BTC theft). Coinkite, the manufacturer, has issued an urgent warning to Coldcard Mk3 users, recommending immediate fund migration and the use of strong BIP-39 passphrases as a precautionary measure. Security experts are actively examining the seed-generation risk that appears to be connected to these thefts. This development represents a significant security concern for Bitcoin self-custody, particularly for users of hardware wallets considered among the most secure options for storing digital assets. (source: read_articles, get_events)\n\n## RECONCILIATION\n\n**Infrastructure Narrative Surge vs. On-Chain Contraction**\nThe infrastructure sector has experienced a dramatic +104.3% surge in narrative emergence over the past week, driven primarily by AI hardware and mining developments. However, this narrative enthusiasm contrasts sharply with on-chain reality, as global stablecoin market cap has contracted by -0.9% (-$2.63B) over the same period. This divergence suggests that while attention and discourse are focused on infrastructure developments, actual capital allocation is contracting rather than expanding. (source: get_narrative, get_metric)\n\n**Stablecoin Outflows Signal Risk-Off Sentiment**\nBoth USDC and USDT have experienced supply decreases over the past 7 days (-2.5% and -0.3% respectively), indicating a broader risk-off sentiment across the crypto market. The analyst stress note confirms this trend, highlighting significant stablecoin outflows from Ethereum (-$392M 1d) while Solana showed modest inflows (+60M 1d). This capital rotation from established chains to alternative venues suggests investors are seeking perceived safety or yield opportunities outside of traditional DeFi hubs. (source: get_metric, get_analyst_note)\n\n## LECTURE\n\n**The Security-Narrative Disconnect**\nThe current market exhibits a concerning disconnect between narrative enthusiasm and fundamental security realities. While infrastructure narratives surge +104.3% on AI hardware developments, critical security vulnerabilities like the Coldcard Mk3 issue are emerging in the foundational layer of Bitcoin self-custody. This pattern suggests that market attention may be misallocated toward speculative narratives while overlooking fundamental security risks that could undermine trust in the ecosystem's infrastructure. The contraction in stablecoin supplies (-$2.63B globally) indicates that sophisticated capital is recognizing these risks and reducing exposure, despite the narrative enthusiasm.\n\n**Kill condition:** If additional hardware wallet vulnerabilities are discovered in the next 30 days or if the total value of Bitcoin wallet drains exceeds $100M, this thesis of security-narrative disconnect will be confirmed.\n\n## LIVE EVENTS\n\n1. **Critical Exploit Risks:** Multiple critical exploit risks remain active, including the Bitcoin wallet drain issue, a defi-yield hack, and a Drift protocol exploit. (source: get_events)\n\n2. **Moderate DeFi Stress:** The system is experiencing moderate stress levels with $7.63B in total open interest and 99.5% borrow utilization in select markets, creating potential liquidation cascade risks. (source: get_analyst_note)\n\n3. **Sector Rotation:** Capital is rotating from Optimism (-16.32% 7d stablecoin flow) and Polygon (-1.17% 7d stablecoin flow) to Solana (1.49% 7d stablecoin flow), with established lending protocols and RWA products showing resilience. (source: get_analyst_note)\n\n## SUIVI\n\n**Fresh Money Inquiry Update:**\n- id: inq_mission_fresh_money | status: open | evidence: Global stablecoin market cap "
+  },
   {
    "ts": "2026-07-31T06:38:43Z",
    "tier": "S",
@@ -767,31 +792,6 @@
     "n_unsupported_pct": null
    },
    "brief": "[SILENT] R2 could not be cleaned"
-  },
-  {
-   "ts": "2026-07-29T09:37:32Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 87.0,
-   "r2_pass": true,
-   "comps": 8,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\nMajor financial institutions including BlackRock, Fidelity, Franklin Templeton, Goldman Sachs, and SoFi have publicly endorsed the Clarity Act, a crypto market structure bill (source: read_articles). This institutional endorsement represents a significant regulatory development that could provide the framework for broader institutional adoption of crypto assets, particularly in the RWA sector which has seen narrative emergence increase by 73.7% (source: get_board). This development is particularly notable as it occurs against a backdrop of net fiat outflows from crypto, with global stablecoin market cap declining -0.5% over 7d to $294.5B (source: get_metric), and USDC supply decreasing -1.2% over the same period (source: get_metric).\n\n## RECONCILIATION\n\n**CONFIRM th_20260729_0320_near**: The Near thesis regarding institutional influence in DeFi remains confirmed with confidence 0.88. The endorsement of the Clarity Act by major financial institutions aligns with the thesis's prediction of increasing institutional involvement in the crypto ecosystem. The thesis trajectory shows stability despite recent regulatory events, supporting the view of ecosystem resilience against external pressures (source: get_prior_assessment).\n\n## LECTURE\n\nThe institutional endorsement of the Clarity Act represents a potential inflection point for the crypto industry, particularly for RWA products. While the current market shows net fiat outflows (global stablecoin market cap down -0.5% 7d, source: get_metric), the strong narrative emergence in the RWA sector (+73.7%, source: get_board) suggests that institutional players are positioning themselves for a more regulated future. The capital rotation from Ethereum to Solana (Ethereum seeing -$934M 7d stablecoin flow vs Solana +$387M, source: get_analyst_note) may reflect a broader shift in risk appetite as the market awaits regulatory clarity. The multiple critical exploit risks across protocols (source: get_events) highlight the importance of institutional-grade security standards that regulatory frameworks like the Clarity Act could provide.\n\nKill condition: If the Clarity Act fails to gain legislative traction within 90 days or if major financial institutions withdraw their support, the institutional adoption narrative would weaken significantly.\n\n## LIVE EVENTS\n\nMultiple critical exploit risks remain active across the ecosystem, including vulnerabilities affecting Ethereum, Arbitrum, and Solana (source: get_events). These risks, combined with the negative stablecoin flows, suggest a fragile market environment despite the positive regulatory developments. The regulatory landscape remains active with 203 regulatory events, including developments related to BlackRock, Securitize, and various compliance measures (source: get_events).\n\n## SUIVI\n\n**inq_mission_fresh_money**: Advanced by monitoring global stablecoin flows, which showed a -0.5% decline over 7d to $294.5B, indicating net fiat outflows from crypto (source: get_metric). The next probe will monitor if Ethereum outflows accelerate or stabilize over the next 7d.\n\n**inq_mission_institutional**: Advanced by identifying the endorsement of the Clarity Act by major financial institutions as a significant institutional development (source: read_articles). The next probe will analyze Spiko depositor wallet types to confirm institutional vs. retail composition.\n\n**inq_mission_rotation**: Advanced by documenting capital rotation from Ethereum to Solana, with Ethereum seeing -$934M 7d stablecoin flow vs Solana +$387M (source: get_analyst_note). The next probe will analyze Sanctum validator route composition to identify if outflows were specific to underperforming nodes.\n\n## OPEN QUESTIONS\n\n1. Will the Clarity Act gain legislati"
   }
  ],
  "theses": [
@@ -1233,10 +1233,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-28T09:38:31.849873+00:00",
-     "note": "Global stablecoin supply at $294.94B (-0.4% 7d, z=-2.04) and USDC supply decreased 1.1% over the past 7 days, indicating net outflows rather than fresh fiat entry (source: get_metric)"
-    },
-    {
      "ts": "2026-07-29T06:37:29.690259+00:00",
      "note": "Global stablecoin supply at $294.94B (-0.5% 7d, z=-2.07, 1st percentile) indicating net fiat outflows, not fresh entry (source: get_metric)"
     },
@@ -1251,6 +1247,10 @@
     {
      "ts": "2026-07-31T06:38:43.643324+00:00",
      "note": "Global stablecoin market cap -0.9% (7d) to $294.1B; Ethereum -$386M 1d flow (source: get_metric, get_analyst_note)"
+    },
+    {
+     "ts": "2026-07-31T09:37:44.270968+00:00",
+     "note": "Global stablecoin market cap decreased by -0.9% (-$2.63B) over 7d, with USDC supply down -2.5% and USDT down -0.3% (source: get_metric)"
     }
    ],
    "evidence": "inq_mission_fresh_money · next: Monitor if Ethereum outflows accelerate or stabilize over the next 7d."
@@ -1259,10 +1259,6 @@
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-30T06:07:25.139255+00:00",
-     "note": "Spiko TVL +81.67% 7d to $2.23B (z=1.54), fee-yield 1.55% (get_metric)"
-    },
     {
      "ts": "2026-07-30T06:38:13.475402+00:00",
      "note": "BNY Mellon targeting $8.6T transfer agency market with digital ownership records; Morgan Stanley executives stating tokenization is reshaping finance"
@@ -1278,6 +1274,10 @@
     {
      "ts": "2026-07-31T06:38:43.643761+00:00",
      "note": "BlackRock BUIDL TVL $3.47B (+1.45% 7d) (source: get_metric)"
+    },
+    {
+     "ts": "2026-07-31T09:37:44.271299+00:00",
+     "note": "Capital is rotating from Ethereum to Solana, with RWA narratives strengthening and BlackRock BUIDL TVL increasing +1.45% (7d) (source: get_analyst_note)"
     }
    ],
    "evidence": "inq_mission_institutional · next: Check peer inflows (USYC) to map institutional entry points."
@@ -1286,10 +1286,6 @@
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-30T06:38:13.475504+00:00",
-     "note": "Morpho Blue fees +9.11% vs Aave +0.88% (7d); RWA sector TVL growth (BlackRock BUIDL +3.86%, Circle USYC +1.54%)"
-    },
     {
      "ts": "2026-07-30T12:07:31.540880+00:00",
      "note": "Capital rotating from Lending (SparkLend -1.04% TVL) to Liquid Staking (Sanctum high yield), but the rotation is within the \"hot money\" segment rather than institutional core."
@@ -1305,6 +1301,10 @@
     {
      "ts": "2026-07-31T06:38:43.643585+00:00",
      "note": "Morpho Blue TVL +3.26% (7d); BlackRock BUIDL TVL +1.45% (7d) (source: get_metric)"
+    },
+    {
+     "ts": "2026-07-31T09:37:44.271479+00:00",
+     "note": "Capital is rotating from Optimism and Polygon to Solana, with established lending protocols (Morpho Blue +3.17% 7d TVL) and RWA products showing resilience (source: get_analyst_note)"
     }
    ],
    "evidence": "inq_mission_rotation · next: Check peer inflows (USYC) to map destination of Ondo outflows/stagnation."
@@ -1346,12 +1346,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 44.2,
+    "tvl": 44.0,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 43.8,
+    "tvl": 43.5,
     "yard": "TVL"
    },
    {
@@ -1374,12 +1374,12 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.54
+    "fy": 7.71
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.48
+    "fy": 6.5
    },
    {
     "name": "Hastra",
@@ -1389,7 +1389,7 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.96
+    "fy": 5.95
    },
    {
     "name": "Centrifuge Protocol",
@@ -1404,22 +1404,22 @@
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 3.66
+    "fy": 3.67
    },
    {
     "name": "Invesco USTB",
     "sector": "rwa",
-    "fy": 3.61
+    "fy": 3.6
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -414.5
+    "d7": -416.8
    },
    {
     "chain": "Solana",
-    "d7": 49.7
+    "d7": 49.6
    },
    {
     "chain": "Optimism",
@@ -1435,14 +1435,14 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 294.1,
-   "stable_d7_pct": -0.9,
+   "stable_mcap_b": 293.9,
+   "stable_d7_pct": -0.94,
    "dex_vol_24h_b": 7.0,
-   "defi_tvl_b": 75.1
+   "defi_tvl_b": 74.9
   }
  },
  "robinhood": {
-  "tvl_m": 361.5,
+  "tvl_m": 362.4,
   "morpho_share_pct": 72,
   "age_days": 13,
   "synth_ts": "2026-07-30T12:00:00Z",
@@ -1451,7 +1451,7 @@
  "health": {
   "budget": {
    "day": "2026-07-31",
-   "glm": 10,
+   "glm": 18,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
