@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-07-30T22:48:01Z",
+ "generated_at": "2026-07-31T00:48:02Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-07-30T18:08:03Z",
+   "ts": "2026-07-31T00:07:55Z",
    "status": "ok",
-   "discipline": 95.6,
+   "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 6
+  "runs_today": 1
  },
  "runs": [
-  {
-   "ts": "2026-07-25T06:07:38Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 84.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-25T06:38:00Z",
    "tier": "S",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-07-31T00:07:55Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-07-31T00:07:55Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Lido",
+    "Aave",
+    "Ondo"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nOndo's protocol fee-yield (2.70%) has surpassed Aave (2.51%) and Lido (2.38%) to rank highest in the set, driven by a +23.99% 7d fee surge despite a -1.02% TVL contraction, signaling improved capital efficiency on a shrinking base.\n\n## FILS DOMINANTS\n*   **Ondo — 2.70% fee-yield, the highest of the set (vs Aave 2.51%, Lido 2.38%):** Fees surged +23.99% 7d while TVL contracted -1.02% 7d, pushing fee generation to z=1.22 (85th pctile) against a TVL z-score of -1.96 (10th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is mixed; the protocol holds 15.8% market share in RWA (source: sector-aware peers), but the negative TVL z-score suggests liquidity stress or rotation out of the current yield profile.\n*   **Aave — 2.51% fee-yield, rank 2/3:** TVL grew +2.12% 7d to $14.02B, maintaining a dominant 43.6% market share in lending (source: sector-aware peers). The valuation appears attractive at 4.4x P/F (rank 1/3 in lending vs 6.3x median) (source: drill_valuation), though the token captures 0% of protocol fees today, implying the multiple prices in future accrual.\n*   **Lido — 2.38% fee-yield, rank 3/3:** TVL increased +2.76% 7d to $18.04B, retaining a commanding 62.5% share of the LST sector (source: sector-aware peers). The token trades at a low 0.7x P/F (rank 1/3 in LST vs 2.2x median) (source: drill_valuation), but with 0% fee capture, this reflects market expectations of future governance-enabled value flow rather than current fundamentals.\n\n## RECONCILIATION\n*   **CONFIRM (inq_mission_rotation):** The divergence between Ondo's fee growth (+23.99% 7d) and TVL shrinkage (-1.02% 7d) confirms capital rotation within the RWA vertical, favoring higher-yield or more efficient instruments rather than sector-wide expansion.\n*   **REVISE (inq_mission_institutional):** Ondo's fee resilience (z=1.22) amidst a TVL drawdown (z=-1.96) suggests institutional capital is not exiting the sector en masse but is rather concentrating in specific high-yield conduits, refining the \"liquidity drain\" hypothesis to a \"liquidity concentration\" thesis.\n\n## LECTURE\nThe dominance of protocol-level value accrual remains decoupled from token-holder economics across this set. While Ondo demonstrates the highest operational efficiency (2.70% fee-yield), and Aave/Lido show deep market penetration (43.6% and 62.5% share respectively), the uniform 0% fee capture rate renders current P/F multiples speculative on future governance decisions rather than reflective of present cash flows. Investors are paying for optionality on fee switches, not operating income.\nKill condition: Aave or Lido token capture > 0% without a corresponding re-rating of the P/F multiple.\n\n## RISQUE\n*   **Ondo:** The negative TVL z-score (-1.96) indicates the capital base is eroding; if the fee surge is a one-off event rather than a structural yield improvement, the protocol's revenue will collapse as the asset base shrinks.\n*   **Aave:** The surge in Risk Steward proposals for supply caps (per capital_questions) implies rising volatility or risk appetite misalignment; a governance failure here could lead to bad debt events, disproportionately impacting the sticky capital quality.\n*   **Lido:** The 7d TVL growth (+2.76%) risks being validator node churn rather than organic demand; if the approaching kill condition threshold is met, the perceived stickiness of the $18.04B base could be rapidly re-priced.\n\n## SUIVI\n*   **inq_mission_rotation:** Ondo's fee yield (2.70%) diverged positively from its TVL trend (-1.02% 7d), confirming rotation towards higher efficiency within the RWA sector. Next probe: Analyze if the TVL outflow from Ondo is migrating to BlackRock BUIDL or USYC (peers with 21.7% and 18.8% share respectively)."
+  },
   {
    "ts": "2026-07-30T18:08:03Z",
    "tier": "A",
@@ -763,35 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSanctum Validator LSTs exhibits a sharp divergence between capital flows and protocol economics, with TVL contracting -8.31% 7d (z=-2.15 2nd pctile) while annualized fee-yield remains elevated at 12.75% (7d-smoothed), suggesting a potential exit of lower-yielding capital or a recalibration of the validator set's risk premium.\n\n## FILS DOMINANTS\n*   **Sanctum Validator LSTs — 12.75% fee-yield, the highest of the set (vs Lido 2.42%, SparkLend 1.52%):** TVL retreated to $1.06B (-8.31% 7d), hitting a statistical low (z=-2.15 2nd pctile), yet protocol fees held relatively steady at $371K 24h (-3.14% 7d). This capital base is provisional; the rapid TVL decline flags potential liquidity fragility or a rotation away from specific validator routes. The token captures none of the 12.75% fee-yield today (capture_pct=0), so the valuation reflects future expectations rather than current cash flow.\n*   **Lido — 2.42% fee-yield, rank 2/3 in the set:** Protocol revenue is robust at $1.2M 24h (+0.06% 7d) with a high-conviction TVL base of $17.79B (z=1.12 89th pctile). It commands 62.6% sector market share (source: sector-aware peers). The token trades at a P/F of 0.7x, rank 1/3 in LST vs 2.9x median — cheap on a fee-multiple basis relative to peers, though this is discounted by the fact the token captures 0% of protocol fees (capture_pct=0).\n*   **SparkLend — 1.52% fee-yield, rank 3/3 in the set:** Capital quality is sticky with TVL at $3.71B (z=1.06 88th pctile), though fee generation lagged with $145K 24h (-0.32% 7d). It holds 11.6% market share in lending. The token captures none of the protocol's fees (capture_pct=0), rendering current fee-yield irrelevant to immediate tokenholder value.\n\n## RECONCILIATION\n*   **th_20260729_0320_lido (Lido governance/tech upgrade):** REVISE. The prior thesis posited that governance reinforcement and Curated Module v2 upgrades would stabilize the protocol. However, the digest flags a \"red_team_challenge\" regarding validator centralization risk (z=1.12). While TVL is high (89th pctile), the fee-yield (2.42%) is significantly lower than Sanctum's (12.75%), indicating potential structural inefficiencies or a risk premium being priced into the validator set. The thesis is revised to reflect that operational upgrades have not yet resolved the centralization/yield trade-off.\n*   **th_20260704_0321_lido (Lido regulatory response):** RETIRE. The digest carries no `reg` block or `reg_articles`, and the brain verdict explicitly retired this thesis on 2026-07-28 due to \"No live reg news or corroboration found in digest.\"\n\n## LECTURE\nThe dispersion in fee-yields (12.75% vs 2.42% vs 1.52%) highlights a \"risk-on\" rotation within the LST sector, where capital is chasing the high-yield validator routes offered by Sanctum despite the evident volatility (-8.31% TVL 7d). Lido's dominance (62.6% share) provides a defensive floor, but its low fee-yield relative to Sanctum suggests it is becoming a \"safe haven\" base rather than a yield maximizer. For SparkLend, the stable TVL coupled with low fee-yield indicates a mature, utility-driven market rather than speculative inflow. The critical observation is that across all three threads, token value accrual is currently zero (capture_pct=0); thus, current valuations are purely speculative bets on future governance changes (fee switches) rather than claims on existing cash flows.\nKill condition: Sanctum TVL decline accelerates beyond -15% 7d or Lido fee-yield drops below 2.0% 7d.\n\n## RISQUE\n*   **Sanctum Validator LSTs:** The sharp negative TVL z-score (-2.15) indicates the capital base is statistically unstable. If the high fee-yield is derived from risky validator strategies that are now being de-risked by outflows, the yield will collapse faster than TVL"
-  },
-  {
-   "ts": "2026-07-29T00:06:53Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 87.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "Spiko",
-    "Aave V3",
-    "NEAR"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 1,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSpiko's TVL surged +78.95% 7d to $2.20B (z=1.64 76th pctile), capturing 13.9% market share in the RWA sector, while Aave V3 expanded protocol fees +5.24% 7d to $975K (z=0.94 89th pctile) despite a -0.56% 7d TVL contraction, signaling improved capital efficiency.\n\n## FILS DOMINANTS\n*   **Aave V3 — 2.518% fee-yield, the highest of the set (vs Spiko 1.153%):** Protocol fees expanded +5.24% 7d to $975K (source: protocol_fees 7d) while TVL contracted -0.56% 7d to $13.90B (source: get_metric). Risk Stewards actively managed supply caps (source: Aave Governance via read_articles), optimizing the base. Capital quality is high; the protocol holds 43.5% lending market share (source: sector-aware peers). The token trades at 4.4x P/F (rank 1/3 in lending vs 6.5x median), cheap on a fee-multiple basis, though capture_pct is 0% (source: drill_valuation).\n*   **Spiko — 1.153% fee-yield (rank 2/3):** TVL surged +78.95% 7d to $2.20B (z=1.64 76th pctile) (source: get_metric), securing 13.9% RWA market share (source: sector-aware peers). The capital quality is provisional; the surge is linked to EU regulated T-bill funds on Coinbase rails (source: CoinTelegraph via read_articles), but the depositor composition (institutional vs. arbitrage) remains unverified. Fee-yield is 1.153% (source: onchain_enriched).\n*   **NEAR — No value-accrual data available:** Digest provided null economics for NEAR (source: get_metric), preventing a fundamental ranking or fee-yield calculation. Peer market share is 0.0% (source: sector-aware peers).\n\n## RECONCILIATION\nNo prior theses were found in the digest to confirm, revise, or retire (source: get_prior_assessment).\n\n## LECTURE\nThe divergence between Aave's fee expansion and TVL contraction suggests improved yield extraction from a shrinking but more productive capital base, a positive signal for protocol efficiency. Spiko's rapid TVL growth is a strong headline, but without wallet analysis, the \"institutional\" narrative remains a hypothesis; the +79% move could be yield farming rather than sticky capital. The valuation gap for Aave (4.4x P/F vs 6.5x median) is notable, but the 0% capture rate means the market is pricing future fee switches, not current cash flow.\nKill condition: Spiko TVL drops below $1.8B or Aave protocol fees fall below $800K 24h.\n\n## RISQUE\n*   **Spiko:** Capital quality risk—the +78.95% 7d TVL surge may be transient yield farming rather than sticky institutional allocation; retention is unproven (source: get_metric).\n*   **Aave V3:** Regulatory risk via parameter changes—Risk Stewards are actively adjusting supply/borrow caps (source: Aave Governance via read_articles), which if mismanaged could constrain revenue growth.\n*   **NEAR:** Data opacity risk—null fee and TVL metrics (source: get_metric) prevent any assessment of fundamental viability or market share impact.\n\n## SUIVI\n*   **inq_mission_institutional:** Evidence: Spiko TVL surged +78.95% 7d to $2.20B (source: get_metric), linked to EU T-bill funds (source: CoinTelegraph via read_articles). Next_probe: Analyze Spiko depositor wallet types to confirm institutional vs. retail comp."
   }
  ],
  "theses": [
@@ -1260,10 +1260,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-29T06:37:29.690660+00:00",
-     "note": "Spiko TVL +81.85% 7d to $2.24B (z=1.67, 87th percentile) (source: get_metric)"
-    },
-    {
      "ts": "2026-07-29T09:37:32.512098+00:00",
      "note": "Major financial institutions including BlackRock, Fidelity, Franklin Templeton, Goldman Sachs, and SoFi endorsed the Clarity Act (source: read_articles)"
     },
@@ -1278,18 +1274,18 @@
     {
      "ts": "2026-07-30T06:38:13.475402+00:00",
      "note": "BNY Mellon targeting $8.6T transfer agency market with digital ownership records; Morgan Stanley executives stating tokenization is reshaping finance"
+    },
+    {
+     "ts": "2026-07-31T00:07:55.084599+00:00",
+     "note": "Ondo fee generation at z=1.22 (85th pctile) despite TVL at z=-1.96 (10th pctile) (source: get_metric + protocol_fees(7d))"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Track EURC/USDC share on EU volume"
+   "evidence": "inq_mission_institutional · next: Track EURC/USDC share on EU volume to confirm institutional venue preference."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-30T00:07:25.932086+00:00",
-     "note": "Morpho Blue fees +6.62% 7d vs Aave TVL -1.3% 7d (source: protocol_fees 7d, get_metric)"
-    },
     {
      "ts": "2026-07-30T06:07:25.140688+00:00",
      "note": "Rotation to RWA (Spiko) vs Lending (Aave) despite Aave's higher yield (2.52%) (economics worker)"
@@ -1305,9 +1301,13 @@
     {
      "ts": "2026-07-30T18:08:03.086559+00:00",
      "note": "Lido (2.39%) and Rocket Pool (1.61%) fee-yields significantly exceed JustLend V1 (0.58%) (source: get_metric + protocol_fees(7d) + onchain_enriched)"
+    },
+    {
+     "ts": "2026-07-31T00:07:55.084223+00:00",
+     "note": "Ondo fees +23.99% 7d vs TVL -1.02% 7d, confirming rotation within RWA (source: get_metric + protocol_fees(7d))"
     }
    ],
-   "evidence": "inq_mission_rotation · next: Monitor if JustLend's TVL growth slows relative to LST peers as capital seeks higher yield."
+   "evidence": "inq_mission_rotation · next: Check peer inflows (BlackRock BUIDL, USYC) to map destination of Ondo outflows."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1374,12 +1374,12 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 7.56
+    "fy": 7.54
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 6.43
+    "fy": 6.42
    },
    {
     "name": "Hastra",
@@ -1389,12 +1389,12 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.96
+    "fy": 5.95
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 5.21
+    "fy": 5.22
    },
    {
     "name": "Binance Staked SOL",
@@ -1404,22 +1404,22 @@
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 4.58
+    "fy": 4.57
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.24
+    "fy": 4.33
    }
   ],
   "flows": [
    {
     "chain": "Solana",
-    "d7": 329.3
+    "d7": 329.5
    },
    {
     "chain": "Ethereum",
-    "d7": 107.5
+    "d7": 110.2
    },
    {
     "chain": "Arbitrum",
@@ -1435,14 +1435,14 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 293.7,
+   "stable_mcap_b": 293.8,
    "stable_d7_pct": -0.72,
    "dex_vol_24h_b": 8.4,
-   "defi_tvl_b": 75.6
+   "defi_tvl_b": 75.1
   }
  },
  "robinhood": {
-  "tvl_m": 348.4,
+  "tvl_m": 357.5,
   "morpho_share_pct": 72,
   "age_days": 14,
   "synth_ts": "2026-07-30T12:00:00Z",
@@ -1450,8 +1450,8 @@
  },
  "health": {
   "budget": {
-   "day": "2026-07-30",
-   "glm": 27,
+   "day": "2026-07-31",
+   "glm": 2,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
