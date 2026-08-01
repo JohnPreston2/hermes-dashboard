@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-08-01T08:48:01Z",
+ "generated_at": "2026-08-01T10:48:02Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "S",
+   "tier": "B",
    "mode": "react",
-   "ts": "2026-08-01T06:37:55Z",
+   "ts": "2026-08-01T09:38:07Z",
    "status": "ok",
-   "discipline": 94.0,
+   "discipline": 77.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 3
+  "runs_today": 4
  },
  "runs": [
-  {
-   "ts": "2026-07-26T09:36:47Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 87.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null
-  },
   {
    "ts": "2026-07-26T12:06:40Z",
    "tier": "A",
@@ -458,9 +447,45 @@
    "r2_pass": true,
    "comps": 8,
    "phase": null
+  },
+  {
+   "ts": "2026-08-01T09:38:07Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 77.0,
+   "r2_pass": true,
+   "comps": 12,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-08-01T09:38:07Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 77.0,
+   "r2_pass": true,
+   "comps": 12,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 1,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\n**INSTITUTIONAL STABLECOIN OUTFLOWS AMID REGULATORY PRESSURE**\n\nUSDC experienced a significant outflow of $1.6B (-2.2%) over the last 7 days with a z-score of -2.38, indicating institutional redemptions from crypto (source: get_metric). This outflow is part of a broader trend, with global stablecoin market cap decreasing by $3.0B (-1.0%) over the same period with a z-score of -2.21 (source: get_metric). USDT also saw outflows of $1.1B (-0.6%) with a z-score of -2.12 (source: get_metric).\n\nThese outflows coincide with several high-urgency regulatory events affecting Circle, including a \"regulatory · Circle (ban, regulator)\" event with high urgency (source: get_events). While the regulatory exposure data for Circle is stale (as of 2026-07-15), it previously indicated that Circle was exposed to both the MiCA stablecoin tightening regime in the EU and the GENIUS Act rulemaking in the US (source: get_reg_exposure).\n\nThe outflows suggest that institutional investors may be reducing their exposure to USDC in response to regulatory uncertainty, despite Circle's previous compliance with these frameworks. This is particularly notable given that USDC is often used by institutional investors, while USDT is more commonly used by retail investors.\n\n## RECONCILIATION\n\n**CONFIRM: Lido Validator Reduction Thesis (id: th_20260730_1520_lido)**\nThe Lido thesis remains confirmed with a confidence of 0.97. Lido's TVL increased by 1.33% (7d) to $17.6B with a z-score of 0.8, confirming market acceptance of the validator reduction upgrade (source: get_prior_assessment). The red team challenge suggesting that Lido's focus on operational robustness could cede market share to more agile competitors has not materialized in the data.\n\n**REVISE: Lido Governance and Technical Infrastructure Thesis (id: th_20260730_1520_lido)**\nThe Lido governance thesis is revised to a confidence of 0.85. Reactive risk management via simultaneous module/penalty launch suggests underlying operational vulnerabilities (source: get_prior_assessment). While the protocol continues to reinforce its governance structure and technical infrastructure, the need for reactive measures indicates potential vulnerabilities that could impact long-term stability.\n\n## LECTURE\n\n**INSTITUTIONAL STABLECOIN SENSITIVITY TO REGULATORY UNCERTAINTY**\n\nThe significant outflows from USDC in response to regulatory events highlight the sensitivity of institutional stablecoin holdings to regulatory uncertainty. Unlike retail investors who may be more focused on price movements, institutional investors appear to be more responsive to regulatory developments, particularly when they affect the compliance status of the stablecoin issuer.\n\nThis dynamic has important implications for the crypto market, as institutional flows can significantly impact liquidity and market structure. The outflows from USDC may lead to reduced liquidity in USDC-denominated markets and could potentially increase the cost of capital for protocols that rely heavily on USDC.\n\nThe regulatory landscape for stablecoins is evolving rapidly, with both the MiCA framework in the EU and the GENIUS Act in the US introducing new requirements for stablecoin issuers. While these frameworks are designed to provide clarity and protection for users, they also create uncertainty during the transition period, which can lead to outflows as institutional investors adopt a wait-and-see approach.\n\nKill condition: If USDC outflows continue for another 7 days with a z-score below -2.0, this would confirm that institutional investors are reducing exposure to USDC in response to regulatory uncertainty.\n\n## LIVE EVENTS\n\n1. **Critical Exploit Risk**: Bitcoin and Maker are facing critical exploit risks, with the Coldcard vulnerability "
+  },
   {
    "ts": "2026-08-01T06:37:55Z",
    "tier": "S",
@@ -767,31 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSanctum Validator LSTs exhibits the highest fee-yield in the set (5.35%) despite a -5.65% 7d TVL drawdown, suggesting capital rotation or yield-seeking behavior rather than sector-wide exit, while Lido maintains dominant market share (62.6%) with stable capital base but lower yield efficiency (2.41%).\n\n## FILS DOMINANTS\n*   **Sanctum Validator LSTs — 5.35% fee-yield, the highest of the set (vs Lido 2.41%, SparkLend 1.52%):** TVL declined -5.65% 7d to $1.07B (z=-1.78 7d, 5th pctile), but protocol fees remained relatively robust at $357K 24h (z=-1.22 7d, 16th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). The capital quality is provisional; the sharp TVL drop against a high fee-yield base indicates potential rotation into higher-yielding validator strategies or transient staking churn rather than sticky institutional capital.\n*   **Lido — 2.41% fee-yield, rank 2/3 in the set:** TVL is effectively flat (+0.18% 7d) at $17.84B (z=1.11 7d, 89th pctile), with fees at $1.2M 24h (z=1.20 7d, 84th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is high; the protocol holds 62.6% sector market share (source: sector-aware peers), and the valuation shows a P/F of 0.7x (rank 1/3 in LST vs 2.2x median), which is cheap on a fee-multiple basis, though the token captures 0% of protocol fees today (source: drill_valuation).\n*   **SparkLend — 1.52% fee-yield, the lowest of the set:** TVL decreased -1.04% 7d to $3.65B (z=0.57 7d, 68th pctile), with fees falling -4.97% 7d to $143K 24h (z=-0.80 7d, 22nd pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is mixed; it holds 11.5% market share in lending (source: sector-aware peers), but the fee-yield underperformance relative to LST peers suggests lower capital efficiency or utilization in the current market environment.\n\n## RECONCILIATION\n*   **th_20260730_0320_lido (Lido Governance/Tech):** CONFIRM. The protocol's stable TVL (+0.18% 7d) and high percentile baseline (z=1.11) support the thesis of bolstered governance and technical capability (Curated Module v2) maintaining the base. The red team challenge regarding operational vulnerabilities is noted but not yet refuted by the on-chain stability data.\n*   **th_20260730_lido_restructure (Lido Validator Set):** REVISE+trigger. The thesis of structural outflows to higher-yielding LSTs is supported by the relative performance: Sanctum's fee-yield (5.35%) is more than double Lido's (2.41%), while Lido's TVL is merely stable. This suggests a rotation of yield-sensitive capital rather than a collapse of the Lido base. The trigger is the widening yield spread between Lido and emerging LSTs like Sanctum.\n\n## LECTURE\nThe data indicates a bifurcation in staking capital: sticky, institutional-scale capital remains with Lido (evidenced by massive TVL and high z-score baseline), while yield-sensitive capital is rotating into higher-yielding validator LSTs like Sanctum. Sanctum's high fee-yield (5.35%) coupled with TVL decline (-5.65%) is a classic signal of \"hot money\" chasing yield, potentially exiting Lido or other lower-yield positions. Lido's valuation (0.7x P/F) is technically cheap relative to peers, but this is a \"value trap\" signal until the token captures fees (currently 0%); the market is pricing future utility, not current cash flow. SparkLend's lower fee-yield (1.52%) highlights the current pressure on lending margins compared to staking yields.\nKill condition: Lido TVL drops below $15B or fee-yield falls below 1.5% for 7 consecutive days.\n\n## RISQUE\n*   **Lido:** Regulatory risk remains the primary tailwind; the \"red team\" assessment in the digest notes a focus on compliance over innovation, which could stifle yield competitiveness i"
-  },
-  {
-   "ts": "2026-07-30T09:37:50Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 87.0,
-   "r2_pass": true,
-   "comps": 7,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": null
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n**RWA Narrative Boom vs. Institutional Liquidity Drain:** The Real World Asset (RWA) sector has seen narrative emergence surge by +106.7% over the last week (source: get_board), driven by high-conviction developments from traditional finance giants. BNY Mellon announced a push into the $8.6 trillion transfer agency market using blockchain rails for digital ownership records (source: read_articles), while Morgan Stanley executives publicly stated that tokenization and 24/7 markets are reshaping finance and eroding traditional banking hours (source: read_articles). However, this surge in institutional *attention* and *infrastructure build-out* is decoupled from institutional *liquidity*. The primary institutional stablecoin, USDC, saw its circulating supply drop by -2.7% (z=-2.9) over the same period (source: get_metric), significantly outpacing the aggregate stablecoin market contraction of -0.9% (source: get_metric). This divergence suggests that while institutions are actively preparing the *plumbing* for tokenization, they are not yet deploying net new fiat capital into crypto; rather, existing capital may be rotating or redeeming.\n\n## RECONCILIATION\n**REVISE [th_20260730_0320_perp]:** The prior thesis on \"growing institutional interest in perps\" is revised to distinguish between *infrastructure adoption* and *capital deployment*. While the thesis correctly identified increasing institutional engagement (e.g., European bank cooperatives), the current USDC outflow (-2.7%) contradicts the implication of immediate, large-scale capital inflows. The \"institutional interest\" is manifesting as technical integration and regulatory positioning (e.g., MiCA compliance, GENIUS Act preparation) rather than asset accumulation. The thesis is revised to reflect that institutional activity is currently in a \"Build\" phase, with the \"Deploy\" phase of liquidity lagging behind.\n\n## LECTURE\n**The Institutionalization Gap:** The current market is pricing in the *future* of tokenization based on headlines from BNY Mellon and Morgan Stanley, but the *present* on-chain reality shows a withdrawal of the most regulated capital (USDC). This creates a \"Institutionalization Gap\" where narrative velocity outpaces liquidity velocity. The market is treating RWA announcements as de facto inflow events, but the stablecoin data indicates a net redemption or rotation into other assets (potentially USDT or native yields). This gap is sustainable only if the infrastructure build-out leads to a future liquidity event; otherwise, the narrative is vulnerable to a correction if \"fresh money\" does not arrive to validate the price of innovation.\n**Kill condition:** USDC supply growth turns positive (+0.5% WoW) correlated with a rise in RWA sector TVL, signaling the transition from \"Build\" to \"Deploy.\"\n\n## LIVE EVENTS\n**Exploit Risk Elevated:** The system remains under critical exploit risk, with 27 active events flagged. The most urgent include risks to \"defi-yield\" (generic hack/audit risk), the Drift protocol (lending sector), and an older but still active risk flag for Circle (source: get_events). These risks suggest that while capital rotates between narratives, the underlying security surface of DeFi remains a primary concern for sustained capital retention.\n\n## SUIVI\n**Fresh Money Inquiry (inq_mission_fresh_money):** Advanced with evidence that net new fiat is NOT entering crypto; aggregate stablecoin flow is -0.9% (z=-2.22), and USDC specifically is -2.7% (z=-2.9). This confirms a net redemption environment. Next probe: Monitor if Ethereum outflows accelerate or stabilize over the next 7d.\n**Institutional Inquiry ("
   }
  ],
  "theses": [
@@ -799,9 +799,9 @@
    "key": "LIDO::liquid-staking",
    "verdict": "confirm",
    "conviction": 0.97,
-   "trigger": "Lido TVL +1.33% (7d) to $17.6B (z=0.8) confirms market acceptance of validator reduction upgrade",
+   "trigger": "Lido TVL +1.33% (7d) to $17.6B (z=0.8) confirms market acceptance of validator reduction upgrade (source: get_prior_assessment)",
    "kill": "Monitor the total value locked (TVL) within Curated Module v2 over the next 30 days to assess its adoption rate and effectiveness in managing staked ETH.",
-   "ts": "2026-08-01T06:37:55Z",
+   "ts": "2026-08-01T09:38:07Z",
    "history": [
     {
      "ts": "07-21",
@@ -1260,10 +1260,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-30T06:38:13.475000+00:00",
-     "note": "Global stablecoin market cap declined -0.9% to $294.3B (7d) with capital rotating from Arbitrum (-$51.8M) and BSC (-$4.5M) to Ethereum (+$78.4M) and Solana (+$328M)"
-    },
-    {
      "ts": "2026-07-31T06:38:43.643324+00:00",
      "note": "Global stablecoin market cap -0.9% (7d) to $294.1B; Ethereum -$386M 1d flow (source: get_metric, get_analyst_note)"
     },
@@ -1278,18 +1274,18 @@
     {
      "ts": "2026-08-01T06:37:55.327052+00:00",
      "note": "Global stablecoin market cap -1.0% (7d, z=-2.22) to $293.7B, indicating net redemptions (source: get_metric)"
+    },
+    {
+     "ts": "2026-08-01T09:38:07.225268+00:00",
+     "note": "Global stablecoin market cap decreased by $3.0B (-1.0%) over the last 7 days with a z-score of -2.21, indicating net redemptions from crypto (source: get_metric)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Monitor Gate fee-yield to confirm if TVL expansion is revenue-generating."
+   "evidence": "inq_mission_fresh_money · next: Monitor which chains are experiencing the most significant outflows to determine if there is a chain rotation occurring alongside the overall reduction in stablecoin ma"
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-31T00:07:55.084599+00:00",
-     "note": "Ondo fee generation at z=1.22 (85th pctile) despite TVL at z=-1.96 (10th pctile) (source: get_metric + protocol_fees(7d))"
-    },
     {
      "ts": "2026-07-31T06:06:57.854575+00:00",
      "note": "Ondo fee-yield 4.34% (highest in set) vs TVL -1.01% 7d (z=-1.99) suggests institutional capital optimizing yields in place (protocol_fees 7d)."
@@ -1305,18 +1301,18 @@
     {
      "ts": "2026-08-01T06:37:55.326483+00:00",
      "note": "BlackRock BUIDL TVL +0.52% (1d), Circle USYC flows +0.01% (1d) (source: get_analyst_note)"
+    },
+    {
+     "ts": "2026-08-01T09:38:07.225647+00:00",
+     "note": "USDC experienced a significant outflow of $1.6B (-2.2%) over the last 7 days with a z-score of -2.38, indicating institutional redemptions from crypto (source: get_metric)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Check peer inflows (USYC) to map institutional entry points."
+   "evidence": "inq_mission_institutional · next: Monitor institutional-grade DeFi protocols (e.g., Aave, Maker) to determine if the USDC outflows are impacting their liquidity or operations."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-07-31T09:37:44.271479+00:00",
-     "note": "Capital is rotating from Optimism and Polygon to Solana, with established lending protocols (Morpho Blue +3.17% 7d TVL) and RWA products showing resilience (source: get_analyst_note)"
-    },
     {
      "ts": "2026-07-31T12:09:03.890225+00:00",
      "note": "Aave V3 fees +2.78% 7d vs TVL -0.13% 7d indicates efficiency gains or rotation, not growth (source: get_metric + protocol_fees(7d))"
@@ -1332,9 +1328,13 @@
     {
      "ts": "2026-08-01T06:37:55.326891+00:00",
      "note": "Morpho Blue TVL +1.99% (7d) to $7.6B, Aave V3 +0.52% (7d) to $13.7B, Ethereum -$720M 7d stablecoin outflow (source: get_metric, get_analyst_note)"
+    },
+    {
+     "ts": "2026-08-01T09:38:07.225768+00:00",
+     "note": "The \"infra\" sector has seen a 100% surge in narrative emergence (from 24 to 48 articles), while stablecoin flows are negative across the board (source: get_narrative, get_metric)"
     }
    ],
-   "evidence": "inq_mission_rotation · next: Analyze Sanctum's validator-specific fee distribution to confirm if the yield is driven by a single operator or broad-based."
+   "evidence": "inq_mission_rotation · next: Analyze TVL movements in the infra sector to determine if capital is rotating into this sector despite the overall reduction in stablecoin market cap."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1373,17 +1373,17 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.6,
+    "tvl": 43.7,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 42.9,
+    "tvl": 42.8,
     "yard": "TVL"
    },
    {
     "name": "rwa",
-    "tvl": 23.0,
+    "tvl": 23.1,
     "yard": "TVL"
    },
    {
@@ -1406,7 +1406,7 @@
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.05
+    "fy": 7.04
    },
    {
     "name": "Fluid Lending",
@@ -1421,7 +1421,7 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 6.32
+    "fy": 6.33
    },
    {
     "name": "Jito Liquid Staking",
@@ -1442,7 +1442,7 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -722.9
+    "d7": -721.5
    },
    {
     "chain": "Solana",
@@ -1463,13 +1463,13 @@
   ],
   "agg": {
    "stable_mcap_b": 293.7,
-   "stable_d7_pct": -1.01,
+   "stable_d7_pct": -1.03,
    "dex_vol_24h_b": 7.1,
-   "defi_tvl_b": 74.1
+   "defi_tvl_b": 74.2
   }
  },
  "robinhood": {
-  "tvl_m": 380.1,
+  "tvl_m": 382.1,
   "morpho_share_pct": 74,
   "age_days": 13,
   "synth_ts": "2026-07-31T12:00:00Z",
@@ -1478,13 +1478,13 @@
  "health": {
   "budget": {
    "day": "2026-08-01",
-   "glm": 14,
+   "glm": 26,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
   },
   "gate": {
-   "ungrounded_dollar_7d": 0,
+   "ungrounded_dollar_7d": 1,
    "unsupported_pct_7d": 13,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
