@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-08-01T22:48:01Z",
+ "generated_at": "2026-08-02T00:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-08-01T18:07:37Z",
+   "ts": "2026-08-02T00:06:50Z",
    "status": "ok",
    "discipline": 94.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 6
+  "runs_today": 1
  },
  "runs": [
-  {
-   "ts": "2026-07-26T22:06:06Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-27T00:06:59Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-08-02T00:06:50Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-08-02T00:06:50Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Maker",
+    "Lido",
+    "Morpho Blue"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 1
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMakerDAO's protocol revenue efficiency (5.95% fee-yield) has surged to a sector-leading level, outpacing Morpho Blue (2.78%) and Lido (2.51%), while Lido's fee generation (+2.97% 7d) diverges positively from its TVL trend (-1.21% 7d) against a high baseline (z=1.18 91st pctile).\n\n## FILS DOMINANTS\n*   **Maker — 5.95% fee-yield, the highest of the set (vs Morpho Blue 2.78%, Lido 2.51%):** Protocol generates robust revenue efficiency on a $5.64B base (source: get_metric + protocol_fees(7d) + onchain_enriched), but the token captures only 7.7% of this value (holders_rev_ann $12.9M) (source: drill_valuation). Capital quality is sticky (CDP model), though the $38M exploit drain raises a solvency question vs treasury resilience.\n*   **Lido — 2.51% fee-yield, rank 2/3 (vs Maker 5.95%, Morpho Blue 2.78%):** Fees grew +2.97% 7d to $1.2M 24h (source: get_metric + protocol_fees(7d) + onchain_enriched) despite TVL slipping -1.21% 7d to $17.30B, indicating improved yield per unit of staked ETH. The token captures 0% of protocol fees today (source: drill_valuation), rendering its 0.6x P/F (rank 1/3 in LST vs 3.1x median) a pricing of future accrual, not current cash flow. Capital quality is high (sticky staked ETH), with dominant 62.6% market share (source: sector-aware peers).\n*   **Morpho Blue — 2.78% fee-yield, rank 2/3 in lending (vs Maker 5.95%):** Fees declined -10.01% 7d to $486K 24h (source: get_metric + protocol_fees(7d) + onchain_enriched) on a $7.48B TVL base, signaling a contraction in yield extraction. The token captures none of the protocol's fees (source: drill_valuation), and its 6.2x P/F (rank 2/3 in lending vs 6.2x median) is framed on FDV (fdv_mcap 1.525) due to dilution. Capital quality is provisional; while TVL is high, the fee compression suggests competitive pressure or lower utilization.\n\n## RECONCILIATION\n*   **id: yield_farming | verdict: CONFIRM | conviction: 0.8 | trigger: Maker fee-yield > 5.5%**\n    The prior thesis on Maker's restrictive stance and yield efficiency is confirmed by the 5.95% fee-yield (source: get_metric + protocol_fees(7d) + onchain_enriched), which ranks highest in the set. The red_team_challenge regarding the $38M exploit drain is addressed by the protocol's continued revenue generation; however, the solvency impact remains a contingent risk to the treasury, not an immediate operational failure evidenced by the fee data.\n\n## LECTURE\nThe divergence between Lido's fee growth (+2.97% 7d) and TVL contraction (-1.21% 7d) suggests a \"quality over quantity\" shift in staking flows or a reduction in the protocol's fee-sharing overhead, improving the unit economics of the base. However, the token's inability to capture these fees (0% capture) disconnects protocol health from token value, making the low 0.6x P/F multiple speculative on future governance changes (e.g., fee switch). For Maker, the high fee-yield (5.95%) is a strong fundamental signal, but the low token capture (7.7%) and the recent exploit drain imply that the equity (MKR) is undervalued relative to the business's cash flow only if governance directs more revenue to holders, which is not currently the case. Morpho Blue's fee compression (-10.01% 7d) is a warning sign for a protocol often praised for capital efficiency; if high TVL does not translate to sustained fees, the valuation multiple (6.2x P/F on FDV) is difficult to justify.\nKill condition: Lido fee-yield drops below 2.0% for 7d consecutive days.\n\n## RISQUE\n*   **Maker:** The $38M exploit drain represents a direct treasury hit; if the recovery rate is low, the solvency buffer erodes, potentially forcing DAI de-peg risks or emergency minting, which would dilute the base and hurt the fee-yield denominator.\n*   **Lido:** Regulatory risk to staking (specif"
+  },
   {
    "ts": "2026-08-01T18:07:37Z",
    "tier": "A",
@@ -763,35 +792,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nOndo's protocol fee-yield (4.34%) has surged to the highest in the set (+23.99% 7d fees), outpacing Lido (2.42%) and Morpho Blue (2.69%), even as its TVL plateaued (-1.01% 7d), signaling a shift in unit-economics efficiency rather than capital expansion.\n\n## FILS DOMINANTS\n*   **Ondo — 4.34% fee-yield, the highest of the set (vs Morpho Blue 2.69%, Lido 2.42%):** Fees surged +23.99% 7d to $301K 24h (protocol_fees 7d), driving fee-yield to 4.34% (get_metric), while TVL dipped -1.01% 7d to $2.53B. Capital quality is sticky (institutional RWA focus), but the TVL plateau (z=-1.99 9th pctile) suggests yield compression or regulatory headwinds are capping inflows.\n*   **Morpho Blue — 2.69% fee-yield, rank 2/3 (vs Lido 2.42%, Ondo 4.34%):** TVL grew +3.52% 7d to $7.73B (z=1.59 99th pctile), securing 24.1% market share in lending (vs Aave 43.4%) (sector-aware peers). However, fee-yield (2.69%) trails Ondo, and fees dipped -0.5% 7d to $575K 24h (protocol_fees 7d). The growth is high-quality (z=1.59), but the fee-to-TVL disconnect raises questions about reallocation vs. fresh capital.\n*   **Lido — 2.42% fee-yield, rank 3/3 (vs Ondo 4.34%, Morpho Blue 2.69%):** TVL increased +2.42% 7d to $17.89B (z=1.13 90th pctile), maintaining 62.5% LST market share (sector-aware peers). Fees grew +5.7% 7d to $1.2M 24h (protocol_fees 7d). Capital is dominant and sticky, but the lower fee-yield relative to peers reflects the mature, lower-margin nature of liquid staking.\n\n## RECONCILIATION\n*   **CONFIRM (Lido Governance/Tech Upgrade):** The thesis that Lido is reducing validator count and redistributing staked ether remains stable. TVL stability (+2.42% 7d) and high baseline z-score (z=1.13 90th pctile) support the governance/tech execution narrative (priors). No red_team_challenge detected.\n*   **REVISE (Ondo Growth Driver):** Prior assumption of TVL growth driven by yield is revised. The data shows TVL plateauing (-1.01% 7d, z=-1.99) despite fee-yield expansion (4.34%). The driver is now identified as yield compression/efficiency or regulatory constraints, not raw capital expansion.\n\n## LECTURE\nThe divergence between Ondo's surging fee-yield (4.34%) and its contracting TVL baseline (z=-1.99) is the critical signal. It implies the protocol is extracting more value from a static capital base, likely through optimized RWA deployments or higher management spreads, rather than attracting new net assets. In contrast, Morpho Blue's TVL expansion (z=1.59) without proportional fee growth suggests capital rotation from Aave (market share 24.1% vs 43.4%) into lower-yield, newer markets. Lido remains the steady-state utility play, with token valuation (P/F 0.7, rank 1/3 vs 2.7 median) pricing in future utility rather than current fee capture (capture_pct 0.0).\nKill condition: Ondo TVL z-score drops below -2.5 for 14d consecutive.\n\n## RISQUE\n*   **Ondo:** Regulatory headwinds (regulatory clarity is the primary constraint for RWA expansion) could permanently cap TVL growth, making the high fee-yield unsustainable if the capital base erodes.\n*   **Morpho Blue:** The sustained TVL growth may be illusory if primarily reallocated from Aave; failure to attract organic \"fresh money\" would limit long-term fee accrual potential.\n*   **Lido:** Smart contract risk during the validator redistribution phase remains elevated; a technical failure could trigger a mass exit, impacting the 62.5% market share.\n\n## SUIVI\n*   **inq_mission_institutional:** Track EURC/USDC share on EU volume to confirm institutional venue preference. Evidence: Ondo's fee-yield surge (4.34%) amidst TVL plateau suggests institutional capital optimizing yields within existing venues rather than new inflows. Next_probe: Check peer inflows (BlackRock BUIDL, USYC) to map destinatio"
-  },
-  {
-   "ts": "2026-07-31T00:07:55Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "Lido",
-    "Aave",
-    "Ondo"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nOndo's protocol fee-yield (2.70%) has surpassed Aave (2.51%) and Lido (2.38%) to rank highest in the set, driven by a +23.99% 7d fee surge despite a -1.02% TVL contraction, signaling improved capital efficiency on a shrinking base.\n\n## FILS DOMINANTS\n*   **Ondo — 2.70% fee-yield, the highest of the set (vs Aave 2.51%, Lido 2.38%):** Fees surged +23.99% 7d while TVL contracted -1.02% 7d, pushing fee generation to z=1.22 (85th pctile) against a TVL z-score of -1.96 (10th pctile) (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is mixed; the protocol holds 15.8% market share in RWA (source: sector-aware peers), but the negative TVL z-score suggests liquidity stress or rotation out of the current yield profile.\n*   **Aave — 2.51% fee-yield, rank 2/3:** TVL grew +2.12% 7d to $14.02B, maintaining a dominant 43.6% market share in lending (source: sector-aware peers). The valuation appears attractive at 4.4x P/F (rank 1/3 in lending vs 6.3x median) (source: drill_valuation), though the token captures 0% of protocol fees today, implying the multiple prices in future accrual.\n*   **Lido — 2.38% fee-yield, rank 3/3:** TVL increased +2.76% 7d to $18.04B, retaining a commanding 62.5% share of the LST sector (source: sector-aware peers). The token trades at a low 0.7x P/F (rank 1/3 in LST vs 2.2x median) (source: drill_valuation), but with 0% fee capture, this reflects market expectations of future governance-enabled value flow rather than current fundamentals.\n\n## RECONCILIATION\n*   **CONFIRM (inq_mission_rotation):** The divergence between Ondo's fee growth (+23.99% 7d) and TVL shrinkage (-1.02% 7d) confirms capital rotation within the RWA vertical, favoring higher-yield or more efficient instruments rather than sector-wide expansion.\n*   **REVISE (inq_mission_institutional):** Ondo's fee resilience (z=1.22) amidst a TVL drawdown (z=-1.96) suggests institutional capital is not exiting the sector en masse but is rather concentrating in specific high-yield conduits, refining the \"liquidity drain\" hypothesis to a \"liquidity concentration\" thesis.\n\n## LECTURE\nThe dominance of protocol-level value accrual remains decoupled from token-holder economics across this set. While Ondo demonstrates the highest operational efficiency (2.70% fee-yield), and Aave/Lido show deep market penetration (43.6% and 62.5% share respectively), the uniform 0% fee capture rate renders current P/F multiples speculative on future governance decisions rather than reflective of present cash flows. Investors are paying for optionality on fee switches, not operating income.\nKill condition: Aave or Lido token capture > 0% without a corresponding re-rating of the P/F multiple.\n\n## RISQUE\n*   **Ondo:** The negative TVL z-score (-1.96) indicates the capital base is eroding; if the fee surge is a one-off event rather than a structural yield improvement, the protocol's revenue will collapse as the asset base shrinks.\n*   **Aave:** The surge in Risk Steward proposals for supply caps (per capital_questions) implies rising volatility or risk appetite misalignment; a governance failure here could lead to bad debt events, disproportionately impacting the sticky capital quality.\n*   **Lido:** The 7d TVL growth (+2.76%) risks being validator node churn rather than organic demand; if the approaching kill condition threshold is met, the perceived stickiness of the $18.04B base could be rapidly re-priced.\n\n## SUIVI\n*   **inq_mission_rotation:** Ondo's fee yield (2.70%) diverged positively from its TVL trend (-1.02% 7d), confirming rotation towards higher efficiency within the RWA sector. Next probe: Analyze if the TVL outflow from Ondo is migrating to BlackRock BUIDL or USYC (peers with 21.7% and 18.8% share respectively)."
   }
  ],
  "theses": [
@@ -1287,10 +1287,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-07-31T06:38:43.643761+00:00",
-     "note": "BlackRock BUIDL TVL $3.47B (+1.45% 7d) (source: get_metric)"
-    },
-    {
      "ts": "2026-07-31T09:37:44.271299+00:00",
      "note": "Capital is rotating from Ethereum to Solana, with RWA narratives strengthening and BlackRock BUIDL TVL increasing +1.45% (7d) (source: get_analyst_note)"
     },
@@ -1305,6 +1301,10 @@
     {
      "ts": "2026-08-01T18:07:37.844136+00:00",
      "note": "Aave V3 TVL $13.79B (z=0.78 30d) with 0% token capture; Maker fee-yield 5.93% (source: get_metric + protocol_fees(7d) + onchain_enriched)."
+    },
+    {
+     "ts": "2026-08-02T00:06:50.182828+00:00",
+     "note": "USDC share on Aave V3 markets is a proxy for institutional activity; checking this share will reveal if regulated capital is driving the observed TVL shifts in lending."
     }
    ],
    "evidence": "inq_mission_institutional · next: Check USDC share changes on Aave V3 markets."
@@ -1373,22 +1373,22 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.4,
+    "tvl": 43.5,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 42.2,
+    "tvl": 42.4,
     "yard": "TVL"
    },
    {
     "name": "rwa",
-    "tvl": 23.1,
+    "tvl": 23.0,
     "yard": "TVL"
    },
    {
     "name": "dex",
-    "tvl": 8.7,
+    "tvl": 8.8,
     "yard": "VOLUME"
    },
    {
@@ -1401,12 +1401,12 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.69
+    "fy": 8.68
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.19
+    "fy": 7.15
    },
    {
     "name": "Fluid Lending",
@@ -1416,7 +1416,7 @@
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 6.47
+    "fy": 6.43
    },
    {
     "name": "Hastra",
@@ -1426,35 +1426,35 @@
    {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.35
+    "fy": 6.31
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.95
+    "fy": 5.94
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.33
+    "fy": 4.32
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -712.8
+    "d7": -717.0
    },
    {
     "chain": "Solana",
-    "d7": 30.1
+    "d7": 29.9
    },
    {
     "chain": "Arbitrum",
-    "d7": -21.2
+    "d7": -21.3
    },
    {
     "chain": "Polygon",
-    "d7": -16.8
+    "d7": -16.9
    },
    {
     "chain": "Optimism",
@@ -1465,20 +1465,20 @@
    "stable_mcap_b": 293.8,
    "stable_d7_pct": -0.95,
    "dex_vol_24h_b": 7.2,
-   "defi_tvl_b": 73.7
+   "defi_tvl_b": 73.8
   }
  },
  "robinhood": {
-  "tvl_m": 382.1,
-  "morpho_share_pct": 74,
+  "tvl_m": 388.1,
+  "morpho_share_pct": 75,
   "age_days": 14,
   "synth_ts": "2026-08-01T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-08-01\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$382.1M**, marking a robust **+6.6%** daily uptick and a **~62%** ascent over the last 30 days (from ~$235M). The trajectory is steep, yet the composition reveals a specific risk appetite: **Steakhouse Financial** ($299.6M) and **Morpho Blue** ($281.5M) command ~78% of total liquidity combined. Morpho specifically dominates the credit market with **$281.1M** in supply TVL and a staggering **90.7% utilization rate** ($255M borrowed). This indicates capital is not idling; it is aggressively deployed in yield-seeking or leveraged strategies. DEX liquidity remains secondary, with Uniswap V3/V4 and Arcus Perps holding ~$71M combined. The capital quality read is **\"hot but sticky\"**—highly incentivized launch capital that is currently being leveraged rather than rotated into diversified liquidity.\n\n## CATALYSEURS\n*   **Record Q2 Revenue ($1.31B) vs. Crypto Slide:** Robinhood's earnings beat was driven by prediction markets and the new chain, yet crypto transaction revenue dropped 38% to $100M. This decoupling explains the on-chain divergence: while the *brokerage* is profitable, the *crypto activity* is shifting from simple spot trading to complex, yield-bearing on-chain strategies (Morpho/Steakhouse) rather than high-turnover spot trading.\n*   **Tokenized Stock Volume Surge:** The Defiant reports tokenized stock volume on RH Chain exceeded Solana's, fueled by memecoin pairs. This directly correlates with the dominance of DEXs (Uniswap/Arcus) and suggests the \"24/7 stock\" feature is finding product-market fit through speculative wrappers rather than pure institutional adoption.\n*   **User/Volume Fade:** The Block notes a climb in deposits but a fade in volume/active users post-launch. This aligns with the high Morpho utilization—capital is deposited and locked into lending/leveraged positions, reducing circulating velocity and active trading counts, even as TVL inflates.\n*   **Prediction Market Expansion:** Talks with Crypto.com to integrate prediction markets signal an intent to broaden the \"regenerative finance\" (RegFi) use case, potentially driving future sticky capital flows beyond the c"
  },
  "health": {
   "budget": {
-   "day": "2026-08-01",
-   "glm": 33,
+   "day": "2026-08-02",
+   "glm": 3,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
