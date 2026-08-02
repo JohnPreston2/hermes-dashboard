@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-08-02T02:48:01Z",
+ "generated_at": "2026-08-02T04:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -996,7 +996,7 @@
    "verdict": "confirm",
    "conviction": 0.88,
    "trigger": "Institutional endorsement of the Clarity Act aligns with thesis, though regulatory data center bans constrain infra utility.",
-   "kill": "Monitor the degree to which Circle integrates the acquired IBM patents into USDC's infrastructure and the extent to which Bitmine's Ethereum holdings are utilized for staking or go",
+   "kill": "Monitor the percentage of total Ethereum supply controlled by Bitmine and the extent to which Circle leverages the acquired IBM patents to create proprietary, non-interoperable sol",
    "ts": "2026-08-01T12:07:11Z",
    "history": [
     {
@@ -1155,7 +1155,7 @@
    "verdict": "confirm",
    "conviction": 0.85,
    "trigger": "$38M Bitcoin drained by Coldcard key flaw (source: read_articles)",
-   "kill": "The number of reported vulnerabilities discovered by AI-driven tools versus those discovered by traditional security audits in the next quarter will indicate whether AI is primaril",
+   "kill": "Monitor for a significant increase in zero-day exploit disclosures targeting core DeFi infrastructure components over the next quarter, specifically those attributed to automated v",
    "ts": "2026-08-01T00:08:24Z",
    "history": [
     {
@@ -1244,7 +1244,7 @@
    "verdict": "retire",
    "conviction": 0.0,
    "trigger": "Thesis superseded by hardware security events",
-   "kill": "The number of reported vulnerabilities discovered by AI-driven tools versus those discovered by traditional security audits in the next quarter will indicate whether AI is primaril",
+   "kill": "Monitor for a significant increase in zero-day exploit disclosures targeting core DeFi infrastructure components over the next quarter, specifically those attributed to automated v",
    "ts": "2026-08-01T00:08:24Z",
    "history": [
     {
@@ -1373,17 +1373,17 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.5,
+    "tvl": 43.8,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 42.4,
+    "tvl": 43.0,
     "yard": "TVL"
    },
    {
     "name": "rwa",
-    "tvl": 22.8,
+    "tvl": 23.0,
     "yard": "TVL"
    },
    {
@@ -1401,7 +1401,7 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.9
+    "fy": 8.86
    },
    {
     "name": "Hastra",
@@ -1411,42 +1411,42 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.93
+    "fy": 5.9
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.6
+    "fy": 5.56
+   },
+   {
+    "name": "Centrifuge Protocol",
+    "sector": "rwa",
+    "fy": 4.71
    },
    {
     "name": "Jupiter Lend",
     "sector": "lending",
-    "fy": 3.85
+    "fy": 3.82
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 3.71
+    "fy": 3.68
    },
    {
     "name": "WisdomTree",
     "sector": "rwa",
     "fy": 3.67
-   },
-   {
-    "name": "Invesco USTB",
-    "sector": "rwa",
-    "fy": 3.6
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -805.1
+    "d7": -807.7
    },
    {
     "chain": "Solana",
-    "d7": 29.6
+    "d7": 29.5
    },
    {
     "chain": "Arbitrum",
@@ -1454,7 +1454,7 @@
    },
    {
     "chain": "Polygon",
-    "d7": -18.1
+    "d7": -18.2
    },
    {
     "chain": "Optimism",
@@ -1462,16 +1462,16 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 293.5,
-   "stable_d7_pct": -1.05,
+   "stable_mcap_b": 293.8,
+   "stable_d7_pct": -0.96,
    "dex_vol_24h_b": 5.0,
-   "defi_tvl_b": 73.8
+   "defi_tvl_b": 74.4
   }
  },
  "robinhood": {
-  "tvl_m": 388.1,
-  "morpho_share_pct": 75,
-  "age_days": 14,
+  "tvl_m": 386.9,
+  "morpho_share_pct": 74,
+  "age_days": 13,
   "synth_ts": "2026-08-01T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-08-01\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$382.1M**, marking a robust **+6.6%** daily uptick and a **~62%** ascent over the last 30 days (from ~$235M). The trajectory is steep, yet the composition reveals a specific risk appetite: **Steakhouse Financial** ($299.6M) and **Morpho Blue** ($281.5M) command ~78% of total liquidity combined. Morpho specifically dominates the credit market with **$281.1M** in supply TVL and a staggering **90.7% utilization rate** ($255M borrowed). This indicates capital is not idling; it is aggressively deployed in yield-seeking or leveraged strategies. DEX liquidity remains secondary, with Uniswap V3/V4 and Arcus Perps holding ~$71M combined. The capital quality read is **\"hot but sticky\"**—highly incentivized launch capital that is currently being leveraged rather than rotated into diversified liquidity.\n\n## CATALYSEURS\n*   **Record Q2 Revenue ($1.31B) vs. Crypto Slide:** Robinhood's earnings beat was driven by prediction markets and the new chain, yet crypto transaction revenue dropped 38% to $100M. This decoupling explains the on-chain divergence: while the *brokerage* is profitable, the *crypto activity* is shifting from simple spot trading to complex, yield-bearing on-chain strategies (Morpho/Steakhouse) rather than high-turnover spot trading.\n*   **Tokenized Stock Volume Surge:** The Defiant reports tokenized stock volume on RH Chain exceeded Solana's, fueled by memecoin pairs. This directly correlates with the dominance of DEXs (Uniswap/Arcus) and suggests the \"24/7 stock\" feature is finding product-market fit through speculative wrappers rather than pure institutional adoption.\n*   **User/Volume Fade:** The Block notes a climb in deposits but a fade in volume/active users post-launch. This aligns with the high Morpho utilization—capital is deposited and locked into lending/leveraged positions, reducing circulating velocity and active trading counts, even as TVL inflates.\n*   **Prediction Market Expansion:** Talks with Crypto.com to integrate prediction markets signal an intent to broaden the \"regenerative finance\" (RegFi) use case, potentially driving future sticky capital flows beyond the c"
  },
