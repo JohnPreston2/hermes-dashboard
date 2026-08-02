@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-08-02T16:48:01Z",
+ "generated_at": "2026-08-02T18:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-08-02T12:06:56Z",
+   "ts": "2026-08-02T18:06:58Z",
    "status": "ok",
-   "discipline": 96.7,
+   "discipline": 94.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 6
+  "runs_today": 7
  },
  "runs": [
-  {
-   "ts": "2026-07-27T18:06:35Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
   {
    "ts": "2026-07-28T00:06:46Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 3,
    "phase": null
+  },
+  {
+   "ts": "2026-08-02T18:06:58Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-08-02T18:06:58Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 94.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Maker",
+    "Aave V3",
+    "USDC"
+   ],
+   "gate": {
+    "R1": 8,
+    "R6": 9,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nThe $38M Coldcard exploit at Maker has been confirmed as a material operational failure, validating the infra risk thesis, while USDC's new trust charter creates a regulatory tailwind for EU/US institutional flows that has not yet translated into supply growth.\n\n## FILS DOMINANTS\n*   **Maker — 5.9% fee-yield, the highest of the set (vs Aave V3 2.6%):** The $38M Coldcard exploit is confirmed as a material operational failure, validating the infra risk thesis; capital quality is sticky ($5.65B TVL) but the loss is isolated to specific vaults, not a systemic liquidity crisis (source: run_drill).\n*   **Aave V3 — 2.6% fee-yield, rank 2/2 in the set (vs Maker 5.9%):** Protocol maintains dominant market share at 43.6% sector TVL (vs Morpho Blue 23.7%, SparkLend 11.5%) with fees +1.96% 7d; capital quality is high (z=0.78 30d TVL vs baseline), though the token captures 0% of protocol revenue today (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **USDC — 0.0% fee-yield (N/A for stablecoin sector):** New trust charter establishes a regulatory tailwind (MiCA in EU, GENIUS Act in US), but supply trends remain flat; the inferred flow is a regional migration (USDT -> USDC on EU venues), not a global net increase (source: drill_reg).\n\n## RECONCILIATION\n*   **id: infra_risk_maker | verdict: CONFIRM | conviction: 0.9 | trigger:** The $38M Coldcard exploit is confirmed as a material operational failure, validating the thesis on infra risk. The loss is isolated to specific vaults, not a systemic liquidity crisis, but the operational failure is material.\n*   **id: reg_tailwind_usdc | verdict: REVISE | conviction: 0.7 | trigger:** Regulatory approval (trust charter) is confirmed, but the thesis that this immediately reverses supply contraction is revised; the flow is inferred as a regional migration (EU venue shift) bounded by the offshore USDT float, not a global net inflow yet.\n\n## LECTURE\nThe Maker exploit is a fundamental stress test of operational security, distinct from liquidity risk; the protocol's high fee-yield (5.9%) continues to accrue value despite the incident, suggesting the market is pricing in the loss as an operational expense rather than a solvency event. For Aave, the disconnect between dominant market share (43.6%) and zero token value capture remains the primary valuation friction; the protocol is rich on a P/F basis (4.0x, rank 1/3 vs 6.2x median) only if one assumes a future fee switch, which is not currently active. USDC's regulatory clarity is a structural moat, but the \"regulatory paradox\" persists—compliance enables venue access (EU/US) but does not guarantee immediate fiat on-ramp volume; the next 14 days are critical to observe if the charter translates into measurable supply growth or merely stabilizes the regional outflow trend.\nKill condition: Maker TVL drops below $5.0B or Aave token capture remains at 0% for 30d post-governance proposal.\n\n## RISQUE\n*   **Maker:** Operational risk of further smart contract or key management exploits; the $38M loss exposes vulnerabilities in the DAO's security apparatus.\n*   **Aave V3:** Governance risk that risk parameter shifts (via new proposal) could increase bad debt exposure; token value accrual remains entirely dependent on future governance action (fee switch).\n*   **USDC:** Regulatory risk that the \"inferred flow\" of USDT->USDC migration is slower than the pace of USDT global growth, resulting in market share loss despite compliance; the GENIUS Act rulemaking deadline (2026-07-18) is a key binary event.\n\n## SUIVI\n*   **inq_mission_institutional:** Track USDC supply trends over next 14d to see if regulatory approval translates to growth. Evidence: USDC supply is flat despite trust charter; flow is inferred as regional migration (E"
+  },
   {
    "ts": "2026-08-02T12:06:56Z",
    "tier": "A",
@@ -759,35 +788,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nGate.io recorded a +22.26% 7d TVL surge to $5.26B, a move registering at z=4.27 (100th pctile) relative to its historical baseline, while Maker faces a governance treasury stress test following a $38M Coldcard drain.\n\n## FILS DOMINANTS\n*   **Gate — 2.6% market share (rank 5/6 in CEX vs Binance 67.0%):** TVL surged +22.26% 7d to $5.26B, registering at z=4.27 (100th pctile) relative to its historical baseline (source: get_metric). The extreme z-score deviation suggests the move is statistically anomalous; capital quality is provisional pending confirmation of organic user growth versus incentivized liquidity mining.\n*   **Maker — 7.7% fee capture, P/F 4.0 (rank 1/1 in CDP vs 4.0 median):** Protocol captures $12.9M annualized holder revenue (source: drill_valuation). The $38M Coldcard drain represents a material governance treasury event, testing the redundancy of operational security without immediate protocol fee disruption.\n*   **Near — No value-accrual data available:** Digest carries null fee-yield and TVL metrics; no fundamental valuation or market share data provided to assess relative positioning or capital quality (source: get_metric).\n\n## RECONCILIATION\n*   **th_20260730_1520_near (CONFIRM):** The thesis that established financial entities are increasing control over core infrastructure remains stable. The digest's capital question regarding the \"regulatory ban on data centers\" was not corroborated by the provided `reg` or `reg_articles` blocks (which were empty), nor by fundamental metrics, leaving the operational impact unverified by this data run.\n*   **th_20260730_1520_lido (CONFIRM):** Lido's governance/tech thesis remains stable per prior reconciliation, though not the primary focus of this digest.\n\n## LECTURE\nGate's 100th percentile z-score (z=4.27) on TVL is a statistical outlier that demands skepticism regarding capital stickiness; without fee data, we cannot determine if this is productive capital or mercenary liquidity chasing emissions. Maker's 7.7% capture rate provides a fundamental floor, but the Coldcard incident highlights the concentration risk in governance hardware wallets, which is a distinct vector from smart contract risk.\nKill condition: Gate TVL z-score reverts below 2.0 within 14d or Maker governance treasury outflows exceed $50M in 7d.\n\n## RISQUE\n*   **Gate:** Capital quality risk; the +22.26% 7d surge may be driven by incentivized liquidity mining rather than organic user growth, threatening retention once incentives cease.\n*   **Maker:** Operational security risk; the $38M Coldcard drain exposes single-point-of-failure vulnerabilities in governance custody, potentially impacting future treasury decisions or insurance fund adequacy.\n*   **Near:** Data visibility risk; the inability to assess fee-yield or TVL impact from the hypothesized regulatory ban prevents a fundamental evaluation of operational capacity.\n\n## SUIVI\n*   **inq_mission_fresh_money:** Gate's +22.26% 7d TVL surge ($5.26B total) provides a provisional data point for net new capital entry, but requires fee data to distinguish fresh fiat from internal rotation (source: get_metric). Next probe: Monitor Gate fee-yield to confirm if TVL expansion is revenue-generating."
-  },
-  {
-   "ts": "2026-08-01T00:08:24Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 96.7,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Maker",
-    "Sanctum Validator LSTs",
-    "SparkLend"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSanctum Validator LSTs exhibits the highest fee-yield in the set (12.14% annualised) despite a 7d TVL contraction, while SparkLend maintains a dominant lending market share (11.6%) with a 1.51% fee-yield; Maker faces a principal loss event ($38M Coldcard drain) that challenges its solvency thesis, though its token captures 8.7% of protocol revenue.\n\n## FILS DOMINANTS\n*   **Sanctum Validator LSTs — 12.14% fee-yield, the highest of the set (vs SparkLend 1.51%, Maker null):** Protocol generated $357K in fees 24h (source: get_metric) on a $1.07B TVL base, though fees 7d pct is an artifact (+15286% from a near-zero base). TVL contracted -0.9% 7d (source: get_metric) and sits at a low z-score relative to baseline (z=-1.47 7d, 7th pctile). Capital quality is provisional as the token capture mechanism is UNKNOWN (source: economics worker).\n*   **SparkLend — 1.51% fee-yield, rank 2/3 in the set (vs Sanctum 12.14%, Maker null):** Protocol generated $149K in fees 7d avg (source: get_metric) on a $3.67B TVL base, with TVL growing +1.4% 7d (source: get_metric). It holds 11.6% market share in the lending sector, trailing Aave V3 (43.3%) and Morpho Blue (23.9%) (source: sector-aware peers). Capital quality is sticky (z=0.69 7d, 72nd pctile), but token capture is UNKNOWN.\n*   **Maker — Protocol fees null, rank 3/3:** The protocol is assessing a $38M principal loss due to a Coldcard key flaw (source: read_articles), raising questions about DSR solvency. The token captures 8.7% of protocol revenue (holders_rev_ann: $15.4M) (source: drill_valuation), trading at a P/F multiple of 4.0x (rank 1/1 in sector vs 4.0x median) (source: drill_valuation).\n\n## RECONCILIATION\n*   **th_20260731_1520_maker (NEW):** The thesis that \"Recent events highlight increasing vulnerabilities within the broader crypto hardware and kiosk ecosystems\" is CONFIRMED. The $38M Bitcoin drain via Coldcard key flaw (source: read_articles) serves as the specific evidence of infrastructure vulnerability impacting principal. Conviction remains high (0.85) anchored on the materiality of the loss.\n*   **th_20260704_0321_maker (RETIRED):** Previous thesis regarding Poland's regulatory stance is retired as it is no longer relevant to the current fundamental drivers (source: get_prior_assessment).\n\n## LECTURE\nThe divergence in unit economics is stark: Sanctum's fee-yield (12.14%) is an outlier, likely driven by specific validator activity or a low base, but must be treated with caution given the noisy 7d fee pct and low TVL z-score (z=-1.47). SparkLend offers a more stable, albeit lower, yield (1.51%) backed by high capital quality (72nd pctile TVL z-score) and solid market share. Maker's immediate risk is not yield but principal preservation; the $38M loss is a governance stress test. The token valuation for Maker (4.0x P/F) is in line with its sector median, but the \"cheap/rich\" assessment is constrained by the low capture rate (8.7%) and the recent principal shock.\nKill condition: Maker TVL drops below $4.5B or DSR outflows exceed $10M/wk; Sanctum fee-yield falls below 5% annualised.\n\n## RISQUE\n*   **Sanctum Validator LSTs:** High fee-yield volatility (artifact 7d pct) and low baseline TVL positioning (z=-1.47) suggest the yield may not be sustainable or representative of the broader protocol health.\n*   **SparkLend:** Token capture is UNKNOWN; current fee-yield (1.51%) may not accrue to holders, and reliance on a few major assets (implied by sector peers) creates concentration risk.\n*   **Maker:** The $38M Coldcard drain exposes a critical operational risk in hardware integration; failure to recover funds or plug the governance gap could lead to accelerated DSR outflows and solvency concerns.\n\n## SUIVI\n*   **inq_mission_rotation:** Evidence shows SparkLen"
   }
  ],
  "theses": [
@@ -1305,10 +1305,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-08-02T00:06:50.182828+00:00",
-     "note": "USDC share on Aave V3 markets is a proxy for institutional activity; checking this share will reveal if regulated capital is driving the observed TVL shifts in lending."
-    },
-    {
      "ts": "2026-08-02T06:07:10.244579+00:00",
      "note": "Near regulatory ban suggests jurisdictional constraints (source: capital_questions)"
     },
@@ -1323,9 +1319,13 @@
     {
      "ts": "2026-08-02T12:06:56.754827+00:00",
      "note": "No material expansion in USDC supply confirmed in the last 24h (source: get_metric)"
+    },
+    {
+     "ts": "2026-08-02T18:06:58.745736+00:00",
+     "note": "USDC supply flat post-charter; flow inferred as regional migration (EU venue shift), not global net inflow (source: drill_reg)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Track USDC supply trends over next 14d to see if regulatory approval translates to growth"
+   "evidence": "inq_mission_institutional · next: Monitor EURC/USDC share on EU-denominated volume"
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
@@ -1391,12 +1391,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.6,
+    "tvl": 43.7,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 42.6,
+    "tvl": 42.7,
     "yard": "TVL"
    },
    {
@@ -1419,22 +1419,22 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.69
+    "fy": 8.68
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.44
+    "fy": 6.45
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.92
+    "fy": 5.9
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.57
+    "fy": 5.55
    },
    {
     "name": "Centrifuge Protocol",
@@ -1460,11 +1460,11 @@
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -805.0
+    "d7": -805.2
    },
    {
     "chain": "Solana",
-    "d7": 29.7
+    "d7": 29.6
    },
    {
     "chain": "Arbitrum",
@@ -1483,7 +1483,7 @@
    "stable_mcap_b": 293.7,
    "stable_d7_pct": -0.97,
    "dex_vol_24h_b": 4.7,
-   "defi_tvl_b": 74.1
+   "defi_tvl_b": 74.2
   }
  },
  "robinhood": {
@@ -1496,7 +1496,7 @@
  "health": {
   "budget": {
    "day": "2026-08-02",
-   "glm": 28,
+   "glm": 30,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
@@ -1506,7 +1506,7 @@
    "unsupported_pct_7d": 12,
    "hallucination_7d": 0,
    "r2_rewrites_7d": null,
-   "silent_r2_7d": 2
+   "silent_r2_7d": 1
   }
  }
 }
