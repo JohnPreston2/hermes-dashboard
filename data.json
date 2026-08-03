@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-08-02T22:48:02Z",
+ "generated_at": "2026-08-03T00:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -10,26 +10,15 @@
   "last_run": {
    "tier": "A",
    "mode": "3phase",
-   "ts": "2026-08-02T18:06:58Z",
+   "ts": "2026-08-03T00:07:52Z",
    "status": "ok",
-   "discipline": 94.0,
+   "discipline": 72.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 7
+  "runs_today": 1
  },
  "runs": [
-  {
-   "ts": "2026-07-28T00:06:46Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 96.7,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-28T06:07:15Z",
    "tier": "A",
@@ -458,9 +447,49 @@
    "r2_pass": true,
    "comps": 2,
    "phase": null
+  },
+  {
+   "ts": "2026-08-03T00:07:52Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 72.0,
+   "r2_pass": true,
+   "comps": 4,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-08-03T00:07:52Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 72.0,
+   "r2_pass": true,
+   "comps": 4,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Maker",
+    "Binance staked ETH",
+    "JustLend V1"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 6,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMaker's fee-yield (5.88% annualized) is at a premium relative to peers, driven by the operational failure of the $38M Coldcard exploit, which raises questions about the protocol's infrastructural solvency despite its high capital efficiency.\n\n## FILS DOMINANTS\n*   **Maker — 5.88% fee-yield, the highest of the set (vs Binance staked ETH 2.66%, JustLend V1 0.62%):** The protocol generates $5.69B in TVL with a robust yield, but the $38M Coldcard exploit represents a material operational loss. Capital quality is sticky (legacy institutional), yet the infra risk thesis is now active and unmitigated (source: get_metric + protocol_fees(7d) + onchain_enriched).\n*   **Binance staked ETH — 2.66% fee-yield, rank 2 of 3:** TVL stands at $7.00B (24.7% market share in LST) with fees of $506K 24h. Capital quality is exchange-wrapped (sticky to CEX), but the token capture of these fees remains unknown. Regulatory pressure in the EU (MiCA) poses a venue-b"
+  },
   {
    "ts": "2026-08-02T18:06:58Z",
    "tier": "A",
@@ -759,35 +788,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF:\n\n## PAYSAGE\nAttention is surging into the \"Infra\" sector (+95.8% narrative emergence) driven by AI hardware and mining developments, yet on-chain value is contracting as global stablecoin market cap has fallen by 1.0% (z=-2.22) to $293.7B over 7d, indicating net redemptions rather than fresh fiat entry. Capital is rotating from Ethereum (-$720M 7d stablecoin outflow) to Optimism and Solana, with established DeFi primitives showing resilience: Morpho Blue TVL at $7.6B (+1.99% 7d), Aave V3 at $13.7B (+0.52% 7d), and Lido at $17.6B (+1.33% 7d). The system faces moderate stress with $7.63B open interest and 5 elevated risk pools in Morpho-Blue, while regulatory regimes are tightening globally with MiCA in force and GENIUS Act rulemaking finalizing.\n\n## FILS DOMINANTS\n1. **Infrastructure Narrative Surge vs. Value Contraction**: Infra sector narrative emergence +95.8% (47 articles vs. 24 prior week) driven by AI hardware and mining developments, yet global stablecoin flow is -1.0% (z=-2.22) to $293.7B, indicating narrative is not backed by fresh capital entry. (source: get_narrative, get_metric)\n\n2. **Lending Sector Yield Renaissance**: Morpho Blue fee-yield (2.74% 7d) has overtaken Lido (2.48% 7d) as the highest yielder, with TVL at $7.6B (+1.99% 7d, z=1.14), while Aave V3 protocol fee-yield (2.56% 7d) also surpassed Lido despite TVL at $13.7B (+0.52% 7d). (source: get_metric, get_recent_briefs)\n\n3. **Lido Validator Restructuring**: Lido is actively reducing its validator count by approximately one-third, redistributing $16.5B in staked ether as part of a planned upgrade, with TVL at $17.6B (+1.33% 7d, z=0.8) and three confirmed theses tracking this decentralization effort. (source: get_thesis, get_metric)\n\n4. **RWA Sector Strengthening**: BlackRock BUIDL TVL increased 0.52% (1d) and Circle USYC stablecoin flows show 0.01% (1d) increase, indicating structural preference for regulated, yield-bearing assets despite RWA sector having no active research thesis. (source: get_analyst_note, get_thesis)\n\n## MOUVEMENTS DE THESES\n- **Lido Validator Restructuring (th_20260730_1520_lido)**: STRENGTHENED - Confidence increased from 0.95 to 0.97 as the protocol continues executing its planned validator reduction, with TVL growing +1.33% (7d) to $17.6B, confirming market acceptance of the decentralization upgrade. (source: get_thesis, get_metric)\n- **Ondo Risk Mitigation (rwa_defi)**: STRENGTHENING - Confidence at 75% as Ondo Finance expands infrastructure and demonstrates commitment to risk management, though RWA sector lacks active thesis coverage despite narrative strengthening. (source: get_dossier)\n- **NEAR Regulatory Tension (regulatory)**: TRIGGERED - Kill condition triggered as regulatory ban impacting Near data centers directly falsifies the thesis that Near will operate without significant regulatory headwinds. (source: get_board)\n\n## CONVERGENCES\nThe convergence of infrastructure narrative surge (+95.8%) with negative stablecoin flows (-1.0%) suggests attention is shifting toward AI-crypto integration without corresponding capital allocation, while established DeFi primitives (Morpho Blue, Aave V3, Lido) continue generating competitive yields (2.48%-2.74% 7d) despite overall capital contraction. Regulatory tightening across multiple jurisdictions (MiCA in EU, GENIUS in US) is creating regional flow patterns, with capital rotating from Ethereum to alternative chains (Optimism, Solana) while institutional appetite for regulated RWA products (BlackRock BUIDL, Circle USYC) shows modest growth.\n\n## SOUS SURVEILLANCE\n- **Morpho-Blue Risk Pools**: 5 elevated risk pools with 11.05% APY and high leverage creating conditions for localized cascading liquidations given negative Ethereum stablecoin flows. (source: get_analyst_note)\n- **"
-  },
-  {
-   "ts": "2026-08-01T06:08:04Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "Maker",
-    "Near",
-    "Gate"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 10,
-    "R8": 8,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nGate.io recorded a +22.26% 7d TVL surge to $5.26B, a move registering at z=4.27 (100th pctile) relative to its historical baseline, while Maker faces a governance treasury stress test following a $38M Coldcard drain.\n\n## FILS DOMINANTS\n*   **Gate — 2.6% market share (rank 5/6 in CEX vs Binance 67.0%):** TVL surged +22.26% 7d to $5.26B, registering at z=4.27 (100th pctile) relative to its historical baseline (source: get_metric). The extreme z-score deviation suggests the move is statistically anomalous; capital quality is provisional pending confirmation of organic user growth versus incentivized liquidity mining.\n*   **Maker — 7.7% fee capture, P/F 4.0 (rank 1/1 in CDP vs 4.0 median):** Protocol captures $12.9M annualized holder revenue (source: drill_valuation). The $38M Coldcard drain represents a material governance treasury event, testing the redundancy of operational security without immediate protocol fee disruption.\n*   **Near — No value-accrual data available:** Digest carries null fee-yield and TVL metrics; no fundamental valuation or market share data provided to assess relative positioning or capital quality (source: get_metric).\n\n## RECONCILIATION\n*   **th_20260730_1520_near (CONFIRM):** The thesis that established financial entities are increasing control over core infrastructure remains stable. The digest's capital question regarding the \"regulatory ban on data centers\" was not corroborated by the provided `reg` or `reg_articles` blocks (which were empty), nor by fundamental metrics, leaving the operational impact unverified by this data run.\n*   **th_20260730_1520_lido (CONFIRM):** Lido's governance/tech thesis remains stable per prior reconciliation, though not the primary focus of this digest.\n\n## LECTURE\nGate's 100th percentile z-score (z=4.27) on TVL is a statistical outlier that demands skepticism regarding capital stickiness; without fee data, we cannot determine if this is productive capital or mercenary liquidity chasing emissions. Maker's 7.7% capture rate provides a fundamental floor, but the Coldcard incident highlights the concentration risk in governance hardware wallets, which is a distinct vector from smart contract risk.\nKill condition: Gate TVL z-score reverts below 2.0 within 14d or Maker governance treasury outflows exceed $50M in 7d.\n\n## RISQUE\n*   **Gate:** Capital quality risk; the +22.26% 7d surge may be driven by incentivized liquidity mining rather than organic user growth, threatening retention once incentives cease.\n*   **Maker:** Operational security risk; the $38M Coldcard drain exposes single-point-of-failure vulnerabilities in governance custody, potentially impacting future treasury decisions or insurance fund adequacy.\n*   **Near:** Data visibility risk; the inability to assess fee-yield or TVL impact from the hypothesized regulatory ban prevents a fundamental evaluation of operational capacity.\n\n## SUIVI\n*   **inq_mission_fresh_money:** Gate's +22.26% 7d TVL surge ($5.26B total) provides a provisional data point for net new capital entry, but requires fee data to distinguish fresh fiat from internal rotation (source: get_metric). Next probe: Monitor Gate fee-yield to confirm if TVL expansion is revenue-generating."
   }
  ],
  "theses": [
@@ -1305,10 +1305,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-08-02T06:07:10.244579+00:00",
-     "note": "Near regulatory ban suggests jurisdictional constraints (source: capital_questions)"
-    },
-    {
      "ts": "2026-08-02T07:38:39.913445+00:00",
      "note": "Infra narrative volume +100% with top entities including Barclays/BNY (source: get_narrative)"
     },
@@ -1323,9 +1319,13 @@
     {
      "ts": "2026-08-02T18:06:58.745736+00:00",
      "note": "USDC supply flat post-charter; flow inferred as regional migration (EU venue shift), not global net inflow (source: drill_reg)"
+    },
+    {
+     "ts": "2026-08-03T00:07:52.594574+00:00",
+     "note": "Reg reading stale (as_of 2026-07-15); awaiting EURC/USDC volume share data to confirm MiCA migration."
     }
    ],
-   "evidence": "inq_mission_institutional · next: Monitor EURC/USDC share on EU-denominated volume"
+   "evidence": "inq_mission_institutional · next: Check for updated EU-denominated volume metrics post-2026-07-31."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
@@ -1391,12 +1391,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.9,
+    "tvl": 44.1,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 43.2,
+    "tvl": 43.4,
     "yard": "TVL"
    },
    {
@@ -1419,56 +1419,56 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.68
+    "fy": 8.66
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.45
+    "fy": 6.42
    },
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.88
+    "fy": 5.87
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.52
+    "fy": 5.5
+   },
+   {
+    "name": "Centrifuge Protocol",
+    "sector": "rwa",
+    "fy": 4.71
    },
    {
     "name": "Jupiter Lend",
     "sector": "lending",
-    "fy": 4.33
+    "fy": 4.31
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 4.3
+    "fy": 4.28
    },
    {
     "name": "WisdomTree",
     "sector": "rwa",
     "fy": 3.67
-   },
-   {
-    "name": "Invesco USTB",
-    "sector": "rwa",
-    "fy": 3.6
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -809.2
+    "d7": -810.2
    },
    {
     "chain": "Solana",
-    "d7": 29.5
+    "d7": 29.4
    },
    {
     "chain": "Arbitrum",
-    "d7": -21.4
+    "d7": -21.5
    },
    {
     "chain": "Polygon",
@@ -1480,23 +1480,23 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 293.6,
-   "stable_d7_pct": -1.0,
+   "stable_mcap_b": 293.7,
+   "stable_d7_pct": -0.95,
    "dex_vol_24h_b": 4.7,
-   "defi_tvl_b": 74.6
+   "defi_tvl_b": 74.2
   }
  },
  "robinhood": {
-  "tvl_m": 390.0,
-  "morpho_share_pct": 75,
+  "tvl_m": 388.4,
+  "morpho_share_pct": 74,
   "age_days": 14,
   "synth_ts": "2026-08-02T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-08-02\n\n## ÉTAT ON-CHAIN\nChain TVL sits at **$390.0M**, marking a robust **4.3%** daily increase and a consistent upward trajectory from ~$264M just 13 days ago. The capital composition remains highly concentrated: **Morpho Blue** commands **~74.5%** of total chain TVL ($290.5M), with a utilization rate of **90.7%** ($264.1M borrowed against $291.3M supplied). This indicates aggressive yield-seeking behavior rather than idle liquidity. **Steakhouse Financial** follows distantly at $307.6M (Risk Curators), while **Arcus Perps** ($18.7M) and **Lighter Robinhood Perps** ($10.8M) show moderate but non-trivial adoption. The trajectory suggests a \"sticky\" migration of capital into high-yield lending, though the quality of this capital is incentivized rather than organic institutional deployment.\n\n## CATALYSEURS\n*   **Q2 Earnings & Prediction Markets:** Robinhood's record $1.31B Q2 revenue, driven by $156M from prediction markets (exceeding crypto revenue), validates the structural shift toward on-chain derivatives. This directly supports the TVL growth in **Arcus Perps** and **Lighter**, as revenue realization confirms product-market fit for regulated on-chain speculation.\n*   **Tokenized Stock Volume:** Reports that tokenized stock volume on Robinhood Chain has surpassed Solana's (The Defiant) act as a primary liquidity driver. This unique value proposition (24/7 tokenized equities) underpins the chain's differentiation, attracting capital away from alternative L1s.\n*   **Institutional Validation:** Bernstein's maintenance of a $160 price target, specifically citing tokenization, reinforces the narrative that Robinhood Chain is the bridge for traditional finance (TradFi) entering crypto. This sentiment fuels the continued TVL inflow despite broader market down-cycle conditions.\n*   **Active Account Divergence:** While TVL climbs, active accounts are down 7% week-over-week. This decoupling suggests that current growth is driven by capital efficiency (whales/degens farming Morpho yields) rather than retail user expansion.\n\n## VALUE ACCRUAL\nValue accrual is strictly **protocol-native**, not chain-native, as Robinhood has issued no token.\n*"
  },
  "health": {
   "budget": {
-   "day": "2026-08-02",
-   "glm": 30,
+   "day": "2026-08-03",
+   "glm": 4,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
