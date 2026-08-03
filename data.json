@@ -1,35 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-08-03T08:48:02Z",
+ "generated_at": "2026-08-03T10:48:02Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "S",
+   "tier": "B",
    "mode": "react",
-   "ts": "2026-08-03T06:37:55Z",
+   "ts": "2026-08-03T09:37:14Z",
    "status": "ok",
    "discipline": 97.0,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 3
+  "runs_today": 4
  },
  "runs": [
-  {
-   "ts": "2026-07-28T09:38:31Z",
-   "tier": "B",
-   "mode": "react",
-   "status": "ok",
-   "silent": false,
-   "discipline": 97.0,
-   "r2_pass": true,
-   "comps": 15,
-   "phase": null
-  },
   {
    "ts": "2026-07-28T12:06:49Z",
    "tier": "A",
@@ -458,9 +447,45 @@
    "r2_pass": true,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-08-03T09:37:14Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-08-03T09:37:14Z",
+   "tier": "B",
+   "mode": "react",
+   "status": "ok",
+   "silent": false,
+   "discipline": 97.0,
+   "r2_pass": true,
+   "comps": 7,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [],
+   "gate": {
+    "R1": 9,
+    "R6": 10,
+    "R8": 8,
+    "hallucination": null
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF: ## WHAT CHANGED\n\n**SAMSUNG ENTERS STABLECOIN INFRASTRUCTURE WITH DUNAMU PARTNERSHIP** (source: read_articles)\nSamsung SDS has partnered with Dunamu, operator of South Korea's largest exchange Upbit, to explore stablecoin infrastructure and AI-based payment models. This partnership represents a significant institutional entry into crypto infrastructure, connecting two of the fastest-growing narrative sectors: stablecoins (+115% emergence) and infrastructure (+77% emergence) over the past week. The collaboration comes as South Korean exchanges have experienced 18 consecutive months of stablecoin outflows due to potential tighter regulatory oversight (source: read_articles).\n\n## RECONCILIATION\n\n**CONFIRM: Stablecoin Narrative Surge vs. Capital Outflows Paradox** (id: inq_mission_fresh_money)\nThe stablecoin narrative has surged +115% (emergence_rel_pct) while actual capital is exiting the ecosystem. Global stablecoin market cap declined -0.8% to $293.6B (2nd percentile historically) over 7d, with USDC supply contracting -1.8% (-$1.35B) and USDT supply declining -0.4% (-$728M) (source: get_metric). This divergence suggests narrative attention is driven by regulatory developments (Circle's NY trust charter, Samsung partnership) rather than fresh fiat entry.\n\n**CONFIRM: RWA Sector Rotation** (id: inq_mission_rotation)\nCapital continues rotating toward Real World Assets while core DeFi contracts. RWA leaders show stability (BlackRock BUIDL 0.0%, Circle USYC +0.04%) while lending (Aave V3 -3.07%, Morpho Blue -2.35%) and liquid staking (Lido -5.75%) experience outflows (source: get_analyst_note). Ethereum experienced -$772M net outflow over 7d, partially offset by Optimism inflows (+$6M) (source: get_analyst_note).\n\n**NO CHANGE: Maker Infrastructure Vulnerability Thesis** (id: th_20260803_0320_maker)\nThe $38M Coldcard exploit remains confirmed as a material operational failure, but this development was already covered in recent briefs. No new evidence requires revision.\n\n## LECTURE\n\n**INSTITUTIONAL INFRASTRUCTURE ADOPTION DESPITE REGULATORY HEADWINDS**\nThe Samsung/Dunamu partnership illustrates a critical pattern: major corporations are building crypto infrastructure even as retail capital exits and regulatory uncertainty persists. Samsung's entry into stablecoin infrastructure with AI-based payment models suggests institutional actors view crypto payments as a strategic long-term opportunity despite current market contraction. This development is particularly notable given South Korea's 18-month streak of stablecoin outflows from exchanges due to regulatory concerns (source: read_articles). The partnership may signal a shift from exchange-based retail adoption to enterprise-grade infrastructure development.\n\n**Kill condition:** Samsung SDS announces cancellation of the partnership or Dunamu suspends stablecoin infrastructure development due to regulatory pressure.\n\n## LIVE EVENTS\n\n- **Regulatory**: Circle received New York trust charter, expanding USDC regulatory compliance (source: read_articles)\n- **Regulatory**: New Russian crypto regulations for trading, custody, and settlement take effect Sept 1 (source: read_articles)\n- **Partnership**: Core Scientific and AMD partnered on 500 MW of U.S. AI data-center capacity, scalable to 2.5 GW (source: read_articles)\n- **Funding**: Aschenbrenner fund reportedly liquidated $1B AI infrastructure portfolio including IREN and Core Scientific (source: read_articles)\n\n## SUIVI\n\n**Fresh Money Inquiry** (inq_mission_fresh_money): Confirmed that net new fiat is NOT entering crypto - stablecoin supply declined -0.8% globally with both USDC (-1.8%) and USDT (-0.4%) contracting over 7d. Next probe: Monitor if Samsung/Dunamu partnership leads to measurable on-chain stablecoin issuance or if it"
+  },
   {
    "ts": "2026-08-03T06:37:55Z",
    "tier": "S",
@@ -763,35 +788,6 @@
     "n_unsupported_pct": 1
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMakerDAO's protocol revenue efficiency (5.93% fee-yield) has surged to a sector-leading level, outpacing Aave V3 (2.56%) and Binance staked ETH (2.69%), while Aave V3 maintains dominant market share (43.4% TVL) despite a -1.04% dip in 7d fees.\n\n## FILS DOMINANTS\n- Maker — 5.93% fee-yield, the highest of the set (vs Aave V3 2.56%, Binance staked ETH 2.69%): Protocol generates $12.9M annualized holder revenue (7.7% capture) with a P/F of 3.9x (rank 1/1 in CDP vs 3.9x median), trading at a premium to its own sector median but justified by superior yield extraction; capital quality is sticky (CDP model) though the $38M Coldcard key flaw raises questions about hardware wallet integration security (source: get_metric + protocol_fees(7d) + onchain_enriched).\n- Aave V3 — 2.56% fee-yield, rank 2/3 in lending (vs Maker 5.93%, Morpho Blue unranked/yield unknown): Commands 43.4% sector TVL share ($13.79B) with a P/F of 4.0x (rank 1/3 in lending vs 6.2x median), appearing cheap on a fee-multiple basis relative to peers, but the token captures 0% of protocol fees today (source: get_metric + protocol_fees(7d) + onchain_enriched).\n- Binance staked ETH — 2.69% fee-yield, rank 2/2 in liquid staking (vs Lido implied higher): Holds 24.7% sector TVL share ($6.96B) with fees up +1.52% 7d; regulatory exposure to MiCA in the EU creates a compliance constraint, potentially driving regional venue migration from USDT to USDC/EURC, though this is bounded regionally and not a global net flow (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n- CONFIRM: Institutional adoption of yield-bearing assets remains robust, evidenced by Maker's elevated fee-yield and Aave's high TVL z-score (z=0.78 30d), supporting the thesis that capital seeks fundamental yield over narrative.\n- REVISE: The assumption that Aave's token valuation reflects current utility is revised; the 4.0x P/F multiple (rank 1/3) prices in future fee capture, as current capture is 0%, making the \"cheap\" multiple a speculative bet on governance-enabled accrual.\n\n## LECTURE\nThe divergence between protocol revenue and token value capture is the critical fault line. Maker demonstrates that high fee-yield (5.93%) can coexist with direct token capture (7.7%), justifying its valuation. In contrast, Aave V3 offers a \"cheap\" 4.0x P/F multiple relative to sector peers (6.2x median) solely because the market is discounting the lack of current revenue flow to the token; the valuation is a call option on a future fee switch, not a reflection of present economics. For Binance staked ETH, the regulatory regime (MiCA) acts as a regional friction, potentially shifting venue liquidity but not eroding the global fundamental demand for the product.\nKill condition: Aave V3 fee-yield drops below 2.0% 7d or TVL share falls below 35%.\n\n## RISQUE\n- Maker: Systemic vulnerability in hardware wallet integrations could trigger a loss of confidence in the CDP vault security, leading to rapid de-risking and TVL outflows.\n- Aave V3: Governance failure to enact a fee switch or revenue split renders the token valuation disconnected from protocol economics, risking multiple compression if the market loses patience.\n- Binance staked ETH: Regional regulatory exclusion (EU) expands beyond current venue constraints, materially impacting the ability to service institutional clients in compliant jurisdictions.\n\n## SUIVI\n- INQUIRY: `inq_mission_institutional` | evidence: Aave V3 maintains high TVL ($13.79B, z=0.78 30d) despite 0% token capture, suggesting institutional capital prioritizes protocol utility over token accrual; Maker's high yield (5.93%) indicates active search for revenue-generating venues (source: get_metric + protocol_fees(7d) + onchain_enriched). | next_probe: Mon"
-  },
-  {
-   "ts": "2026-08-01T12:07:11Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": false,
-   "threads": [
-    "Maker",
-    "Near",
-    "Steakhouse Financial"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 0
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nSteakhouse Financial TVL surged +25.97% 7d to $3.02B (z=0.77 100th pctile, n=3), a statistically extreme move that demands scrutiny of capital quality, while MakerDAO maintains a 5.9% annualized fee-yield on $5.65B TVL despite governance scrutiny.\n\n## FILS DOMINANTS\n*   **Steakhouse Financial — 25.97% TVL growth 7d, the highest relative expansion of the set (vs Maker flat, Near null):** TVL jumped to $3.02B (z=0.77 100th pctile, n=3) (source: get_metric + protocol_fees(7d) + onchain_enriched). The move is statistically extreme relative to its own baseline, but the capital quality is provisional; the digest flags the surge as potentially \"transient incentivized liquidity\" rather than organic yield, requiring verification of retention post-incentive.\n*   **Maker — 5.93% annualized fee-yield, the highest yield of the set (vs Steakhouse null, Near null):** Protocol generates fees on a $5.65B productive base (source: get_metric + protocol_fees(7d) + onchain_enriched). Capital quality is sticky (legacy CDP model), though the thesis faces a specific governance risk regarding the $38M Coldcard key flaw drain, which must be assessed as a technical incident or systemic failure.\n*   **Near — Null fee-yield, the lowest accrual of the set:** No fee-yield or TVL data was available in the digest (source: get_metric + protocol_fees(7d) + onchain_enriched). The capital quality and utility are under threat from a \"regulatory ban on data centers,\" which the digest questions may materially impair Near's infra utility and revenue model.\n\n## RECONCILIATION\n*   **th_20260730_1520_near (Near Institutional Adoption):** CONFIRM. The thesis that established financial entities are increasing control over infrastructure is supported by the institutional endorsement of the Clarity Act (source: get_prior_assessment). However, the new regulatory headwinds regarding data centers (reg ban) introduce a constraint on the infra utility that was not present in the original thesis, slightly tempering the conviction on immediate revenue realization.\n*   **th_20260730_1520_lido (Lido Validator Reduction):** CONFIRM. Lido TVL +1.33% 7d to $17.6B (z=0.8) confirms market acceptance of the validator reduction upgrade (source: get_prior_assessment). This remains a stable operational thesis, though it is outside the primary focus of the current digest threads.\n\n## LECTURE\nThe dominant signal is the statistical outlier in Steakhouse Financial's TVL expansion. A z-score of 0.77 at the 100th percentile (n=3) indicates this move is highly anomalous for the protocol (source: get_metric + protocol_fees(7d) + onchain_enriched). Without a corresponding fee-yield figure, the brief must treat this as a capital quality event rather than a value-accrual event. The risk is that this is \"transient incentivized liquidity\" (source: capital_questions), meaning the value is rented, not owned. MakerDAO offers a fundamental contrast: lower volatility but superior, verifiable fee generation (5.93% yield) on a larger base, though it carries specific governance execution risk. Near presents a binary risk where regulatory constraints on data centers could sever the link between infra utility and token value.\nKill condition: Steakhouse Financial TVL drops below $2.8B or fee-yield remains <1% annualized for 14 days.\n\n## RISQUE\n*   **Steakhouse Financial:** Capital quality risk is acute; the +25.97% 7d TVL surge is likely driven by transient incentivized liquidity rather than organic yield, posing a risk of sharp outflows once incentives expire (source: capital_questions).\n*   **Maker:** Governance execution risk; the $38M Coldcard key flaw drain represents a potential systemic governance failure if not contained as a technical incident (source: capital_questions).\n*   **"
   }
  ],
  "theses": [
@@ -888,9 +884,9 @@
    "key": "MAKER::defi",
    "verdict": "confirm",
    "conviction": 0.95,
-   "trigger": "$38M Bitcoin drained by Coldcard exploit (source: get_prior_assessment)",
+   "trigger": "$38M Coldcard exploit confirmed as material operational failure (source: get_prior_assessment)",
    "kill": "Monitor for a significant increase in zero-day exploit disclosures targeting core DeFi infrastructure components over the next quarter, specifically those attributed to automated v",
-   "ts": "2026-08-03T06:37:55Z",
+   "ts": "2026-08-03T09:37:14Z",
    "history": [
     {
      "ts": "08-01",
@@ -1291,10 +1287,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-08-02T06:07:10.244192+00:00",
-     "note": "Aave TVL +0.91% 7d to $13.89B (source: get_metric)"
-    },
-    {
      "ts": "2026-08-02T07:38:39.913066+00:00",
      "note": "Global stablecoin flow -1.0% (7d) to $293.7B (source: get_metric)"
     },
@@ -1309,18 +1301,18 @@
     {
      "ts": "2026-08-03T06:37:55.181223+00:00",
      "note": "Stablecoin supply -0.8% ($293.6B, 2nd percentile) with ETH outflow -$762M (source: get_metric, get_analyst_note)"
+    },
+    {
+     "ts": "2026-08-03T09:37:14.769023+00:00",
+     "note": "Global stablecoin market cap -0.8% to $293.6B (2nd percentile) with USDC -1.8% and USDT -0.4% over 7d (source: get_metric)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Monitor if Solana stablecoin inflows accelerate or reverse as overall outflows persist"
+   "evidence": "inq_mission_fresh_money · next: Monitor if Samsung/Dunamu partnership leads to measurable on-chain stablecoin issuance"
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-08-02T12:06:56.754827+00:00",
-     "note": "No material expansion in USDC supply confirmed in the last 24h (source: get_metric)"
-    },
     {
      "ts": "2026-08-02T18:06:58.745736+00:00",
      "note": "USDC supply flat post-charter; flow inferred as regional migration (EU venue shift), not global net inflow (source: drill_reg)"
@@ -1336,18 +1328,18 @@
     {
      "ts": "2026-08-03T06:37:55.182627+00:00",
      "note": "BlackRock BUIDL TVL +1.42% to $3.49B (source: get_metric)"
+    },
+    {
+     "ts": "2026-08-03T09:37:14.769413+00:00",
+     "note": "Samsung SDS partnered with Dunamu to explore stablecoin infrastructure and AI-based payment models (source: read_articles)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Check for updated EU-denominated volume metrics"
+   "evidence": "inq_mission_institutional · next: Track for actual stablecoin issuance or transaction volume from this partnership"
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-08-02T06:07:10.243712+00:00",
-     "note": "Maker fee-yield 5.904% (7d) vs Aave 2.549% (7d) shows capital efficiency preference for lending models (source: get_metric + protocol_fees(7d) + onchain_enriched)"
-    },
     {
      "ts": "2026-08-02T07:38:39.913565+00:00",
      "note": "Ethereum stablecoin outflow -1.07% vs Steakhouse TVL +26.33% (source: get_analyst_note, get_metric)"
@@ -1363,9 +1355,13 @@
     {
      "ts": "2026-08-03T06:37:55.182853+00:00",
      "note": "Lido TVL -3.01%, Steakhouse Financial +26.04% (source: get_analyst_note, get_metric)"
+    },
+    {
+     "ts": "2026-08-03T09:37:14.769549+00:00",
+     "note": "RWA stable (BlackRock BUIDL 0.0%, Circle USYC +0.04%) while lending (Aave V3 -3.07%) and LST (Lido -5.75%) contracted (source: get_analyst_note)"
     }
    ],
-   "evidence": "inq_mission_rotation · next: Monitor Aave's fee trend to determine sector breadth"
+   "evidence": "inq_mission_rotation · next: Monitor if RWA inflows accelerate or reverse as overall stablecoin outflows persist"
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1404,12 +1400,12 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.5,
+    "tvl": 43.4,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 42.4,
+    "tvl": 42.2,
     "yard": "TVL"
    },
    {
@@ -1424,7 +1420,7 @@
    },
    {
     "name": "perp",
-    "tvl": 1.7,
+    "tvl": 1.6,
     "yard": "OI/VOL"
    }
   ],
@@ -1437,17 +1433,17 @@
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.03
+    "fy": 7.06
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.5
+    "fy": 6.49
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 6.31
+    "fy": 6.37
    },
    {
     "name": "Jito Liquid Staking",
@@ -1462,18 +1458,18 @@
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.51
+    "fy": 5.53
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 3.72
+    "fy": 3.73
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -772.2
+    "d7": -772.9
    },
    {
     "chain": "Solana",
@@ -1481,7 +1477,7 @@
    },
    {
     "chain": "Arbitrum",
-    "d7": -18.8
+    "d7": -18.9
    },
    {
     "chain": "Polygon",
@@ -1494,13 +1490,13 @@
   ],
   "agg": {
    "stable_mcap_b": 293.6,
-   "stable_d7_pct": -0.83,
+   "stable_d7_pct": -0.82,
    "dex_vol_24h_b": 5.1,
-   "defi_tvl_b": 73.8
+   "defi_tvl_b": 73.7
   }
  },
  "robinhood": {
-  "tvl_m": 392.4,
+  "tvl_m": 391.2,
   "morpho_share_pct": 75,
   "age_days": 13,
   "synth_ts": "2026-08-02T12:00:00Z",
@@ -1509,7 +1505,7 @@
  "health": {
   "budget": {
    "day": "2026-08-03",
-   "glm": 16,
+   "glm": 23,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
