@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-08-03T02:48:01Z",
+ "generated_at": "2026-08-03T04:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
@@ -846,7 +846,7 @@
    "verdict": "confirm",
    "conviction": 0.95,
    "trigger": "Aave V3's lending dominance has solidified with a 7.28% TVL expansion (7d) to $13.71B, capturing 43.7% sector share, while maintaining a 2.42% fee-yield",
-   "kill": "Monitor the Aave governance forum for the final vote results regarding the deprecation of oracles for long-tail assets and the proposed chain consolidation, specifically noting the",
+   "kill": "The outcome of the Aave governance vote regarding the proposed chain deprecations, specifically the voter turnout and the final decision on which chains will be removed, will indic",
    "ts": "2026-07-15T09:02:35Z",
    "history": [
     {
@@ -939,7 +939,7 @@
    "verdict": "confirm",
    "conviction": 0.92,
    "trigger": "Aave V3 TVL holds at $13.79B (z=1.04, 87th pctile) with 1.07% 1d growth, confirming the \"stable\" verdict from the prior assessment.",
-   "kill": "Monitor the Aave governance forum for the final vote results regarding the deprecation of oracles for long-tail assets and the proposed chain consolidation, specifically noting the",
+   "kill": "The outcome of the Aave governance vote regarding the proposed chain deprecations, specifically the voter turnout and the final decision on which chains will be removed, will indic",
    "ts": "2026-07-26T07:38:10Z",
    "history": [
     {
@@ -1107,7 +1107,7 @@
    "verdict": "revise",
    "conviction": 0.85,
    "trigger": "Frequent supply cap adjustments imply flawed risk assessments, confirmed by red-team challenge; TVL growth outpacing fee growth suggests supply-driven expansion.",
-   "kill": "Monitor the Aave governance forum for the final vote results regarding the deprecation of oracles for long-tail assets and the proposed chain consolidation, specifically noting the",
+   "kill": "The outcome of the Aave governance vote regarding the proposed chain deprecations, specifically the voter turnout and the final decision on which chains will be removed, will indic",
    "ts": "2026-07-26T06:06:08Z",
    "history": [
     {
@@ -1396,7 +1396,7 @@
    },
    {
     "name": "lst",
-    "tvl": 43.1,
+    "tvl": 42.9,
     "yard": "TVL"
    },
    {
@@ -1419,7 +1419,12 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.67
+    "fy": 8.69
+   },
+   {
+    "name": "Sanctum Validator LSTs",
+    "sector": "lst",
+    "fy": 6.98
    },
    {
     "name": "Hastra",
@@ -1427,9 +1432,14 @@
     "fy": 6.49
    },
    {
+    "name": "Binance Staked SOL",
+    "sector": "lst",
+    "fy": 6.29
+   },
+   {
     "name": "Jito Liquid Staking",
     "sector": "lst",
-    "fy": 6.11
+    "fy": 6.15
    },
    {
     "name": "Sky Lending",
@@ -1439,40 +1449,30 @@
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 4.73
+    "fy": 5.49
    },
    {
     "name": "Centrifuge Protocol",
     "sector": "rwa",
     "fy": 4.71
-   },
-   {
-    "name": "Kamino Lend",
-    "sector": "lending",
-    "fy": 3.7
-   },
-   {
-    "name": "WisdomTree",
-    "sector": "rwa",
-    "fy": 3.66
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -762.7
+    "d7": -770.8
    },
    {
     "chain": "Solana",
-    "d7": -20.1
+    "d7": -20.4
    },
    {
     "chain": "Arbitrum",
-    "d7": -18.7
+    "d7": -18.8
    },
    {
     "chain": "Polygon",
-    "d7": -14.0
+    "d7": -14.1
    },
    {
     "chain": "Optimism",
@@ -1480,16 +1480,16 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 293.6,
-   "stable_d7_pct": -0.97,
+   "stable_mcap_b": 293.7,
+   "stable_d7_pct": -0.9,
    "dex_vol_24h_b": 5.1,
    "defi_tvl_b": 74.4
   }
  },
  "robinhood": {
-  "tvl_m": 388.4,
+  "tvl_m": 389.4,
   "morpho_share_pct": 74,
-  "age_days": 14,
+  "age_days": 13,
   "synth_ts": "2026-08-02T12:00:00Z",
   "synth": "## ROBINHOOD CHAIN — DAILY 2026-08-02\n\n## ÉTAT ON-CHAIN\nChain TVL sits at **$390.0M**, marking a robust **4.3%** daily increase and a consistent upward trajectory from ~$264M just 13 days ago. The capital composition remains highly concentrated: **Morpho Blue** commands **~74.5%** of total chain TVL ($290.5M), with a utilization rate of **90.7%** ($264.1M borrowed against $291.3M supplied). This indicates aggressive yield-seeking behavior rather than idle liquidity. **Steakhouse Financial** follows distantly at $307.6M (Risk Curators), while **Arcus Perps** ($18.7M) and **Lighter Robinhood Perps** ($10.8M) show moderate but non-trivial adoption. The trajectory suggests a \"sticky\" migration of capital into high-yield lending, though the quality of this capital is incentivized rather than organic institutional deployment.\n\n## CATALYSEURS\n*   **Q2 Earnings & Prediction Markets:** Robinhood's record $1.31B Q2 revenue, driven by $156M from prediction markets (exceeding crypto revenue), validates the structural shift toward on-chain derivatives. This directly supports the TVL growth in **Arcus Perps** and **Lighter**, as revenue realization confirms product-market fit for regulated on-chain speculation.\n*   **Tokenized Stock Volume:** Reports that tokenized stock volume on Robinhood Chain has surpassed Solana's (The Defiant) act as a primary liquidity driver. This unique value proposition (24/7 tokenized equities) underpins the chain's differentiation, attracting capital away from alternative L1s.\n*   **Institutional Validation:** Bernstein's maintenance of a $160 price target, specifically citing tokenization, reinforces the narrative that Robinhood Chain is the bridge for traditional finance (TradFi) entering crypto. This sentiment fuels the continued TVL inflow despite broader market down-cycle conditions.\n*   **Active Account Divergence:** While TVL climbs, active accounts are down 7% week-over-week. This decoupling suggests that current growth is driven by capital efficiency (whales/degens farming Morpho yields) rather than retail user expansion.\n\n## VALUE ACCRUAL\nValue accrual is strictly **protocol-native**, not chain-native, as Robinhood has issued no token.\n*"
  },
