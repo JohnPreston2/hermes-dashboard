@@ -1,46 +1,24 @@
 {
  "schema_version": 1,
  "source": "LIVE",
- "generated_at": "2026-08-03T10:48:02Z",
+ "generated_at": "2026-08-03T12:48:01Z",
  "status": {
   "model": "zai-org-glm-4.7",
   "fallback_model": "deepseek-v4-pro",
   "cadence": "A /3h (3-phase) · S 06:35 · B 09:35 · W dim 07:35",
   "cutover_ts": "2026-07-09T08:20:00Z",
   "last_run": {
-   "tier": "B",
-   "mode": "react",
-   "ts": "2026-08-03T09:37:14Z",
+   "tier": "A",
+   "mode": "3phase",
+   "ts": "2026-08-03T12:06:45Z",
    "status": "ok",
-   "discipline": 97.0,
+   "discipline": 95.6,
    "r2_pass": true,
    "silent": false
   },
-  "runs_today": 4
+  "runs_today": 6
  },
  "runs": [
-  {
-   "ts": "2026-07-28T12:06:49Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 2,
-   "phase": null
-  },
-  {
-   "ts": "2026-07-28T18:07:09Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 95.6,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null
-  },
   {
    "ts": "2026-07-28T19:40:10Z",
    "tier": "A",
@@ -458,9 +436,89 @@
    "r2_pass": true,
    "comps": 7,
    "phase": null
+  },
+  {
+   "ts": "2026-08-03T11:26:43Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null
+  },
+  {
+   "ts": "2026-08-03T12:06:45Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 95.6,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null
   }
  ],
  "briefs": [
+  {
+   "ts": "2026-08-03T12:06:45Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 95.6,
+   "r2_pass": true,
+   "comps": 3,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": true,
+   "threads": [
+    "Maker",
+    "Sanctum Validator LSTs",
+    "SparkLend"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 0
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMakerDAO's operational expense report confirms a $38M treasury drain over the measured period, yet protocol-level revenue remains robust at a 5.9% annualized fee-yield (source: protocol_fees 7d), suggesting the outflow is a governance expense anomaly rather than a fundamental breach in the lending engine's unit economics.\n\n## FILS DOMINANTS\n*   **Maker — 5.9% fee-yield, the highest of the set (vs SparkLend 1.5%, Sanctum 7.1%):** Protocol retains 51.3% of generated fees but token capture is low at 7.8% (source: protocol_fees 7d). The $38M treasury outflow raises questions about capital efficiency, though the underlying lending business generates $6.39M in weekly fees (source: protocol_fees 7d). Capital quality is sticky, with $5.64B TVL (source: get_metric).\n*   **Sanctum Validator LSTs — 7.1% fee-yield, the highest nominal yield (vs Maker 5.9%, SparkLend 1.5%):** Protocol margin is extremely thin at 3.5% and token capture is 0.0% (source: protocol_fees 7d), meaning the high yield accrues to validators, not token holders. TVL declined -5.52% 7d (source: get_metric), and the protocol sits at the 2nd percentile for TVL vs baseline (z=-1.65 30d, source: get_metric), signaling weak capital retention.\n*   **SparkLend — 1.5% fee-yield, the lowest of the set (vs Sanctum 7.1%, Maker 5.9%):** Protocol margin is 8.5% with token capture at 13.7% (source: protocol_fees 7d). Fees are trending up relative to baseline (z=0.62 30d, source: get_metric), but TVL is down -7.71% 7d (source: get_metric). Holds 11.3% market share in lending (source: sector-aware peers).\n\n## RECONCILIATION\n*   **id: th_ …TRUNCATED (Yield Farming/Regulatory stance):** RETIRE. The prior thesis regarding regulatory pressure on yield farming has been superseded by hardware security events and internal governance expense anomalies (source: priors). The current risk is operational (treasury drain), not regulatory exclusion.\n\n## LECTURE\nThe divergence between Maker's high fee-yield (5.9%) and its treasury drain highlights a \"governance tax\" on protocol revenue. While the unit economics of the lending book are sound, the value leakage to operational expenses ($38M) materially impacts net equity. Sanctum presents a classic \"yield trap\": 7.1% fee-yield with 0% token capture means the asset is effectively a donation to validators, not a revenue-bearing instrument. SparkLend's low yield (1.5%) is offset by superior token capture (13.7%), making it the only protocol of the three where the token holder actually participates in the revenue stream.\nKill condition: MakerDAO treasury outflows exceed weekly protocol revenue for 3 consecutive weeks.\n\n## RISQUE\n*   **Maker:** Structural governance inefficiency; operational expenses may permanently outpace protocol revenue if the $38M drain recurs, eroding the treasury buffer despite strong lending yields.\n*   **Sanctum:** Zero token capture creates a misalignment of incentives; the high yield is unsustainable for token holders if it relies solely on validator generosity rather than protocol-mandated revenue sharing.\n*   **SparkLend:** Capital flight risk; the -7.71% 7d TVL drop (source: get_metric) suggests liquidity is rotating to higher-yield or lower-risk venues, compressing the fee base.\n\n## SUIVI\n*   **inq_mission_rotation:** RWA inflows have not accelerated to offset the stablecoin outflows noted in the prior brief; SparkLend's TVL decline (-7.71% 7d) corroborates the rotation out of lending (source: get_metric). Next probe: Monitor if RWA inflows accelerate or reverse as overall stablecoin outflows persist."
+  },
+  {
+   "ts": "2026-08-03T11:26:43Z",
+   "tier": "A",
+   "mode": "3phase",
+   "status": "ok",
+   "silent": false,
+   "discipline": 84.0,
+   "r2_pass": true,
+   "comps": 2,
+   "phase": null,
+   "plan_fallback": false,
+   "novelty_enforced": false,
+   "threads": [
+    "Maker",
+    "Near",
+    "Aave"
+   ],
+   "gate": {
+    "R1": 9,
+    "R6": 8,
+    "R8": 7,
+    "hallucination": "no"
+   },
+   "fact_check": {
+    "n_ungrounded_dollar": 0,
+    "n_unsupported_pct": 1
+   },
+   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMakerDAO's operational expense report confirms a $38M treasury drain over the measured period, yet protocol-level revenue remains robust with a 5.9% fee-yield, suggesting the expense is a governance cost rather than a structural collapse in unit economics.\n\n## FILS DOMINANTS\n*   **Maker — 5.9% fee-yield, the highest of the set (vs Aave 2.6%):** Protocol generated $6.39M in fees 7d with a 51.3% margin, but token capture is low at 7.8% (protocol_economics 7d). Capital quality is sticky ($5.64B TVL), not incentivized, supporting the thesis that the treasury drain is recoverable.\n*   **Aave — 2.6% fee-yield, the second highest of the set:** Generated $6.80M in fees 7d but with a thin 13.3% margin and 0% token capture (protocol_economics 7d). TVL is high at $13.79B (43.6% market share vs peers), but value accrual to token holders is non-existent today.\n*   **Near — Fee-yield NOT computable:** Data shows null TVL and null fees (get_metric), preventing a fundamental valuation. The \"regulatory ban\" narrative cannot be assessed on unit-economics grounds without a productive base measurement.\n\n## RECONCILIATION\n*   **id: yield_farming (Maker)** | CONFIRM. The prior thesis regarding Poland's restrictive stance is retired as irrelevant to Maker's unit economics. The current data confirms Maker's fee-yield (5.9%) is sector-leading despite the operational expense, validating the protocol's underlying profitability independent of regional regulatory noise.\n\n## LECTURE\nThe divergence between Maker and Aave highlights the criticality of the `protocol_economics` stack. Maker offers a rich fee-yield (5.9%) with a strong protocol margin (51.3%), meaning the business is healthy even if the token capture (7.8%) is modest. Aave, while commanding higher market share (43.6%) and volume ($6.80M fees 7d), operates on a razor-thin margin (13.3%) with zero token capture, rendering its current P/F multiple of 4.0 (rank 1/3 vs 6.3 median) a reflection of future fee-switch expectations rather than present cash flow. The Maker treasury drain is a governance solvency question, not a product failure.\nKill condition: Maker's 7d margin drops below 30% or TVL falls below $4.5B.\n\n## RISQUE\n*   **Maker:** Governance execution risk—the $38M drain indicates high operational overhead; if sustained, it erodes the treasury buffer against collateral events.\n*   **Aave:** Regulatory/Smart Contract risk—any change in risk parameters (governance proposal) could impact the thin 13.3% margin; zero token capture leaves holders exposed to dilution without revenue offset.\n\n## SUIVI\n*   **inq_mission_fresh_money:** Monitoring for measurable on-chain stablecoin issuance from the Samsung/Dunamu partnership; no volume detected yet (source: read_articles).\n*   **inq_mission_institutional:** Tracking for actual transaction volume from the Samsung/Dunamu partnership; current data is limited to announcement (source: read_articles)."
+  },
   {
    "ts": "2026-08-03T09:37:14Z",
    "tier": "B",
@@ -730,64 +788,6 @@
     "n_unsupported_pct": 0
    },
    "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMakerDAO's protocol revenue efficiency has surged to a sector-leading 5.904% fee-yield (7d-smoothed), significantly outpacing Aave's 2.549% and justifying a premium valuation despite recent governance vulnerabilities, while Aave moves to deprecate 6 chains to consolidate liquidity.\n\n## FILS DOMINANTS\n*   **Maker — 5.904% fee-yield, the highest of the set (vs Aave 2.549%):** Protocol revenue efficiency remains robust post-exploit, with the token trading at 4.0x P/F (rank 1/1 in CDP vs 4.0x median), capturing 7.3% of protocol revenue. Capital quality is sticky ($5.66B TVL), though the $38M Coldcard exploit introduces structural governance risk.\n*   **Aave — 2.549% fee-yield, second of the set (vs Maker 5.904%):** The proposed deprecation of 6 chains and $98M in supplied assets is a defensive consolidation to improve capital efficiency on core markets. The protocol holds 43.6% sector TVL share ($13.89B), but the token captures 0% of fees and trades at 4.0x P/F (rank 1/3 in lending vs 6.3x median), implying the market prices future fee-generation rather than current accrual.\n\n## RECONCILIATION\n*   **th_20260730_1520_near (Near):** CONFIRM. Institutional endorsement of the Clarity Act aligns with the thesis of increasing financial entity control, though regulatory data center bans constrain infra utility (confidence 0.88).\n*   **th_20260802_0321_near (Near):** REVISE+strengthening. Reactive intervention in response to systemic vulnerabilities is intensifying, as evidenced by recent regulatory escalations (confidence 0.90).\n*   **Red Team Challenge (Near):** The challenge that direct government intervention eclipses private centralization is acknowledged; however, the primary value accrual driver for the tracked entities (Maker/Aave) remains protocol-level fee yield and capital efficiency, which are currently holding despite the regulatory noise affecting the broader Near ecosystem.\n\n## LECTURE\nThe divergence between Maker and Aave on fee-yield (5.904% vs 2.549%) highlights a capital efficiency gap where Maker's CDP model is currently extracting more value per unit of TVL than Aave's lending model. Aave's chain deprecation is a necessary rationalization of its liquidity, but until the token captures fees (currently 0%), its valuation multiple remains speculative on future governance changes. Maker's yield is premium, but the governance exploit is a structural red flag that demands monitoring of retention rates.\nKill condition: Maker fee-yield drops below 4.0% or Aave token capture remains 0% for 30 days post-deprecation.\n\n## RISQUE\n*   **Maker:** Structural governance risks stemming from the $38M Coldcard exploit could lead to a loss of confidence in the protocol's security layer, potentially triggering sticky capital flight.\n*   **Aave:** The deprecation of 6 chains risks alienating users and reducing total addressable market if the consolidated liquidity does not result in proportionally higher fee-yield.\n*   **Near:** Regulatory bans constitute a jurisdictional exit risk, potentially rerouting capital to compliant venues and reducing the utility of the underlying infrastructure for DeFi applications.\n\n## SUIVI\n*   **inq_mission_rotation:** Capital is rotating into lending (Maker/Aave) as evidenced by Maker's high fee-yield (5.904%) and Aave's defensive consolidation, suggesting a search for yield over infra expansion. Next probe: Analyze TVL movements in the infra sector to determine if capital is rotating into this sector despite the overhead.\n*   **inq_mission_fresh_money:** Monitor fee-yield generation on the new TVL to determine if capital is productive or inert.\n*   **inq_mission_institutional:** Check USDC flows on EU-licensed venues to validate the institutional migration thesis."
-  },
-  {
-   "ts": "2026-08-02T00:06:50Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Maker",
-    "Lido",
-    "Morpho Blue"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMakerDAO's protocol revenue efficiency (5.95% fee-yield) has surged to a sector-leading level, outpacing Morpho Blue (2.78%) and Lido (2.51%), while Lido's fee generation (+2.97% 7d) diverges positively from its TVL trend (-1.21% 7d) against a high baseline (z=1.18 91st pctile).\n\n## FILS DOMINANTS\n*   **Maker — 5.95% fee-yield, the highest of the set (vs Morpho Blue 2.78%, Lido 2.51%):** Protocol generates robust revenue efficiency on a $5.64B base (source: get_metric + protocol_fees(7d) + onchain_enriched), but the token captures only 7.7% of this value (holders_rev_ann $12.9M) (source: drill_valuation). Capital quality is sticky (CDP model), though the $38M exploit drain raises a solvency question vs treasury resilience.\n*   **Lido — 2.51% fee-yield, rank 2/3 (vs Maker 5.95%, Morpho Blue 2.78%):** Fees grew +2.97% 7d to $1.2M 24h (source: get_metric + protocol_fees(7d) + onchain_enriched) despite TVL slipping -1.21% 7d to $17.30B, indicating improved yield per unit of staked ETH. The token captures 0% of protocol fees today (source: drill_valuation), rendering its 0.6x P/F (rank 1/3 in LST vs 3.1x median) a pricing of future accrual, not current cash flow. Capital quality is high (sticky staked ETH), with dominant 62.6% market share (source: sector-aware peers).\n*   **Morpho Blue — 2.78% fee-yield, rank 2/3 in lending (vs Maker 5.95%):** Fees declined -10.01% 7d to $486K 24h (source: get_metric + protocol_fees(7d) + onchain_enriched) on a $7.48B TVL base, signaling a contraction in yield extraction. The token captures none of the protocol's fees (source: drill_valuation), and its 6.2x P/F (rank 2/3 in lending vs 6.2x median) is framed on FDV (fdv_mcap 1.525) due to dilution. Capital quality is provisional; while TVL is high, the fee compression suggests competitive pressure or lower utilization.\n\n## RECONCILIATION\n*   **id: yield_farming | verdict: CONFIRM | conviction: 0.8 | trigger: Maker fee-yield > 5.5%**\n    The prior thesis on Maker's restrictive stance and yield efficiency is confirmed by the 5.95% fee-yield (source: get_metric + protocol_fees(7d) + onchain_enriched), which ranks highest in the set. The red_team_challenge regarding the $38M exploit drain is addressed by the protocol's continued revenue generation; however, the solvency impact remains a contingent risk to the treasury, not an immediate operational failure evidenced by the fee data.\n\n## LECTURE\nThe divergence between Lido's fee growth (+2.97% 7d) and TVL contraction (-1.21% 7d) suggests a \"quality over quantity\" shift in staking flows or a reduction in the protocol's fee-sharing overhead, improving the unit economics of the base. However, the token's inability to capture these fees (0% capture) disconnects protocol health from token value, making the low 0.6x P/F multiple speculative on future governance changes (e.g., fee switch). For Maker, the high fee-yield (5.95%) is a strong fundamental signal, but the low token capture (7.7%) and the recent exploit drain imply that the equity (MKR) is undervalued relative to the business's cash flow only if governance directs more revenue to holders, which is not currently the case. Morpho Blue's fee compression (-10.01% 7d) is a warning sign for a protocol often praised for capital efficiency; if high TVL does not translate to sustained fees, the valuation multiple (6.2x P/F on FDV) is difficult to justify.\nKill condition: Lido fee-yield drops below 2.0% for 7d consecutive days.\n\n## RISQUE\n*   **Maker:** The $38M exploit drain represents a direct treasury hit; if the recovery rate is low, the solvency buffer erodes, potentially forcing DAI de-peg risks or emergency minting, which would dilute the base and hurt the fee-yield denominator.\n*   **Lido:** Regulatory risk to staking (specif"
-  },
-  {
-   "ts": "2026-08-01T18:07:37Z",
-   "tier": "A",
-   "mode": "3phase",
-   "status": "ok",
-   "silent": false,
-   "discipline": 94.0,
-   "r2_pass": true,
-   "comps": 3,
-   "phase": null,
-   "plan_fallback": false,
-   "novelty_enforced": true,
-   "threads": [
-    "Maker",
-    "Binance staked ETH",
-    "Aave V3"
-   ],
-   "gate": {
-    "R1": 9,
-    "R6": 8,
-    "R8": 7,
-    "hallucination": "no"
-   },
-   "fact_check": {
-    "n_ungrounded_dollar": 0,
-    "n_unsupported_pct": 1
-   },
-   "brief": "RESEARCH BRIEF\n\n## WHAT CHANGED\nMakerDAO's protocol revenue efficiency (5.93% fee-yield) has surged to a sector-leading level, outpacing Aave V3 (2.56%) and Binance staked ETH (2.69%), while Aave V3 maintains dominant market share (43.4% TVL) despite a -1.04% dip in 7d fees.\n\n## FILS DOMINANTS\n- Maker — 5.93% fee-yield, the highest of the set (vs Aave V3 2.56%, Binance staked ETH 2.69%): Protocol generates $12.9M annualized holder revenue (7.7% capture) with a P/F of 3.9x (rank 1/1 in CDP vs 3.9x median), trading at a premium to its own sector median but justified by superior yield extraction; capital quality is sticky (CDP model) though the $38M Coldcard key flaw raises questions about hardware wallet integration security (source: get_metric + protocol_fees(7d) + onchain_enriched).\n- Aave V3 — 2.56% fee-yield, rank 2/3 in lending (vs Maker 5.93%, Morpho Blue unranked/yield unknown): Commands 43.4% sector TVL share ($13.79B) with a P/F of 4.0x (rank 1/3 in lending vs 6.2x median), appearing cheap on a fee-multiple basis relative to peers, but the token captures 0% of protocol fees today (source: get_metric + protocol_fees(7d) + onchain_enriched).\n- Binance staked ETH — 2.69% fee-yield, rank 2/2 in liquid staking (vs Lido implied higher): Holds 24.7% sector TVL share ($6.96B) with fees up +1.52% 7d; regulatory exposure to MiCA in the EU creates a compliance constraint, potentially driving regional venue migration from USDT to USDC/EURC, though this is bounded regionally and not a global net flow (source: get_metric + protocol_fees(7d) + onchain_enriched).\n\n## RECONCILIATION\n- CONFIRM: Institutional adoption of yield-bearing assets remains robust, evidenced by Maker's elevated fee-yield and Aave's high TVL z-score (z=0.78 30d), supporting the thesis that capital seeks fundamental yield over narrative.\n- REVISE: The assumption that Aave's token valuation reflects current utility is revised; the 4.0x P/F multiple (rank 1/3) prices in future fee capture, as current capture is 0%, making the \"cheap\" multiple a speculative bet on governance-enabled accrual.\n\n## LECTURE\nThe divergence between protocol revenue and token value capture is the critical fault line. Maker demonstrates that high fee-yield (5.93%) can coexist with direct token capture (7.7%), justifying its valuation. In contrast, Aave V3 offers a \"cheap\" 4.0x P/F multiple relative to sector peers (6.2x median) solely because the market is discounting the lack of current revenue flow to the token; the valuation is a call option on a future fee switch, not a reflection of present economics. For Binance staked ETH, the regulatory regime (MiCA) acts as a regional friction, potentially shifting venue liquidity but not eroding the global fundamental demand for the product.\nKill condition: Aave V3 fee-yield drops below 2.0% 7d or TVL share falls below 35%.\n\n## RISQUE\n- Maker: Systemic vulnerability in hardware wallet integrations could trigger a loss of confidence in the CDP vault security, leading to rapid de-risking and TVL outflows.\n- Aave V3: Governance failure to enact a fee switch or revenue split renders the token valuation disconnected from protocol economics, risking multiple compression if the market loses patience.\n- Binance staked ETH: Regional regulatory exclusion (EU) expands beyond current venue constraints, materially impacting the ability to service institutional clients in compliant jurisdictions.\n\n## SUIVI\n- INQUIRY: `inq_mission_institutional` | evidence: Aave V3 maintains high TVL ($13.79B, z=0.78 30d) despite 0% token capture, suggesting institutional capital prioritizes protocol utility over token accrual; Maker's high yield (5.93%) indicates active search for revenue-generating venues (source: get_metric + protocol_fees(7d) + onchain_enriched). | next_probe: Mon"
   }
  ],
  "theses": [
@@ -1287,10 +1287,6 @@
    "status": "open",
    "lead": [
     {
-     "ts": "2026-08-02T07:38:39.913066+00:00",
-     "note": "Global stablecoin flow -1.0% (7d) to $293.7B (source: get_metric)"
-    },
-    {
      "ts": "2026-08-02T09:37:19.419050+00:00",
      "note": "Net stablecoin outflow -$2.9B (7d, z=-2.06) with rotation from Ethereum (-$806M) to Solana (+$29.6M)"
     },
@@ -1305,18 +1301,18 @@
     {
      "ts": "2026-08-03T09:37:14.769023+00:00",
      "note": "Global stablecoin market cap -0.8% to $293.6B (2nd percentile) with USDC -1.8% and USDT -0.4% over 7d (source: get_metric)"
+    },
+    {
+     "ts": "2026-08-03T11:26:43.292481+00:00",
+     "note": "No measurable issuance detected yet from Samsung/Dunamu partnership (source: read_articles)"
     }
    ],
-   "evidence": "inq_mission_fresh_money · next: Monitor if Samsung/Dunamu partnership leads to measurable on-chain stablecoin issuance"
+   "evidence": "inq_mission_fresh_money · next: Monitor on-chain wallets for USDC/KRW stablecoin minting."
   },
   {
    "q": "Institutional money: which regulated/institutional actors are entering DeFi (custody, tokenized funds, bank/enterprise integrations) and what is their verifiable on-chain footprint?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-08-02T18:06:58.745736+00:00",
-     "note": "USDC supply flat post-charter; flow inferred as regional migration (EU venue shift), not global net inflow (source: drill_reg)"
-    },
     {
      "ts": "2026-08-03T00:07:52.594574+00:00",
      "note": "Reg reading stale (as_of 2026-07-15); awaiting EURC/USDC volume share data to confirm MiCA migration."
@@ -1332,18 +1328,18 @@
     {
      "ts": "2026-08-03T09:37:14.769413+00:00",
      "note": "Samsung SDS partnered with Dunamu to explore stablecoin infrastructure and AI-based payment models (source: read_articles)"
+    },
+    {
+     "ts": "2026-08-03T11:26:43.292835+00:00",
+     "note": "Partnership announced but no transaction volume confirmed (source: read_articles)"
     }
    ],
-   "evidence": "inq_mission_institutional · next: Track for actual stablecoin issuance or transaction volume from this partnership"
+   "evidence": "inq_mission_institutional · next: Track for first transfer volume on public ledgers."
   },
   {
    "q": "Perp / lending / RWA: where is capital rotating across these verticals and across chains, and is each rotation backed by fundamentals or article-volume?",
    "status": "open",
    "lead": [
-    {
-     "ts": "2026-08-02T07:38:39.913565+00:00",
-     "note": "Ethereum stablecoin outflow -1.07% vs Steakhouse TVL +26.33% (source: get_analyst_note, get_metric)"
-    },
     {
      "ts": "2026-08-02T09:37:19.419547+00:00",
      "note": "Ethereum stablecoin TVL -1.07% (-$806M) vs Solana +0.89% (+$29.6M) over 7d"
@@ -1359,9 +1355,13 @@
     {
      "ts": "2026-08-03T09:37:14.769549+00:00",
      "note": "RWA stable (BlackRock BUIDL 0.0%, Circle USYC +0.04%) while lending (Aave V3 -3.07%) and LST (Lido -5.75%) contracted (source: get_analyst_note)"
+    },
+    {
+     "ts": "2026-08-03T12:06:45.940710+00:00",
+     "note": "SparkLend TVL -7.71% 7d (source: get_metric) confirms capital rotation out of lending; no offsetting RWA inflow detected."
     }
    ],
-   "evidence": "inq_mission_rotation · next: Monitor if RWA inflows accelerate or reverse as overall stablecoin outflows persist"
+   "evidence": "inq_mission_rotation · next: Monitor if RWA inflows accelerate or reverse as overall stablecoin outflows persist."
   },
   {
    "q": "Robinhood Chain adoption",
@@ -1400,17 +1400,17 @@
   "sectors": [
    {
     "name": "lending",
-    "tvl": 43.4,
+    "tvl": 43.6,
     "yard": "TVL"
    },
    {
     "name": "lst",
-    "tvl": 42.2,
+    "tvl": 42.5,
     "yard": "TVL"
    },
    {
     "name": "rwa",
-    "tvl": 23.1,
+    "tvl": 23.0,
     "yard": "TVL"
    },
    {
@@ -1420,7 +1420,7 @@
    },
    {
     "name": "perp",
-    "tvl": 1.6,
+    "tvl": 1.7,
     "yard": "OI/VOL"
    }
   ],
@@ -1428,22 +1428,22 @@
    {
     "name": "Euler V2",
     "sector": "lending",
-    "fy": 8.31
+    "fy": 8.3
    },
    {
     "name": "Sanctum Validator LSTs",
     "sector": "lst",
-    "fy": 7.06
+    "fy": 7.02
    },
    {
     "name": "Hastra",
     "sector": "rwa",
-    "fy": 6.49
+    "fy": 6.5
    },
    {
     "name": "Binance Staked SOL",
     "sector": "lst",
-    "fy": 6.37
+    "fy": 6.33
    },
    {
     "name": "Jito Liquid Staking",
@@ -1453,27 +1453,27 @@
    {
     "name": "Sky Lending",
     "sector": "lending",
-    "fy": 5.92
+    "fy": 5.91
    },
    {
     "name": "Fluid Lending",
     "sector": "lending",
-    "fy": 5.53
+    "fy": 5.52
    },
    {
     "name": "Kamino Lend",
     "sector": "lending",
-    "fy": 3.73
+    "fy": 4.35
    }
   ],
   "flows": [
    {
     "chain": "Ethereum",
-    "d7": -772.9
+    "d7": -775.8
    },
    {
     "chain": "Solana",
-    "d7": -20.5
+    "d7": -20.6
    },
    {
     "chain": "Arbitrum",
@@ -1481,7 +1481,7 @@
    },
    {
     "chain": "Polygon",
-    "d7": -14.1
+    "d7": -14.2
    },
    {
     "chain": "Optimism",
@@ -1489,23 +1489,23 @@
    }
   ],
   "agg": {
-   "stable_mcap_b": 293.6,
-   "stable_d7_pct": -0.82,
+   "stable_mcap_b": 293.5,
+   "stable_d7_pct": -0.94,
    "dex_vol_24h_b": 5.1,
-   "defi_tvl_b": 73.7
+   "defi_tvl_b": 73.9
   }
  },
  "robinhood": {
-  "tvl_m": 391.2,
+  "tvl_m": 391.0,
   "morpho_share_pct": 75,
-  "age_days": 13,
-  "synth_ts": "2026-08-02T12:00:00Z",
-  "synth": "## ROBINHOOD CHAIN — DAILY 2026-08-02\n\n## ÉTAT ON-CHAIN\nChain TVL sits at **$390.0M**, marking a robust **4.3%** daily increase and a consistent upward trajectory from ~$264M just 13 days ago. The capital composition remains highly concentrated: **Morpho Blue** commands **~74.5%** of total chain TVL ($290.5M), with a utilization rate of **90.7%** ($264.1M borrowed against $291.3M supplied). This indicates aggressive yield-seeking behavior rather than idle liquidity. **Steakhouse Financial** follows distantly at $307.6M (Risk Curators), while **Arcus Perps** ($18.7M) and **Lighter Robinhood Perps** ($10.8M) show moderate but non-trivial adoption. The trajectory suggests a \"sticky\" migration of capital into high-yield lending, though the quality of this capital is incentivized rather than organic institutional deployment.\n\n## CATALYSEURS\n*   **Q2 Earnings & Prediction Markets:** Robinhood's record $1.31B Q2 revenue, driven by $156M from prediction markets (exceeding crypto revenue), validates the structural shift toward on-chain derivatives. This directly supports the TVL growth in **Arcus Perps** and **Lighter**, as revenue realization confirms product-market fit for regulated on-chain speculation.\n*   **Tokenized Stock Volume:** Reports that tokenized stock volume on Robinhood Chain has surpassed Solana's (The Defiant) act as a primary liquidity driver. This unique value proposition (24/7 tokenized equities) underpins the chain's differentiation, attracting capital away from alternative L1s.\n*   **Institutional Validation:** Bernstein's maintenance of a $160 price target, specifically citing tokenization, reinforces the narrative that Robinhood Chain is the bridge for traditional finance (TradFi) entering crypto. This sentiment fuels the continued TVL inflow despite broader market down-cycle conditions.\n*   **Active Account Divergence:** While TVL climbs, active accounts are down 7% week-over-week. This decoupling suggests that current growth is driven by capital efficiency (whales/degens farming Morpho yields) rather than retail user expansion.\n\n## VALUE ACCRUAL\nValue accrual is strictly **protocol-native**, not chain-native, as Robinhood has issued no token.\n*"
+  "age_days": 14,
+  "synth_ts": "2026-08-03T12:00:00Z",
+  "synth": "## ROBINHOOD CHAIN — DAILY 2026-08-03\n\n## ÉTAT ON-CHAIN\nChain TVL stands at **$391.01M**, registering a modest daily increase of **+0.5%**. The trajectory remains upward, having grown from **$274M** to current levels over the last two weeks, though the rate of expansion has visibly cooled from the initial launch surge. Capital composition is heavily skewed towards **Morpho Blue**, which commands **~74.6%** of total TVL ($291.7M supplied, $265.5M borrowed). This dominance, alongside **Steakhouse Financial** ($307.7M), indicates that the majority of locked capital is not organic retail liquidity but rather sophisticated, yield-seeking or risk-curation deployment. Decentralized exchange (DEX) liquidity remains shallow, with Uniswap V3/V4 and Arcus Perps combining for under $80M, suggesting limited spot or swap utility relative to the massive lending stack.\n\n## CATALYSEURS\n*   **Tokenized Stock Volume Surge (CoinDesk):** The reported **288% surge** in July volume for tokenized stocks, specifically the QQQB token, validates the 24/7 equity thesis. This product differentiation is the primary driver for new deposits, distinguishing RH Chain from generic L2s.\n*   **Prediction Market Revenue (Decrypt):** Robinhood's Q2 report revealing that prediction markets exceeded crypto revenue highlights a structural shift in user behavior. This directly supports on-chain activity, as these markets are native to the chain's infrastructure.\n*   **Bernstein Upside Projection (The Block):** The 78% upside projection based on tokenization reinforces the institutional narrative that RH Chain is a viable RWA (Real World Asset) venue, encouraging sticky capital allocation.\n*   **Active Account Divergence (The Block):** The **7% week-over-week decline** in daily active accounts despite rising TVL is a critical signal. It implies that while capital is flowing in (likely for the QQQB trade and Morpho yields), user engagement is narrowing to specific use-cases rather than broad ecosystem exploration.\n\n## VALUE ACCRUAL\nRobinhood Chain operates **without a native token**, meaning protocol-level value does not accrue to a governance asset but is extracted entirely by third-party infrastructure a"
  },
  "health": {
   "budget": {
    "day": "2026-08-03",
-   "glm": 23,
+   "glm": 29,
    "glm_cap": 300,
    "dsp": 0,
    "dsp_cap": 150
