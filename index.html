@@ -480,30 +480,71 @@ mark{background:color-mix(in oklch,var(--warn) 34%,transparent);color:var(--ink)
 /* ── MOBILE ─────────────────────────────────────────────────────────── */
 @media(max-width:900px){
   body{flex-direction:column}
+  /* une SEULE barre collée : la nav. Le header défile (rend 50 px = 6% d'écran) */
   .rail{position:sticky;top:0;width:100%;height:auto;flex-direction:row;align-items:center;
-    border-right:0;border-bottom:1px solid var(--line);padding-right:8px;gap:6px}
-  .brand{padding:9px 12px;flex:none}
+    border-right:0;border-bottom:1px solid var(--line);gap:0;
+    padding:env(safe-area-inset-top) 4px 0 0;
+    background:color-mix(in oklch,var(--bg2) 94%,transparent);backdrop-filter:blur(10px)}
+  .brand{padding:0 8px 0 11px;flex:none}
   .brand .txt{display:none}
-  .nav{flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:6px 2px;gap:4px;
-    scrollbar-width:none;flex:1}
+  .brand .mk{width:26px;height:26px;font-size:14px}
+  .nav{flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:0 2px;gap:2px;
+    scrollbar-width:none;flex:1;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;scroll-padding-inline:12px}
   .nav::-webkit-scrollbar{display:none}
   .nav .grp{display:none}
-  .nav a{white-space:nowrap;padding:6px 11px;font-size:12.5px}
-  .nav a[aria-current="page"]::before{left:8px;right:8px;top:auto;bottom:-6px;width:auto;height:2.5px;
+  /* flex:none — sans ça les onglets sont écrasés à 22 px et la barre ne défile jamais */
+  .nav a{flex:none;white-space:nowrap;padding:0 12px;font-size:13px;min-height:44px;
+    border-radius:0;scroll-snap-align:center}
+  .nav a[aria-current="page"]{background:transparent;box-shadow:none;color:var(--ink)}
+  .nav a[aria-current="page"]::before{left:6px;right:6px;top:auto;bottom:0;width:auto;height:2.5px;
     border-radius:3px 3px 0 0}
-  .railfoot{border-top:0;border-left:1px solid var(--line);padding:0 0 0 9px;flex:none}
+  .nav a .n{margin-left:6px}
+  .railfoot{border-top:0;border-left:1px solid var(--line);padding:0 2px 0 6px;flex:none;
+    grid-auto-flow:column;align-items:center;gap:2px}
+  .railfoot .pulse{padding:0 4px}
   .railfoot .pulse span{display:none}
-  .top{padding:9px 13px}
+  .ubtn{min-height:44px;min-width:44px;padding:0 10px;background:none;border:0;box-shadow:none}
+  .ubtn span{display:none}
+  .top{position:static;padding:11px 13px 9px;background:none;backdrop-filter:none;
+    border-bottom:0;gap:10px}
   .top .sub{display:none}
-  .srch input{width:96px}
-  .wrap{padding:13px 13px 90px}
-  .wall{grid-template-columns:repeat(auto-fill,minmax(13px,1fr))}
+  .srch{flex:1;min-height:44px}
+  .srch input{width:100%;align-self:stretch;padding:0;font-size:16px}
+  /* respiration sous la barre d'accueil iOS */
+  .wrap{padding:11px 13px calc(84px + env(safe-area-inset-bottom))}
+  /* tuiles du mur tapables au doigt (13 px → 28 px) */
+  .wall{grid-template-columns:repeat(auto-fill,minmax(28px,1fr));gap:5px;padding:12px}
+  .wall b{border-radius:4px}
+  /* les commandes secondaires passent aussi à 44 px */
+  .fb{min-height:44px;padding:0 15px;display:inline-flex;align-items:center}
+  .more{min-height:44px;display:flex;align-items:center}
+  details.dossier>summary{min-height:44px}
+  .sec{margin:22px 2px 10px}
 }
 @media(max-width:520px){
   .kpis{grid-template-columns:repeat(2,1fr)}
   .kpi .v{font-size:23px}
-  .top h1{font-size:15px}
+  .top h1{font-size:16px}
 }
+/* verre : dégrader proprement quand l'OS le demande */
+@media (prefers-reduced-transparency: reduce){
+  .rail,.top{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg2)}
+  body::before{display:none}
+}
+/* ── BULLE D'INFO — équivalent tactile du survol ────────────────────── */
+#tip{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));
+  z-index:60;background:var(--s2);border:1px solid var(--line2);border-radius:var(--r2);
+  box-shadow:var(--e3);padding:11px 40px 11px 14px;font:12.5px/1.5 var(--sans);color:var(--ink);
+  max-width:640px;margin:0 auto;opacity:0;transform:translateY(10px);pointer-events:none;
+  transition:opacity .18s,transform .18s}
+#tip[data-on]{opacity:1;transform:none;pointer-events:auto}
+#tip b{display:block;font:600 9.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink4);margin-bottom:3px}
+#tip button{position:absolute;top:4px;right:4px;width:36px;height:36px;border:0;background:none;
+  color:var(--ink3);font-size:17px;cursor:pointer;border-radius:9px;line-height:1}
+#tip button:hover{background:var(--s3);color:var(--ink)}
+@media (prefers-reduced-motion: reduce){#tip{transition:none}}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .view{animation:none}
@@ -558,6 +599,10 @@ mark{background:color-mix(in oklch,var(--warn) 34%,transparent);color:var(--ink)
     <div class="foot" id="foot"></div>
   </div>
 </main>
+
+<!-- Équivalent tactile du survol : sur iPhone il n'y a pas de :hover, donc tout
+     élément porteur d'un title[] doit rester atteignable au tap. -->
+<div id="tip" role="status" aria-live="polite"></div>
 
 <script>
 "use strict";
@@ -1089,7 +1134,12 @@ function renderView(v){
   $("vtitle").textContent=t[0];$("vsub").textContent=t[1];
   document.querySelectorAll("#nav a").forEach(a=>{
     const on=a.dataset.v===v;a.classList.toggle("on",on);
-    if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+    if(on){a.setAttribute("aria-current","page");
+      // barre d'onglets scrollable : garder l'onglet actif dans le champ de vision
+      if(innerWidth<=900&&a.scrollIntoView)
+        a.scrollIntoView({inline:"center",block:"nearest",
+          behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});
+    }else a.removeAttribute("aria-current");});
   try{ $("views").innerHTML=`<section class="view on">${(V[v]||V.poste)(DATA)}</section>`; }
   catch(err){ $("views").innerHTML=`<div class="card"><div class="missing"><b>erreur de rendu</b>${esc(err.message)}</div></div>`;
     console.error(err); }
@@ -1217,6 +1267,37 @@ document.addEventListener("click",e=>{
   const open=t.classList.toggle("open");
   b.setAttribute("aria-expanded",String(open));
   b.textContent=open?"réduire ↑":"lire la suite ↓";});
+/* ── bulle d'info : rend au tap ce que le desktop donne au survol ──── */
+(function(){
+  const tip=$("tip");let hideT=null;
+  const LABEL={"wall b":"Veille","fchip":"Fraîcheur","srcpill":"Producteur","chip":"Détail",
+    "tier":"Tier","bar":"Libellé"};
+  function show(title,kind){
+    clearTimeout(hideT);
+    tip.innerHTML=`<b>${esc(kind||"Détail")}</b>${esc(title)}<button type="button" aria-label="Fermer">✕</button>`;
+    tip.dataset.on="1";
+    hideT=setTimeout(hide,7000);
+  }
+  function hide(){delete tip.dataset.on;}
+  tip.addEventListener("click",e=>{if(e.target.closest("button"))hide();});
+  document.addEventListener("click",e=>{
+    if(e.target.closest("#tip"))return;
+    const el=e.target.closest("[title]");
+    if(!el){hide();return;}
+    const t=el.getAttribute("title");
+    if(!t){hide();return;}
+    // on ne détourne pas un lien : le tap doit continuer à ouvrir l'article
+    if(el.closest("a[href]")&&!el.classList.contains("wall"))return;
+    let kind="Détail";
+    if(el.matches(".wall b"))kind="Veille";
+    else if(el.matches(".fchip"))kind="Fraîcheur du bloc";
+    else if(el.matches(".srcpill"))kind="Producteur";
+    else if(el.matches(".bar .n"))kind="Libellé complet";
+    show(t,kind);
+  },{passive:true});
+  addEventListener("keydown",e=>{if(e.key==="Escape")hide();});
+})();
+
 /* recherche */
 $("q").addEventListener("input",e=>applyFilter(e.target.value));
 addEventListener("keydown",e=>{
