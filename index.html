@@ -1022,8 +1022,17 @@ function journal(bk){
   const days=Object.keys(byDay).sort().reverse().slice(0,3);
   if(!days.length)return "";
   const today=new Date().toISOString().slice(0,10);
+  // Si le jour le plus récent n'est PAS aujourd'hui, l'absence de carte « Aujourd'hui »
+  // est un signal trop discret : on l'écrit. Un exécuteur arrêté ne doit pas ressembler
+  // à un exécuteur qui n'avait rien à trancher.
+  const retard=days[0]!==today
+    ? Math.round((Date.parse(today+"T00:00:00Z")-Date.parse(days[0]+"T00:00:00Z"))/86400000):0;
   return `<div class="sec"><h2>Le journal des verdicts</h2>
-      <p>ce que la mesure a tranché — la boucle de vérification, jour par jour</p></div>
+      <p>ce que la mesure a tranché — la boucle de vérification, jour par jour</p>
+      ${retard?`<span class="chip warn" style="margin-left:auto">aucun verdict depuis ${retard} j</span>`:""}</div>
+    ${retard>1?`<div class="card" style="margin-bottom:14px"><div class="missing"><b>l'exécuteur n'a rien tranché depuis ${retard} jours</b>
+      dernier verdict rendu le ${jour(days[0])}
+      <div class="note">Le registre compte pourtant des échéances passées : soit <code>watch_executor</code> ne tourne plus, soit il ne trouve plus de mesure. À vérifier avant de lire les taux ci-dessous.</div></div></div>`:""}
     <div class="grid g-2">${days.map((d,i)=>{
       const ws=byDay[d].slice().sort((a,b)=>b.decided.localeCompare(a.decided));
       const held=ws.filter(w=>w.verdict==="HELD").length,brk=ws.filter(w=>w.verdict==="BROKEN").length;
