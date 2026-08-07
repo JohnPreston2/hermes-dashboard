@@ -314,6 +314,11 @@ button#refresh[data-failed]{color:var(--warn);
 .w[data-v="OPEN"]{--tone:var(--open)}
 .w[data-v="UNEVALUABLE"]{--tone:var(--ink4)}
 .w[data-v="OPEN"][data-due="soon"]{--tone:var(--warn)}
+/* dormant : ce que l'agent n'a plus touché depuis 7 j. Lisible, mais visiblement
+   au second plan — jamais confondu avec une lecture d'aujourd'hui. */
+[data-dormant="1"]{opacity:.62}
+[data-dormant="1"]:hover,[data-dormant="1"]:focus-within{opacity:1}
+tr[data-dormant="1"] td{background:color-mix(in oklch,var(--warn) 4%,transparent)}
 .w .wh1{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px}
 .vpill{display:inline-flex;align-items:center;gap:5px;font:700 10px var(--mono);letter-spacing:.08em;
   padding:3px 9px;border-radius:20px;color:var(--on-semantic);background:var(--tone);
@@ -725,7 +730,7 @@ function watchCard(w){
       const pct=Math.max(0,Math.min(100,(1-due/(14*24))*100));
       dl=`<span class="dl">échéance ${esc(w.deadline||"")} · ${due<0?"dépassée":"J-"+Math.max(0,Math.floor(due/24))}
         <span class="t"><i style="width:${pct.toFixed(0)}%"></i></span></span>`;
-    }else dl=`<span class="dl">échue ${esc(w.deadline||"")}</span>`;
+    }else dl=`<span class="dl">échue ${esc(w.deadline||"")}${w.decided?` · tranchée ${ago(w.decided)}`:""}</span>`;
   }
   return `<article class="w" data-v="${esc(w.verdict||"OPEN")}"${soon?' data-due="soon"':""}
       data-s="${esc((w.entity||"")+" "+(w.metric||"")+" "+(w.why||""))}">
@@ -799,6 +804,13 @@ function freshness(bk){
   const m=minAgo(bk.as_of),lim=bk.stale_min||480;
   return{cls:m>lim*2?"dead":m>lim?"stale":"",txt:ago(bk.as_of)||"?"};
 }
+/* P10 — un cap d'affichage se DÉCLARE : « 12 sur 422 », jamais « 12 » tout court,
+   qui se lit comme « il n'y en a que 12 ». */
+function cap(bk,unit){
+  const c=bk&&bk.cap;if(!c||!has(c.shown))return "";
+  const tot=has(c.total)?c.total:null;
+  return `<span class="chip" title="le terminal transporte les ${c.limit} derniers${tot?" — "+tot+" existent dans le store":""}">${c.shown}${tot?" sur "+tot:""} ${esc(unit||"")}</span>`;
+}
 function head(title,bk,extra){
   const f=bk?freshness(bk):null;
   return `<header><h3>${title}</h3><div class="meta">${extra||""}
@@ -851,7 +863,11 @@ V.poste=(D)=>{
       L4?`L4 · ${L4.held} tenues / ${L4.held+L4.broken} échues`:"—",L4&&L4.rate>=50?"held":"broken"],
     ["Prédicats ouverts",S?(S.by_verdict.OPEN||0):NA,"en attente d'échéance","open"],
     ["Échéances &lt; 48 h",soon.length,soon.length?"à surveiller aujourd'hui":"rien d'imminent",soon.length?"warn":""],
-    ["Budget GLM",has(bud.glm)?`${bud.glm} <small>/ ${bud.glm_cap??"?"}</small>`:NA,"complétions · garde anti-emballement",""]
+    ["Budget LLM",(()=>{const c=bud.counts||{},k=Object.keys(c).sort((x,y)=>c[y]-c[x])[0];
+        if(!k)return NA;const cap=(bud.caps||{})[k];
+        return `${c[k]} <small>/ ${has(cap)?cap:"cap inconnu"}</small>`;})(),
+      (()=>{const c=bud.counts||{},k=Object.keys(c).sort((x,y)=>c[y]-c[x])[0];
+        return k?esc(k)+" · complétions du jour":"aucun appel compté";})(),""]
   ].map(k=>`<div class="kpi rv"${k[3]?` data-tone="${k[3]}"`:""}><div class="l">${k[0]}</div>
     <div class="v">${k[1]}</div><div class="d">${k[2]}</div><span class="bar"></span></div>`).join("")}</div>`;
 
@@ -929,49 +945,94 @@ V.veilles=(D)=>{
            ["Rejetés au canon",S.rejected,""]].map(k=>
           `<div class="kpi"${k[2]?` data-tone="${k[2]}"`:""}><div class="l">${k[0]}</div><div class="v">${k[1]}</div><span class="bar"></span></div>`).join("")}
       </div>
+      <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));margin-top:10px">
+        ${[["Émises aujourd'hui",S.issued_today,"le producteur tourne"],
+           ["Tranchées aujourd'hui",S.decided_today,"l'exécuteur tranche"],
+           ["Dernier verdict",S.last_decided?ago(S.last_decided):NA,"watch_executor"]].map(k=>
+          `<div class="kpi"><div class="l">${k[0]}</div><div class="v">${has(k[1])?k[1]:NA}</div>
+           <div class="d">${k[2]}</div><span class="bar"></span></div>`).join("")}
+      </div>
       <div class="note">« Rejeté au canon » = l'entité n'a pas passé le contrôle de typage (agrégat, secteur, entité hors allowlist) : le prédicat n'était pas mesurable, il n'est donc pas comptabilisé.
-      La fenêtre transportée couvre les ${S.window_days} derniers jours pour les verdicts rendus, plus la totalité des veilles ouvertes.</div></div>`;},"veilles")}
+      La fenêtre transportée couvre les ${S.window_days} derniers jours pour les verdicts rendus, plus la totalité des veilles ouvertes — ${S.shown??"?"} tuiles sur ${S.total} émises depuis l'origine.</div></div>`;},"veilles")}
   </div>
-  <div class="sec"><h2>Le registre</h2><p>trié : falsifiés d'abord, puis échéance la plus proche</p>
+  <div class="sec"><h2>Le registre</h2><p>les paris ouverts d'abord, échéance la plus proche · puis les verdicts rendus, du plus récent au plus ancien</p>
     <div class="filters" id="wfilters" style="margin-left:auto"></div></div>
   <div id="wlist"></div>`;
 };
 
 V.briefs=(D)=>`<div class="sec"><h2>Flux des briefs</h2><p>texte intégral · métadonnée de confiance dépliable sans quitter la lecture</p>
     <div class="filters" id="bfilters" style="margin-left:auto"></div></div>
-  <div class="card rv">${head("brain_v2_traces",D.blocks.briefs)}<div id="blist"></div></div>`;
+  <div class="card rv">${head("brain_v2_traces",D.blocks.briefs,cap(D.blocks.briefs,"briefs"))}<div id="blist"></div></div>`;
 
 V.theses=(D)=>`<div class="sec"><h2>Le livre de thèses</h2><p>append-only · la conviction est une trajectoire, pas une photo</p></div>
-  <div class="card rv">${head("thesis_verdicts.jsonl",D.blocks.theses)}
-    ${guard(D.blocks.theses,ts=>ts.length?`<div class="tw"><table>
+  ${guard(D.blocks.theses,T=>{
+    const ts=T.items||[],wb=T.writeback||{},dn=T.n_dormant||0,dd=T.dormant_days||7;
+    // Le bilan d'écriture : le brain émet des verdicts que le ledger accepte ou REJETTE.
+    // Sans ce bandeau, « le livre ne bouge plus » est indiscernable de « l'agent n'a plus
+    // rien à dire ». Les deux se soignent à des endroits opposés.
+    const tiers=Object.entries(wb.by_tier||{}).sort((a,b)=>b[1].emitted-a[1].emitted);
+    const bad=has(wb.rate)&&wb.rate<100;
+    return `<div class="card rv" style="margin-bottom:14px">${head("Écriture au registre — "+(wb.days||7)+" jours",D.blocks.theses,
+      `<span class="chip ${bad?"bad":"good"}">${has(wb.rate)?nf(wb.rate,0)+"% appliqués":"—"}</span>`)}
+      <div class="bd">
+        <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,132px),1fr))">
+          ${[["Verdicts émis",wb.emitted??"—","par l'agent, dans ses briefs",""],
+             ["Écrits au livre",wb.applied??"—","le registre a bougé","held"],
+             ["Rejetés",wb.unresolved??"—","identifiant inconnu du registre",(wb.unresolved||0)>0?"broken":""],
+             ["Doublons",wb.deduped??"—","même clé, même run",""]].map(k=>
+            `<div class="kpi"${k[3]?` data-tone="${k[3]}"`:""}><div class="l">${k[0]}</div>
+             <div class="v">${k[1]}</div><div class="d">${k[2]}</div><span class="bar"></span></div>`).join("")}
+        </div>
+        ${tiers.length?`<div class="tw" style="margin-top:12px"><table style="min-width:380px">
+          <thead><tr><th>Tier</th><th class="r">Émis</th><th class="r">Écrits</th><th class="r">Rejetés</th><th class="r">Taux</th></tr></thead>
+          <tbody>${tiers.map(([k,v])=>`<tr><td class="k"><span class="tier" data-t="${esc(k)}">${esc(k)}</span></td>
+            <td class="r">${v.emitted}</td><td class="r">${v.applied}</td>
+            <td class="r" style="color:${v.unresolved?"var(--broken)":"var(--ink4)"}">${v.unresolved}</td>
+            <td class="r">${has(v.rate)?nf(v.rate,0)+"%":NA}</td></tr>`).join("")}</tbody></table></div>`:""}
+        <div class="note">Un verdict « rejeté » n'écrit rien : l'agent a raisonné, le registre n'a pas bougé.
+        C'est mesuré dans les traces depuis toujours — ce tableau ne fait que le montrer.</div>
+      </div></div>
+
+    <div class="card rv">${head("thesis_verdicts.jsonl",D.blocks.theses,
+      dn?`<span class="chip warn">${dn} dormante${dn>1?"s":""}</span>`:"")}
+      ${ts.length?`<div class="tw"><table>
       <thead><tr><th>Thèse</th><th>Verdict</th><th class="r">Conviction</th><th>Trajectoire</th>
       <th>Dernier déclencheur</th><th>Condition d'invalidation</th><th class="r">MAJ</th></tr></thead>
-      <tbody>${ts.map(t=>`<tr data-s="${esc(t.key+" "+(t.trigger||""))}">
-        <td class="k">${esc(t.key)}</td>
+      <tbody>${ts.map(t=>`<tr data-s="${esc(t.key+" "+(t.trigger||""))}"${t.dormant?' data-dormant="1"':""}>
+        <td class="k">${esc(t.key)}${t.dormant?'<span class="chip warn" style="margin-left:7px">dormante</span>':""}</td>
         <td><span class="vtag ${esc(t.verdict||"")}">${esc(t.verdict||"?")}</span></td>
         <td class="r">${has(t.conviction)?nf(t.conviction,2):NA}</td>
-        <td>${spark((t.history||[]).map(h=>h.c),110,28,t.verdict==="retire"?"var(--ink4)":"var(--held)")}</td>
+        <td>${spark((t.history||[]).map(h=>h.c),110,28,t.verdict==="retire"?"var(--ink4)":t.dormant?"var(--ink3)":"var(--held)")}</td>
         <td style="color:var(--ink3);font-size:11.5px;max-width:300px">${esc(t.trigger||"")||NA}</td>
         <td style="color:var(--ink2);font-size:11.5px;max-width:280px">${t.kill?"⚑ "+esc(t.kill):NA}</td>
-        <td class="r" style="color:var(--ink4)">${ago(t.ts)||"?"}</td></tr>`).join("")}</tbody></table></div>
-      <div class="note" style="padding:11px 14px">Un CONFIRM sans conviction hérite de la précédente (carry-forward). Un RETIRE éteint la thèse — l'historique reste.
+        <td class="r" style="color:${t.dormant?"var(--warn)":"var(--ink4)"}">${ago(t.ts)||"?"}</td></tr>`).join("")}</tbody></table></div>
+      <div class="note" style="padding:11px 14px"><b>Dormante</b> = aucun verdict depuis ${dd} jours : la ligne est de l'histoire, pas une lecture d'aujourd'hui.
+      Un CONFIRM sans conviction hérite de la précédente (carry-forward). Un RETIRE éteint la thèse — l'historique reste.
       Les conditions d'invalidation proviennent du livre de recherche et sont appariées par entité : toutes les thèses n'en ont pas.</div>`
-      :'<div class="empty">aucune thèse</div>',"thèses")}</div>`;
+      :'<div class="empty">aucune thèse</div>'}</div>`;},"thèses")}`;
 
-V.enquetes=(D)=>`<div class="sec"><h2>Enquêtes-mission</h2><p>la mission permanente · chaque note est datée, la trajectoire se lit de haut en bas</p></div>
+V.enquetes=(D)=>{
+  const qs0=(D.blocks.inquiries&&D.blocks.inquiries.v)||[];
+  const nd=qs0.filter(q=>q.dormant).length;
+  return `<div class="sec"><h2>Enquêtes-mission</h2><p>la mission permanente · chaque note est datée, la trajectoire se lit de haut en bas</p>
+    ${nd?`<span class="chip warn" style="margin-left:auto">${nd} dormante${nd>1?"s":""} sur ${qs0.length}</span>`:""}</div>
   <div class="grid g-2" id="ilist">${guard(D.blocks.inquiries,qs=>qs.map(q=>`
-    <div class="card rv" data-s="${esc(q.q+" "+(q.evidence||[]).map(e=>e.note).join(" "))}">
+    <div class="card rv"${q.dormant?' data-dormant="1"':""} data-s="${esc(q.q+" "+(q.evidence||[]).map(e=>e.note).join(" "))}">
       ${head(esc(q.q),null,`<span class="chip ${q.status==="permanent"?"acc":"info"}">${esc(q.status)}</span>
-        ${has(q.touches)?`<span class="chip" title="nombre de fois où un run a touché cette enquête">${q.touches} touches</span>`:""}`)}
+        ${has(q.touches)?`<span class="chip" title="nombre de fois où un run a touché cette enquête">${q.touches} touches</span>`:""}
+        ${q.last_touched?`<span class="chip ${q.dormant?"warn":""}" title="dernier passage d'un run sur cette enquête — ${stamp(q.last_touched)}">${q.dormant?"dormante · ":""}${ago(q.last_touched)}</span>`:'<span class="chip warn">jamais touchée</span>'}`)}
       <div class="bd">
         ${(q.evidence||[]).length?`<div style="display:grid;gap:9px">${q.evidence.slice().reverse().map(e=>`
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline">
             <span style="font:10.5px var(--mono);color:var(--ink4);white-space:nowrap">${e.ts?stamp(e.ts):"—"}</span>
             <span style="font-size:12px;color:var(--ink2);text-wrap:pretty">${esc(e.note)}</span></div>`).join("")}</div>`
-          :'<div class="empty">aucune note d\'enquête</div>'}
+          :`<div class="empty">aucune note d'enquête${has(q.age_d)?" — ouverte il y a "+Math.round(q.age_d)+" jours, jamais travaillée depuis":""}</div>`}
         ${q.next_probe?`<div class="note" style="border-top:1px solid var(--line);padding-top:9px;margin-top:11px">
           <b style="color:var(--acc);font-family:var(--mono);font-size:10px;letter-spacing:.11em">PROCHAINE SONDE</b><br>${esc(q.next_probe)}</div>`:""}
-      </div></div>`).join(""),"enquêtes")}</div>`;
+      </div></div>`).join(""),"enquêtes")}</div>
+  <div class="card"><div class="note" style="padding:11px 14px">Toutes les enquêtes du registre sont affichées, sans coupe.
+  Une enquête <b>dormante</b> n'a reçu aucune note depuis 7 jours : elle est ouverte dans le fichier, pas dans le travail de l'agent.</div></div>`;
+};
 
 V.marche=(D)=>{
   const B=D.blocks;
@@ -1090,19 +1151,21 @@ V.systeme=(D)=>{
       </table></div></div></div>
 
     <div class="sec"><h2>Le brain L4</h2><p>réveils autonomes · mesurés par wake_grader, jamais montrés jusqu'ici</p></div>
-    <div class="card rv">${head("wake_scores.jsonl",B.wakes)}
+    <div class="card rv">${head("brain_wakes/WAKE_*.json",B.wakes,(()=>{
+      const c=B.wakes&&B.wakes.cap;return c&&c.failed?`<span class="chip bad">${c.failed} sans résultat / ${c.shown}</span>`:"";})())}
       ${guard(B.wakes,ws=>`<div class="tw"><table style="min-width:640px"><thead><tr><th>Réveil</th><th>Modèle</th>
         <th class="r">Durée</th><th class="r">Outils</th><th class="r">Lu / écrit</th><th class="r">Veilles</th>
         <th>Publication</th><th>Signaux</th></tr></thead><tbody>
-        ${ws.map(w=>`<tr><td class="k" style="max-width:280px;white-space:normal">${stamp(w.ts)}
+        ${ws.map(w=>`<tr${w.ok===false?' data-dormant="1"':""}><td class="k" style="max-width:280px;white-space:normal">${stamp(w.ts)}
             <span style="color:var(--ink4);font-weight:400"> · ${esc(w.label||"")} · il y a ${ago(w.ts)||"?"}</span>
-            ${w.summary?`<div style="font:400 11.5px var(--sans);color:var(--ink2);margin-top:4px;text-wrap:pretty">${esc(w.summary)}</div>`:""}</td>
+            ${w.summary?`<div style="font:400 11.5px var(--sans);color:var(--ink2);margin-top:4px;text-wrap:pretty">${esc(w.summary)}</div>`
+              :w.ok===false?`<div style="font:400 11.5px var(--sans);color:var(--broken);margin-top:4px">Le réveil s'est arrêté sur <b>${esc(w.status||"?")}</b> — aucun compte rendu, aucune veille. Ce n'est pas un trou d'affichage.</div>`:""}</td>
           <td style="font:11.5px var(--mono);color:var(--ink3)">${esc(w.model||"—")}
             ${w.status&&w.status!=="ok"?`<br><span class="chip bad">${esc(w.status)}</span>`:""}</td>
           <td class="r">${has(w.dur_s)?nf(w.dur_s,0)+" s":NA}</td>
           <td class="r">${w.graded?(has(w.tools)?w.tools:NA):'<span class="na" title="le juge quotidien n\'est pas encore passé sur ce réveil">non noté</span>'}</td>
           <td class="r" title="caractères récupérés vs écrits">${has(w.ratio)?"×"+nf(w.ratio,1):(w.graded?NA:"·")}</td>
-          <td class="r">${has(w.watches)?w.watches:NA}</td>
+          <td class="r" title="veilles écrites par le réveil lui-même${has(w.watches_graded)?" · le juge en a compté "+w.watches_graded:""}">${has(w.watches)?w.watches:NA}</td>
           <td><span class="chip ${w.publish==="PUBLIER"?"good":""}">${esc(w.publish||"—")}</span></td>
           <td>${w.graded?(Object.entries(w.flags||{}).filter(([,v])=>v).map(([k])=>
             `<span class="chip" style="font-size:9.5px">${esc(k)}</span>`).join(" ")||NA)
@@ -1116,10 +1179,17 @@ V.systeme=(D)=>{
     <div class="sec"><h2>Santé du harness</h2></div>
     <div class="grid g-2">
       <div class="card rv">${head("Budget LLM du jour",B.health)}
-        ${guard(B.health,h=>{const b=h.budget||{};return '<div class="bd">'+bars([
-          {n:"GLM 4.7",v:b.glm||0,c:(b.glm||0)>(b.glm_cap||300)*.8?"o":"g",lbl:`${b.glm??"—"} / ${b.glm_cap??"—"}`},
-          {n:"DeepSeek",v:b.dsp||0,c:"g",lbl:`${b.dsp??"—"} / ${b.dsp_cap??"—"}`}])+
-          '<div class="note">Le coût réel = tokens × prix, pas le nombre d\'appels. Le cap est une garde anti-emballement, pas un budget.</div></div>';},"santé")}</div>
+        ${guard(B.health,h=>{const b=h.budget||{},c=b.counts||{},caps=b.caps||{};
+          const ks=Object.keys(c).sort((x,y)=>c[y]-c[x]);
+          // On n'affiche QUE les modèles réellement comptés. L'ancienne version dessinait
+          // une jauge « DeepSeek 0 / 150 » pour un modèle coupé depuis s42 : zéro appel
+          // n'est pas un compteur à zéro, c'est l'absence de compteur.
+          return '<div class="bd">'+(ks.length?bars(ks.map(k=>{const cap=caps[k];
+            return {n:k,v:c[k],c:has(cap)&&c[k]>cap*.8?"o":"g",lbl:`${c[k]} / ${has(cap)?cap:"cap inconnu"}`};}))
+            :'<div class="empty">aucun appel compté aujourd\'hui</div>')+
+          `<div class="note">Compteur du ${b.day?stamp(b.day):"?"}${b.is_today===false?' — <b style="color:var(--warn)">pas celui d\'aujourd\'hui</b>':""} ·
+          source <code>${esc(b.src||"?")}</code>. Les caps sont lus dans <code>hermes_brain.DAILY_CAP</code>, pas codés ici.
+          Le coût réel = tokens × prix, pas le nombre d'appels : le cap est une garde anti-emballement, pas un budget.</div></div>`;},"santé")}</div>
       <div class="card rv">${head("Gate — 7 jours",B.health)}
         ${guard(B.health,h=>{const q=h.gate||{};return `<div class="bd"><div class="bars">
           ${[["$ non fondés",q.ung_dollar_7d,5,"o"],["% non supportés",q.uns_pct_7d,20,""],
@@ -1271,7 +1341,7 @@ function boot(D,isRefresh){
     if(!has(v)){e.textContent="";return;} e.textContent=v; if(hot)e.classList.add("hot");};
   set("n-w",nBroken?nBroken:nOpen,!!nBroken);
   set("n-b",(B.briefs&&B.briefs.v||[]).length);
-  set("n-t",(B.theses&&B.theses.v||[]).filter(t=>t.verdict!=="retire").length);
+  set("n-t",((B.theses&&B.theses.v&&B.theses.v.items)||[]).filter(t=>t.verdict!=="retire").length);
   set("n-i",(B.inquiries&&B.inquiries.v||[]).length);
   set("n-n",(B.news&&B.news.v&&B.news.v.n)||null);
   renderRibbon(D);
