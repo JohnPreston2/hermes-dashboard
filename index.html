@@ -198,6 +198,16 @@ a:hover{text-decoration:underline;text-underline-offset:2px}
 .fchip.dead{color:var(--broken);border-color:color-mix(in oklch,var(--broken) 50%,transparent);
   background:color-mix(in oklch,var(--broken) 12%,transparent)}
 .fchip.dead i{background:var(--broken)}
+/* bouton d'actualisation manuelle */
+button#refresh{font:11px var(--mono);min-height:32px}
+button#refresh:hover{background:var(--s3);color:var(--ink)}
+button#refresh svg{opacity:.6;transition:transform .3s}
+button#refresh:hover svg{opacity:1}
+button#refresh[data-busy] svg{animation:spin 1s linear infinite}
+button#refresh[data-busy] span{opacity:.5}
+button#refresh[data-failed]{color:var(--warn);
+  border-color:color-mix(in oklch,var(--warn) 45%,transparent)}
+@media(max-width:900px){button#refresh{min-height:44px;padding:0 12px}}
 
 /* ── SECTIONS / CARTES ──────────────────────────────────────────────── */
 .sec{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:24px 2px 11px}
@@ -1019,8 +1029,17 @@ V.secteurs=(D)=>{
       </div>
       ${r.spark?`<div style="margin-bottom:12px">${r.spark}</div>`:""}
       ${r.extra||""}
-      ${r.synth?`<details class="dossier" open><summary>Synthèse causale ${r.synth_ts?"· "+stamp(r.synth_ts):""}</summary>
-        <div class="tx open" style="padding:0 11px 12px">${md(r.synth)}</div></details>`
+      ${r.synth?(()=>{
+        // La synthèse est QUOTIDIENNE : son âge est distinct de celui des données
+        // on-chain du bloc. Sans ça, la pastille de fraîcheur du bloc laisse croire
+        // que le texte affiché est récent alors qu'il peut dater de la veille.
+        const age=r.synth_ts?minAgo(r.synth_ts)/60:null;
+        const cls=age===null?"":age>36?"dead":age>26?"stale":"";
+        return `<details class="dossier" open><summary>Synthèse causale
+          ${r.synth_ts?`<span class="fchip ${cls}" style="margin-left:auto"><i></i>${ago(r.synth_ts)}</span>`:""}</summary>
+          ${cls?`<div class="note" style="padding:0 11px 8px;color:var(--${cls==="dead"?"broken":"warn"})">
+            Cadence quotidienne — la synthèse ci-dessous date du ${stamp(r.synth_ts)}, elle n'a pas encore été renouvelée.</div>`:""}
+          <div class="tx open" style="padding:0 11px 12px">${md(r.synth)}</div></details>`;})()
         :'<div class="note">Aucune synthèse disponible.</div>'}
     </div>`,name)}</div>`;
 
@@ -1072,21 +1091,27 @@ V.systeme=(D)=>{
 
     <div class="sec"><h2>Le brain L4</h2><p>réveils autonomes · mesurés par wake_grader, jamais montrés jusqu'ici</p></div>
     <div class="card rv">${head("wake_scores.jsonl",B.wakes)}
-      ${guard(B.wakes,ws=>`<div class="tw"><table><thead><tr><th>Réveil</th><th>Modèle</th>
+      ${guard(B.wakes,ws=>`<div class="tw"><table style="min-width:640px"><thead><tr><th>Réveil</th><th>Modèle</th>
         <th class="r">Durée</th><th class="r">Outils</th><th class="r">Lu / écrit</th><th class="r">Veilles</th>
         <th>Publication</th><th>Signaux</th></tr></thead><tbody>
-        ${ws.map(w=>`<tr><td class="k">${stamp(w.ts)}<br><span style="color:var(--ink4);font-weight:400">${esc(w.label||"")}</span></td>
-          <td style="font:11.5px var(--mono);color:var(--ink3)">${esc(w.model||"—")}</td>
+        ${ws.map(w=>`<tr><td class="k" style="max-width:280px;white-space:normal">${stamp(w.ts)}
+            <span style="color:var(--ink4);font-weight:400"> · ${esc(w.label||"")} · il y a ${ago(w.ts)||"?"}</span>
+            ${w.summary?`<div style="font:400 11.5px var(--sans);color:var(--ink2);margin-top:4px;text-wrap:pretty">${esc(w.summary)}</div>`:""}</td>
+          <td style="font:11.5px var(--mono);color:var(--ink3)">${esc(w.model||"—")}
+            ${w.status&&w.status!=="ok"?`<br><span class="chip bad">${esc(w.status)}</span>`:""}</td>
           <td class="r">${has(w.dur_s)?nf(w.dur_s,0)+" s":NA}</td>
-          <td class="r">${has(w.tools)?w.tools:NA}</td>
-          <td class="r" title="caractères récupérés vs écrits">${has(w.ratio)?"×"+nf(w.ratio,1):NA}</td>
+          <td class="r">${w.graded?(has(w.tools)?w.tools:NA):'<span class="na" title="le juge quotidien n\'est pas encore passé sur ce réveil">non noté</span>'}</td>
+          <td class="r" title="caractères récupérés vs écrits">${has(w.ratio)?"×"+nf(w.ratio,1):(w.graded?NA:"·")}</td>
           <td class="r">${has(w.watches)?w.watches:NA}</td>
           <td><span class="chip ${w.publish==="PUBLIER"?"good":""}">${esc(w.publish||"—")}</span></td>
-          <td>${Object.entries(w.flags||{}).filter(([,v])=>v).map(([k])=>
-            `<span class="chip" style="font-size:9.5px">${esc(k)}</span>`).join(" ")||NA}</td></tr>`).join("")}
+          <td>${w.graded?(Object.entries(w.flags||{}).filter(([,v])=>v).map(([k])=>
+            `<span class="chip" style="font-size:9.5px">${esc(k)}</span>`).join(" ")||NA)
+            :'<span class="na">en attente du juge</span>'}</td></tr>`).join("")}
         </tbody></table></div>
-        <div class="note" style="padding:11px 14px">« Lu / écrit » = ratio entre les caractères récupérés par les outils et ceux réellement écrits dans le compte rendu.
-        Un ratio élevé signale un réveil qui récupère beaucoup et synthétise peu.</div>`,"réveils L4")}</div>
+        <div class="note" style="padding:11px 14px">Un réveil apparaît ici <b>dès qu'il a eu lieu</b> (3×/jour).
+        Les colonnes Outils, Lu/écrit et Signaux viennent du juge <code>wake_grader</code>, qui ne passe qu'une fois par jour à 14:50 —
+        d'où « non noté » sur les réveils les plus récents. « Lu / écrit » = caractères récupérés par les outils rapportés à ceux réellement
+        écrits dans le compte rendu : un ratio élevé signale un réveil qui récupère beaucoup et synthétise peu.</div>`,"réveils L4")}</div>
 
     <div class="sec"><h2>Santé du harness</h2></div>
     <div class="grid g-2">
@@ -1130,8 +1155,9 @@ const TITLES={poste:["Poste de commande","ce qui a changé, et ce qui vient de c
   systeme:["Système","le harness se regarde fonctionner"]};
 let DATA=null,CUR="poste";
 
-function renderView(v){
+function renderView(v,keepScroll){
   CUR=v;
+  const sy=keepScroll?window.scrollY:0;
   const t=TITLES[v]||[v,""];
   $("vtitle").textContent=t[0];$("vsub").textContent=t[1];
   document.querySelectorAll("#nav a").forEach(a=>{
@@ -1149,7 +1175,7 @@ function renderView(v){
   if(v==="briefs")wireBriefs();
   if(v==="news")wireNews();
   applyFilter($("q").value);
-  window.scrollTo({top:0,behavior:"instant"});
+  window.scrollTo({top:sy,behavior:"instant"});
 }
 
 /* filtres locaux par vue */
@@ -1223,7 +1249,10 @@ function renderRibbon(D){
   const bad=ks.filter(k=>freshness(D.blocks[k]).cls==="dead").length;
   $("ribbon").className="ribbon";
   $("ribbon").innerHTML=`<span class="lb">Fraîcheur</span>${chips}
-    <span class="fchip" style="margin-left:auto"><i style="background:var(--acc)"></i>flux ${ago(D.generated_at)||"?"}</span>`;
+    <button type="button" id="refresh" class="fchip" style="margin-left:auto;cursor:pointer"
+      title="Le flux est régénéré toutes les 2 h. Appuyer pour re-télécharger maintenant.">
+      <i style="background:var(--acc)"></i><span>flux ${ago(D.generated_at)||"?"}</span>
+      <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 8a6 6 0 1 1-1.8-4.3M14 2v4h-4"/></svg></button>`;
   const lr=(D.status||{}).last_run||{};
   const m=minAgo(lr.ts);
   const cls=bad?"ko":m>8*60?"warn":"ok";
@@ -1232,7 +1261,7 @@ function renderRibbon(D){
 }
 
 /* boot */
-function boot(D){
+function boot(D,isRefresh){
   DATA=D;
   const B=D.blocks||{};
   const wv=B.watches&&B.watches.v;
@@ -1253,9 +1282,59 @@ function boot(D){
     sources : brain_v2_traces · watch_ledger · thesis_verdicts · open_inquiries · battery · wake_scores ·
     fact_api · fundamentals_history · crypto_server :5002<br>
     Aucune valeur de repli : un bloc absent, périmé ou en échec s'affiche comme manquant.`;
-  const h=location.hash.slice(1);
-  renderView(TITLES[h]?h:"poste");
+  if(isRefresh)renderView(CUR,true);
+  else{const h=location.hash.slice(1);renderView(TITLES[h]?h:"poste");}
 }
+
+/* ── ACTUALISATION ──────────────────────────────────────────────────
+   Le flux est régénéré toutes les 2 h côté VPS. Une app ajoutée à l'écran
+   d'accueil iOS n'est presque jamais rechargée : on la REPREND depuis
+   l'arrière-plan. Sans ce bloc, elle affiche indéfiniment les données du
+   premier chargement. On re-télécharge donc au retour au premier plan,
+   périodiquement tant que l'app est visible, et à la demande.
+   ─────────────────────────────────────────────────────────────────── */
+let LAST_LOAD=0,LOADING=false;
+const REFRESH_MS=5*60*1000;    // tant que l'écran est visible
+const MIN_GAP_MS=60*1000;      // anti-rafale au retour au premier plan
+
+async function load(isRefresh){
+  if(LOADING)return;
+  LOADING=true;
+  const chip=$("refresh");
+  if(chip&&isRefresh)chip.dataset.busy="1";
+  try{
+    const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    const j=await r.json();
+    if(j.schema_version!==2)throw new Error("schema_version "+j.schema_version+" — le front attend la 2");
+    LAST_LOAD=Date.now();
+    boot(j,isRefresh);
+  }catch(err){
+    if(!DATA){
+      $("views").innerHTML=`<div class="card"><div class="missing"><b>flux indisponible</b>
+        ${esc(err.message)}
+        <div class="note">Le terminal n'affiche aucune donnée de substitution : sans <code>data.json</code> valide, il n'y a rien à montrer.
+        Vérifier <code>terminal_feed.py</code> et <code>dashboard_push.sh</code> sur delta.</div></div></div>`;
+      $("pulse").className="pulse ko";$("pulse-t").textContent="flux indisponible";
+    }else if(chip){
+      // on garde l'affichage précédent, mais on ne prétend pas qu'il est frais
+      chip.dataset.failed="1";
+    }
+    console.error(err);
+  }finally{
+    LOADING=false;
+    const c=$("refresh");if(c)delete c.dataset.busy;
+  }
+}
+
+document.addEventListener("visibilitychange",()=>{
+  if(!document.hidden&&Date.now()-LAST_LOAD>MIN_GAP_MS)load(true);});
+addEventListener("pageshow",e=>{
+  if(e.persisted&&Date.now()-LAST_LOAD>MIN_GAP_MS)load(true);});
+addEventListener("online",()=>{if(Date.now()-LAST_LOAD>MIN_GAP_MS)load(true);});
+setInterval(()=>{if(!document.hidden&&navigator.onLine!==false)load(true);},REFRESH_MS);
+document.addEventListener("click",e=>{
+  if(e.target.closest("#refresh")){e.preventDefault();load(true);}});
 
 /* nav */
 $("nav").addEventListener("click",e=>{
@@ -1317,23 +1396,8 @@ addEventListener("keydown",e=>{
   $("theme").addEventListener("click",()=>set(document.documentElement.dataset.theme==="dark"?"light":"dark"));
 })();
 
-/* chargement */
-(async function(){
-  try{
-    const r=await fetch("data.json",{cache:"no-store"});
-    if(!r.ok)throw new Error("HTTP "+r.status);
-    const j=await r.json();
-    if(j.schema_version!==2)throw new Error("schema_version "+j.schema_version+" — le front attend la 2");
-    boot(j);
-  }catch(err){
-    $("views").innerHTML=`<div class="card"><div class="missing"><b>flux indisponible</b>
-      ${esc(err.message)}
-      <div class="note">Le terminal n'affiche aucune donnée de substitution : sans <code>data.json</code> valide, il n'y a rien à montrer.
-      Vérifier <code>terminal_feed.py</code> et <code>dashboard_push.sh</code> sur delta.</div></div></div>`;
-    $("pulse").className="pulse ko";$("pulse-t").textContent="flux indisponible";
-    console.error(err);
-  }
-})();
+/* chargement initial */
+load(false);
 </script>
 </body>
 </html>
