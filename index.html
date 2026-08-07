@@ -665,6 +665,33 @@ function ago(iso){
   return Math.round(s/86400)+" j";
 }
 const minAgo=iso=>{const t=new Date(iso).getTime();return isNaN(t)?Infinity:(Date.now()-t)/60000;};
+/* ── DEPUIS VOTRE DERNIÈRE CONSULTATION ─────────────────────────────────
+   Piège : le terminal se re-télécharge tout seul toutes les 5 min tant qu'il est
+   visible. Un marqueur piloté par le FETCH remettrait le compteur à zéro pendant
+   qu'un téléphone déverrouillé dort dans une poche — il marquerait « lu » ce que
+   personne n'a regardé. Le repère n'avance donc qu'à une consultation DÉLIBÉRÉE :
+   un chargement de page, ou un retour au premier plan après plus de 30 min.
+   Une seule valeur en mémoire locale ; tous les compteurs viennent d'horodatages
+   déjà transportés. Aucune donnée nouvelle, aucun suivi. */
+const SEEN_KEY="hermes_seen",SEEN_GAP=30*60000;
+let SEEN=(()=>{try{return +(localStorage.getItem(SEEN_KEY)||0)||0;}catch(e){return 0;}})();
+let HIDDEN_AT=0;
+function touchSeen(){try{localStorage.setItem(SEEN_KEY,String(Date.now()));}catch(e){}}
+touchSeen();
+const ms=iso=>{const t=Date.parse(iso);return isNaN(t)?0:t;};
+function sinceLast(D){
+  if(!SEEN)return null;                       // première visite : rien à comparer
+  const B=D.blocks||{},W=(B.watches&&B.watches.v)||{},items=W.items||[];
+  const n={
+    briefs:((B.briefs&&B.briefs.v)||[]).filter(b=>ms(b.ts)>SEEN).length,
+    verdicts:items.filter(w=>w.decided&&ms(w.decided)>SEEN).length,
+    veilles:items.filter(w=>w.seen&&ms(w.seen)>SEEN).length,
+    theses:(((B.theses&&B.theses.v)||{}).items||[]).filter(t=>ms(t.ts)>SEEN).length,
+    reveils:((B.wakes&&B.wakes.v)||[]).filter(w=>ms(w.ts)>SEEN).length};
+  const tot=Object.values(n).reduce((a,b)=>a+b,0);
+  return {n,tot,ago:ago(new Date(SEEN).toISOString())};
+}
+
 /* une DATE nue ("2026-08-04") : pas d'heure inventée, pas de bascule de fuseau */
 function jour(d){
   if(!has(d))return "—";
@@ -752,7 +779,7 @@ function watchCard(w){
     <div class="pred">${predicate(w)}</div>
     ${w.why?`<div class="why">${esc(w.why)}</div>`:""}
     <div class="foot">${dl}<span>${has(w.baseline)?"base "+(usd(w.baseline)||nf(w.baseline,2)):'<span class="na">pas de base</span>'}</span>
-      <span title="première émission">émis ${ago(w.seen)||"?"}</span></div>
+      <span title="entrée au registre (canonisation par watch_executor à 00h45 · 06h45 · 13h45), pas la rédaction du brief">au registre ${ago(w.seen)||"?"}</span></div>
   </article>`;
 }
 
@@ -860,12 +887,39 @@ V.poste=(D)=>{
   const L4=S&&S.by_src&&S.by_src.L4;
 
   let h="";
+  {const s=sinceLast(D);
+   if(s&&s.tot){
+     const L=[[["brief","briefs"],s.n.briefs],[["verdict rendu","verdicts rendus"],s.n.verdicts],
+              [["veille au registre","veilles au registre"],s.n.veilles],
+              [["thèse","thèses"],s.n.theses],[["réveil","réveils"],s.n.reveils]]
+             .filter(x=>x[1]).map(x=>[x[0][x[1]>1?1:0],x[1]]);
+     h+=`<div class="card rv" style="margin-bottom:var(--gap)"><div class="bd" style="padding:12px 16px;
+         display:flex;gap:14px;flex-wrap:wrap;align-items:baseline">
+       <span style="font:10.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--faint)">
+         Depuis votre dernière consultation${s.ago?" · il y a "+s.ago:""}</span>
+       ${L.map(x=>`<span style="font-size:13px;color:var(--ink2)"><b style="font-family:var(--serif);font-size:19px;
+         font-weight:600;color:var(--acc)">${x[1]}</b> ${esc(x[0])}</span>`).join("")}
+     </div></div>`;}}
   if(recentBroken.length)
     h+=`<section class="alert"><h3><span class="cnt">${recentBroken.length}</span> ${recentBroken.length>1?"prédicats viennent":"prédicat vient"} de casser</h3>
       <p>${recentBroken.length>1?"Des affirmations datées de l'agent ont été falsifiées":"Une affirmation datée de l'agent a été falsifiée"} par la mesure, dans les 72 dernières heures. C'est l'événement le plus informatif de la journée : c'est là que le système apprend.</p>
       <ul>${recentBroken.slice(0,5).map(w=>`<li><span class="pred">${predicate(w)}</span>
         <span class="srcpill" data-s="${esc(w.src||"")}">${esc(w.src||"?")}</span>
         <span class="wh">${esc(w.why||"")}</span></li>`).join("")}</ul></section>`;
+
+  // Le FRANCHISSEMENT de la dormance, lui, est un événement — et il est calculable
+  // sans historique : une ligne dont le dernier contact a entre 7 et 8 jours vient
+  // de basculer. Le stock, lui, reste au ruban : l'afficher ici tous les jours
+  // reviendrait à occuper la place de l'alerte avec un état permanent.
+  {const dd=((B.theses&&B.theses.v)||{}).dormant_days||7;
+   const bt=(((B.theses&&B.theses.v)||{}).items||[]).filter(t=>has(t.age_d)&&t.age_d>=dd&&t.age_d<dd+1);
+   const bq=((B.inquiries&&B.inquiries.v)||[]).filter(q=>has(q.age_d)&&q.age_d>=dd&&q.age_d<dd+1);
+   const n=bt.length+bq.length;
+   if(n) h+=`<section class="alert" style="--tone:var(--warn)"><h3><span class="cnt">${n}</span>
+       ${n>1?"lignes viennent":"ligne vient"} de passer en dormance</h3>
+     <p>L'agent n'y a plus touché depuis ${dd} jours. Ce n'est pas une panne : c'est un abandon, et il n'apparaît nulle part ailleurs.</p>
+     <ul>${bt.map(t=>`<li><span class="pred">${esc(t.key)}</span><span class="wh">thèse · dernier verdict ${ago(t.ts)}</span></li>`).join("")}
+       ${bq.map(q=>`<li><span class="pred">${esc(String(q.q).slice(0,60))}</span><span class="wh">enquête · dernière note ${ago(q.last_touched)}</span></li>`).join("")}</ul></section>`;}
 
   h+=`<div class="kpis">${[
     ["Dernier run",`${esc(lr.tier||"?")} <small>${lr.silent?"[SILENT]":has(lr.discipline)?"disc "+nf(lr.discipline,1):""}</small>`,
@@ -940,6 +994,50 @@ V.poste=(D)=>{
       },"veilles")}
     </div>`;
 
+  // ── LE DÉCHET À L'ÉMISSION ────────────────────────────────────────────
+  // Le taux de veilles tenues se calcule sur ce qui SURVIT. Sans le taux de déchet,
+  // on compare des producteurs sur la partie de leur production qui a passé le filtre,
+  // en ignorant tout ce qu'ils émettent d'inévaluable.
+  h+=`<div class="sec"><h2>Le déchet à l'émission</h2>
+      <p>ce que l'agent a émis et qui ne produira jamais de verdict exploitable</p></div>
+    <div class="card rv">${head("watch_ledger.jsonl · toutes les lignes",B.watches)}
+      ${guard(B.watches,W=>{const w=W.stats.waste;
+        if(!w)return '<div class="empty">taux de déchet non calculé</div>';
+        const LAB={rejected:["Rejeté au canon","l'entité n'a pas passé le typage : agrégat, secteur, hors allowlist"],
+          unevaluable:["Non évaluable","ni mesure ni base trouvée à l'échéance"],
+          scale_odd:["Seuil hors échelle","seuil et mesure dans deux unités — BROKEN mécanique"],
+          zero_measure:["Mesure à zéro","verdict rendu sur une valeur nulle, là où 0 signifie « pas de donnée »"]};
+        const mx=Math.max(...Object.values(w.by_cat),1);
+        return `<div class="bd">
+        <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))">
+          ${[["Émises",w.emitted,"prédicats écrits par l'agent",""],
+             ["Sans verdict utile",w.lost,"perdus avant toute mesure","broken"],
+             ["Taux de déchet",has(w.rate)?nf(w.rate,1)+" <small>%</small>":NA,"de la production totale",
+               has(w.rate)&&w.rate>25?"broken":"warn"]].map(k=>
+            `<div class="kpi"${k[3]?` data-tone="${k[3]}"`:""}><div class="l">${k[0]}</div>
+             <div class="v">${k[1]}</div><div class="d">${k[2]}</div><span class="bar"></span></div>`).join("")}
+        </div>
+        <div style="margin-top:14px">${Object.entries(w.by_cat).map(([k,n])=>{
+          const l=LAB[k]||[k,""];
+          return `<div style="display:grid;grid-template-columns:minmax(110px,168px) 1fr auto;align-items:center;gap:11px;margin-bottom:10px">
+            <span style="font:600 11px var(--mono);color:var(--ink2)">${esc(l[0])}</span>
+            <span style="height:9px;border-radius:6px;background:color-mix(in oklch,var(--ink) 10%,transparent);overflow:hidden;display:flex"
+              role="img" aria-label="${esc(l[0])} : ${n} prédicats"><i style="display:block;height:100%;width:${n/mx*100}%;background:var(--broken);opacity:.75"></i></span>
+            <span style="font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink)">${n}</span>
+            <span style="grid-column:1/-1;font-size:11.5px;color:var(--ink4);margin-top:-4px">${esc(l[1])}</span></div>`;}).join("")}
+        </div>
+        <div class="score" style="padding:12px 0 0;border-top:1px dashed var(--line);margin-top:6px">
+          ${["L3","L4"].map(k=>{const s=w.by_src[k]||{};
+            return `<div class="srow"><span class="who">${k}<small>déchet</small></span>
+              <span class="track"><i class="b" style="width:${has(s.rate)?s.rate:0}%"></i></span>
+              <span class="rate" style="color:${has(s.rate)&&s.rate>25?"var(--broken)":"var(--ink3)"}">${has(s.rate)?nf(s.rate,1)+"%":NA}</span></div>`;}).join("")}
+        </div>
+        <div class="note">Les quatre catégories sont disjointes — aucun prédicat n'est compté deux fois.
+        Un taux de déchet élevé n'est pas un taux d'erreur : c'est de la production qui n'atteint jamais le stade
+        où elle pourrait avoir tort. <b>Le taux de veilles tenues, lui, ne se calcule que sur ce qui reste.</b></div>
+      </div>`;},"veilles")}
+    </div>`;
+
   h+=`<div class="sec"><h2>Dernier brief</h2><p>texte intégral, non tronqué</p></div>
     <div class="grid g-main">
       <div class="card rv">${head("Recherche publiée",B.briefs)}
@@ -985,10 +1083,12 @@ V.veilles=(D)=>{
           `<div class="kpi"${k[2]?` data-tone="${k[2]}"`:""}><div class="l">${k[0]}</div><div class="v">${k[1]}</div><span class="bar"></span></div>`).join("")}
       </div>
       <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));margin-top:10px">
-        ${[["Émises aujourd'hui",S.issued_today,"le producteur tourne"],
-           ["Tranchées aujourd'hui",S.decided_today,"l'exécuteur tranche"],
-           ["Dernier verdict",S.last_decided?ago(S.last_decided):NA,"watch_executor"]].map(k=>
-          `<div class="kpi"><div class="l">${k[0]}</div><div class="v">${has(k[1])?k[1]:NA}</div>
+        ${[["Entrées au registre",S.issued_today,"aujourd'hui · pas la date d'émission",
+             "first_seen = date de CANONISATION par watch_executor (00h45 · 06h45 · 13h45). Une veille écrite dans un brief de 18 h n'entre au registre que le lendemain : jusqu'à 6 h 30 de décalage, structurel."],
+           ["Tranchées aujourd'hui",S.decided_today,"l'exécuteur a rendu son verdict",
+             "verdict_ts = échéance atteinte et mesure comparée"],
+           ["Dernier verdict",S.last_decided?ago(S.last_decided):NA,"watch_executor",""]].map(k=>
+          `<div class="kpi"${k[3]?` title="${esc(k[3])}"`:""}><div class="l">${k[0]}</div><div class="v">${has(k[1])?k[1]:NA}</div>
            <div class="d">${k[2]}</div><span class="bar"></span></div>`).join("")}
       </div>
       <div class="note">« Rejeté au canon » = l'entité n'a pas passé le contrôle de typage (agrégat, secteur, entité hors allowlist) : le prédicat n'était pas mesurable, il n'est donc pas comptabilisé.
@@ -1046,7 +1146,7 @@ function journal(bk){
               <div class="pred" style="font-family:var(--mono);font-size:11.5px;color:var(--ink)">${predicate(w)}</div>
               <div style="font:11px var(--mono);color:var(--ink4);margin-top:3px">
                 ${measured(w)||'<span class="na">valeur non transportée</span>'} ·
-                <span title="première émission">émis ${ago(w.seen)||"?"}</span> ·
+                <span title="entrée au registre (canonisation par watch_executor à 00h45 · 06h45 · 13h45), pas la rédaction du brief">au registre ${ago(w.seen)||"?"}</span> ·
                 <span class="srcpill" data-s="${esc(w.src||"")}">${esc(w.src||"?")}</span>
                 ${w.scale_odd?'<span class="chip warn" style="margin-left:6px" title="le seuil et la mesure ne sont pas dans la même unité : ce prédicat ne pouvait pas tenir. Le verdict affiché reste celui de l\'exécuteur.">hors échelle</span>':""}</div>
             </div></div>`).join("")}
@@ -1101,6 +1201,31 @@ V.theses=(D)=>`<div class="sec"><h2>Le livre de thèses</h2><p>append-only · la
             un identifiant de cliché (<code>th_AAAAMMJJ_HHMM_entité</code>) ou une entité <b>nue</b>. Un slug descriptif tombe entre les deux
             et le verdict est jeté, silencieusement, depuis toujours.</div></div>`;})()}
       </div></div>
+
+    ${(()=>{const U=T.universe;
+      if(!U||!U.entities||!U.entities.length)
+        return U&&U.err?`<div class="card rv" style="margin-bottom:14px"><div class="missing"><b>vivier illisible</b>${esc(U.err)}</div></div>`:"";
+      // LE VIVIER — deuxième moitié du diagnostic. Une thèse ne peut bouger que si
+      // l'amont fabrique encore des clichés pour son entité. Six n'en ont plus depuis
+      // plus d'un mois : ces lignes-là ne bougeront jamais, quoi que fasse le brain.
+      const mx=Math.max(...U.per_day.map(x=>x.n),1);
+      return `<div class="card rv" style="margin-bottom:14px">${head("Le vivier — pour qui l'amont fabrique-t-il encore ?",null,
+        `<span class="chip ${U.n_dead?"bad":"good"}">${U.n_dead} morte${U.n_dead>1?"s":""} / ${U.n}</span>
+         <span class="chip t" title="source de la table d'identifiants que le résolveur consulte">${esc(U.src||"")}</span>`)}
+        <div class="bd">
+          <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px">${U.entities.map(e=>
+            `<span class="chip ${e.dead?"bad":e.age_d<=2?"good":""}" style="font-family:var(--mono)"
+               title="dernier cliché le ${jour(e.last)}${e.topic?" · "+esc(e.topic):""}">${esc(e.entity)}
+               <b style="opacity:.7;font-weight:500">${e.age_d}&nbsp;j</b></span>`).join("")}</div>
+          <div style="font:10.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-bottom:8px">
+            Entités synthétisées par jour — 14 derniers jours</div>
+          <div style="display:flex;align-items:flex-end;gap:4px;height:56px">${U.per_day.map(x=>
+            `<div title="${esc(x.d)} · ${x.n} entité${x.n>1?"s":""}" style="flex:1;min-width:6px;height:${Math.max(6,x.n/mx*100)}%;
+              border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--acc),color-mix(in oklch,var(--acc) 30%,transparent))"></div>`).join("")}</div>
+          <div class="note">Une thèse du livre ne peut bouger que si <code>claim_synthesizer</code> produit encore des clichés
+          pour son entité. Au-delà de ${U.dead_after_days} jours sans clichés, la thèse correspondante est <b>gelée à la source</b> —
+          aucun verdict du brain ne pourra la réveiller. C'est l'autre moitié du diagnostic, distincte des verdicts refusés ci-dessus.</div>
+        </div></div>`;})()}
 
     <div class="card rv">${head("thesis_verdicts.jsonl",D.blocks.theses,
       dn?`<span class="chip warn">${dn} dormante${dn>1?"s":""}</span>`:"")}
@@ -1426,8 +1551,14 @@ function renderRibbon(D){
   const chips=ks.map(k=>{const f=freshness(D.blocks[k]);
     return `<span class="fchip ${f.cls}" title="${esc(D.blocks[k].src||"")}"><i></i>${esc(LBL[k]||k)} ${f.txt}</span>`;}).join("");
   const bad=ks.filter(k=>freshness(D.blocks[k]).cls==="dead").length;
+  // La dormance est un ÉTAT, pas un événement : elle vit dans le ruban, en permanence
+  // et sans crier. L'alerte est réservée à ce qui vient de se produire.
+  const th=(D.blocks.theses&&D.blocks.theses.v)||{},iq=(D.blocks.inquiries&&D.blocks.inquiries.v)||[];
+  const dt=th.n_dormant||0,di=iq.filter(q=>q.dormant).length;
+  const dorm=(dt||di)?`<span class="fchip warn" title="aucun verdict / aucune note depuis ${th.dormant_days||7} jours — l'agent ne les touche plus">
+      <i></i>dormant ${dt} thèses · ${di} enquêtes</span>`:"";
   $("ribbon").className="ribbon";
-  $("ribbon").innerHTML=`<span class="lb">Fraîcheur</span>${chips}
+  $("ribbon").innerHTML=`<span class="lb">Fraîcheur</span>${chips}${dorm}
     <button type="button" id="refresh" class="fchip" style="margin-left:auto;cursor:pointer"
       title="Le flux est régénéré toutes les 2 h. Appuyer pour re-télécharger maintenant.">
       <i style="background:var(--acc)"></i><span>flux ${ago(D.generated_at)||"?"}</span>
@@ -1507,7 +1638,15 @@ async function load(isRefresh){
 }
 
 document.addEventListener("visibilitychange",()=>{
-  if(!document.hidden&&Date.now()-LAST_LOAD>MIN_GAP_MS)load(true);});
+  if(document.hidden){HIDDEN_AT=Date.now();return;}
+  // Retour au premier plan après une vraie absence : c'est une NOUVELLE consultation.
+  // On recule le repère sur la précédente (celle qu'on avait enregistrée en partant),
+  // puis on enregistre celle-ci. Un re-fetch automatique, lui, ne touche à rien.
+  if(HIDDEN_AT&&Date.now()-HIDDEN_AT>SEEN_GAP){
+    try{SEEN=+(localStorage.getItem(SEEN_KEY)||0)||SEEN;}catch(e){}
+    touchSeen();
+  }
+  if(Date.now()-LAST_LOAD>MIN_GAP_MS)load(true);});
 addEventListener("pageshow",e=>{
   if(e.persisted&&Date.now()-LAST_LOAD>MIN_GAP_MS)load(true);});
 addEventListener("online",()=>{if(Date.now()-LAST_LOAD>MIN_GAP_MS)load(true);});
