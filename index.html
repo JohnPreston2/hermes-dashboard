@@ -1298,6 +1298,11 @@ V.marche=(D)=>{
       <div class="card rv">${head("Flux stablecoins par chaîne",B.macro,'<span class="chip">Δ 7 j</span>')}
         ${guard(B.macro,m=>'<div class="bd">'+bars((m.flows||[]).map(f=>({n:f.chain,v:f.d7,c:f.d7>0?"g":"r",
           lbl:(f.d7>0?"+":"")+nf(f.d7,1)+"M"})))+"</div>","macro")}</div>
+      <div class="card rv">${head("TVL par chaîne",B.macro,'<span class="chip">top 10</span>')}
+        ${guard(B.macro,m=>(m.chains||[]).length?'<div class="bd">'+bars((m.chains||[]).map(c=>({n:c.n,v:c.tvl_b,
+          lbl:"$"+nf(c.tvl_b,2)+"B"})))+
+          '<div class="note">api.llama.fi/v2/chains — l\'appel servait déjà à calculer la DeFi TVL agrégée ; son classement était jeté.</div></div>'
+          :'<div class="bd"><div class="note">Classement des chaînes indisponible.</div></div>',"macro")}</div>
       <div class="card rv">${head("Agrégats",B.macro)}
         ${guard(B.macro,m=>{const a=m.agg||{};return `<div class="bd"><div class="bars">
           ${[["DeFi TVL",a.defi_tvl_b,"B"],["Stables mcap",a.stable_mcap_b,"B"],["DEX vol 24 h",a.dex_vol_24h_b,"B"]]
@@ -1307,7 +1312,21 @@ V.marche=(D)=>{
           </div><div class="note">Variation stablecoins 7 j : ${has(a.stable_d7_pct)?
             `<b style="color:${a.stable_d7_pct>0?"var(--held)":"var(--broken)"}">${a.stable_d7_pct>0?"+":""}${nf(a.stable_d7_pct,2)} %</b> — le proxy du fresh money.`
             :NA+" (mesure indisponible)"}</div></div>`;},"macro")}</div>
-    </div>`;
+    </div>
+
+    <div class="sec"><h2>Classement par catégorie</h2>
+      <p>0 LLM · get_landscape → protocol_tvl · ${(B.macro&&B.macro.v&&B.macro.v.n_protocols)||0} protocoles sur 95 suivis</p></div>
+    ${guard(B.macro,m=>{
+      const cats=m.by_category||[];
+      if(!cats.length) return '<div class="card rv"><div class="bd"><div class="note">Classement indisponible.</div></div></div>';
+      return '<div class="grid g-2">'+cats.map(c=>`<div class="card rv">
+        <div class="hd"><span class="t">${esc(c.cat)}</span><span class="chip">${c.n}</span></div>
+        <div class="bd">${bars((c.p||[]).map(p=>({n:p.n,v:p.tvl_b,
+          c:has(p.chg)?(p.chg>0?"g":"r"):"",
+          lbl:"$"+nf(p.tvl_b,2)+"B"+(has(p.chg)?' <small>'+(p.chg>0?"+":"")+nf(p.chg,1)+"%</small>":"")})))}</div>
+      </div>`).join("")+'</div>'+
+      '<div class="note" style="padding:10px 4px 0">Ordre de priorité de RECHERCHE, pas de TVL — c\'est celui dans lequel la couche GLM les reçoit depuis le 08/08. Les CEX ferment la marche : leur classement n\'est pas de la recherche DeFi.</div>';
+    },"macro")}`;
 };
 
 V.news=(D)=>`<div class="sec"><h2>Fil</h2><p>cliquable · source, âge et sentiment lisibles d'un coup d'œil</p>
