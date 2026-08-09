@@ -1250,6 +1250,17 @@ V.enquetes=(D)=>{
   const nd=qs0.filter(q=>q.dormant).length;
   return `<div class="sec"><h2>Enquêtes-mission</h2><p>la mission permanente · chaque note est datée, la trajectoire se lit de haut en bas</p>
     ${nd?`<span class="chip warn" style="margin-left:auto">${nd} dormante${nd>1?"s":""} sur ${qs0.length}</span>`:""}</div>
+  ${guard(D.blocks.reflex,r=>`<div class="card rv" style="margin-bottom:16px">
+    ${head("Réflexif — synthèse hebdomadaire",D.blocks.reflex,
+      `<span class="chip">${r.n} question${r.n>1?"s":""} · ${esc(r.date)}</span>`)}
+    <div class="bd">${(r.syntheses||[]).map(s=>`
+      <details class="dossier"><summary>${esc((s.question||s.id||"").slice(0,96))}
+        <span class="chip" style="margin-left:auto">${s.n_obs} obs · ${s.n_dates} dates · ${nf(s.couverture,0)} %</span></summary>
+        <div class="tx open" style="padding:0 11px 12px">${md(s.prose)}</div>
+        ${(s.flags||[]).length?`<div class="note" style="color:var(--warn);padding:0 11px 10px">⚠ ${esc(s.flags.join(" · "))}</div>`:""}
+      </details>`).join("")}
+      <div class="note">Prose libre, sans gabarit — le code n'en extrait que la traçabilité.
+        Un job d'interprétation dont on contraint le format rend un formulaire vide.</div></div></div>`,"reflex")}
   <div class="grid g-2" id="ilist">${guard(D.blocks.inquiries,qs=>qs.map(q=>`
     <div class="card rv"${q.dormant?' data-dormant="1"':""} data-s="${esc(q.q+" "+(q.evidence||[]).map(e=>e.note).join(" "))}">
       ${head(esc(q.q),null,`<span class="chip ${q.status==="permanent"?"acc":"info"}">${esc(q.status)}</span>
@@ -1413,7 +1424,46 @@ V.systeme=(D)=>{
   const g=(B.health&&B.health.v&&B.health.v.gate)||{};
   const bud=(B.health&&B.health.v&&B.health.v.budget)||{};
   const kills=runs.filter(r=>r.status==="killed");
-  return `<div class="sec"><h2>Cadence mesurée</h2><p>intervalle médian réel entre deux runs, sur 7 jours — lu dans les traces, pas déclaré</p></div>
+  return `<div class="sec"><h2>Santé de la couche LLM</h2>
+      <p>0 LLM · les ${(B.jobs&&B.jobs.v&&B.jobs.v.n)||"?"} jobs qui appellent un modèle de jugement — pas seulement les briefs</p></div>
+    <div class="card rv">${head("jobs_wiring · relevé quotidien",B.jobs)}
+      ${guard(B.jobs,j=>`<div class="bd">
+        <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr))">
+          <div class="kpi" data-tone="${j.vide?"broken":"held"}"><div class="l">Produisent du vide</div>
+            <div class="v">${j.vide}</div><span class="bar"></span></div>
+          <div class="kpi" data-tone="${j.arretes?"broken":"held"}"><div class="l">Ne tournent plus</div>
+            <div class="v">${j.arretes}</div><span class="bar"></span></div>
+          <div class="kpi" data-tone="warn"><div class="l">Couverture instrument</div>
+            <div class="v">${j.couverts}<small> / ${j.n}</small></div><span class="bar"></span></div>
+        </div>
+        <div class="tw" style="margin-top:12px"><table style="min-width:520px">
+          <thead><tr><th>Job</th><th>Cadence</th><th>Tourne</th><th>Production</th></tr></thead>
+          <tbody>${(j.jobs||[]).map(x=>`<tr><td class="k">${esc(x.nom)}</td>
+            <td class="r">${x.cadence_h} h</td>
+            <td class="r">${x.tourne===null?NA:(x.tourne?"oui":'<b style="color:var(--broken)">non</b>')}</td>
+            <td>${!x.predicat?'<span style="color:var(--ink4)">non mesurable</span>'
+              :(x.vide===true?'<b style="color:var(--broken)">DU VIDE</b>'
+              :(x.vide===false?'<span style="color:var(--held)">réelle</span>':"indécis"))}</td></tr>`).join("")}
+          </tbody></table></div>
+        <div class="note">Un job « non mesurable » n'est PAS un job sain : c'est un trou de l'instrument.
+          La couverture est déclarée, jamais supposée.</div></div>`,"jobs")}</div>
+
+    <div class="sec"><h2>Carte des sources</h2>
+      <p>où est la vérité sur X ? · <b>générée à chaque run, jamais rédigée</b> — une carte écrite à la main dérive</p></div>
+    <div class="card rv">${head("source_map · divergences",B.sources,
+      (B.sources&&B.sources.v)?`<span class="chip ${B.sources.v.n_divergents?"warn":""}">${B.sources.v.n_divergents} / ${B.sources.v.n}</span>`:"")}
+      ${guard(B.sources,s=>'<div class="bd">'+(s.concepts||[]).map(c=>`
+        <details class="dossier"${c.divergence?" open":""}><summary>${esc(c.nom)}
+          <span class="chip ${c.divergence?"warn":"held"}" style="margin-left:auto">${c.divergence?"divergence":"aligné"}</span></summary>
+          <div style="padding:0 11px 11px">
+            <div class="note" style="padding:0 0 7px"><b>autorité</b> — ${esc(c.autorite||"?")}</div>
+            ${(c.doublons||[]).map(d=>`<div style="display:flex;gap:9px;font:11.5px var(--mono);color:var(--ink3);padding:2px 0">
+              <span style="flex:1">${esc(d.ou)}</span><span>${d.n}</span>
+              <span style="flex:1;color:var(--ink4)">${esc(d.note||"")}</span></div>`).join("")}
+            ${c.divergence?`<div class="note" style="color:var(--warn);padding:8px 0 0">⚠ ${esc(c.divergence)}</div>`:""}
+          </div></details>`).join("")+"</div>","sources")}</div>
+
+    <div class="sec"><h2>Cadence mesurée</h2><p>intervalle médian réel entre deux runs, sur 7 jours — lu dans les traces, pas déclaré</p></div>
     <div class="card rv">${head("Production par tier",B.runs,
       st.model?`<span class="chip acc">${esc(st.model)}</span>`:"")}
       <div class="bd"><div class="tw"><table style="min-width:420px">
