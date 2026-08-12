@@ -493,6 +493,35 @@ mark{background:color-mix(in oklch,var(--warn) 34%,transparent);color:var(--ink)
 .foot{margin-top:34px;padding:18px 2px 0;border-top:1px solid var(--line);
   font:11px/1.8 var(--mono);color:var(--ink4);text-wrap:pretty}
 
+/* ── SCHÉMAS ────────────────────────────────────────────────────────
+   Système de dessin emprunté à diagram-design (cathrynlavery), re-skinné
+   sur les jetons du terminal. Les rôles typographiques du système (nom de
+   nœud en sans, sous-titre technique en mono, étiquette d'arête en mono)
+   sont tenus — avec les piles SYSTÈME, car la page n'a le droit d'émettre
+   AUCUNE requête réseau, donc aucune webfont. */
+.dgm{position:relative;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 0}
+.dgm svg{display:block;width:100%;height:auto;min-width:var(--dgm-min,0)}
+/* Gamme typographique relevée par rapport au système d'origine : sur un
+   téléphone le schéma s'affiche à l'échelle 1 (voir --dgm-min), donc un
+   sous-titre à 9 px se lirait à 9 px — sous le plancher du terminal, qui
+   ne descend nulle part en dessous de 9,5 px de mono. Le pas de 4 px de
+   la grille porte sur la GÉOMÉTRIE, pas sur la taille du texte. */
+.dgm .n-name{font:600 12px var(--sans);fill:var(--ink)}
+.dgm .n-sub{font:9.5px var(--mono);fill:var(--ink4)}
+.dgm .n-tag{font:8.5px var(--mono);letter-spacing:.08em}
+.dgm .a-lbl{font:9px var(--mono);fill:var(--ink4);letter-spacing:.06em}
+.dgm .a-num{font:600 9.5px var(--mono);fill:var(--ink2)}
+.dgm .eyebrow{font:8.5px var(--mono);fill:var(--ink4);letter-spacing:.14em}
+.dgm .lg{font:9.5px var(--mono);fill:var(--ink3)}
+.dgm .big{font:600 13px var(--serif);fill:var(--ink)}
+/* L'invite de défilement n'est PAS supposée : elle n'apparaît que si le
+   schéma déborde réellement de son conteneur (mesuré après rendu). */
+.dgm-hint{display:none;margin:2px 0 0;font:9.5px var(--mono);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink4)}
+.dgm[data-scroll="1"] .dgm-hint{display:block}
+.dgm-note{font-size:11.5px;color:var(--ink4);margin:8px 0 0;text-wrap:pretty;line-height:1.6}
+.dgm-note b{color:var(--ink3)}
+
 /* ── REVEAL au scroll (patron figé toolkit) ─────────────────────────── */
 @keyframes rv{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% cover 18%}
@@ -870,6 +899,399 @@ function guard(bk,render,label){
 }
 
 /* ══════════════════════════════════════════════════════════════════
+   SCHÉMAS — boîte à outils SVG
+   Système : diagram-design (github.com/cathrynlavery/diagram-design),
+   re-skinné sur les jetons du terminal.
+   Règles du système tenues : grille 4 px · connecteurs orthogonaux à
+   angle arrondi (r=8) · étiquette d'arête masquée avec 6-10 px de
+   dégagement visible · légende en bandeau bas, jamais flottante ·
+   budget de complexité (≤ 9 nœuds) · arêtes dessinées AVANT les nœuds.
+   DEUX divergences, assumées et motivées :
+   1. piles de polices SYSTÈME au lieu des webfonts du système — la page
+      n'a le droit d'émettre AUCUNE requête réseau ;
+   2. les verdicts portent leur couleur sémantique (tenu · falsifié ·
+      ouvert · hors mesure) au lieu d'un accent éditorial unique : c'est
+      l'encodage que le lecteur connaît déjà du mur des veilles, et deux
+      grammaires de couleur sur la même page seraient pires qu'une.
+   RÈGLE DU TERMINAL, ici aussi : aucun schéma ne dessine un nombre
+   qu'il n'a pas lu dans data.json. Compteur absent ⇒ pas de forme, et
+   le trou se déclare. Aucune géométrie n'est un chiffre en dur.
+   ══════════════════════════════════════════════════════════════════ */
+const DGC={ink:"var(--ink)",mut:"var(--ink3)",soft:"var(--ink4)",line:"var(--line)",
+  line2:"var(--line2)",acc:"var(--acc)",paper:"var(--s1)",paper2:"var(--s2)",
+  held:"var(--held)",broken:"var(--broken)",open:"var(--open)",warn:"var(--warn)"};
+const DGT={acc:"color-mix(in oklch,var(--acc) 15%,transparent)",
+  held:"color-mix(in oklch,var(--held) 14%,transparent)",
+  broken:"color-mix(in oklch,var(--broken) 14%,transparent)",
+  open:"color-mix(in oklch,var(--open) 14%,transparent)",
+  soft:"color-mix(in oklch,var(--ink) 6%,transparent)",
+  none:"transparent"};
+let DGN=0;
+const dgMiss=t=>`<div class="missing"><b>schéma non traçable</b>${esc(t)}
+  <div class="note">Le schéma n'est pas dessiné plutôt que dessiné avec des trous.</div></div>`;
+
+/* --dgm-min = la largeur du viewBox : un schéma ne descend JAMAIS sous
+   l'échelle 1. Sous cette barre, sa typographie tombe à 6 px sur un
+   téléphone — mesuré. Il défile donc dans son propre conteneur, comme
+   les tableaux, et l'invite de défilement se mesure après rendu. */
+function dgSvg(w,h,body,o){
+  o=o||{};const u="dg"+(++DGN);
+  return `<div class="dgm" style="--dgm-min:${w}px">
+    <svg viewBox="0 0 ${w} ${h}" role="img" aria-labelledby="${u}-t ${u}-d">
+      <title id="${u}-t">${esc(o.title||"")}</title>
+      <desc id="${u}-d">${esc(o.desc||"")}</desc>
+      <defs>
+        <marker id="${u}m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="${DGC.mut}"/></marker>
+        <marker id="${u}a" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="${DGC.acc}"/></marker>
+        <marker id="${u}s" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+          <polygon points="0 0, 7 2.5, 0 5" fill="${DGC.soft}"/></marker>
+      </defs>${body(u)}
+    </svg><p class="dgm-hint">↔ faites glisser le schéma</p></div>`;
+}
+/* nœud : masque opaque, puis boîte, puis étiquette de type, nom, sous-titre */
+function dgNode(x,y,w,h,o){
+  o=o||{};const cx=x+w/2,st=o.stroke||DGC.ink,fl=o.fill||DGC.paper2;
+  let s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="${DGC.paper}"/>`
+    +`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="${fl}" stroke="${st}"
+       stroke-width="${o.sw||1}"${o.dash?` stroke-dasharray="${o.dash}"`:""}/>`;
+  let ty=y+h/2;
+  if(o.tag){const tw=Math.max(30,String(o.tag).length*5.7+14);
+    s+=`<rect x="${x+10}" y="${y+8}" width="${tw}" height="14" rx="2" fill="none"
+        stroke="${o.tagC||st}" stroke-opacity=".45" stroke-width=".8"/>`
+      +`<text class="n-tag" x="${x+10+tw/2}" y="${y+18}" text-anchor="middle"
+        fill="${o.tagC||st}" fill-opacity=".9">${esc(o.tag)}</text>`;
+    ty+=8;}
+  if(o.sub)ty-=6;
+  s+=`<text class="n-name" x="${cx}" y="${ty+4}" text-anchor="middle"${o.nameC?` style="fill:${o.nameC}"`:""}>${esc(o.name||"")}</text>`;
+  if(o.sub)s+=`<text class="n-sub" x="${cx}" y="${ty+19}" text-anchor="middle">${esc(o.sub)}</text>`;
+  return s;
+}
+/* étiquette d'arête : masque opaque + dégagement VISIBLE de 8 px du trait */
+function dgLbl(x,y,t,o){
+  o=o||{};const w=Math.max(32,String(t).length*5.9+16),mh=14,g=o.gap||8;
+  const my=o.below?y+g:y-g-mh;
+  return `<rect x="${x-w/2}" y="${my}" width="${w}" height="${mh}" rx="2" fill="${DGC.paper}"/>`
+    +`<text class="a-lbl" x="${x}" y="${my+9.5}" text-anchor="middle"${o.c?` style="fill:${o.c}"`:""}>${esc(t)}</text>`;
+}
+/* segment VERTICAL : l'étiquette passe SUR LE CÔTÉ, jamais sur le trait */
+function dgSideLbl(x,y,l1,l2,o){
+  o=o||{};const w=Math.max(String(l1).length,String(l2||"").length)*6.1+20;
+  const h=l2?30:17,mx=x+8;
+  let s=`<rect x="${mx}" y="${y-h/2}" width="${w}" height="${h}" rx="3" fill="${DGC.paper}"/>`
+    +`<text class="a-lbl" x="${mx+8}" y="${y-h/2+11}"${o.c?` style="fill:${o.c}"`:""}>${esc(l1)}</text>`;
+  if(l2)s+=`<text class="a-num" x="${mx+8}" y="${y-h/2+25}"${o.c?` style="fill:${o.c}"`:""}>${esc(l2)}</text>`;
+  return s;
+}
+/* étiquette d'un ARC : le dégagement se prend vers l'EXTÉRIEUR du cercle,
+   pas vers le haut de l'écran. Décaler « au-dessus » une étiquette placée en
+   bas de l'anneau la ramène SUR son arc — le défaut mesuré à la 1re passe.
+   La demi-largeur du masque projetée sur le rayon donne le dégagement exact. */
+function dgRadLbl(cx,cy,R,ang,t){
+  const w=Math.max(32,String(t).length*5.9+16),h=14,a=ang*Math.PI/180;
+  const ux=Math.cos(a),uy=Math.sin(a);
+  const d=R+10+(w/2)*Math.abs(ux)+(h/2)*Math.abs(uy);
+  const x=cx+d*ux,y=cy+d*uy;
+  return `<rect x="${(x-w/2).toFixed(1)}" y="${(y-h/2).toFixed(1)}" width="${w}" height="${h}" rx="2" fill="${DGC.paper}"/>`
+    +`<text class="a-lbl" x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" text-anchor="middle">${esc(t)}</text>`;
+}
+/* connecteur orthogonal horizontal-vertical-horizontal, coudes arrondis r=8 */
+function dgHVH(x1,y1,x2,y2,xm,r){
+  if(Math.abs(y1-y2)<0.6)return `M${x1} ${y1} H${x2}`;
+  r=r||8;const dy=y2>y1?1:-1,s1=xm>x1?1:-1,s2=x2>xm?1:-1;
+  return `M${x1} ${y1} H${xm-r*s1} Q${xm} ${y1} ${xm} ${y1+r*dy} V${y2-r*dy} Q${xm} ${y2} ${xm+r*s2} ${y2} H${x2}`;
+}
+/* légende : bandeau horizontal en bas, après tous les nœuds */
+function dgLegend(x,y,w,items){
+  let s=`<line x1="${x}" y1="${y}" x2="${x+w}" y2="${y}" stroke="${DGC.line2}" stroke-width=".8"/>`
+    +`<text class="eyebrow" x="${x}" y="${y+19}">LÉGENDE</text>`;
+  let cx=x+62;
+  items.forEach(it=>{
+    s+=`<rect x="${cx}" y="${y+11}" width="10" height="10" rx="2.5" fill="${it.f||it.c}"
+        stroke="${it.c}" stroke-width=".9"${it.dash?' stroke-dasharray="3,2"':""}/>`
+      +`<text class="lg" x="${cx+15}" y="${y+19.5}">${esc(it.t)}</text>`;
+    cx+=15+String(it.t).length*5.8+24;});
+  return s;
+}
+/* ── 1 · MACHINE À ÉTATS — le cycle de vie d'un prédicat ────────────── */
+function dgmLifecycle(W){
+  const S=W.stats||{},B=S.by_verdict||{};
+  if([S.total,S.rejected,B.OPEN,B.HELD,B.BROKEN,B.UNEVALUABLE].some(x=>!has(x)))
+    return dgMiss("le bloc ne porte pas tous les compteurs du cycle");
+  const body=u=>{
+    const A=`marker-end="url(#${u}m)"`,K=`stroke-width="1.2" fill="none"`;
+    let s="";
+    s+=`<path d="M30 120 H52" stroke="${DGC.mut}" ${K} ${A}/>`;
+    s+=`<path d="M192 120 H330" stroke="${DGC.mut}" ${K} ${A}/>`;
+    s+=`<path d="M126 148 V246 Q126 254 134 254 H330" stroke="${DGC.soft}" ${K}
+        stroke-dasharray="5,4" marker-end="url(#${u}s)"/>`;
+    s+=`<path d="${dgHVH(472,92,610,48,546)}" stroke="${DGC.mut}" ${K} ${A}/>`;
+    s+=`<path d="M472 120 H610" stroke="${DGC.mut}" ${K} ${A}/>`;
+    s+=`<path d="${dgHVH(472,148,610,192,546)}" stroke="${DGC.mut}" ${K} ${A}/>`;
+    s+=dgLbl(262,120,"CANON ✓")+dgLbl(232,254,"CANON ✗")
+      +dgLbl(576,48,"SEUIL TENU")+dgLbl(542,120,"SEUIL ROMPU")
+      +dgLbl(578,192,"SANS MESURE",{below:true});
+    s+=`<circle cx="24" cy="120" r="6" fill="${DGC.ink}"/>`;
+    s+=dgNode(60,92,132,56,{name:"Émise",sub:S.total+" écrites"});
+    s+=dgNode(340,64,132,112,{name:"Ouverte",sub:B.OPEN+" en cours",
+      stroke:DGC.open,fill:DGT.open,nameC:DGC.open});
+    s+=dgNode(340,228,132,52,{name:"Rejetée",sub:String(S.rejected),
+      stroke:DGC.soft,fill:DGT.soft,nameC:DGC.soft});
+    s+=dgNode(620,24,152,48,{name:"Tenue",sub:String(B.HELD),stroke:DGC.held,fill:DGT.held,nameC:DGC.held});
+    s+=dgNode(620,96,152,48,{name:"Falsifiée",sub:String(B.BROKEN),stroke:DGC.broken,fill:DGT.broken,nameC:DGC.broken});
+    s+=dgNode(620,168,152,48,{name:"Non évaluable",sub:String(B.UNEVALUABLE),stroke:DGC.soft,fill:DGT.soft,nameC:DGC.soft});
+    s+=dgLegend(24,304,748,[{c:DGC.open,f:DGT.open,t:"pari en cours"},
+      {c:DGC.held,f:DGT.held,t:"tenu"},{c:DGC.broken,f:DGT.broken,t:"falsifié"},
+      {c:DGC.soft,f:DGT.soft,t:"hors mesure"}]);
+    return s;};
+  return dgSvg(800,352,body,{title:"Cycle de vie d'un prédicat",
+    desc:`Machine à états d'une veille : ${S.total} prédicats écrits, dont ${S.rejected} rejetés au canon `
+      +`avant toute mesure. Les ${B.OPEN} restés ouverts attendent leur échéance, où la mesure les déclare `
+      +`tenus (${B.HELD}), falsifiés (${B.BROKEN}) ou non évaluables (${B.UNEVALUABLE}). `
+      +`Un prédicat rejeté n'atteint jamais l'échéance : il ne peut donc jamais avoir tort.`});
+}
+/* ── 2 · ENTONNOIR — de la veille émise au pari tenu ────────────────── */
+function dgmFunnel(W){
+  const S=W.stats||{},B=S.by_verdict||{};
+  if([S.total,S.rejected,B.OPEN,B.HELD,B.BROKEN,B.UNEVALUABLE].some(x=>!has(x)))
+    return dgMiss("compteurs incomplets : l'entonnoir mentirait sur une de ses marches");
+  const L=[["Émises",S.total,"tout ce que l'agent a écrit"],
+    ["Canonisées",S.total-S.rejected,"l'entité a passé le typage"],
+    ["Échues",B.HELD+B.BROKEN+B.UNEVALUABLE,"l'échéance est atteinte"],
+    ["Mesurées",B.HELD+B.BROKEN,"une mesure existait à l'échéance"],
+    ["Tenues",B.HELD,"le pari a survécu à sa date"]];
+  const DROP=[["rejetées au canon",S.rejected],["encore ouvertes",B.OPEN],
+    ["sans mesure",B.UNEVALUABLE],["falsifiées",B.BROKEN]];
+  const n0=L[0][1]||1,MW=400,cx=280,H=56,STEP=76,Y0=32,FLOOR=56;
+  const wTrue=i=>MW*L[i][1]/n0;              // la largeur honnête
+  const wOf=i=>Math.max(FLOOR,wTrue(i));     // celle qu'on peut encore lire
+  let clamped=false;
+  const body=()=>{
+    let s="";
+    L.forEach((l,i)=>{
+      const y=Y0+i*STEP,wt=wOf(i),wb=i<L.length-1?wOf(i+1):wt,foc=i===L.length-1;
+      s+=`<polygon points="${cx-wt/2} ${y} ${cx+wt/2} ${y} ${cx+wb/2} ${y+H} ${cx-wb/2} ${y+H}"
+          fill="${foc?DGT.acc:DGT.soft}" stroke="${foc?DGC.acc:DGC.line2}" stroke-width="${foc?1.2:1}"/>`;
+      // Une bande trop fine pour porter son texte est élargie à un plancher.
+      // Ce plancher se DÉCLARE et se montre : les deux traits pointillés
+      // marquent la largeur réellement proportionnelle. Sans ça, la dernière
+      // marche paraîtrait 47 % plus grosse qu'elle n'est.
+      if(wTrue(i)<FLOOR-0.5){clamped=true;const t=wTrue(i);
+        s+=`<line x1="${cx-t/2}" y1="${y+3}" x2="${cx-t/2}" y2="${y+H-3}" stroke="${DGC.broken}"
+            stroke-width="1" stroke-dasharray="3,2"/>`
+          +`<line x1="${cx+t/2}" y1="${y+3}" x2="${cx+t/2}" y2="${y+H-3}" stroke="${DGC.broken}"
+            stroke-width="1" stroke-dasharray="3,2"/>`;}
+      s+=`<text class="n-name" x="${cx}" y="${y+25}" text-anchor="middle"${foc?` style="fill:${DGC.acc}"`:""}>${esc(l[0])}</text>`;
+      s+=`<text class="n-sub" x="${cx}" y="${y+41}" text-anchor="middle">${l[1]} · ${esc(l[2])}</text>`;
+      if(i<DROP.length){
+        const d=DROP[i],pc=n0?Math.round(1000*d[1]/n0)/10:null;
+        s+=`<text class="a-lbl" x="576" y="${y+H+15}" text-anchor="end" style="fill:${DGC.broken}">− ${d[1]} ${esc(d[0])}</text>`;
+        s+=`<text class="lg" x="576" y="${y+H+27}" text-anchor="end">${nf(pc,1)} % du total</text>`;}});
+    const lg=[{c:DGC.acc,f:DGT.acc,t:"ce qui reste vrai"},
+      {c:DGC.line2,f:DGT.soft,t:"marche intermédiaire"},{c:DGC.broken,f:"transparent",t:"perte"}];
+    if(clamped)lg.push({c:DGC.broken,f:"transparent",dash:1,t:"largeur réelle"});
+    s+=dgLegend(24,Y0+L.length*STEP+4,552,lg);
+    return s;};
+  return dgSvg(600,Y0+L.length*STEP+64,body,{title:"De la veille émise au pari tenu",
+    desc:`Entonnoir à cinq marches, largeurs proportionnelles aux comptes réels : ${L[0][1]} veilles émises, `
+      +`${L[1][1]} canonisées, ${L[2][1]} échues, ${L[3][1]} réellement mesurées, ${L[4][1]} tenues. `
+      +`Le taux de veilles tenues ne se calcule que sur la dernière marche.`});
+}
+/* ── 3 · CHAÎNE — la news parvient-elle jusqu'au corpus ? ───────────── */
+function dgmChain(w){
+  const t=w.total||{};
+  if([t.briefs,t.recu,t.media,t.notes,t.notes_evenement].some(x=>!has(x)))
+    return dgMiss("le relevé de câblage ne porte pas les cinq compteurs de la chaîne");
+  // Le maillon faible se désigne sur le taux EXACT et s'affiche arrondi.
+  // Comparer les arrondis créerait une fausse égalité (9/90 et 15/144 donnent
+  // tous deux « 10 % ») et accentuerait deux flèches au lieu d'une.
+  const raw=(a,b)=>b?100*a/b:null;
+  const steps=[
+    {n:"Le fil",s:"veillle.db · le flux d'articles",tag:"AMONT"},
+    {n:"Le brief",s:t.briefs+" briefs · "+(w.window_days||"?")+" j",tag:"L3 · L4",
+     ev:"PARVIENT",num:t.recu+" / "+t.briefs,r:raw(t.recu,t.briefs)},
+    {n:"Le texte publié",s:t.media+" nomment un média",tag:"SORTIE",
+     ev:"EST CITÉE",num:t.media+" / "+t.briefs,r:raw(t.media,t.briefs)},
+    {n:"Le corpus",s:t.notes+" notes écrites",tag:"MÉMOIRE",
+     ev:"NOURRIT",num:t.notes_evenement+" / "+t.notes,r:raw(t.notes_evenement,t.notes)}];
+  const rates=steps.slice(1).map(x=>x.r).filter(has);
+  const worst=rates.length?Math.min.apply(null,rates):null;
+  const NW=280,NH=72,NX=132,Y=[24,144,264,384];
+  const body=u=>{
+    let s="";
+    steps.forEach((st,i)=>{ if(!i)return;
+      const y1=Y[i-1]+NH,y2=Y[i],foc=has(st.r)&&st.r===worst;
+      s+=`<path d="M${NX+NW/2} ${y1+2} V${y2-10}" stroke="${foc?DGC.acc:DGC.mut}"
+          stroke-width="${foc?1.6:1.2}" fill="none" marker-end="url(#${u}${foc?"a":"m"})"/>`;
+      s+=dgSideLbl(NX+NW/2,(y1+y2)/2,st.ev,st.num+"  ·  "+(has(st.r)?nf(st.r,0)+" %":"—"),
+        foc?{c:DGC.acc}:{});});
+    steps.forEach((st,i)=>{
+      const foc=i===3;
+      s+=dgNode(NX,Y[i],NW,NH,{name:st.n,sub:st.s,tag:st.tag,
+        stroke:foc?DGC.acc:DGC.ink,fill:foc?DGT.acc:DGC.paper2,nameC:foc?DGC.acc:null});});
+    s+=dgLegend(24,Y[3]+NH+28,552,[{c:DGC.acc,f:DGT.acc,t:"le maillon le plus faible"},
+      {c:DGC.mut,f:DGC.paper2,t:"étape de la chaîne"}]);
+    return s;};
+  return dgSvg(600,Y[3]+NH+92,body,{title:"La news parvient-elle jusqu'au corpus ?",
+    desc:`Chaîne mesurée sur ${w.window_days||"?"} jours : la news atteint ${t.recu} briefs sur ${t.briefs}, `
+      +`${t.media} d'entre eux nomment un média, et ${t.notes_evenement} des ${t.notes} notes écrites `
+      +`citent un événement. Le tuyau est branché à l'entrée et se referme à la sortie.`});
+}
+/* ── 4 · QUADRANT — quel tier transforme la news en corpus ? ────────── */
+function dgmQuadrant(w){
+  const pt=w.par_tier||{},t=w.total||{};
+  const its=Object.keys(pt).map(k=>({k:k,b:pt[k].briefs,r:pt[k].notes?100*pt[k].notes_evenement/pt[k].notes:null,
+      ne:pt[k].notes_evenement,nt:pt[k].notes}))
+    .filter(x=>has(x.b)&&x.b>0&&has(x.r));
+  if(its.length<2)return dgMiss("moins de deux tiers plaçables : un quadrant à un point ne dit rien");
+  const maxB=Math.max.apply(null,its.map(x=>x.b)),maxR=Math.max.apply(null,its.map(x=>x.r));
+  const midB=its.map(x=>x.b).sort((a,b)=>a-b)[Math.floor(its.length/2)];
+  const midR=t.notes?100*t.notes_evenement/t.notes:null;
+  if(!has(midR))return dgMiss("le taux de référence du système est absent");
+  const X0=112,X1=612,Y0=56,Y1=396;
+  const px=v=>X0+(X1-X0)*Math.min(1,v/(maxB*1.12||1));
+  const py=v=>Y1-(Y1-Y0)*Math.min(1,v/(Math.max(maxR,midR)*1.25||1));
+  const cxA=px(midB),cyA=py(midR);
+  // le point à corriger : beaucoup de briefs, peu d'événementiel
+  let foc=null;its.forEach(x=>{if(x.b>=midB&&x.r<=midR&&(!foc||x.b>foc.b))foc=x;});
+  const body=u=>{
+    let s=`<line x1="${X0-32}" y1="${cyA}" x2="${X1+40}" y2="${cyA}" stroke="${DGC.line2}"
+        stroke-width="1.2" marker-end="url(#${u}m)"/>`
+      +`<line x1="${cxA}" y1="${Y1+36}" x2="${cxA}" y2="${Y0-40}" stroke="${DGC.line2}"
+        stroke-width="1.2" marker-end="url(#${u}m)"/>`;
+    s+=`<text class="eyebrow" x="${X1+52}" y="${cyA+3}">PROLIFIQUE</text>`
+      +`<text class="eyebrow" x="${X0-44}" y="${cyA+3}" text-anchor="end">RARE</text>`
+      +`<text class="eyebrow" x="${cxA}" y="${Y0-50}" text-anchor="middle">ÉVÉNEMENTIEL</text>`
+      +`<text class="eyebrow" x="${cxA}" y="${Y1+52}" text-anchor="middle">COMPTEURS</text>`;
+    its.forEach(x=>{
+      const X=px(x.b),Y=py(x.r),f=foc&&x.k===foc.k;
+      s+=`<circle cx="${X}" cy="${Y}" r="${f?7:5}" fill="${f?DGC.acc:DGC.mut}"
+          stroke="${DGC.paper}" stroke-width="1.5"/>`;
+      const left=X>(X0+X1)/2;
+      s+=`<text class="n-name" x="${X+(left?-14:14)}" y="${Y-2}" text-anchor="${left?"end":"start"}"
+          ${f?` style="fill:${DGC.acc}"`:""}>tier ${esc(x.k)}</text>`
+        +`<text class="n-sub" x="${X+(left?-14:14)}" y="${Y+12}" text-anchor="${left?"end":"start"}"
+          >${x.b} briefs · ${nf(x.r,0)} %</text>`;});
+    s+=dgLegend(24,440,664,[{c:DGC.acc,f:DGC.acc,t:"beaucoup de volume, peu d'événements"},
+      {c:DGC.mut,f:DGC.mut,t:"tier de production"},{c:DGC.line2,f:"transparent",t:"axes : médiane · taux du système"}]);
+    return s;};
+  return dgSvg(776,504,body,{title:"Quel tier transforme la news en corpus ?",
+    desc:`Quadrant des tiers de production : en abscisse le nombre de briefs, en ordonnée la part des notes `
+      +`qui citent un événement. Le croisement des axes est la médiane de volume et le taux moyen du système `
+      +`(${nf(midR,1)} %), pas une valeur choisie.`});
+}
+/* ── 5 · PILE DE COUCHES — qui décide, et qui vérifie ───────────────── */
+function dgmLayers(D){
+  const B=D.blocks||{},st=D.status||{};
+  const j=(B.jobs&&!B.jobs.err&&B.jobs.v)||null;
+  const cad=(st.cadence||[]).filter(c=>has(c.n_7d));
+  const runs7=cad.length?cad.reduce((a,c)=>a+c.n_7d,0):null;
+  const wk=(B.wakes&&!B.wakes.err&&B.wakes.v)?(B.wakes.v||[]).length:null;
+  const L=[
+    ["L4","Le brain autonome","brain_wake · réveils 3×/j",has(wk)?wk+" réveils transportés":null],
+    ["L3","La plume GLM","hermes_brain · greffier · réflexif",has(runs7)?runs7+" runs sur 7 j":null],
+    ["L2","Les ouvriers Gemma","contrats bornés · sortie typée",null],
+    ["L1","La frontière déterministe","fact_api · SQL en lecture seule","0 LLM"]];
+  const X=64,W=712,H=64,G=4,Y0=32;
+  const iy=Y0+L.length*(H+G)+24;
+  const body=u=>{
+    let s=`<path d="M32 ${iy-24} V${Y0+22}" stroke="${DGC.line2}" stroke-width="1.2"
+        fill="none" marker-end="url(#${u}m)"/>`
+      +`<text class="eyebrow" x="24" y="${Y0-10}">AUTONOMIE</text>`;
+    L.forEach((l,i)=>{
+      const y=Y0+i*(H+G);
+      s+=`<rect x="${X}" y="${y}" width="${W}" height="${H}" rx="6"
+          fill="${i%2?DGC.paper2:DGT.soft}" stroke="${DGC.line2}" stroke-width="1"/>`;
+      s+=`<rect x="${X+16}" y="${y+H/2-9}" width="26" height="18" rx="3" fill="none"
+          stroke="${DGC.soft}" stroke-opacity=".5" stroke-width=".8"/>`
+        +`<text class="n-tag" x="${X+29}" y="${y+H/2+4}" text-anchor="middle" fill="${DGC.soft}">${esc(l[0])}</text>`;
+      s+=`<text class="n-name" x="${X+60}" y="${y+H/2-2}" style="font-size:14px">${esc(l[1])}</text>`
+        +`<text class="n-sub" x="${X+60}" y="${y+H/2+15}">${esc(l[2])}</text>`;
+      s+=l[3]?`<text class="a-num" x="${X+W-18}" y="${y+H/2+4}" text-anchor="end">${esc(l[3])}</text>`
+        :`<text class="lg" x="${X+W-18}" y="${y+H/2+4}" text-anchor="end" style="fill:${DGC.soft}">non compté au flux</text>`;});
+    // l'instrument n'est PAS une 5e couche de la pile : c'est la frontière qui la juge
+    s+=`<rect x="${X}" y="${iy}" width="${W}" height="${H}" rx="6" fill="${DGT.acc}"
+        stroke="${DGC.acc}" stroke-width="1.2" stroke-dasharray="5,4"/>`
+      +`<text class="n-tag" x="${X+16}" y="${iy+22}" style="fill:${DGC.acc}">HORS PILE</text>`
+      +`<text class="n-name" x="${X+16}" y="${iy+42}" style="font-size:14px;fill:${DGC.acc}">L'instrument — watch_executor · wake_grader</text>`
+      +(j&&has(j.couverts)&&has(j.n)
+        ?`<text class="a-num" x="${X+W-18}" y="${iy+H/2+4}" text-anchor="end" style="fill:${DGC.acc}">${j.couverts} / ${j.n} jobs sous prédicat</text>`
+        :`<text class="lg" x="${X+W-18}" y="${iy+H/2+4}" text-anchor="end">couverture non transportée</text>`);
+    s+=dgLegend(24,iy+H+28,752,[{c:DGC.acc,f:DGT.acc,dash:1,t:"0 LLM · ce qui peut dire non"},
+      {c:DGC.line2,f:DGC.paper2,t:"couche de jugement"}]);
+    return s;};
+  return dgSvg(800,iy+H+92,body,{title:"Les couches d'Hermes, et ce qui les juge",
+    desc:"Pile d'abstraction : la frontière déterministe fact_api à la base, les ouvriers Gemma, la plume GLM, "
+      +"puis le brain autonome. L'instrument de vérification est dessiné hors de la pile car il ne produit "
+      +"aucun texte : il rend des verdicts, et c'est le seul endroit du système qui puisse avoir tort de façon vérifiable."});
+}
+/* ── 6 · BOUCLE — le cycle de recherche et son corpus ───────────────── */
+function dgLoopGap(cx,cy,R,r,th,dir){
+  let t=th;
+  for(let i=0;i<600;i++){
+    const a=t*Math.PI/180,px=cx+R*Math.cos(a),py=cy+R*Math.sin(a);
+    if(px<r.x-0.5||px>r.x+r.w+0.5||py<r.y-0.5||py>r.y+r.h+0.5)return t;
+    t+=dir*0.25;}
+  return t;
+}
+function dgmLoop(D){
+  const B=D.blocks||{},bk=n=>(B[n]&&!B[n].err&&B[n].v)||null;
+  const wi=bk("wiring")||{},wt=wi.total||{},W=bk("watches"),S=(W&&W.stats)||{},
+        BV=S.by_verdict||{},TH=bk("theses")||{},wb=TH.writeback||{},NW=bk("news"),BR=bk("briefs");
+  const num=v=>has(v)?String(v):null;
+  const ST=[
+    {n:"Le fil",s:num(NW&&NW.n)?num(NW.n)+" articles":"les sources"},
+    {n:"Le brief",s:num(BR&&BR.length)?BR.length+" transportés":"la recherche publiée"},
+    {n:"La note",s:num(wt.notes)?wt.notes+" écrites":"le corpus s'écrit"},
+    {n:"La thèse",s:num(wb.applied)?wb.applied+" au livre":"la conviction"},
+    {n:"La veille",s:num(S.total)?S.total+" émises":"le pari daté"},
+    {n:"Le verdict",s:num(BV.HELD)&&num(BV.BROKEN)?(BV.HELD+BV.BROKEN)+" rendus":"la mesure tranche",foc:1}];
+  const CX=400,CY=300,R=200,SW=148,SH=60,HW=176,HH=88;
+  const P=ST.map((s,k)=>{const th=-90+k*(360/ST.length),a=th*Math.PI/180;
+    return{th:th,x:Math.round((CX+R*Math.cos(a))/4)*4,y:Math.round((CY+R*Math.sin(a))/4)*4};});
+  const rects=P.map(p=>({x:p.x-SW/2,y:p.y-SH/2,w:SW,h:SH}));
+  const LB={0:"PARVIENT",2:"S'ÉCRIT",4:"SE MESURE"};
+  const body=u=>{
+    let s="";
+    // 1) arcs de l'anneau — toujours le même rayon, sens horaire
+    P.forEach((p,k)=>{
+      const j=(k+1)%P.length;
+      const t1=dgLoopGap(CX,CY,R,rects[k],p.th,1);
+      const t2=dgLoopGap(CX,CY,R,rects[j],P[j].th,-1)-(1.2/R)*180/Math.PI;
+      const a1=t1*Math.PI/180,a2=t2*Math.PI/180;
+      s+=`<path d="M${(CX+R*Math.cos(a1)).toFixed(2)} ${(CY+R*Math.sin(a1)).toFixed(2)}
+          A${R} ${R} 0 0 1 ${(CX+R*Math.cos(a2)).toFixed(2)} ${(CY+R*Math.sin(a2)).toFixed(2)}"
+          fill="none" stroke="${DGC.mut}" stroke-width="1.2" marker-end="url(#${u}m)"/>`;
+      if(LB[k]!==undefined)s+=dgRadLbl(CX,CY,R,(t1+t2)/2,LB[k]);});
+    // 2) rayons pointillés vers le moyeu — l'écriture dans l'état partagé
+    P.forEach((p,k)=>{
+      const a=p.th*Math.PI/180,ux=Math.cos(a),uy=Math.sin(a);
+      const dS=Math.min(ux?SW/2/Math.abs(ux):1e9,uy?SH/2/Math.abs(uy):1e9);
+      const dH=Math.min(ux?HW/2/Math.abs(ux):1e9,uy?HH/2/Math.abs(uy):1e9);
+      s+=`<path d="M${(p.x-dS*ux).toFixed(2)} ${(p.y-dS*uy).toFixed(2)}
+          L${(CX+(dH+8)*ux).toFixed(2)} ${(CY+(dH+8)*uy).toFixed(2)}"
+          stroke="${DGC.soft}" stroke-width="1" stroke-dasharray="5,4" fill="none"
+          marker-end="url(#${u}s)"/>`;});
+    // 3) stations, puis le moyeu — les nœuds masquent le dépassement des traits
+    ST.forEach((st,k)=>{
+      s+=dgNode(P[k].x-SW/2,P[k].y-SH/2,SW,SH,{name:st.n,sub:st.s,
+        stroke:st.foc?DGC.acc:DGC.ink,fill:st.foc?DGT.acc:DGC.paper2,nameC:st.foc?DGC.acc:null});});
+    s+=`<rect x="${CX-HW/2}" y="${CY-HH/2}" width="${HW}" height="${HH}" rx="8" fill="${DGC.ink}"/>`
+      +`<text class="big" x="${CX}" y="${CY-4}" text-anchor="middle"
+        style="font-size:16px;fill:${DGC.paper}">Le corpus</text>`
+      +`<text class="n-sub" x="${CX}" y="${CY+16}" text-anchor="middle"
+        style="fill:${DGC.paper};fill-opacity:.72">l'état partagé, il ne s'oublie pas</text>`;
+    s+=dgLegend(24,584,752,[{c:DGC.acc,f:DGT.acc,t:"la seule sortie falsifiable"},
+      {c:DGC.mut,f:DGC.paper2,t:"étape du cycle"},{c:DGC.soft,f:"transparent",dash:1,t:"écriture au corpus"}]);
+    return s;};
+  return dgSvg(800,648,body,{title:"La boucle de recherche",
+    desc:"Cycle à six stations autour d'un état partagé : le fil alimente les briefs, les briefs écrivent des "
+      +"notes, les notes nourrissent les thèses, les thèses émettent des veilles datées, et la mesure rend un "
+      +"verdict qui revient au corpus. Les traits pointillés sont les écritures dans l'état partagé."});
+}
+
+/* ══════════════════════════════════════════════════════════════════
    VUES
    ══════════════════════════════════════════════════════════════════ */
 const V={};
@@ -936,6 +1358,20 @@ V.poste=(D)=>{
         return k?esc(k)+" · complétions du jour":"aucun appel compté";})(),""]
   ].map(k=>`<div class="kpi rv"${k[3]?` data-tone="${k[3]}"`:""}><div class="l">${k[0]}</div>
     <div class="v">${k[1]}</div><div class="d">${k[2]}</div><span class="bar"></span></div>`).join("")}</div>`;
+
+  // ── LA BOUCLE ────────────────────────────────────────────────────────
+  // Le terminal montrait des compteurs sans jamais montrer le MÉCANISME qui
+  // les produit. Un lecteur qui arrive ici ne peut pas deviner que la note,
+  // la thèse et la veille sont trois moments d'un même cycle. Les nombres
+  // portés par les stations sont ceux du flux ; là où le flux n'en porte
+  // pas, la station dit ce qu'elle fait — jamais un zéro.
+  h+=`<div class="sec"><h2>La boucle de recherche</h2>
+      <p>six stations autour d'un état partagé — les nombres viennent du flux, la forme vient du code</p></div>
+    <div class="card rv"><div class="bd">${dgmLoop(D)}
+      <p class="dgm-note">Le cycle se lit dans le sens horaire ; les traits pointillés sont les
+      <b>écritures au corpus</b> — c'est par elles qu'un passage laisse une trace, et non par le brief publié.
+      Une seule station est accentuée : <b>le verdict</b>, parce que c'est la seule sortie du système
+      qui puisse être fausse de façon vérifiable.</p></div></div>`;
 
   h+=`<div class="sec"><h2>Le mur des veilles</h2><p>une tuile = un prédicat falsifiable · ${S?S.evaluable+" évaluables":""}</p></div>
     <div class="card rv">${head("État de la boucle de vérification",B.watches,
@@ -1009,7 +1445,14 @@ V.poste=(D)=>{
           zero_measure:["Mesure à zéro","verdict rendu sur une valeur nulle, là où 0 signifie « pas de donnée »"]};
         const mx=Math.max(...Object.values(w.by_cat),1);
         return `<div class="bd">
-        <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))">
+        ${dgmFunnel(W)}
+        <p class="dgm-note">Les largeurs sont <b>proportionnelles aux comptes réels</b>, pas décoratives :
+        chaque rétrécissement est une perte, et la dernière marche est la seule sur laquelle le taux de
+        veilles tenues se calcule. Les quatre pertes sont disjointes — aucun prédicat n'est compté deux fois.
+        Une bande trop fine pour porter son texte est élargie à un plancher de lisibilité : les
+        <b>traits pointillés rouges</b> marquent alors sa largeur réellement proportionnelle, pour qu'un
+        plancher d'affichage ne se lise jamais comme un résultat.</p>
+        <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));margin-top:14px">
           ${[["Émises",w.emitted,"prédicats écrits par l'agent",""],
              ["Sans verdict utile",w.lost,"perdus avant toute mesure","broken"],
              ["Taux de déchet",has(w.rate)?nf(w.rate,1)+" <small>%</small>":NA,"de la production totale",
@@ -1074,6 +1517,13 @@ V.veilles=(D)=>{
   const B=D.blocks;
   return `<div class="sec"><h2>Veilles falsifiables</h2>
     <p>chaque ligne est un pari daté et mesurable — la seule sortie décidable du système</p></div>
+  <div class="card rv" style="margin-bottom:14px">${head("Le cycle de vie d'un prédicat",B.watches,
+    '<span class="chip t">machine à états</span>')}
+    <div class="bd">${guard(B.watches,dgmLifecycle,"veilles")}
+      <p class="dgm-note">Les cinq états sont ceux du code, pas une illustration : <code>watch_executor</code>
+      canonise l'entité (un agrégat ou un secteur est <b>rejeté avant toute mesure</b>), puis tranche à
+      l'échéance. Un prédicat rejeté ne peut jamais avoir tort — c'est pour ça qu'il ne compte pas dans le taux.</p></div>
+  </div>
   <div class="card rv" style="margin-bottom:14px">${head("Répartition",B.watches)}
     ${guard(B.watches,W=>{const S=W.stats;return `<div class="bd">
       <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr))">
@@ -1335,7 +1785,17 @@ V.marche=(D)=>{
           <div class="v">${pct(a,b)}<small> %</small></div>
           <div class="note" style="padding:0;font-size:10.5px">${a} / ${b} ${u}</div><span class="bar"></span></div>`;
         return `<div class="bd">
-        <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))">
+        <div class="grid g-2" style="align-items:start">
+          <div>${dgmChain(w)}
+            <p class="dgm-note">Chaque flèche déclare <b>son propre dénominateur</b> : les trois taux ne se
+            multiplient pas, ils ne portent pas sur la même population. L'accent marque le maillon le plus
+            faible, calculé à chaque rendu — il n'est pas choisi à la main.</p></div>
+          <div>${dgmQuadrant(w)}
+            <p class="dgm-note">Le croisement des axes n'est pas décoratif : abscisse = <b>médiane</b> de
+            volume, ordonnée = <b>taux moyen du système</b>. Un tier en bas à droite produit beaucoup et
+            transforme peu — c'est exactement la question posée à la mission.</p></div>
+        </div>
+        <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));margin-top:14px">
           ${kpi("La news leur PARVIENT",t.recu||0,t.briefs||0,"briefs")}
           ${kpi("Ils la CITENT",t.media||0,t.briefs||0,"briefs nomment un média")}
           ${kpi("Elle NOURRIT le corpus",t.notes_evenement||0,t.notes||0,"notes événementielles")}
@@ -1424,7 +1884,15 @@ V.systeme=(D)=>{
   const g=(B.health&&B.health.v&&B.health.v.gate)||{};
   const bud=(B.health&&B.health.v&&B.health.v.budget)||{};
   const kills=runs.filter(r=>r.status==="killed");
-  return `<div class="sec"><h2>Santé de la couche LLM</h2>
+  return `<div class="sec"><h2>L'architecture</h2>
+      <p>ce qui décide, et ce qui a le droit de dire non — la forme vient du code, les compteurs du flux</p></div>
+    <div class="card rv"><div class="bd">${dgmLayers(D)}
+      <p class="dgm-note">L'instrument est dessiné <b>hors de la pile</b>, en trait interrompu : ce n'est pas
+      une cinquième couche de jugement mais la frontière qui la juge. Il n'écrit aucun texte, il rend des
+      verdicts. Une couche dont le flux ne transporte aucun compteur l'affiche — elle ne reçoit pas un zéro.</p>
+    </div></div>
+
+    <div class="sec"><h2>Santé de la couche LLM</h2>
       <p>0 LLM · les ${(B.jobs&&B.jobs.v&&B.jobs.v.n)||"?"} jobs qui appellent un modèle de jugement — pas seulement les briefs</p></div>
     <div class="card rv">${head("jobs_wiring · relevé quotidien",B.jobs)}
       ${guard(B.jobs,j=>`<div class="bd">
@@ -1568,8 +2036,19 @@ function renderView(v,keepScroll){
   if(v==="briefs")wireBriefs();
   if(v==="news")wireNews();
   applyFilter($("q").value);
+  dgScroll();
   window.scrollTo({top:sy,behavior:"instant"});
 }
+/* L'invite « faites glisser » se MESURE, elle ne se suppose pas : un schéma
+   qui tient dans sa carte ne doit pas annoncer un débordement inexistant.
+   Sur téléphone, un schéma large défile dans son propre conteneur plutôt
+   que de rétrécir sa typographie jusqu'à l'illisible — même règle que les
+   tableaux (.tw), pour que la page, elle, ne défile jamais horizontalement. */
+function dgScroll(){
+  document.querySelectorAll(".dgm").forEach(d=>{
+    d.dataset.scroll=d.scrollWidth>d.clientWidth+2?"1":"0";});
+}
+addEventListener("resize",dgScroll,{passive:true});
 
 /* filtres locaux par vue */
 function chipRow(el,opts,cur,cb){
