@@ -602,6 +602,18 @@ mark{background:color-mix(in oklch,var(--warn) 34%,transparent);color:var(--ink)
   .view{animation:none}
 }
 @media print{.rail,.top,.foot{display:none}.view{display:block!important}}
+
+/* --- motifs ambiants (s56) ---------------------------------------------
+   Ornement, jamais de la donnee. Aucun de ces motifs ne represente une
+   mesure : pas d'axe, pas de barre, pas de compteur. La loi du terminal
+   tient — il transcrit, il n'embellit pas ; l'ornement reste ornement. */
+.motifbar{display:flex;justify-content:flex-end;margin:0 0 var(--gap);line-height:0}
+.motifbar img{width:128px;height:128px;border-radius:var(--r2);display:block;
+  opacity:.92;pointer-events:none;-webkit-user-select:none;user-select:none}
+@media (max-width:900px){.motifbar img{width:78px;height:78px}}
+/* rendus sur le --bg du theme sombre : en clair ils feraient un carre noir */
+:root[data-theme="light"] .motifbar{display:none}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .motifbar{display:none}}
 </style>
 </head>
 <body>
@@ -2016,6 +2028,18 @@ const TITLES={poste:["Poste de commande","ce qui a changé, et ce qui vient de c
   systeme:["Système","le harness se regarde fonctionner"]};
 let DATA=null,CUR="poste";
 
+
+/* motifs ambiants (s56) : un par vue, ornement pur, aucune donnee.
+   divergence -> theses parce que le livre de theses porte justement des
+   entites a plusieurs orthographes (LIDO x4, AAVE x4). */
+const MOTIFS={poste:"boucle",veilles:"predicat",theses:"divergence",news:"fil",systeme:"reveil"};
+function motifBar(v){
+  const m=MOTIFS[v]; if(!m) return "";
+  const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const f=still?("motifs/"+m+"-poster.webp"):("motifs/"+m+"-256.webp");
+  return '<div class="motifbar"><img src="'+f+'" alt="" aria-hidden="true" '+
+         'width="256" height="256" decoding="async"></div>';
+}
 function renderView(v,keepScroll){
   CUR=v;
   const sy=keepScroll?window.scrollY:0;
@@ -2029,7 +2053,7 @@ function renderView(v,keepScroll){
         a.scrollIntoView({inline:"center",block:"nearest",
           behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});
     }else a.removeAttribute("aria-current");});
-  try{ $("views").innerHTML=`<section class="view on">${(V[v]||V.poste)(DATA)}</section>`; }
+  try{ $("views").innerHTML=`<section class="view on">${motifBar(v)}${(V[v]||V.poste)(DATA)}</section>`; }
   catch(err){ $("views").innerHTML=`<div class="card"><div class="missing"><b>erreur de rendu</b>${esc(err.message)}</div></div>`;
     console.error(err); }
   if(v==="veilles")wireWatches();
