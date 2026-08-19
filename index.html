@@ -621,6 +621,7 @@ mark{background:color-mix(in oklch,var(--warn) 34%,transparent);color:var(--ink)
   </div>
   <nav class="nav" id="nav" aria-label="Vues du terminal">
     <span class="grp">Décidable</span>
+    <a href="#agent" data-v="agent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="5.4" r="2.6"/><path d="M2.8 13.6c0-2.6 2.3-4.2 5.2-4.2s5.2 1.6 5.2 4.2"/></svg>Agent</a>
     <a href="#sante" data-v="sante"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1.6 8.4h3l1.6-4 2.4 8 1.7-4h3.1"/></svg>Santé</a>
     <a href="#poste" data-v="poste"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="5.2" height="5.2" rx="1.2"/><rect x="8.8" y="2" width="5.2" height="5.2" rx="1.2"/><rect x="2" y="8.8" width="5.2" height="5.2" rx="1.2"/><rect x="8.8" y="8.8" width="5.2" height="5.2" rx="1.2"/></svg>Poste</a>
     <a href="#veilles" data-v="veilles"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 1.6l5.4 2.6v4c0 3.2-2.3 5.6-5.4 6.4-3.1-.8-5.4-3.2-5.4-6.4v-4z"/><path d="M5.7 8.1l1.6 1.6 3.2-3.4"/></svg>Veilles<span class="n" id="n-w"></span></a>
@@ -1887,6 +1888,84 @@ V.secteurs=(D)=>{
     </div>`;
 };
 
+V.agent=(D)=>{
+  const B=D.blocks||{};
+  const wk=((B.wakes&&B.wakes.v)||[]).slice().sort((a,b)=>String(b.ts||"").localeCompare(String(a.ts||"")));
+  const br=((B.briefs&&B.briefs.v)||[]).slice().sort((a,b)=>String(b.ts||"").localeCompare(String(a.ts||"")));
+  const it=(B.watches&&B.watches.v&&B.watches.v.items)||[];
+  const inq=((B.inquiries&&B.inquiries.v)||[]);
+  const rx=(B.reflex&&B.reflex.v)||null;
+  const esc=s=>String(s==null?"":s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+  const dt=s=>String(s||"").replace("T"," ").replace("Z","").slice(0,16);
+  const SRC={L3:"GLM",L4:"brain",NEWS:"news"};
+  const fmt=v=>{const n=Number(v);if(!isFinite(n))return esc(v);
+    if(Math.abs(n)>=1e9)return (n/1e9).toFixed(2)+" Md";
+    if(Math.abs(n)>=1e6)return (n/1e6).toFixed(1)+" M";
+    if(Math.abs(n)>=1e3)return (n/1e3).toFixed(0)+" k";return String(n);};
+
+  // 1. LA DERNIERE CONCLUSION — ce que l'agent a retenu, dans ses mots.
+  const w0=wk[0];
+  const concl=!w0?`<p>aucun réveil enregistré</p>`:
+    `<p class="dgm-note" style="opacity:.8">${dt(w0.ts)} · ${esc(w0.label||"")} · ${esc(w0.model||"")}
+      · ${w0.dur_s?Math.round(w0.dur_s)+" s":"—"} · <b>${esc(w0.publish||"—")}</b></p>
+     <p style="font-size:1.02rem;line-height:1.5">${w0.summary?esc(w0.summary):
+       "<i>aucun résumé — le réveil n'a pas conclu au format que le harnais sait lire</i>"}</p>
+     <p class="dgm-note">${w0.watches||0} veille(s) émise(s) ce réveil.</p>`;
+
+  // 2. CE QUI TOMBE BIENTOT — l'engagement qui va etre tranche, c'est ce qui compte demain.
+  const ouv=it.filter(w=>w.verdict==="OPEN").sort((a,b)=>(a.due_h==null?1e9:a.due_h)-(b.due_h==null?1e9:b.due_h));
+  const proches=ouv.slice(0,8).map(w=>{
+    const due=w.due_h==null?"—":(w.due_h<0?`<b>échue depuis ${Math.abs(Math.round(w.due_h))} h</b>`:
+      (w.due_h<48?`<b>dans ${Math.round(w.due_h)} h</b>`:`dans ${Math.round(w.due_h/24)} j`));
+    return `<p class="dgm-note"><b>${esc(w.entity)}</b> · ${esc(w.metric)} ${esc(w.op)}
+      ${fmt(w.threshold)} — ${due} <span style="opacity:.6">[${SRC[w.src]||esc(w.src)}]</span></p>`;}).join("");
+
+  // 3. CE QUI VIENT D'ETRE TRANCHE — avec l'ecart mesure, jamais un simple oui/non.
+  const dec=it.filter(w=>w.verdict==="HELD"||w.verdict==="BROKEN")
+    .sort((a,b)=>String(b.decided||"").localeCompare(String(a.decided||""))).slice(0,6).map(w=>
+    `<p class="dgm-note"><span style="color:var(--${w.verdict==="HELD"?"held":"broken"})">
+      <b>${w.verdict==="HELD"?"TENU":"CASSÉ"}</b></span> ${esc(w.entity)} · ${esc(w.metric)}
+      ${esc(w.op)} ${fmt(w.threshold)}${w.observed_pct!=null?` — mesuré ${w.observed_pct} %`:
+      (w.current!=null?` — mesuré ${fmt(w.current)}`:"")}
+      <span style="opacity:.6">[${SRC[w.src]||esc(w.src)}]</span></p>`).join("");
+
+  // 4. SES QUESTIONS — le seul objet qui traverse les sessions.
+  const qs=inq.slice(0,5).map(q=>{
+    const ev=(q.evidence&&q.evidence[0])||null;
+    return `<div class="card rv"><div class="bd">
+      <p><b>${esc(q.q||q.id)}</b></p>
+      <p class="dgm-note">${q.touches||0} touches · ouverte depuis ${q.born?dt(q.born).slice(0,10):"?"}
+        ${q.dormant?" · <b>dormante</b>":""} · dernière note il y a ${q.age_d==null?"?":q.age_d+" j"}</p>
+      ${ev?`<p class="dgm-note" style="opacity:.85">« ${esc(String(ev.note||"").slice(0,240))} »</p>`:
+        `<p class="dgm-note"><i>aucune note</i></p>`}
+    </div></div>`;}).join("");
+
+  const b0=br[0];
+  return `<div class="sec"><h2>Sa dernière conclusion</h2>
+      <p>le réveil le plus récent, dans ses mots — le harnais n'en extrait que la forme</p></div>
+    <div class="card rv">${head("brain_wakes",B.wakes)}<div class="bd">${concl}</div></div>
+
+    <div class="sec"><h2>Ce qui tombe bientôt</h2>
+      <p>${ouv.length} engagement(s) en cours — les 8 plus proches de leur échéance</p></div>
+    <div class="card rv"><div class="bd">${proches||"<p>aucun engagement ouvert</p>"}</div></div>
+
+    <div class="sec"><h2>Ce qui vient d'être tranché</h2></div>
+    <div class="card rv"><div class="bd">${dec||"<p>aucun verdict rendu</p>"}</div></div>
+
+    <div class="sec"><h2>Ses questions ouvertes</h2>
+      <p>le seul objet qui traverse les sessions — une question sans note depuis des semaines est dormante</p></div>
+    ${qs||`<div class="card rv"><div class="bd"><p>aucune enquête ouverte</p></div></div>`}
+
+    <div class="sec"><h2>Le dernier brief, et le réflexif</h2></div>
+    <div class="card rv"><div class="bd">
+      <p class="dgm-note">${b0?`<b>tier ${esc(b0.tier)}</b> · ${dt(b0.ts)} · ${esc(b0.mode||"")} ·
+        discipline ${b0.discipline} · R2 ${b0.r2_pass?"passé":"<b>ÉCHOUÉ</b>"}${b0.silent?" · SILENCE":""}`
+        :"aucun brief"}</p>
+      <p class="dgm-note">${rx&&rx.date?`réflexif du ${esc(rx.date)} — ${rx.n} enquête(s) relues sur tout le corpus`
+        :"réflexif : aucune synthèse"}</p>
+    </div></div>`;
+};
+
 V.sante=(D)=>{
   const B=D.blocks||{},st=D.status||{};
   const W=(B.watches&&B.watches.v)||{},S=W.stats||{},J=(B.jobs&&B.jobs.v)||{};
@@ -2099,7 +2178,8 @@ V.systeme=(D)=>{
 /* ══════════════════════════════════════════════════════════════════
    ROUTAGE / RENDU
    ══════════════════════════════════════════════════════════════════ */
-const TITLES={sante:["Santé","l'agent tourne-t-il, et produit-il quelque chose de jugeable ?"],
+const TITLES={agent:["L'agent","ce qu'il a conclu, ce sur quoi il s'engage, ce qui vient d'être tranché"],
+  sante:["Santé","l'agent tourne-t-il, et produit-il quelque chose de jugeable ?"],
   poste:["Poste de commande","ce qui a changé, et ce qui vient de casser"],
   veilles:["Veilles falsifiables","le registre des prédicats datés"],
   briefs:["Briefs","la recherche publiée"],theses:["Thèses","le livre, append-only"],
