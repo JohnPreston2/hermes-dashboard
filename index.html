@@ -621,6 +621,7 @@ mark{background:color-mix(in oklch,var(--warn) 34%,transparent);color:var(--ink)
   </div>
   <nav class="nav" id="nav" aria-label="Vues du terminal">
     <span class="grp">Décidable</span>
+    <a href="#sante" data-v="sante"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1.6 8.4h3l1.6-4 2.4 8 1.7-4h3.1"/></svg>Santé</a>
     <a href="#poste" data-v="poste"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="5.2" height="5.2" rx="1.2"/><rect x="8.8" y="2" width="5.2" height="5.2" rx="1.2"/><rect x="2" y="8.8" width="5.2" height="5.2" rx="1.2"/><rect x="8.8" y="8.8" width="5.2" height="5.2" rx="1.2"/></svg>Poste</a>
     <a href="#veilles" data-v="veilles"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 1.6l5.4 2.6v4c0 3.2-2.3 5.6-5.4 6.4-3.1-.8-5.4-3.2-5.4-6.4v-4z"/><path d="M5.7 8.1l1.6 1.6 3.2-3.4"/></svg>Veilles<span class="n" id="n-w"></span></a>
     <span class="grp">Recherche</span>
@@ -1886,6 +1887,89 @@ V.secteurs=(D)=>{
     </div>`;
 };
 
+V.sante=(D)=>{
+  const B=D.blocks||{},st=D.status||{};
+  const W=(B.watches&&B.watches.v)||{},S=W.stats||{},J=(B.jobs&&B.jobs.v)||{};
+  const bud=(B.health&&B.health.v&&B.health.v.budget)||{};
+  const num=v=>(v===null||v===undefined)?"—":v;
+  // AGE DU RELEVE : un chiffre juste mais vieux est un chiffre faux pour qui surveille.
+  const ageH=(()=>{const t=Date.parse(D.generated_at||"");return isFinite(t)?(Date.now()-t)/36e5:null;})();
+  // LES ALERTES SE COMPTENT, ELLES NE SE DECRETENT PAS.
+  const failed=(D.failed_blocks||[]).length, vide=J.vide||0;
+  const stale=Object.keys(B).filter(k=>B[k]&&B[k].err).length;
+  const vieux=(ageH!==null&&ageH>4)?1:0;
+  const alertes=failed+vide+stale+vieux;
+  const lignes=[];
+  if(failed) lignes.push(`${failed} bloc(s) en échec à la génération`);
+  if(vide)   lignes.push(`${vide} job(s) LLM produisent du vide`);
+  if(stale)  lignes.push(`${stale} bloc(s) en erreur`);
+  if(vieux)  lignes.push(`relevé vieux de ${ageH.toFixed(1)} h`);
+  // LES PRODUCTEURS : c'est la vraie question — qui emet, et est-ce que ca tient ?
+  const SRC={L3:["GLM · briefs","tier A, 3-phase"],L4:["brain · réveils","kimi, 2×/jour"],
+             NEWS:["instructeur · fil","événement → prédicat"]};
+  const bysrc=S.by_src||{}, waste=(S.waste&&S.waste.by_src)||{};
+  const prod=Object.keys(SRC).filter(k=>bysrc[k]||waste[k]).map(k=>{
+    const r=bysrc[k]||{},w=waste[k]||{};
+    const rate=(r.rate===null||r.rate===undefined)?null:r.rate;
+    return `<div class="card rv"><div class="bd">
+      <div class="l" style="opacity:.75">${SRC[k][0]} — <i>${SRC[k][1]}</i></div>
+      <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,110px),1fr));margin-top:.5rem">
+        <div class="kpi"><div class="l">émises</div><div class="v">${num(w.emitted)}</div><span class="bar"></span></div>
+        <div class="kpi" data-tone="open"><div class="l">en cours</div><div class="v">${num(r.open)}</div><span class="bar"></span></div>
+        <div class="kpi" data-tone="${rate===null?"warn":(rate>=19?"held":"broken")}">
+          <div class="l">tenues</div><div class="v">${rate===null?"—":rate+" %"}</div><span class="bar"></span></div>
+        <div class="kpi" data-tone="${(w.rate||0)>30?"broken":"warn"}"><div class="l">déchet</div>
+          <div class="v">${w.rate===null||w.rate===undefined?"—":w.rate+" %"}</div><span class="bar"></span></div>
+      </div>
+      ${rate===null?`<p class="dgm-note">Aucun verdict rendu pour l'instant — les échéances courent.
+        Un producteur sans verdict n'est pas un producteur sans valeur : c'est un producteur trop jeune.</p>`:""}
+    </div></div>`;}).join("");
+  const lr=st.last_run||{};
+  return `<div class="sec"><h2>${alertes?`${alertes} point${alertes>1?"s":""} à regarder`:"Tout tourne"}</h2>
+      <p>${alertes?lignes.join(" · "):"aucun bloc en échec, aucun job à vide, relevé frais"}</p></div>
+
+    <div class="card rv"><div class="bd">
+      <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,110px),1fr))">
+        <div class="kpi" data-tone="${alertes?"broken":"held"}"><div class="l">alertes</div>
+          <div class="v">${alertes}</div><span class="bar"></span></div>
+        <div class="kpi"><div class="l">relevé</div>
+          <div class="v">${ageH===null?"—":(ageH<1?Math.round(ageH*60)+" min":ageH.toFixed(1)+" h")}</div><span class="bar"></span></div>
+        <div class="kpi"><div class="l">veilles émises aujourd'hui</div>
+          <div class="v">${num(S.issued_today)}</div><span class="bar"></span></div>
+        <div class="kpi"><div class="l">tranchées aujourd'hui</div>
+          <div class="v">${num(S.decided_today)}</div><span class="bar"></span></div>
+      </div></div></div>
+
+    <div class="sec"><h2>Les producteurs de prédicats</h2>
+      <p>« tenues » = HELD-rate ; le hasard donne 14,8 %, la règle 0-LLM 49,1 % — un producteur se lit contre eux, jamais seul</p></div>
+    ${prod||`<div class="card rv"><div class="bd"><p>aucun producteur dans le registre</p></div></div>`}
+
+    <div class="sec"><h2>Les jobs à modèle</h2></div>
+    <div class="card rv">${head("jobs_wiring",B.jobs)}
+      ${guard(B.jobs,j=>`<div class="bd">
+        <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,110px),1fr))">
+          <div class="kpi"><div class="l">jobs suivis</div><div class="v">${j.n}</div><span class="bar"></span></div>
+          <div class="kpi" data-tone="${j.vide?"broken":"held"}"><div class="l">à vide</div><div class="v">${j.vide}</div><span class="bar"></span></div>
+          <div class="kpi" data-tone="${j.arretes?"broken":"held"}"><div class="l">arrêtés</div><div class="v">${j.arretes}</div><span class="bar"></span></div>
+          <div class="kpi" data-tone="warn"><div class="l">mesurés</div><div class="v">${j.couverts}/${j.n}</div><span class="bar"></span></div>
+        </div>
+        ${(j.jobs||[]).filter(x=>x.vide||!x.tourne).map(x=>`<p class="dgm-note">
+          <b>${x.nom}</b> — ${x.tourne?"produit du vide":"ne tourne plus"} · ${x.log||"?"}</p>`).join("")||
+          `<p class="dgm-note">Les ${j.n-j.couverts} jobs sans prédicat ne sont pas « sains » :
+           leur production n'est simplement pas jugeable par l'instrument.</p>`}
+      </div>`)}
+    </div>
+
+    <div class="sec"><h2>Le dernier brief, et le budget</h2></div>
+    <div class="card rv"><div class="bd">
+      <p class="dgm-note">${lr.ts?`<b>tier ${lr.tier}</b> · ${lr.ts.replace("T"," ").replace("Z"," UTC")} ·
+        statut ${lr.status} · discipline ${lr.discipline} · R2 ${lr.r2_pass?"passé":"ÉCHOUÉ"}${lr.silent?" · SILENCE":""}`
+        :"aucun run enregistré"}</p>
+      ${Object.keys(bud.counts||{}).map(m=>`<p class="dgm-note">${m} : <b>${bud.counts[m]}</b> appels
+        ${bud.caps&&bud.caps[m]?`sur ${bud.caps[m]}`:""}</p>`).join("")||""}
+    </div></div>`;
+};
+
 V.systeme=(D)=>{
   const B=D.blocks,st=D.status||{};
   const runs=(B.runs&&B.runs.v)||[];
@@ -2015,7 +2099,8 @@ V.systeme=(D)=>{
 /* ══════════════════════════════════════════════════════════════════
    ROUTAGE / RENDU
    ══════════════════════════════════════════════════════════════════ */
-const TITLES={poste:["Poste de commande","ce qui a changé, et ce qui vient de casser"],
+const TITLES={sante:["Santé","l'agent tourne-t-il, et produit-il quelque chose de jugeable ?"],
+  poste:["Poste de commande","ce qui a changé, et ce qui vient de casser"],
   veilles:["Veilles falsifiables","le registre des prédicats datés"],
   briefs:["Briefs","la recherche publiée"],theses:["Thèses","le livre, append-only"],
   enquetes:["Enquêtes-mission","les questions permanentes"],
