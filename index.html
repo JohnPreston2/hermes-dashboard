@@ -271,6 +271,30 @@ button#refresh[data-failed]{color:var(--warn);
 .alert li .pred{font-family:var(--mono);font-size:11.5px;color:var(--ink)}
 .alert li .wh{color:var(--ink3);font-size:11.5px;flex:1 1 240px;text-wrap:pretty}
 
+/* ── SPOTLIGHT « à la une » (dashboard, 2026-09-03) : meme langage visuel que
+   .alert (glow, degrade, badge) mais ton --acc (structurel, pas une alarme),
+   et chaque ligne porte SA PROPRE couleur semantique via data-tone, comme .w
+   et .vpill le font deja plus bas -- reutilise le jeton, n'invente rien. --- */
+.spot{position:relative;border:1px solid color-mix(in oklch,var(--acc) 46%,transparent);
+  background:linear-gradient(120deg,color-mix(in oklch,var(--acc) 16%,var(--s1)),var(--s1) 62%);
+  border-radius:var(--r2);box-shadow:var(--e3),0 0 34px -16px var(--acc);
+  padding:13px 16px;margin-bottom:var(--gap);overflow:hidden}
+.spot::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(var(--acc),var(--acc2));box-shadow:0 0 16px var(--acc)}
+.spot h3{margin:0 0 3px;font-size:13.5px;font-weight:650;color:var(--acc);
+  display:flex;align-items:center;gap:8px}
+.spot h3 .cnt{font:700 10px var(--mono);background:var(--acc);color:var(--on-semantic);
+  border-radius:20px;padding:2px 8px;letter-spacing:.04em}
+.spot p{margin:0 0 9px;font-size:12px;color:var(--ink2)}
+.spot ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.spot li{--t:var(--ink4);display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12.5px;
+  padding:9px 12px;background:color-mix(in oklch,var(--t) 11%,transparent);
+  border-radius:var(--r1);border:1px solid color-mix(in oklch,var(--t) 30%,transparent)}
+.spot li[data-tone="held"]{--t:var(--held)} .spot li[data-tone="broken"]{--t:var(--broken)}
+.spot li[data-tone="open"]{--t:var(--open)} .spot li[data-tone="warn"]{--t:var(--warn)}
+.spot li .ic{font-size:14px;line-height:1;flex:none}
+.spot li .wh{flex:1 1 240px}
+
 /* ── MUR DES VEILLES (la pièce maîtresse) ───────────────────────────── */
 .wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(15px,1fr));gap:4px;
   padding:14px;perspective:900px}
@@ -1744,22 +1768,31 @@ V.marche=(D)=>{
   /* --- à la une (dashboard 2026-09-03) : sélection du curateur, sessions,
      movers, hot news. Chaque carte passe par guard() -- une absence s'affiche
      MANQUANT, jamais un repli silencieux. --------------------------------- */
-  const feat=(()=>{const C=B.curator;if(!C||C.err||!C.v)return"";
+  const feat=(()=>{const C=B.curator;if(!C||C.err||!C.v||!(C.v.featured||[]).length)return"";
     const mv=C.v.movers||[],wk=C.v.wakes||[],nw=C.v.news||[];
+    const TAGI={largest_move:"📈",cross_referenced:"🔗",high_materiality:"⚠️",fresh_wake:"🌅",notable:"★"};
+    // resolve() rend {tone, html} -- le TON reflete le sens reel de la donnee
+    // (gain/perte, ok/echec, impact), jamais un flat neutre : c'est precisement
+    // ce qui manquait pour qu'on repere quelque chose (retour user 2026-09-03).
     const resolve=f=>{
       if(f.type==="mover"){const m=mv.find(x=>x.name===f.ref);
-        return m?`<b>${esc(m.name)}</b> <span class="c ${m.chg_1d>0?"up":"dn"}">${m.chg_1d>0?"+":""}${nf(m.chg_1d,1)}%</span> <small>${esc(m.category||"")}</small>`:esc(f.ref);}
+        if(!m)return{tone:"",html:esc(f.ref)};
+        return{tone:m.chg_1d>0?"held":"broken",
+          html:`<b>${esc(m.name)}</b> <span class="c ${m.chg_1d>0?"up":"dn"}">${m.chg_1d>0?"+":""}${nf(m.chg_1d,1)}%</span> <small>${esc(m.category||"")}</small>`};}
       if(f.type==="wake"){const w=wk.find(x=>x.ts===f.ref);
-        return w?`réveil <b>${esc(w.label||"?")}</b> <span class="c ${w.ok?"up":"dn"}">${w.ok?"ok":"échec"}</span> <small>${esc((w.summary||"").slice(0,90))}</small>`:esc(f.ref);}
+        if(!w)return{tone:"",html:esc(f.ref)};
+        return{tone:w.ok?"held":"broken",
+          html:`réveil <b>${esc(w.label||"?")}</b> ${w.ok?"":'<span class="c dn">échec</span>'} <small>${esc((w.summary||"").slice(0,90))}</small>`};}
       if(f.type==="news"){const n=nw.find(x=>x.id===f.ref);
-        return n?`<a href="${esc(n.url||"#")}" target="_blank" rel="noopener">${esc((n.headline||"").slice(0,90))}</a> <small>${esc(n.source||"")}</small>`:esc(f.ref);}
-      return esc(f.ref);};
-    return `<div class="sec"><h2>À la une</h2><p>sélection de l'agent curateur · référence + priorité, aucune conclusion écrite</p></div>
-      <div class="card rv">${head("dashboard_curator · sélection",C)}
-        <div class="bd"><div class="kpis" style="grid-template-columns:1fr">
-          ${(C.v.featured||[]).map(f=>`<div class="kpi" data-tone="fl" style="text-align:left">
-            <div class="l">${resolve(f)}</div><span class="bar"></span></div>`).join("")}
-        </div></div></div>`;})();
+        if(!n)return{tone:"",html:esc(f.ref)};
+        return{tone:n.impact==="value-accretive"?"held":n.impact==="adverse"?"broken":"open",
+          html:`<a href="${esc(n.url||"#")}" target="_blank" rel="noopener">${esc((n.headline||"").slice(0,90))}</a> <small>${esc(n.source||"")}</small>`};}
+      return{tone:"",html:esc(f.ref)};};
+    const items=(C.v.featured||[]).map(f=>{const r=resolve(f);
+      return `<li data-tone="${r.tone}"><span class="ic">${TAGI[f.tag]||"•"}</span><span class="wh">${r.html}</span></li>`;}).join("");
+    return `<section class="spot"><h3><span class="cnt">${(C.v.featured||[]).length}</span> à la une</h3>
+      <p>Sélection de l'agent curateur parmi ce que les autres agents ont déjà produit — référence + priorité, aucune conclusion écrite.</p>
+      <ul>${items}</ul></section>`;})();
   const sess=(()=>{const S=B.sessions;if(!S||S.err||!S.v)return"";
     const s=S.v.sessions||{};
     return `<div class="card rv">${head("Sessions de marché · calcul UTC",S)}
