@@ -1780,7 +1780,7 @@ V.marche=(D)=>{
           <div class="l"><b>${esc(w.label||"?")}</b> <small>${esc((w.ts||"").slice(0,16).replace("T"," "))} UTC</small></div>
           <div class="note" style="padding:2px 0 0">${w.ok?esc((w.summary||"(pas de résumé)").slice(0,140)):"réveil en échec — rien produit"}</div>
           <span class="bar"></span></div>`).join("")+'</div>',"wakes")}</div>`;
-  const hn=`<div class="card rv">${head("Hot news · digest GLM, R2-vérifié",B.hot_news)}
+  const hn=`<div class="card rv">${head("Hot news · digest GLM, impact classé",B.hot_news)}
       ${guard(B.hot_news,h=>'<div class="bd">'+(h.news||[]).map(n=>`<div class="pxr">
           <span class="c ${n.impact==="value-accretive"?"up":n.impact==="adverse"?"dn":"fl"}">●</span>
           <a href="${esc(n.url||"#")}" target="_blank" rel="noopener" style="flex:1">${esc((n.headline||"").slice(0,90))}</a>
@@ -1789,7 +1789,7 @@ V.marche=(D)=>{
   return `${feat}
     <div class="sec"><h2>Sessions & movers</h2><p>0 LLM · contexte TradFi et instantané protocoles</p></div>
     <div class="grid g-2">${sess}${mov}</div>
-    <div class="sec"><h2>Derniers réveils & hot news</h2><p>L4 (wake2.py) · digest GLM classé, gate R2 déjà passé</p></div>
+    <div class="sec"><h2>Derniers réveils & hot news</h2><p>L4 (wake2.py) · digest GLM, impact classé (accretive/adverse/neutral)</p></div>
     <div class="grid g-2">${wk}${hn}</div>
     <div class="sec"><h2>Prix</h2><p>variation encodée par la forme autant que par la couleur</p></div>
     <div class="card rv">${head("crypto_server · /api/prices",B.prices)}
