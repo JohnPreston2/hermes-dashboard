@@ -1745,12 +1745,12 @@ V.marche=(D)=>{
      movers, hot news. Chaque carte passe par guard() -- une absence s'affiche
      MANQUANT, jamais un repli silencieux. --------------------------------- */
   const feat=(()=>{const C=B.curator;if(!C||C.err||!C.v)return"";
-    const mv=C.v.movers||[],br=C.v.briefs||[],nw=C.v.news||[];
+    const mv=C.v.movers||[],wk=C.v.wakes||[],nw=C.v.news||[];
     const resolve=f=>{
       if(f.type==="mover"){const m=mv.find(x=>x.name===f.ref);
         return m?`<b>${esc(m.name)}</b> <span class="c ${m.chg_1d>0?"up":"dn"}">${m.chg_1d>0?"+":""}${nf(m.chg_1d,1)}%</span> <small>${esc(m.category||"")}</small>`:esc(f.ref);}
-      if(f.type==="brief"){const b=br.find(x=>x.ts===f.ref);
-        return b?`brief <b>${esc(b.tier||"?")}</b> <small>${esc((b.brief_excerpt||"").slice(0,90))}</small>`:esc(f.ref);}
+      if(f.type==="wake"){const w=wk.find(x=>x.ts===f.ref);
+        return w?`réveil <b>${esc(w.label||"?")}</b> <span class="c ${w.ok?"up":"dn"}">${w.ok?"ok":"échec"}</span> <small>${esc((w.summary||"").slice(0,90))}</small>`:esc(f.ref);}
       if(f.type==="news"){const n=nw.find(x=>x.id===f.ref);
         return n?`<a href="${esc(n.url||"#")}" target="_blank" rel="noopener">${esc((n.headline||"").slice(0,90))}</a> <small>${esc(n.source||"")}</small>`:esc(f.ref);}
       return esc(f.ref);};
@@ -1775,6 +1775,11 @@ V.marche=(D)=>{
         '<div><div class="note" style="padding:0 0 6px">Baisses</div>'+bars((m.losers||[]).map(p=>({n:p.name,v:Math.abs(p.chg_1d),c:"r",
           lbl:nf(p.chg_1d,1)+"% <small>"+esc(p.category||"")+"</small>"})))+'</div>'+
         '</div><div class="note">CEX exclu (hors recherche DeFi) · '+esc(m.note||"")+'</div></div>',"movers")}</div>`;
+  const wk=`<div class="card rv">${head("Derniers réveils · wake2.py (L4)",B.wakes)}
+      ${guard(B.wakes,items=>'<div class="bd">'+(items||[]).slice(0,5).map(w=>`<div class="kpi" data-tone="${w.ok?"held":"broken"}" style="text-align:left">
+          <div class="l"><b>${esc(w.label||"?")}</b> <small>${esc((w.ts||"").slice(0,16).replace("T"," "))} UTC</small></div>
+          <div class="note" style="padding:2px 0 0">${w.ok?esc((w.summary||"(pas de résumé)").slice(0,140)):"réveil en échec — rien produit"}</div>
+          <span class="bar"></span></div>`).join("")+'</div>',"wakes")}</div>`;
   const hn=`<div class="card rv">${head("Hot news · digest GLM, R2-vérifié",B.hot_news)}
       ${guard(B.hot_news,h=>'<div class="bd">'+(h.news||[]).map(n=>`<div class="pxr">
           <span class="c ${n.impact==="value-accretive"?"up":n.impact==="adverse"?"dn":"fl"}">●</span>
@@ -1784,8 +1789,8 @@ V.marche=(D)=>{
   return `${feat}
     <div class="sec"><h2>Sessions & movers</h2><p>0 LLM · contexte TradFi et instantané protocoles</p></div>
     <div class="grid g-2">${sess}${mov}</div>
-    <div class="sec"><h2>Hot news</h2><p>digest GLM · classé value-accretive/adverse/neutral, gate R2 déjà passé</p></div>
-    ${hn}
+    <div class="sec"><h2>Derniers réveils & hot news</h2><p>L4 (wake2.py) · digest GLM classé, gate R2 déjà passé</p></div>
+    <div class="grid g-2">${wk}${hn}</div>
     <div class="sec"><h2>Prix</h2><p>variation encodée par la forme autant que par la couleur</p></div>
     <div class="card rv">${head("crypto_server · /api/prices",B.prices)}
       ${guard(B.prices,p=>{
