@@ -654,6 +654,7 @@ mark{background:color-mix(in oklch,var(--warn) 34%,transparent);color:var(--ink)
     <a href="#theses" data-v="theses"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1.8 12.4l3.4-4.6 3 2.2 4.2-6.4"/><path d="M11 3.6h2.6v2.6"/></svg>Thèses<span class="n" id="n-t"></span></a>
     <a href="#enquetes" data-v="enquetes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4L14 14"/></svg>Enquêtes<span class="n" id="n-i"></span></a>
     <span class="grp">Marché</span>
+    <a href="#alaune" data-v="alaune"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 1.8l1.6 3.6 3.8.4-2.9 2.6.9 3.8L8 10.2l-3.4 2 .9-3.8-2.9-2.6 3.8-.4z"/></svg>À la une</a>
     <a href="#marche" data-v="marche"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1.8 13.4h12.4M4.2 13.4V7M8 13.4V2.6M11.8 13.4V9.4"/></svg>Marché</a>
     <a href="#news" data-v="news"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="1.8" y="3" width="12.4" height="10" rx="1.6"/><path d="M4.4 6h5M4.4 8.6h7M4.4 11h4"/></svg>Fil<span class="n" id="n-n"></span></a>
     <a href="#secteurs" data-v="secteurs"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 2v6l4.2 2.4"/></svg>Secteurs</a>
@@ -1763,11 +1764,13 @@ V.enquetes=(D)=>{
   Une enquête <b>dormante</b> n'a reçu aucune note depuis 7 jours : elle est ouverte dans le fichier, pas dans le travail de l'agent.</div></div>`;
 };
 
-V.marche=(D)=>{
+/* ── À LA UNE — vue dédiée, séparée de Marché (2026-09-03→04, retour user :
+   entassé dans Marché rendait la page fouillie sur iPhone). Même contenu que
+   la 1ère version, juste sa propre place au lieu d'être en tête de Marché. */
+V.alaune=(D)=>{
   const B=D.blocks;
-  /* --- à la une (dashboard 2026-09-03) : sélection du curateur, sessions,
-     movers, hot news. Chaque carte passe par guard() -- une absence s'affiche
-     MANQUANT, jamais un repli silencieux. --------------------------------- */
+  /* --- Chaque carte passe par guard() -- une absence s'affiche MANQUANT,
+     jamais un repli silencieux. ------------------------------------------ */
   const feat=(()=>{const C=B.curator;if(!C||C.err||!C.v||!(C.v.featured||[]).length)return"";
     const mv=C.v.movers||[],wk=C.v.wakes||[],nw=C.v.news||[];
     const TAGI={largest_move:"📈",cross_referenced:"🔗",high_materiality:"⚠️",fresh_wake:"🌅",notable:"★"};
@@ -1823,8 +1826,11 @@ V.marche=(D)=>{
     <div class="sec"><h2>Sessions & movers</h2><p>0 LLM · contexte TradFi et instantané protocoles</p></div>
     <div class="grid g-2">${sess}${mov}</div>
     <div class="sec"><h2>Derniers réveils & hot news</h2><p>L4 (wake2.py) · digest GLM, impact classé (accretive/adverse/neutral)</p></div>
-    <div class="grid g-2">${wk}${hn}</div>
-    <div class="sec"><h2>Prix</h2><p>variation encodée par la forme autant que par la couleur</p></div>
+    <div class="grid g-2">${wk}${hn}</div>`;
+};
+V.marche=(D)=>{
+  const B=D.blocks;
+  return `<div class="sec"><h2>Prix</h2><p>variation encodée par la forme autant que par la couleur</p></div>
     <div class="card rv">${head("crypto_server · /api/prices",B.prices)}
       ${guard(B.prices,p=>{
         const by={};(p.items||[]).forEach(i=>{(by[i.cat]=by[i.cat]||[]).push(i);});
@@ -2267,6 +2273,7 @@ const TITLES={agent:["L'agent","ce qu'il a conclu, ce sur quoi il s'engage, ce q
   veilles:["Veilles falsifiables","le registre des prédicats datés"],
   briefs:["Briefs","la recherche publiée"],theses:["Thèses","le livre, append-only"],
   enquetes:["Enquêtes-mission","les questions permanentes"],
+  alaune:["À la une","sélection du curateur · movers · réveils · hot news"],
   marche:["Marché","prix et fondamentaux"],news:["Fil","les sources, cliquables"],
   secteurs:["Secteurs","trackers RWA et Robinhood Chain"],
   systeme:["Système","le harness se regarde fonctionner"]};
