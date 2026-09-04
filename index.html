@@ -226,6 +226,12 @@ button#refresh[data-failed]{color:var(--warn);
 .card.dim{opacity:.55}
 .grid{display:grid;gap:var(--gap)}
 .g-2{grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+/* .rowlo (dashboard 2026-09-04) : 2 colonnes DONT LE RATIO vient du choix du job
+   mise-en-page (--c1/--c2, inline), mais SEULEMENT a partir de 640px -- en dessous,
+   1 seule colonne fixe, comme .g-2 le fait deja via auto-fit/minmax. Une classe a
+   part plutot que de toucher .g-2 (utilisee partout ailleurs sur le site). */
+.rowlo{grid-template-columns:1fr}
+@media(min-width:640px){.rowlo{grid-template-columns:var(--c1,1fr) var(--c2,1fr)}}
 .g-main{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);align-items:start}
 @media(max-width:1080px){.g-main{grid-template-columns:1fr}}
 .stack{display:flex;flex-direction:column;gap:var(--gap)}
@@ -1339,6 +1345,9 @@ function dgmLoop(D){
    VUES
    ══════════════════════════════════════════════════════════════════ */
 const V={};
+// meme enum ferme que dashboard_curator.py LAYOUT_CHOICES (dashboard 2026-09-04) --
+// le front revalide aussi, ne fait jamais confiance aveuglement a une valeur du JSON.
+const LAYOUT_CHOICES=new Set(["movers_wide","wakes_wide","hotnews_wide","balanced"]);
 
 V.poste=(D)=>{
   const B=D.blocks,st=D.status||{},lr=st.last_run||{};
@@ -1831,11 +1840,15 @@ V.alaune=(D)=>{
           <a href="${esc(n.url||"#")}" target="_blank" rel="noopener" style="flex:1">${esc((n.headline||"").slice(0,90))}</a>
           <small>${esc(n.source||"")}</small></div>`).join("")+
         '<div class="note">'+((h.watchlist||[]).map(w=>esc(w.sym)+" "+(has(w.change_pct)?(w.change_pct>0?"+":"")+nf(w.change_pct,1)+"%":"")).join(" · "))+'</div></div>',"hot_news")}</div>`;
+  // Mise en page (2026-09-04, 1ere iteration) : IMPORTE le choix du 2e call GLM
+  // (dashboard_curator.py, decide_layout) -- ferme a 4 valeurs, jamais de HTML
+  // genere. Absence/erreur -> "balanced", jamais un ecran vide.
+  const LO=(B.curator&&B.curator.v&&LAYOUT_CHOICES.has(B.curator.v.layout))?B.curator.v.layout:"balanced";
   return `${feat}
     <div class="sec"><h2>Sessions & movers</h2><p>0 LLM · contexte TradFi et instantané protocoles</p></div>
-    <div class="grid g-2">${sess}${mov}</div>
+    <div class="grid rowlo" style="--c1:${LO==="movers_wide"?"1fr":"1fr"};--c2:${LO==="movers_wide"?"2fr":"1fr"}">${sess}${mov}</div>
     <div class="sec"><h2>Derniers réveils & hot news</h2><p>L4 (wake2.py) · digest GLM, impact classé (accretive/adverse/neutral)</p></div>
-    <div class="grid g-2">${wk}${hn}</div>`;
+    <div class="grid rowlo" style="--c1:${LO==="wakes_wide"?"2fr":"1fr"};--c2:${LO==="hotnews_wide"?"2fr":"1fr"}">${wk}${hn}</div>`;
 };
 V.marche=(D)=>{
   const B=D.blocks;
