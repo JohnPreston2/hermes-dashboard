@@ -294,6 +294,15 @@ button#refresh[data-failed]{color:var(--warn);
 .spot li[data-tone="open"]{--t:var(--open)} .spot li[data-tone="warn"]{--t:var(--warn)}
 .spot li .ic{font-size:14px;line-height:1;flex:none}
 .spot li .wh{flex:1 1 240px}
+/* entree en cascade (2026-09-04) : reutilise @keyframes fade deja existante
+   (.view l'utilise pour le fondu de changement d'onglet) -- pas de nouvelle
+   animation, juste un delai croissant par item pour que "a la une" se revele
+   plutot que d'apparaitre en bloc plat. Deja couvert par le garde reduced-
+   motion global (*{animation:none!important}). */
+.spot li{animation:fade .32s ease both}
+.spot li:nth-child(1){animation-delay:.02s} .spot li:nth-child(2){animation-delay:.08s}
+.spot li:nth-child(3){animation-delay:.14s} .spot li:nth-child(4){animation-delay:.2s}
+.spot li:nth-child(5){animation-delay:.26s} .spot li:nth-child(n+6){animation-delay:.3s}
 
 /* ── MUR DES VEILLES (la pièce maîtresse) ───────────────────────────── */
 .wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(15px,1fr));gap:4px;
