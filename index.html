@@ -30,6 +30,21 @@
   --warn:#f5b642;      /* échéance proche */
   --broken:#ff5d7d;    /* falsifié — le seul pixel chaud de la page */
   --on-semantic:#05070f;
+  /* MESURE 2026-09-15 (validateur dataviz, OKLCH) — CHOIX ASSUMÉ, PAS UN OUBLI :
+     en mode sombre, held L=0.813 · warn L=0.815 · open L=0.777 sortent par le HAUT
+     de la bande 0.48–0.67 recommandée pour une surface sombre. Le contraste passe
+     partout (held 10.5:1 · broken 6.0:1 · open 3.9:1 sur --s1), donc la lisibilité
+     n'est pas en cause : c'est la LUMINOSITÉ du verdict sur fond nuit qui est
+     voulue. Ne pas « corriger » sans mesurer ce qu'on perd.
+     ⚠️ La paire held↔open est à ΔE 13.3 (sombre) / 10.5 (clair) en vision normale,
+     sous le plancher de 15. Elle ne tient QUE parce qu'un libellé texte l'accompagne
+     partout (.vpill) et que le mur repeint OPEN en color-mix (→ ΔE 18.1, il passe).
+     Toute nouvelle surface qui poserait held et open côte à côte SANS libellé
+     casserait cette garantie. */
+  /* ENCRE DE DONNÉE — une marque dont la couleur ne code RIEN (barre de magnitude,
+     sparkline). Chroma 0.053, sous le plancher catégoriel de 0.10 : elle ne peut
+     pas être lue comme une catégorie, et ne vole ni l'accent ni le sémantique. */
+  --data:#8e97ba;
   /* élévation : lumière du haut + ombre ambiante longue */
   --hl:inset 0 1px 0 color-mix(in oklch, #fff 7%, transparent);
   --e1:var(--hl), 0 1px 2px -1px #00000090;
@@ -55,6 +70,7 @@
     --acc:#6b46e0; --acc2:#1f5fd0;
     --held:#00816a; --open:#00719b; --warn:#8a5a00; --broken:#d31146;
     --on-semantic:#ffffff;
+    --data:#545c76;
     --hl:inset 0 1px 0 color-mix(in oklch, #fff 90%, transparent);
     --e1:var(--hl), 0 1px 2px -1px #1b204a20;
     --e2:var(--hl), 0 4px 14px -6px #1b204a2e, 0 1px 3px -1px #1b204a1c;
@@ -69,6 +85,7 @@
   --acc:#a68cff; --acc2:#5c9bff;
   --held:#3fe0b0; --open:#49c7f0; --warn:#f5b642; --broken:#ff5d7d;
   --on-semantic:#05070f;
+  --data:#8e97ba;
   --hl:inset 0 1px 0 color-mix(in oklch, #fff 7%, transparent);
   --e1:var(--hl), 0 1px 2px -1px #00000090;
   --e2:var(--hl), 0 4px 14px -6px #000000b0, 0 1px 3px -1px #00000080;
@@ -82,6 +99,7 @@
   --acc:#6b46e0; --acc2:#1f5fd0;
   --held:#00816a; --open:#00719b; --warn:#8a5a00; --broken:#d31146;
   --on-semantic:#ffffff;
+  --data:#545c76;
   --hl:inset 0 1px 0 color-mix(in oklch, #fff 90%, transparent);
   --e1:var(--hl), 0 1px 2px -1px #1b204a20;
   --e2:var(--hl), 0 4px 14px -6px #1b204a2e, 0 1px 3px -1px #1b204a1c;
@@ -464,8 +482,14 @@ td.k{font:600 12px var(--mono);color:var(--ink);white-space:nowrap}
 .bar .n{color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bar .t{height:7px;border-radius:5px;background:var(--s3);overflow:hidden;
   box-shadow:inset 0 1px 3px #00000055}
+/* La barre de MAGNITUDE porte l'encre de donnée : sa longueur est l'encodage,
+   sa couleur ne code rien. L'accent (--acc/--acc2) est structurel — ligne 26 :
+   « jamais sur une donnée » — et ne revient donc plus ici.
+   Les classes .g/.o/.r restent réservées à un ÉTAT réel (saturation d'un
+   plafond) — jamais à une hausse ou une baisse de marché : le signe vit dans
+   le libellé, et --held veut dire « prédicat tenu », rien d'autre. */
 .bar .t i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,
-  color-mix(in oklch,var(--acc2) 70%,#000),var(--acc2))}
+  color-mix(in oklch,var(--data) 68%,#000),var(--data))}
 .bar .t i.g{background:linear-gradient(90deg,color-mix(in oklch,var(--held) 70%,#000),var(--held))}
 .bar .t i.o{background:linear-gradient(90deg,color-mix(in oklch,var(--warn) 74%,#000),var(--warn))}
 .bar .t i.r{background:linear-gradient(90deg,var(--broken),color-mix(in oklch,var(--broken) 72%,#000))}
@@ -477,6 +501,23 @@ td.k{font:600 12px var(--mono);color:var(--ink);white-space:nowrap}
   .bar .n{grid-area:n;white-space:normal;overflow:visible;text-overflow:clip}
   .bar .t{grid-area:t} .bar .v{grid-area:v}
 }
+
+/* ── PETITS MULTIPLES : une mesure par cadre, une échelle par cadre ─── */
+.smwrap{margin-top:14px}
+.smh{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:9px;
+  font:600 9.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--ink4)}
+.smh small{font:11px var(--mono);letter-spacing:0;text-transform:none;color:var(--ink4);opacity:.85}
+.sm{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,146px),1fr))}
+.smp{border:1px solid var(--line);border-radius:var(--r1);padding:8px 9px 7px;background:var(--s2)}
+.smk{display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+  font-size:11px;color:var(--ink3);margin-bottom:5px}
+.smk b{font:650 12.5px var(--mono);color:var(--ink)}
+.smk small{font-size:10px;color:var(--ink4);font-weight:400}
+.smp svg{display:block;width:100%;height:42px}
+.sms{font:10px var(--mono);color:var(--ink4);margin-top:4px;text-align:right}
+.pstrip{display:flex;gap:3px;margin-top:2px}
+.pstrip i{flex:1;height:14px;border-radius:2px;background:var(--line2)}
+.pstrip i[data-on="1"]{background:var(--data)}
 
 /* ── PRIX ───────────────────────────────────────────────────────────── */
 .px{display:grid;gap:1px;background:var(--line);border-radius:var(--r1);overflow:hidden}
@@ -795,15 +836,25 @@ function md(t){
   if(ul)h+="</ul>";
   return h||'<p class="na">brief vide</p>';
 }
-/* sparkline : aire + ligne + point terminal marqué */
-function spark(vals,w=118,h=30,tone="var(--acc2)"){
+/* sparkline : aire + ligne + point terminal marqué.
+   `dom`=[lo,hi] FIXE l'échelle. Sans dom, l'échelle est LOCALE à la série — ce qui
+   rend deux sparklines voisines NON comparables alors qu'elles en ont l'air. Une
+   colonne entière de sparklines doit donc passer un domaine commun ; à défaut,
+   l'échelle réellement employée est écrite dans l'étiquette accessible.
+   Elle n'est plus aria-hidden : elle portait une information que rien d'autre ne
+   portait, donc la masquer au lecteur d'écran, c'était la supprimer. */
+function spark(vals,w=118,h=30,tone="var(--data)",dom){
   const pts=(vals||[]).filter(v=>has(v)&&isFinite(v));
   if(pts.length<2)return '<span class="na" style="font-size:11px">n='+pts.length+"</span>";
-  const mn=Math.min(...pts),mx=Math.max(...pts),sp=(mx-mn)||1;
-  const X=i=>3+i*(w-6)/(pts.length-1), Y=v=>h-4-((v-mn)/sp)*(h-9);
+  const amn=Math.min(...pts),amx=Math.max(...pts);
+  const mn=dom?dom[0]:amn,mx=dom?dom[1]:amx,sp=(mx-mn)||1;
+  const cl=v=>Math.min(mx,Math.max(mn,v));
+  const X=i=>3+i*(w-6)/(pts.length-1), Y=v=>h-4-((cl(v)-mn)/sp)*(h-9);
   const d=pts.map((v,i)=>(i?"L":"M")+X(i).toFixed(1)+" "+Y(v).toFixed(1)).join(" ");
   const uid="g"+Math.random().toString(36).slice(2,8);
-  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true">
+  const alb=pts.length+" points, de "+nf(pts[0],2)+" à "+nf(pts[pts.length-1],2)
+    +(dom?", échelle fixe "+nf(mn,2)+"–"+nf(mx,2):", échelle locale "+nf(amn,2)+"–"+nf(amx,2));
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(alb)}">
     <defs><linearGradient id="${uid}" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0" stop-color="${tone}" stop-opacity=".34"/><stop offset="1" stop-color="${tone}" stop-opacity="0"/>
     </linearGradient></defs>
@@ -819,6 +870,55 @@ function bars(rows){
   return '<div class="bars">'+rows.map(r=>`<div class="bar"><span class="n" title="${esc(r.n)}">${esc(r.n)}</span>
     <span class="t"><i class="${r.c||""}" style="width:${Math.max(2,Math.min(100,Math.abs(r.v)/mx*100)).toFixed(1)}%"></i></span>
     <span class="v">${r.lbl}</span></div>`).join("")+"</div>";
+}
+/* La légende d'échelle d'une sparkline AUTO-échelonnée : sans elle, la forme est
+   lisible et la grandeur ne l'est pas. Obligatoire dès qu'on ne passe pas de `dom`. */
+function sparkCap(vals,unit){
+  const p=(vals||[]).filter(v=>has(v)&&isFinite(v));
+  if(p.length<2)return "";
+  return `<div class="sms" style="text-align:left;margin-top:5px">échelle locale ${nf(Math.min(...p),2)} – ${nf(Math.max(...p),2)}${unit?" "+esc(unit):""} · ${p.length} points</div>`;
+}
+/* ── PETITS MULTIPLES ─────────────────────────────────────────────────
+   Plusieurs mesures d'ordres de grandeur différents sur le MÊME axe du temps.
+   JAMAIS deux échelles y dans un même cadre : le croisement de deux courbes
+   à échelles différentes fait dire au dessin une chose qui n'existe pas.
+   Donc : un cadre par mesure, chacun sur SA plage, et cette plage est ÉCRITE
+   sous le cadre — sinon les cadres se comparent à tort entre eux.
+   RÈGLE DU TERMINAL : série absente ou trop courte ⇒ pas de forme, le trou
+   se déclare. Aucune géométrie n'est un chiffre en dur. */
+function smallMult(rows,keys,o){
+  o=o||{};
+  const R=(rows||[]).filter(r=>r&&typeof r==="object");
+  if(R.length<2)return `<div class="missing"><b>série non traçable</b>${esc(o.miss||"historique absent du flux")}
+    <div class="note">La série n'est pas dessinée plutôt que dessinée avec des trous.</div></div>`;
+  const xk=o.x||"d", W=168, H=42;
+  const x0=String(R[0][xk]||"").slice(0,10), x1=String(R[R.length-1][xk]||"").slice(0,10);
+  const panels=keys.map(k=>{
+    const f=k[0],label=k[1],unit=k[2]||"";
+    const v=R.map(r=>{const x=Number(r[f]);return isFinite(x)?x:null;});
+    const ok=v.filter(x=>x!==null);
+    if(ok.length<2)return `<div class="smp"><div class="smk">${esc(label)}</div>
+      <div class="na" style="font-size:11px">n=${ok.length}</div></div>`;
+    const lo=Math.min(...ok),hi=Math.max(...ok),sp=(hi-lo)||1;
+    const X=i=>2+i*(W-4)/(v.length-1), Y=x=>H-3-((x-lo)/sp)*(H-8);
+    let d="",pen=false,li=0;
+    v.forEach((x,i)=>{if(x===null){pen=false;return;}d+=(pen?"L":"M")+X(i).toFixed(1)+" "+Y(x).toFixed(1)+" ";pen=true;li=i;});
+    const last=v[li];
+    return `<div class="smp">
+      <div class="smk"><span>${esc(label)}</span><b>${nf(last,0)}${unit?'<small> '+esc(unit)+'</small>':""}</b></div>
+      <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img"
+        aria-label="${esc(label+" : "+ok.length+" points du "+x0+" au "+x1+", de "+lo+" à "+hi+", dernier "+last)}">
+        <path d="${d.trim()}" fill="none" stroke="var(--data)" stroke-width="1.4"
+          stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        <circle cx="${X(li).toFixed(1)}" cy="${Y(last).toFixed(1)}" r="2.2" fill="var(--data)"/>
+      </svg>
+      <div class="sms">${nf(lo,0)} – ${nf(hi,0)}</div></div>`;}).join("");
+  return `<div class="smwrap">
+    <div class="smh"><span>${esc(o.title||"")}</span><small>${esc(x0)} → ${esc(x1)} · ${R.length} points</small></div>
+    <div class="sm">${panels}</div>
+    <div class="note" style="padding:7px 0 0">${esc(o.note||"")} Une échelle <b>par cadre</b>, écrite sous chacun :
+    les cadres se lisent chacun sur sa propre plage, ils ne se comparent pas entre eux. Jamais deux échelles dans un même cadre.</div>
+  </div>`;
 }
 
 /* ── prédicats ────────────────────────────────────────────────────── */
@@ -1560,6 +1660,13 @@ V.poste=(D)=>{
                 ${c.is_new?'<span class="chip acc">neuf</span>':""}</div>
               ${(c.triggers||[]).map(t=>`<div style="font-size:11px;color:var(--ink3);margin-top:2px">↳ ${esc(t)}</div>`).join("")}
             </div>`).join(""):'<div class="empty">aucun candidat</div>'}
+            ${smallMult(b.history,[["n","candidats"],["new","nouveaux"]],
+              {x:"d",title:"Historique",miss:"b.history absent du flux",
+               note:"Le compteur du jour seul ne dit pas si la batterie se remplit ou se vide."})}
+            ${(b.history||[]).length>1?`<div class="smwrap"><div class="smh"><span>Publication</span>
+              <small>un carré par jour · plein = publié</small></div>
+              <div class="pstrip" role="img" aria-label="${esc(b.history.filter(x=>x&&x.push).length+" jours publiés sur "+b.history.length)}">${
+                b.history.map(x=>`<i data-on="${x&&x.push?1:0}" title="${esc(String((x&&x.d)||"")+" · "+(x&&x.push?"publié":"rien de neuf"))}"></i>`).join("")}</div></div>`:""}
             <div class="note">${esc((b.push&&b.push.reason)||"")}</div></div>`,"batterie")}</div>
       </div>
     </div>`;
@@ -1724,7 +1831,7 @@ V.theses=(D)=>`<div class="sec"><h2>Le livre de thèses</h2><p>append-only · la
             Entités synthétisées par jour — 14 derniers jours</div>
           <div style="display:flex;align-items:flex-end;gap:4px;height:56px">${U.per_day.map(x=>
             `<div title="${esc(x.d)} · ${x.n} entité${x.n>1?"s":""}" style="flex:1;min-width:6px;height:${Math.max(6,x.n/mx*100)}%;
-              border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--acc),color-mix(in oklch,var(--acc) 30%,transparent))"></div>`).join("")}</div>
+              border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--data),color-mix(in oklch,var(--data) 30%,transparent))"></div>`).join("")}</div>
           <div class="note">Une thèse du livre ne peut bouger que si <code>claim_synthesizer</code> produit encore des clichés
           pour son entité. Au-delà de ${U.dead_after_days} jours sans clichés, la thèse correspondante est <b>gelée à la source</b> —
           aucun verdict du brain ne pourra la réveiller. C'est l'autre moitié du diagnostic, distincte des verdicts refusés ci-dessus.</div>
@@ -1733,13 +1840,15 @@ V.theses=(D)=>`<div class="sec"><h2>Le livre de thèses</h2><p>append-only · la
     <div class="card rv">${head("thesis_verdicts.jsonl",D.blocks.theses,
       dn?`<span class="chip warn">${dn} dormante${dn>1?"s":""}</span>`:"")}
       ${ts.length?`<div class="tw"><table>
-      <thead><tr><th>Thèse</th><th>Verdict</th><th class="r">Conviction</th><th>Trajectoire</th>
+      <thead><tr><th>Thèse</th><th>Verdict</th><th class="r">Conviction</th><th>Trajectoire<small
+        style="display:block;font:10px var(--mono);font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink4)"
+        title="Sans domaine commun, chaque ligne serait normalisée sur SA propre plage : une oscillation de 0,01 prendrait la même hauteur qu'une chute de 0,9. Les lignes seraient incomparables tout en en ayant l'air.">échelle 0–1 commune</small></th>
       <th>Dernier déclencheur</th><th>Condition d'invalidation</th><th class="r">MAJ</th></tr></thead>
       <tbody>${ts.map(t=>`<tr data-s="${esc(t.key+" "+(t.trigger||""))}"${t.dormant?' data-dormant="1"':""}>
         <td class="k">${esc(t.key)}${t.dormant?'<span class="chip warn" style="margin-left:7px">dormante</span>':""}</td>
         <td><span class="vtag ${esc(t.verdict||"")}">${esc(t.verdict||"?")}</span></td>
         <td class="r">${has(t.conviction)?nf(t.conviction,2):NA}</td>
-        <td>${spark((t.history||[]).map(h=>h.c),110,28,t.verdict==="retire"?"var(--ink4)":t.dormant?"var(--ink3)":"var(--held)")}</td>
+        <td>${spark((t.history||[]).map(h=>h.c),110,28,t.verdict==="retire"?"var(--ink4)":t.dormant?"var(--ink3)":"var(--data)",[0,1])}</td>
         <td style="color:var(--ink3);font-size:11.5px;max-width:300px">${esc(t.trigger||"")||NA}</td>
         <td style="color:var(--ink2);font-size:11.5px;max-width:280px">${t.kill?"⚑ "+esc(t.kill):NA}</td>
         <td class="r" style="color:${t.dormant?"var(--warn)":"var(--ink4)"}">${ago(t.ts)||"?"}</td></tr>`).join("")}</tbody></table></div>
@@ -1824,9 +1933,9 @@ V.alaune=(D)=>{
       </div><div class="note">Heure normale, non ajustée DST.</div></div></div>`;})();
   const mov=`<div class="card rv">${head("Top movers protocoles · 24h",B.movers,B.movers&&B.movers.v?`<span class="chip">${B.movers.v.n_snapshot||0}/${B.movers.v.universe_total||"?"}</span>`:"")}
       ${guard(B.movers,m=>'<div class="bd"><div class="grid g-2">'+
-        '<div><div class="note" style="padding:0 0 6px">Hausses</div>'+bars((m.gainers||[]).map(p=>({n:p.name,v:p.chg_1d,c:"g",
+        '<div><div class="note" style="padding:0 0 6px">Hausses</div>'+bars((m.gainers||[]).map(p=>({n:p.name,v:p.chg_1d,
           lbl:(p.chg_1d>0?"+":"")+nf(p.chg_1d,1)+"% <small>"+esc(p.category||"")+"</small>"})))+'</div>'+
-        '<div><div class="note" style="padding:0 0 6px">Baisses</div>'+bars((m.losers||[]).map(p=>({n:p.name,v:Math.abs(p.chg_1d),c:"r",
+        '<div><div class="note" style="padding:0 0 6px">Baisses</div>'+bars((m.losers||[]).map(p=>({n:p.name,v:Math.abs(p.chg_1d),
           lbl:nf(p.chg_1d,1)+"% <small>"+esc(p.category||"")+"</small>"})))+'</div>'+
         '</div><div class="note">CEX exclu (hors recherche DeFi) · '+esc(m.note||"")+'</div></div>',"movers")}</div>`;
   const wk=`<div class="card rv">${head("Derniers réveils · wake2.py (L4)",B.wakes)}
@@ -1874,11 +1983,11 @@ V.marche=(D)=>{
         ${guard(B.macro,m=>'<div class="bd">'+bars((m.sectors||[]).map(s=>({n:s.name,v:s.tvl,
           lbl:(usd(s.tvl*1e9)||"—")+' <small>'+esc(s.yard)+"</small>"})))+"</div>","macro")}</div>
       <div class="card rv">${head("Fee-yield annualisé",B.macro,'<span class="chip">7 j lissés</span>')}
-        ${guard(B.macro,m=>'<div class="bd">'+bars((m.fee_yield||[]).map(f=>({n:f.name,v:f.fy,c:"g",
+        ${guard(B.macro,m=>'<div class="bd">'+bars((m.fee_yield||[]).map(f=>({n:f.name,v:f.fy,
           lbl:nf(f.fy,2)+'% <small>'+esc(f.sector)+"</small>"})))+
           '<div class="note">Fees PROTOCOLE ≠ accrual du TOKEN : le fee-switch ou le buyback se vérifient en gouvernance, pas dans cette barre.</div></div>',"macro")}</div>
       <div class="card rv">${head("Flux stablecoins par chaîne",B.macro,'<span class="chip">Δ 7 j</span>')}
-        ${guard(B.macro,m=>'<div class="bd">'+bars((m.flows||[]).map(f=>({n:f.chain,v:f.d7,c:f.d7>0?"g":"r",
+        ${guard(B.macro,m=>'<div class="bd">'+bars((m.flows||[]).map(f=>({n:f.chain,v:f.d7,
           lbl:(f.d7>0?"+":"")+nf(f.d7,1)+"M"})))+"</div>","macro")}</div>
       <div class="card rv">${head("TVL par chaîne",B.macro,'<span class="chip">top 10</span>')}
         ${guard(B.macro,m=>(m.chains||[]).length?'<div class="bd">'+bars((m.chains||[]).map(c=>({n:c.n,v:c.tvl_b,
@@ -1922,8 +2031,11 @@ V.marche=(D)=>{
           ${kpi("Elle NOURRIT le corpus",t.notes_evenement||0,t.notes||0,"notes événementielles")}
         </div>
         <div style="margin-top:12px">${bars(Object.entries(pt).map(([k,v])=>({
-          n:"tier "+k, v:pct(v.notes_evenement||0,v.notes||0), c:"g",
+          n:"tier "+k, v:pct(v.notes_evenement||0,v.notes||0),
           lbl:(v.media||0)+"/"+(v.briefs||0)+' cite <small>· '+(v.notes_evenement||0)+"/"+(v.notes||0)+" notes</small>"})))}</div>
+        ${smallMult(w.serie,[["briefs","briefs"],["notes","notes"],["media","média cités"],["ev","notes événementielles"]],
+          {x:"ts",title:"Relevé quotidien",miss:"w.serie absent du flux",
+           note:"Les quatre mesures n'ont ni la même unité ni le même ordre de grandeur : elles ne peuvent pas partager un cadre."})}
         <div class="note">Fenêtre ${w.window_days} j. ${esc(w.note||"")}</div></div>`;},"wiring")}</div>
 
     <div class="sec"><h2>Classement par catégorie</h2>
@@ -1934,7 +2046,6 @@ V.marche=(D)=>{
       return '<div class="grid g-2">'+cats.map(c=>`<div class="card rv">
         <div class="hd"><span class="t">${esc(c.cat)}</span><span class="chip">${c.n}</span></div>
         <div class="bd">${bars((c.p||[]).map(p=>({n:p.n,v:p.tvl_b,
-          c:has(p.chg)?(p.chg>0?"g":"r"):"",
           lbl:"$"+nf(p.tvl_b,2)+"B"+(has(p.chg)?' <small>'+(p.chg>0?"+":"")+nf(p.chg,1)+"%</small>":"")})))}</div>
       </div>`).join("")+'</div>'+
       '<div class="note" style="padding:10px 4px 0">Ordre de priorité de RECHERCHE, pas de TVL — c\'est celui dans lequel la couche GLM les reçoit depuis le 08/08. Les CEX ferment la marche : leur classement n\'est pas de la recherche DeFi.</div>';
@@ -1953,7 +2064,7 @@ V.secteurs=(D)=>{
         ${r.cards.map(c=>`<div class="kpi"${c[2]?` data-tone="${c[2]}"`:""}><div class="l">${c[0]}</div>
           <div class="v">${c[1]}</div><span class="bar"></span></div>`).join("")}
       </div>
-      ${r.spark?`<div style="margin-bottom:12px">${r.spark}</div>`:""}
+      ${r.spark?`<div style="margin-bottom:12px">${r.spark}${r.spark_cap||""}</div>`:""}
       ${r.extra||""}
       ${r.synth?(()=>{
         // La synthèse est QUOTIDIENNE : son âge est distinct de celui des données
@@ -1975,19 +2086,21 @@ V.secteurs=(D)=>{
     cards:[["TVL chaîne",has(rhV.tvl_m)?"$"+nf(rhV.tvl_m,1)+"M":NA,""],
            ["Part Morpho",has(rhV.morpho_share_pct)?rhV.morpho_share_pct+" <small>%</small>":NA,""],
            ["Âge",has(rhV.age_days)?rhV.age_days+" <small>j</small>":NA,""]],
-    spark:(rhV.history||[]).length?spark(rhV.history.map(h=>h.v),320,52,"var(--acc2)"):"",
+    spark:(rhV.history||[]).length?spark(rhV.history.map(h=>h.v),320,52,"var(--data)"):"",
+    spark_cap:sparkCap((rhV.history||[]).map(h=>h.v)),
     synth:rhV.synth,synth_ts:rhV.synth_ts}}:B.robinhood;
   const rwaBk=rwaV?{...B.rwa,v:{
     cards:[["TVL secteur",has(rwaV.tvl_b)?"$"+nf(rwaV.tvl_b,2)+"B":NA,""],
            ["Δ 7 j",has(rwaV.chg_7d)?(rwaV.chg_7d>0?"+":"")+nf(rwaV.chg_7d,2)+" <small>%</small>":NA,
-             has(rwaV.chg_7d)?(rwaV.chg_7d>0?"held":"broken"):""],
+             ""],
            ["Protocoles",has(rwaV.n_protocols)?rwaV.n_protocols:NA,""]],
-    spark:(rwaV.history||[]).length?spark(rwaV.history.map(h=>h.v),320,52,"var(--held)"):"",
+    spark:(rwaV.history||[]).length?spark(rwaV.history.map(h=>h.v),320,52,"var(--data)"):"",
+    spark_cap:sparkCap((rwaV.history||[]).map(h=>h.v)),
     extra:`<div class="grid g-2" style="gap:11px;margin-bottom:12px">
       <div><div style="font:600 9.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--ink4);margin-bottom:6px">Hausses 7 j</div>
-        ${bars((rwaV.up||[]).map(p=>({n:p.name,v:Math.abs(p.chg),c:"g",lbl:"+"+nf(p.chg,2)+"%"})))}</div>
+        ${bars((rwaV.up||[]).map(p=>({n:p.name,v:Math.abs(p.chg),lbl:"+"+nf(p.chg,2)+"%"})))}</div>
       <div><div style="font:600 9.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--ink4);margin-bottom:6px">Baisses 7 j</div>
-        ${bars((rwaV.down||[]).map(p=>({n:p.name,v:Math.abs(p.chg),c:"r",lbl:nf(p.chg,2)+"%"})))}</div></div>
+        ${bars((rwaV.down||[]).map(p=>({n:p.name,v:Math.abs(p.chg),lbl:nf(p.chg,2)+"%"})))}</div></div>
       <div style="margin-bottom:12px"><div style="font:600 9.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--ink4);margin-bottom:6px">Tête de secteur</div>
         ${bars((rwaV.top||[]).map(p=>({n:p.name,v:p.tvl_b,lbl:"$"+nf(p.tvl_b,2)+"B"})))}</div>`,
     synth:rwaV.synth,synth_ts:rwaV.synth_ts}}:B.rwa;
