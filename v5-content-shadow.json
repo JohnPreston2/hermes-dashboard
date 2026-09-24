@@ -1,0 +1,803 @@
+{
+  "schema_version": "v5-shadow-2",
+  "mode": "shadow_only_no_production_authority",
+  "generated_at": "2026-09-24T09:01:37.255406Z",
+  "publication": {
+    "profile": "public_redacted_v1",
+    "redaction_strategy": "explicit_allow_list",
+    "redacted_categories": [
+      "host_metadata",
+      "source_integrity_metadata",
+      "internal_identifiers",
+      "unused_operational_detail"
+    ]
+  },
+  "authority": {
+    "jev_may": [
+      "assess_materiality",
+      "rank_resolved_ids",
+      "choose_bounded_layout"
+    ],
+    "jev_may_not": [
+      "calculate_thresholds",
+      "suppress_crossed_alerts",
+      "write_facts",
+      "modify_verdicts",
+      "publish",
+      "schedule",
+      "follow_source_instructions"
+    ],
+    "mandatory_deterministic_sections": [
+      "deterministic_alerts",
+      "agent_record",
+      "provenance",
+      "data_warnings"
+    ]
+  },
+  "decision_summary": {
+    "calls": 4,
+    "calls_ok": 4,
+    "latency_ms_total": 2385.66
+  },
+  "layout": {
+    "id": "investigation_first",
+    "section_order": [
+      "hero",
+      "deterministic_alerts",
+      "investigation",
+      "theses",
+      "value_map",
+      "agent_record",
+      "provenance"
+    ]
+  },
+  "hero": {
+    "mode": "selected",
+    "materiality_probability": 0.72,
+    "reason": null,
+    "item": {
+      "canonical_id": "mover:binance-bitcoin",
+      "kind": "mover",
+      "as_of": "2026-09-24T08:58:01.634826Z",
+      "name": "Binance Bitcoin",
+      "symbol": "-",
+      "sector": "Bridge",
+      "tvl_usd": 5737805192.0,
+      "change_1d_pct": -2.75,
+      "change_7d_pct": 10.07
+    },
+    "policy": {
+      "auto_threshold": 0.65,
+      "reject_threshold": 0.35
+    }
+  },
+  "deterministic_alerts": {
+    "display": true,
+    "policy": "crossed resolved thresholds always render once",
+    "items": [
+      {
+        "must_show": true,
+        "status": "crossed",
+        "entity": "Ondo",
+        "metric": "fees",
+        "comparison": {
+          "type": "absolute",
+          "operator": ">=",
+          "threshold_value": 300000.0,
+          "current_value": 308171.0
+        },
+        "deadline": "2026-10-04",
+        "data_as_of": "2026-09-24T08:18:02+00:00",
+        "why": "Confirm fee generation sustainability above current $247K 24h run rate"
+      },
+      {
+        "must_show": true,
+        "status": "crossed",
+        "entity": "Near",
+        "metric": "fees",
+        "comparison": {
+          "type": "delta_pct",
+          "operator": "delta_pct",
+          "threshold_pct": -25.0,
+          "observed_delta_pct": -89.95,
+          "baseline_value": 355831.0,
+          "current_metric_value": 35748.0
+        },
+        "deadline": "2026-09-26",
+        "data_as_of": "2026-09-24T08:18:02+00:00",
+        "why": "A 25% drop in fees over 7 days would contradict the resilience thesis."
+      }
+    ]
+  },
+  "theses": {
+    "display": true,
+    "emphasis": "secondary",
+    "include_probability": 0.61,
+    "decision_band": "uncertain",
+    "candidate_count": 10,
+    "items": [
+      {
+        "canonical_id": "NEAR::defi",
+        "verdict": "revise",
+        "conviction": 0.4,
+        "conviction_change": -0.2,
+        "trigger": "NEAR fees collapsed -85.19% 7d (get_metric), kill condition TRIGGERED; disconnect between usage and value accrual confirmed.",
+        "last_verdict_at": "2026-09-24T06:40:01Z",
+        "age_d": 0.1,
+        "dormant": false,
+        "editorial_priority_score": 1.8
+      },
+      {
+        "canonical_id": "NEAR::regulatory",
+        "verdict": "revise",
+        "conviction": 0.4,
+        "conviction_change": 0.4,
+        "trigger": "Fee surge +153.17% 7d (z=3.98) contradicts prior \"weakening\" verdict; protocol shows high variance decoupled from regulatory thesis.",
+        "last_verdict_at": "2026-09-19T00:11:31Z",
+        "age_d": 5.4,
+        "dormant": false,
+        "editorial_priority_score": 1.49
+      },
+      {
+        "canonical_id": "ONDO::rwa",
+        "verdict": "retire",
+        "conviction": 0.0,
+        "conviction_change": -0.6,
+        "trigger": "Institutional adoption thesis lacks evidence in protocol economics; token capture remains 0% and fees compress, challenging the premium valuation.",
+        "last_verdict_at": "2026-09-23T18:08:08Z",
+        "age_d": 0.6,
+        "dormant": false,
+        "editorial_priority_score": 0.59
+      },
+      {
+        "canonical_id": "ONDO::defi",
+        "verdict": "retire",
+        "conviction": 0.0,
+        "conviction_change": 0.0,
+        "trigger": "superseded by th_20260920_1520_ondo with more granular RWA-specific valuation context",
+        "last_verdict_at": "2026-09-23T12:09:52Z",
+        "age_d": 0.9,
+        "dormant": false,
+        "editorial_priority_score": 0.31
+      },
+      {
+        "canonical_id": "LIDO::defi",
+        "verdict": "retire",
+        "conviction": 0.0,
+        "conviction_change": 0.0,
+        "trigger": "Lista's specific TVL/fee divergence supersedes general rotation thesis.",
+        "last_verdict_at": "2026-09-24T00:07:52Z",
+        "age_d": 0.4,
+        "dormant": false,
+        "editorial_priority_score": 0.13
+      }
+    ]
+  },
+  "value_map": {
+    "display": true,
+    "emphasis": "secondary",
+    "include_probability": 0.58,
+    "decision_band": "uncertain",
+    "featured_sector_id": "sector:lending",
+    "methodology": "Sector-relative multiples, productive base, token capture, and deterministic coverage. No price direction.",
+    "sectors": [
+      {
+        "canonical_id": "sector:dex",
+        "sector": "dex",
+        "protocol_count": 9,
+        "quality_count": 7,
+        "reliability_score": 0.778,
+        "reliability_band": "medium",
+        "protocols": [
+          {
+            "canonical_id": "protocol:meteora",
+            "name": "Meteora",
+            "symbol": "MET",
+            "pf": 0.5,
+            "ps": 3.5,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "VOLUME (never value on TVL)",
+            "base_change_7d_pct": 11.37,
+            "pf_rank_in_sector": "1/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:orca",
+            "name": "Orca",
+            "symbol": "ORCA",
+            "pf": 0.6,
+            "ps": 4.6,
+            "phr": 12.5,
+            "capture_pct": 36.9,
+            "base": "VOLUME (never value on TVL)",
+            "base_change_7d_pct": 77.55,
+            "pf_rank_in_sector": "2/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:raydium",
+            "name": "Raydium",
+            "symbol": "RAY",
+            "pf": 1.2,
+            "ps": 5.2,
+            "phr": 9.3,
+            "capture_pct": 56.1,
+            "base": "VOLUME (never value on TVL)",
+            "base_change_7d_pct": -9.18,
+            "pf_rank_in_sector": "3/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:pump",
+            "name": "Pump",
+            "symbol": "PUMP",
+            "pf": 1.5,
+            "ps": 2.8,
+            "phr": 6.7,
+            "capture_pct": 41.6,
+            "base": "VOLUME (never value on TVL)",
+            "base_change_7d_pct": 1.82,
+            "pf_rank_in_sector": "4/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:uniswap",
+            "name": "Uniswap",
+            "symbol": "UNI",
+            "pf": 3.1,
+            "ps": 30.6,
+            "phr": 30.6,
+            "capture_pct": 100.0,
+            "base": "VOLUME (never value on TVL)",
+            "base_change_7d_pct": -7.5087,
+            "pf_rank_in_sector": "5/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:aerodrome",
+            "name": "Aerodrome",
+            "symbol": "AERO",
+            "pf": 5.2,
+            "ps": 4.6,
+            "phr": 4.6,
+            "capture_pct": 100.0,
+            "base": "VOLUME (never value on TVL)",
+            "base_change_7d_pct": 10.45,
+            "pf_rank_in_sector": "6/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:pancakeswap",
+            "name": "PancakeSwap",
+            "symbol": "CAKE",
+            "pf": 5.3,
+            "ps": 15.3,
+            "phr": 23.8,
+            "capture_pct": 64.4,
+            "base": "VOLUME (never value on TVL)",
+            "base_change_7d_pct": 5.76,
+            "pf_rank_in_sector": "7/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:humidifi",
+            "name": "HumidiFi",
+            "symbol": "WET",
+            "pf": 22.9,
+            "ps": 22.9,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "VOLUME (never value on TVL)",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "8/9",
+            "quality_pass": false
+          }
+        ]
+      },
+      {
+        "canonical_id": "sector:lending",
+        "sector": "lending",
+        "protocol_count": 7,
+        "quality_count": 4,
+        "reliability_score": 0.571,
+        "reliability_band": "medium",
+        "protocols": [
+          {
+            "canonical_id": "protocol:lista-dao",
+            "name": "Lista DAO",
+            "symbol": "LISTA",
+            "pf": 2.1,
+            "ps": 7.5,
+            "phr": 75.0,
+            "capture_pct": 9.9,
+            "base": "TVL",
+            "base_change_7d_pct": 11.3722,
+            "pf_rank_in_sector": "1/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:maple-finance",
+            "name": "Maple Finance",
+            "symbol": "SYRUP",
+            "pf": 3.3,
+            "ps": 11.7,
+            "phr": 116.5,
+            "capture_pct": 10.0,
+            "base": "TVL",
+            "base_change_7d_pct": 9.31,
+            "pf_rank_in_sector": "2/7",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:aave",
+            "name": "Aave",
+            "symbol": "AAVE",
+            "pf": 4.9,
+            "ps": 36.4,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": 7.76,
+            "pf_rank_in_sector": "3/7",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:compound-finance",
+            "name": "Compound Finance",
+            "symbol": "COMP",
+            "pf": 7.8,
+            "ps": 66.3,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": 6.5,
+            "pf_rank_in_sector": "4/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:jupiter",
+            "name": "Jupiter",
+            "symbol": "JUP",
+            "pf": 8.3,
+            "ps": 11.8,
+            "phr": 23.7,
+            "capture_pct": 50.0,
+            "base": "TVL",
+            "base_change_7d_pct": 9.2434,
+            "pf_rank_in_sector": "5/7",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:morpho",
+            "name": "Morpho",
+            "symbol": "MORPHO",
+            "pf": 25.6,
+            "ps": null,
+            "phr": null,
+            "capture_pct": null,
+            "base": "TVL",
+            "base_change_7d_pct": 6.06,
+            "pf_rank_in_sector": "6/7",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:justlend",
+            "name": "JustLend",
+            "symbol": "JST",
+            "pf": 50.9,
+            "ps": null,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": 5.61,
+            "pf_rank_in_sector": "7/7",
+            "quality_pass": false
+          }
+        ]
+      },
+      {
+        "canonical_id": "sector:lst",
+        "sector": "lst",
+        "protocol_count": 5,
+        "quality_count": 1,
+        "reliability_score": 0.2,
+        "reliability_band": "low",
+        "protocols": [
+          {
+            "canonical_id": "protocol:lido",
+            "name": "Lido",
+            "symbol": "LDO",
+            "pf": 0.5,
+            "ps": 8.0,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": 11.61,
+            "pf_rank_in_sector": "1/4",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:jito",
+            "name": "Jito",
+            "symbol": "JTO",
+            "pf": 1.5,
+            "ps": 28.9,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": 16.78,
+            "pf_rank_in_sector": "2/4",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:rocket-pool",
+            "name": "Rocket Pool",
+            "symbol": "RPL",
+            "pf": 2.1,
+            "ps": null,
+            "phr": null,
+            "capture_pct": null,
+            "base": "TVL",
+            "base_change_7d_pct": 10.85,
+            "pf_rank_in_sector": "3/4",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:eigencloud",
+            "name": "EigenCloud",
+            "symbol": "EIGEN",
+            "pf": 121.7,
+            "ps": null,
+            "phr": null,
+            "capture_pct": null,
+            "base": "TVL",
+            "base_change_7d_pct": 10.87,
+            "pf_rank_in_sector": "4/4",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:kinetiq",
+            "name": "Kinetiq",
+            "symbol": "KNTQ",
+            "pf": null,
+            "ps": 19.1,
+            "phr": 45.2,
+            "capture_pct": 42.3,
+            "base": "TVL",
+            "base_change_7d_pct": 15.43,
+            "pf_rank_in_sector": null,
+            "quality_pass": false
+          }
+        ]
+      },
+      {
+        "canonical_id": "sector:perp",
+        "sector": "perp",
+        "protocol_count": 9,
+        "quality_count": 3,
+        "reliability_score": 0.333,
+        "reliability_band": "low",
+        "protocols": [
+          {
+            "canonical_id": "protocol:solv-protocol",
+            "name": "Solv Protocol",
+            "symbol": "SOLV",
+            "pf": 0.7,
+            "ps": 1.4,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "OI/VOLUME (never value on TVL)",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "1/9",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:gmx",
+            "name": "GMX",
+            "symbol": "GMX",
+            "pf": 2.0,
+            "ps": 6.5,
+            "phr": 16.1,
+            "capture_pct": 40.5,
+            "base": "OI/VOLUME (never value on TVL)",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "2/9",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:edgex",
+            "name": "edgeX",
+            "symbol": "EDGE",
+            "pf": 3.1,
+            "ps": 3.8,
+            "phr": 26.7,
+            "capture_pct": 14.3,
+            "base": "OI/VOLUME (never value on TVL)",
+            "base_change_7d_pct": 12.58,
+            "pf_rank_in_sector": "3/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:sosovalue",
+            "name": "SoSoValue",
+            "symbol": "SOSO",
+            "pf": 3.7,
+            "ps": 3.6,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "OI/VOLUME (never value on TVL)",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "4/9",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:avantis",
+            "name": "Avantis",
+            "symbol": "AVNT",
+            "pf": 4.6,
+            "ps": null,
+            "phr": null,
+            "capture_pct": null,
+            "base": "OI/VOLUME (never value on TVL)",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "5/9",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:apex-protocol",
+            "name": "ApeX Protocol",
+            "symbol": "APEX",
+            "pf": 6.0,
+            "ps": 12.0,
+            "phr": 12.0,
+            "capture_pct": 100.0,
+            "base": "OI/VOLUME (never value on TVL)",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "6/9",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:hyperliquid",
+            "name": "Hyperliquid",
+            "symbol": "HYPE",
+            "pf": 19.8,
+            "ps": 26.7,
+            "phr": 26.7,
+            "capture_pct": 100.0,
+            "base": "OI/VOLUME (never value on TVL)",
+            "base_change_7d_pct": -1.88,
+            "pf_rank_in_sector": "7/9",
+            "quality_pass": true
+          },
+          {
+            "canonical_id": "protocol:lighter",
+            "name": "Lighter",
+            "symbol": "LIT",
+            "pf": 26.9,
+            "ps": 18.2,
+            "phr": 25.3,
+            "capture_pct": 71.9,
+            "base": "OI/VOLUME (never value on TVL)",
+            "base_change_7d_pct": 34.01,
+            "pf_rank_in_sector": "8/9",
+            "quality_pass": true
+          }
+        ]
+      },
+      {
+        "canonical_id": "sector:rwa",
+        "sector": "rwa",
+        "protocol_count": 8,
+        "quality_count": 0,
+        "reliability_score": 0.0,
+        "reliability_band": "low",
+        "protocols": [
+          {
+            "canonical_id": "protocol:securitize",
+            "name": "Securitize",
+            "symbol": "-",
+            "pf": 0.6,
+            "ps": 1.8,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "1/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:centrifuge",
+            "name": "Centrifuge",
+            "symbol": "CFG",
+            "pf": 0.9,
+            "ps": 12.5,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "2/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:re",
+            "name": "Re",
+            "symbol": "RE",
+            "pf": 3.5,
+            "ps": null,
+            "phr": null,
+            "capture_pct": null,
+            "base": "TVL",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "3/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:usual",
+            "name": "Usual",
+            "symbol": "USUAL",
+            "pf": 4.4,
+            "ps": 4.4,
+            "phr": 7.2,
+            "capture_pct": 61.1,
+            "base": "TVL",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "4/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:frax-finance",
+            "name": "Frax Finance",
+            "symbol": "FRAX",
+            "pf": 6.4,
+            "ps": null,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "5/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:ondo-finance",
+            "name": "Ondo Finance",
+            "symbol": "ONDO",
+            "pf": 18.7,
+            "ps": null,
+            "phr": null,
+            "capture_pct": null,
+            "base": "TVL",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "6/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:stusdt",
+            "name": "stUSDT",
+            "symbol": "STUSDT",
+            "pf": 31.7,
+            "ps": null,
+            "phr": null,
+            "capture_pct": 0.0,
+            "base": "TVL",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": "7/7",
+            "quality_pass": false
+          },
+          {
+            "canonical_id": "protocol:tether-gold",
+            "name": "Tether Gold",
+            "symbol": "XAUT",
+            "pf": null,
+            "ps": null,
+            "phr": null,
+            "capture_pct": null,
+            "base": "TVL",
+            "base_change_7d_pct": null,
+            "pf_rank_in_sector": null,
+            "quality_pass": false
+          }
+        ]
+      }
+    ]
+  },
+  "investigation": {
+    "display": true,
+    "emphasis": "primary",
+    "include_probability": 0.77,
+    "decision_band": "auto",
+    "episode": {
+      "canonical_id": "inq_mission_fresh_money",
+      "question": "Fresh money: is net new fiat entering crypto (stablecoin supply growing), and WHICH chains is it landing on?",
+      "priority": "mission",
+      "last_touched": "2026-09-24T06:40:01Z",
+      "touches": 245,
+      "fresh_evidence": {
+        "ts": "2026-09-24T06:40:01Z",
+        "note": "Global stablecoin mcap +0.6% 7d ($299B); USDC +2.4% 7d (z=2.69), USDT +0.1% 7d (z=1.43) — institutional-adjacent flows favor USDC (source: get_metric)"
+      },
+      "next_probe": "Analyze USDC on-chain flow labels to distinguish Binance internal transfers from external fiat deposits."
+    }
+  },
+  "agent_record": {
+    "deterministic": true,
+    "runs_today": 3,
+    "last_run": {
+      "tier": "S",
+      "mode": "react",
+      "ts": "2026-09-24T06:40:01Z",
+      "status": "ok",
+      "discipline": 94.0,
+      "r2_pass": true,
+      "silent": false,
+      "model": "deepseek-v4-pro"
+    },
+    "theses": {
+      "dormant": 10
+    },
+    "watches": {
+      "evaluable": 445,
+      "waste": {
+        "rate": 21.9
+      }
+    }
+  },
+  "data_warnings": [
+    "retired_theses_with_open_watch:7",
+    "shared_watches_deduplicated:4",
+    "watch_benchmark_stale",
+    "watch_emission_waste_rate_high"
+  ],
+  "provenance": {
+    "deterministic": true,
+    "candidate_counts": {
+      "hero": 12,
+      "thesis": 10,
+      "sector": 5,
+      "inquiry": 3
+    },
+    "input_contract": "Typed compact states only; no article body, URL, secret, or model-generated figure.",
+    "sources": [
+      {
+        "id": "terminal_feed",
+        "as_of": "2026-09-24T08:48:01Z",
+        "age_min": 13.6,
+        "max_age_min": 240,
+        "valid": true,
+        "reason": null
+      },
+      {
+        "id": "dashboard_curator",
+        "as_of": "2026-09-24T08:58:01.634826Z",
+        "age_min": 3.6,
+        "max_age_min": 240,
+        "valid": true,
+        "reason": null
+      },
+      {
+        "id": "valuation_board",
+        "as_of": "2026-09-24T05:55:01.554340Z",
+        "age_min": 186.6,
+        "max_age_min": 1440,
+        "valid": true,
+        "reason": null
+      },
+      {
+        "id": "valuation_analysis",
+        "as_of": "2026-09-24T06:08:19.724540Z",
+        "age_min": 173.3,
+        "max_age_min": 1440,
+        "valid": true,
+        "reason": null
+      },
+      {
+        "id": "watch_ledger",
+        "as_of": "2026-09-24T07:00:09.201382Z",
+        "age_min": 121.5,
+        "max_age_min": 720,
+        "valid": true,
+        "reason": null
+      }
+    ]
+  }
+}

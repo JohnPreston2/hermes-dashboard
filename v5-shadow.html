@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="dark light">
+  <title>Hermes V5 · JEV shadow</title>
+  <style>
+    :root{--bg:#090b0f;--panel:#11151b;--panel2:#161c24;--line:#28313d;--ink:#f2f5f8;--muted:#8f9baa;--aqua:#68e0cf;--amber:#ffca68;--red:#ff7b7b;--radius:18px;--shadow:0 20px 60px rgba(0,0,0,.28)}
+    @media(prefers-color-scheme:light){:root{--bg:#eef1f4;--panel:#fff;--panel2:#f6f8fa;--line:#dce2e8;--ink:#17202a;--muted:#637080;--aqua:#087f73;--amber:#9a6000;--red:#bb3030;--shadow:0 18px 50px rgba(35,46,58,.09)}}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button{font:inherit}.shell{width:min(1260px,calc(100% - 32px));margin:0 auto 80px}
+    .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:16px;padding:16px 0;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .brand{font-weight:780;letter-spacing:-.02em;font-size:17px}.brand i{color:var(--aqua);font-style:normal}.shadow{padding:4px 9px;border:1px solid color-mix(in srgb,var(--amber) 54%,var(--line));color:var(--amber);border-radius:99px;font-size:10px;font-weight:850;letter-spacing:.13em}.spacer{flex:1}.asof{color:var(--muted);font-size:12px}.refresh{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:7px 11px;cursor:pointer}.refresh:hover{border-color:var(--aqua)}
+    .intro{padding:54px 0 24px;display:grid;grid-template-columns:1.6fr .8fr;gap:26px;align-items:end}.intro h1{font-size:clamp(34px,6vw,72px);line-height:.98;letter-spacing:-.055em;margin:0;max-width:850px}.intro p{margin:0;color:var(--muted);font-size:15px}.rule{color:var(--amber);font-weight:700}
+    .stack{display:grid;gap:18px}.section{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px}.section h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--muted)}.section-head small{color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1.4fr repeat(3,.55fr);gap:14px}.hero-main{min-height:150px;display:flex;flex-direction:column;justify-content:space-between;padding:22px;border-radius:15px;background:linear-gradient(135deg,color-mix(in srgb,var(--aqua) 14%,var(--panel2)),var(--panel2))}.hero-name{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-.04em}.eyebrow{color:var(--aqua);font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.12em}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:var(--panel2)}.metric b{display:block;font-size:22px;margin-top:10px}.metric span{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+    .alerts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}.alert{border-left:4px solid var(--red);padding:16px 17px;background:var(--panel2);border-radius:12px}.alert-top{display:flex;justify-content:space-between;gap:8px}.alert h3{margin:0;font-size:17px}.deadline{color:var(--amber);font-size:12px}.equation{font:700 16px/1.35 ui-monospace,SFMono-Regular,Consolas,monospace;margin:16px 0}.note{color:var(--muted)}
+    .investigation{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.question{font-size:clamp(22px,3vw,34px);line-height:1.18;letter-spacing:-.025em;margin:0}.probe{padding:16px;background:var(--panel2);border-radius:12px}.probe b{display:block;color:var(--aqua);margin-bottom:7px}.evidence{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted)}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.card{padding:17px;background:var(--panel2);border:1px solid var(--line);border-radius:14px}.card h3{margin:0 0 9px;font-size:16px}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}.chip{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}.chip.hot{color:var(--red);border-color:color-mix(in srgb,var(--red) 45%,var(--line))}.chip.good{color:var(--aqua)}
+    .sector-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:18px}.sectors{display:grid;gap:8px;align-content:start}.sector{width:100%;text-align:left;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:11px;padding:11px 12px}.sector.on{border-color:var(--aqua)}.sector b{display:flex;justify-content:space-between}.sector small{color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}th{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}td small{display:block;color:var(--muted)}.table-wrap{overflow:auto}
+    .record{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.record .metric b{font-size:26px}.warnings{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}.warnings summary{cursor:pointer;color:var(--amber);font-weight:700}.warnings ul{color:var(--muted);padding-left:20px}.sources{display:grid;gap:8px}.source{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.ok{color:var(--aqua)}.bad{color:var(--red)}
+    .empty,.failure{padding:34px;text-align:center;color:var(--muted)}.failure{border:1px solid var(--red);border-radius:var(--radius);color:var(--red)}footer{margin-top:22px;color:var(--muted);font-size:12px;text-align:center}
+    @media(max-width:820px){.shell{width:min(100% - 20px,1260px)}.intro{grid-template-columns:1fr;padding-top:34px}.hero{grid-template-columns:1fr 1fr}.hero-main{grid-column:1/-1}.investigation,.sector-grid{grid-template-columns:1fr}.record{grid-template-columns:1fr 1fr}.asof{display:none}.section{padding:16px}}
+    @media(max-width:480px){.hero,.record{grid-template-columns:1fr}.top{gap:8px}.brand{font-size:15px}.intro h1{font-size:40px}.source{grid-template-columns:1fr auto}.source .age{display:none}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top"><div class="brand">Hermes <i>V5</i></div><span class="shadow">JEV SHADOW</span><div class="spacer"></div><span class="asof" id="asof">chargement…</span><button class="refresh" id="refresh" type="button">Actualiser</button></header>
+    <section class="intro"><h1>Une hiérarchie éditoriale décidée, pas des faits réécrits.</h1><p><span class="rule">Aucune autorité de production.</span> JEV classe uniquement des états compacts et résolus. Les alertes, les faits, les seuils et la provenance restent déterministes.</p></section>
+    <main class="stack" id="app" aria-live="polite"><div class="empty">Lecture du manifeste V5…</div></main>
+    <footer id="foot">v5-shadow-2 · vue expérimentale isolée</footer>
+  </div>
+  <script>
+  "use strict";
+  const $=id=>document.getElementById(id);
+  const esc=value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+  const has=value=>value!==null&&value!==undefined&&value!=="";
+  const num=(value,digits=1)=>has(value)&&Number.isFinite(Number(value))?Number(value).toLocaleString("fr-FR",{maximumFractionDigits:digits}):"—";
+  const pct=(value,digits=1)=>has(value)?(Number(value)>0?"+":"")+num(value,digits)+" %":"—";
+  const usd=value=>{if(!has(value)||!Number.isFinite(Number(value)))return "—";const n=Number(value),a=Math.abs(n);if(a>=1e9)return "$"+(n/1e9).toFixed(2)+" Md";if(a>=1e6)return "$"+(n/1e6).toFixed(1)+" M";if(a>=1e3)return "$"+(n/1e3).toFixed(1)+" k";return "$"+n.toFixed(0)};
+  const ago=iso=>{const time=new Date(iso).getTime();if(!Number.isFinite(time))return "—";const min=Math.max(0,(Date.now()-time)/60000);return min<2?"à l’instant":min<60?Math.round(min)+" min":min<1440?Math.round(min/60)+" h":Math.round(min/1440)+" j"};
+  const section=(id,title,body,detail="")=>'<section class="section" id="'+esc(id)+'"><div class="section-head"><h2>'+esc(title)+'</h2><small>'+esc(detail)+'</small></div>'+body+'</section>';
+  const emphasis=value=>value?"priorité "+value:"";
+
+  function renderHero(data){
+    const hero=data.hero||{},item=hero.item||{};
+    if(hero.mode!=="selected"||!item.canonical_id)return section("hero","Signal principal",'<div class="empty">Aucun candidat ne franchit le seuil de matérialité.</div>');
+    const body='<div class="hero"><div class="hero-main"><div><div class="eyebrow">'+esc(item.kind||"signal")+" · "+esc(item.sector||"non classé")+'</div><div class="hero-name">'+esc(item.name||item.canonical_id)+'</div></div><div class="note">'+esc(item.canonical_id)+" · matérialité "+pct((hero.materiality_probability||0)*100,0)+'</div></div><div class="metric"><span>TVL</span><b>'+usd(item.tvl_usd)+'</b></div><div class="metric"><span>variation 24 h</span><b>'+pct(item.change_1d_pct)+'</b></div><div class="metric"><span>variation 7 j</span><b>'+pct(item.change_7d_pct)+"</b></div></div>";
+    return section("hero","Signal principal",body,"seuil auto "+pct((hero.policy?.auto_threshold||0)*100,0));
+  }
+
+  function alertEquation(comparison){
+    if(comparison?.type==="delta_pct")return "Δ observé "+pct(comparison.observed_delta_pct,2)+" · seuil "+pct(comparison.threshold_pct,1)+'<br><span class="note">'+usd(comparison.baseline_value)+" → "+usd(comparison.current_metric_value)+"</span>";
+    return usd(comparison?.current_value)+" "+esc(comparison?.operator||"")+" "+usd(comparison?.threshold_value);
+  }
+  function renderAlerts(data){
+    const block=data.deterministic_alerts||{},items=Array.isArray(block.items)?block.items:[];
+    const cards=items.map(item=>'<article class="alert"><div class="alert-top"><h3>'+esc(item.entity)+" · "+esc(item.metric)+'</h3><span class="deadline">échéance '+esc(item.deadline||"—")+'</span></div><div class="equation">'+alertEquation(item.comparison)+'</div><div class="note">'+esc(item.why||"")+"</div></article>").join("");
+    return section("deterministic_alerts","Alertes déterministes",items.length?'<div class="alerts">'+cards+"</div>":'<div class="empty">Aucun seuil déterministe franchi.</div>',items.length+" must-show");
+  }
+
+  function renderInvestigation(data){
+    const block=data.investigation||{},episode=block.episode||{};
+    if(block.display===false||!episode.canonical_id)return section("investigation","Enquête",'<div class="empty">Aucune enquête retenue.</div>');
+    const body='<div class="investigation"><div><div class="eyebrow">'+esc(episode.priority||"priorité")+'</div><p class="question">'+esc(episode.question||"Question absente")+'</p><div class="evidence"><b>Dernier élément</b><br>'+esc(episode.fresh_evidence?.note||"Aucune preuve fraîche")+'</div></div><div class="probe"><b>Prochaine vérification</b>'+esc(episode.next_probe||"Non définie")+'<div class="evidence">'+esc(episode.canonical_id)+" · "+num(episode.touches,0)+" passages · touchée "+ago(episode.last_touched)+"</div></div></div>";
+    return section("investigation","Enquête active",body,emphasis(block.emphasis)+" · p "+pct((block.include_probability||0)*100,0));
+  }
+
+  function renderTheses(data){
+    const block=data.theses||{},items=Array.isArray(block.items)?block.items.slice(0,6):[];
+    const cards=items.map(item=>'<article class="card"><h3>'+esc(item.canonical_id)+'</h3><div class="meta"><span class="chip '+(item.verdict==="retire"?"hot":"good")+'">'+esc(item.verdict||"?")+'</span><span class="chip">conviction '+pct((item.conviction||0)*100,0)+'</span><span class="chip">'+num(item.age_d,1)+' j</span></div><div>'+esc(item.trigger||"Aucun déclencheur")+"</div></article>").join("");
+    return section("theses","Thèses à relire",items.length?'<div class="cards">'+cards+"</div>":'<div class="empty">Aucune thèse retenue.</div>',emphasis(block.emphasis)+" · "+items.length+"/"+num(block.candidate_count,0));
+  }
+
+  function protocolTable(sector){
+    const rows=(sector?.protocols||[]).slice(0,8).map(protocol=>"<tr><td><b>"+esc(protocol.name||protocol.canonical_id)+"</b><small>"+esc(protocol.symbol||"")+"</small></td><td>"+(has(protocol.pf)?num(protocol.pf,1)+"×":"—")+"</td><td>"+(has(protocol.ps)?num(protocol.ps,1)+"×":"—")+"</td><td>"+pct(protocol.capture_pct,1)+"</td><td>"+pct(protocol.base_change_7d_pct,1)+'</td><td class="'+(protocol.quality_pass?"ok":"bad")+'">'+(protocol.quality_pass?"qualifié":"incomplet")+"</td></tr>").join("");
+    return '<div class="table-wrap"><table><thead><tr><th>Protocole</th><th>P/F</th><th>P/S</th><th>capture</th><th>base 7 j</th><th>qualité</th></tr></thead><tbody>'+(rows||'<tr><td colspan="6">aucun protocole</td></tr>')+"</tbody></table></div>";
+  }
+  function renderValueMap(data){
+    const block=data.value_map||{},sectors=Array.isArray(block.sectors)?block.sectors:[];
+    if(!sectors.length)return section("value_map","Carte de valeur",'<div class="empty">Aucun secteur disponible.</div>');
+    const chosen=sectors.find(item=>item.canonical_id===block.featured_sector_id)||sectors[0];
+    const buttons=sectors.map(item=>'<button class="sector '+(item.canonical_id===chosen.canonical_id?"on":"")+'" type="button" data-sector="'+esc(item.canonical_id)+'"><b><span>'+esc(item.sector)+"</span><span>"+pct(item.reliability_score*100,0)+"</span></b><small>"+num(item.quality_count,0)+"/"+num(item.protocol_count,0)+" qualifiés · "+esc(item.reliability_band)+"</small></button>").join("");
+    return section("value_map","Carte de valeur",'<div class="sector-grid"><div class="sectors" id="sector-buttons">'+buttons+'</div><div id="sector-table">'+protocolTable(chosen)+"</div></div>",emphasis(block.emphasis)+" · aucun signal directionnel");
+  }
+
+  function renderAgentRecord(data){
+    const record=data.agent_record||{},last=record.last_run||{},watch=record.watches||{},theses=record.theses||{};
+    const body='<div class="record"><div class="metric"><span>runs aujourd’hui</span><b>'+num(record.runs_today,0)+'</b></div><div class="metric"><span>discipline dernier run</span><b>'+pct(last.discipline,0)+'</b></div><div class="metric"><span>watches évaluables</span><b>'+num(watch.evaluable,0)+'</b></div><div class="metric"><span>thèses dormantes</span><b>'+num(theses.dormant,0)+'</b></div></div><div class="evidence">Dernier run '+esc(last.tier||"?")+" · "+esc(last.mode||"?")+" · "+esc(last.model||"?")+" · "+ago(last.ts)+" · R2 "+(last.r2_pass?"pass":"non confirmé")+". Déchet d’émission watches : "+pct(watch.waste?.rate,1)+".</div>";
+    return section("agent_record","Journal de l’agent",body,"source déterministe");
+  }
+
+  function renderProvenance(data){
+    const provenance=data.provenance||{},sources=Array.isArray(provenance.sources)?provenance.sources:[],warnings=Array.isArray(data.data_warnings)?data.data_warnings:[];
+    const rows=sources.map(source=>'<div class="source"><div><b>'+esc(source.id)+'</b>'+(source.path?'<div class="note">'+esc(source.path)+"</div>":"")+'</div><span class="age">'+num(source.age_min,1)+' min</span><span class="'+(source.valid?"ok":"bad")+'">'+(source.valid?"valide":"invalide")+"</span></div>").join("");
+    const list=warnings.map(item=>"<li>"+esc(item)+"</li>").join("")||"<li>aucun</li>";
+    const body='<div class="sources">'+(rows||'<div class="empty">Aucune source déclarée.</div>')+'</div><details class="warnings"><summary>'+warnings.length+" avertissement"+(warnings.length===1?"":"s")+' de données</summary><ul>'+list+'</ul></details><div class="evidence">'+esc(provenance.input_contract||"")+"</div>";
+    return section("provenance","Provenance et limites",body,data.publication?.profile?"projection publique expurgée":"trace séparée · "+esc(provenance.audit_trace||"non déclarée"));
+  }
+
+  const renderers={hero:renderHero,deterministic_alerts:renderAlerts,investigation:renderInvestigation,theses:renderTheses,value_map:renderValueMap,agent_record:renderAgentRecord,provenance:renderProvenance};
+  let current=null;
+  function validate(data){
+    if(!data||data.schema_version!=="v5-shadow-2")throw new Error("schéma inattendu: "+(data?.schema_version??"absent"));
+    if(data.mode!=="shadow_only_no_production_authority")throw new Error("le manifeste n’est pas en mode shadow");
+    ["deterministic_alerts","agent_record","provenance"].forEach(key=>{if(!data.layout?.section_order?.includes(key))throw new Error("section obligatoire absente: "+key)});
+  }
+  function wireSectors(data){
+    const sectors=data.value_map?.sectors||[];
+    $("sector-buttons")?.addEventListener("click",event=>{const button=event.target.closest("[data-sector]");if(!button)return;const chosen=sectors.find(item=>item.canonical_id===button.dataset.sector);if(!chosen)return;document.querySelectorAll("[data-sector]").forEach(item=>item.classList.toggle("on",item===button));$("sector-table").innerHTML=protocolTable(chosen)});
+  }
+  function boot(data){
+    validate(data);current=data;
+    const declared=data.layout.section_order.filter((item,index,array)=>renderers[item]&&array.indexOf(item)===index);
+    ["deterministic_alerts","agent_record","provenance"].forEach(key=>{if(!declared.includes(key))declared.push(key)});
+    $("app").innerHTML=declared.map(key=>renderers[key](data)).join("");
+    $("asof").textContent="généré "+ago(data.generated_at);
+    const summary=data.decision_summary||{};
+    $("foot").textContent=data.schema_version+" · "+(summary.calls_ok??0)+"/"+(summary.calls??0)+" appels JEV · "+num(summary.latency_ms_total,0)+" ms · "+(data.publication?.profile||"shadow privé")+" · sans autorité de production";
+    wireSectors(data);
+  }
+  async function load(){
+    $("refresh").disabled=true;
+    try{const response=await fetch("v5-content-shadow.json?t="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("HTTP "+response.status);boot(await response.json())}
+    catch(error){if(!current)$("app").innerHTML='<div class="failure"><b>Manifeste shadow indisponible</b><br>'+esc(error.message)+"</div>";console.error(error)}
+    finally{$("refresh").disabled=false}
+  }
+  $("refresh").addEventListener("click",load);load();setInterval(()=>{if(!document.hidden)load()},5*60*1000);
+  </script>
+</body>
+</html>
