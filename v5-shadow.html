@@ -20,8 +20,9 @@
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.card{padding:17px;background:var(--panel2);border:1px solid var(--line);border-radius:14px}.card h3{margin:0 0 9px;font-size:16px}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}.chip{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}.chip.hot{color:var(--red);border-color:color-mix(in srgb,var(--red) 45%,var(--line))}.chip.good{color:var(--aqua)}
     .sector-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:18px}.sectors{display:grid;gap:8px;align-content:start}.sector{width:100%;text-align:left;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:11px;padding:11px 12px}.sector.on{border-color:var(--aqua)}.sector b{display:flex;justify-content:space-between}.sector small{color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}th{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}td small{display:block;color:var(--muted)}.table-wrap{overflow:auto}
     .record{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.record .metric b{font-size:26px}.warnings{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}.warnings summary{cursor:pointer;color:var(--amber);font-weight:700}.warnings ul{color:var(--muted);padding-left:20px}.sources{display:grid;gap:8px}.source{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.ok{color:var(--aqua)}.bad{color:var(--red)}
+    .agent-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.wake-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}.wake{padding:15px;border:1px solid var(--line);border-radius:13px;background:var(--panel2)}.wake.selected{border-color:var(--aqua);box-shadow:inset 0 0 0 1px var(--aqua)}.wake.failed{border-left:4px solid var(--red)}.wake-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:9px}.wake p{margin:0}.wake .stats{margin-top:12px;color:var(--muted);font-size:11px}.surface-role{font-weight:800}.surface-role[data-role="shadow_candidate"],.surface-role[data-role="advisory_ranking"]{color:var(--aqua)}.surface-role[data-role="do_not_gate"],.surface-role[data-role="do_not_route"]{color:var(--red)}.surface-role[data-role="observe_drift"],.surface-role[data-role="insufficient_sample"]{color:var(--amber)}.agent-alerts{display:grid;gap:8px;margin-bottom:18px}.agent-alert{border-left:4px solid var(--red);background:var(--panel2);padding:12px 14px;border-radius:10px}.subhead{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
     .empty,.failure{padding:34px;text-align:center;color:var(--muted)}.failure{border:1px solid var(--red);border-radius:var(--radius);color:var(--red)}footer{margin-top:22px;color:var(--muted);font-size:12px;text-align:center}
-    @media(max-width:820px){.shell{width:min(100% - 20px,1260px)}.intro{grid-template-columns:1fr;padding-top:34px}.hero{grid-template-columns:1fr 1fr}.hero-main{grid-column:1/-1}.investigation,.sector-grid{grid-template-columns:1fr}.record{grid-template-columns:1fr 1fr}.asof{display:none}.section{padding:16px}}
+    @media(max-width:820px){.shell{width:min(100% - 20px,1260px)}.intro{grid-template-columns:1fr;padding-top:34px}.hero{grid-template-columns:1fr 1fr}.hero-main{grid-column:1/-1}.investigation,.sector-grid{grid-template-columns:1fr}.record,.agent-summary{grid-template-columns:1fr 1fr}.asof{display:none}.section{padding:16px}}
     @media(max-width:480px){.hero,.record{grid-template-columns:1fr}.top{gap:8px}.brand{font-size:15px}.intro h1{font-size:40px}.source{grid-template-columns:1fr auto}.source .age{display:none}}
   </style>
 </head>
@@ -92,6 +93,24 @@
     return section("agent_record","Journal de l’agent",body,"source déterministe");
   }
 
+  function evidenceText(evidence){
+    if(!evidence||typeof evidence!=="object")return "—";
+    return Object.entries(evidence).map(([key,value])=>key.replaceAll("_"," ")+" : "+(value===null||value===undefined?"—":String(value))).join(" · ");
+  }
+  function renderAgentObservatory(data){
+    const kimi=data?.kimi_wakes||{},jobs=data?.glm_jobs||{},selection=kimi.selection||{};
+    const wakes=Array.isArray(kimi.items)?kimi.items.slice(0,8):[];
+    const alerts=Array.isArray(kimi.mandatory_alerts)?kimi.mandatory_alerts:[];
+    const health=kimi.health_counts||{},jobHealth=jobs.health_counts||{};
+    const summary='<div class="agent-summary"><div class="metric"><span>modèle de réveil</span><b>'+esc(kimi.model||"—")+'</b></div><div class="metric"><span>réveils valides</span><b>'+num(health.ok||0,0)+' / '+num(kimi.recent_count||0,0)+'</b></div><div class="metric"><span>jobs LLM suivis</span><b>'+num(jobs.job_count||0,0)+'</b></div><div class="metric"><span>batterie JEV</span><b>'+num(jobs.latest_battery?.ok||0,0)+' / '+num(jobs.latest_battery?.calls||0,0)+'</b></div></div>';
+    const alertHtml=alerts.length?'<div class="agent-alerts">'+alerts.slice(0,5).map(item=>'<div class="agent-alert"><b>'+esc(item.label||"réveil Kimi")+' · '+esc(item.status||item.health)+'</b><div class="note">'+esc(item.reason||"échec sans sortie consommable")+' · '+num(item.tokens_in,0)+' tokens in · '+num(item.wall_s,0)+' s</div></div>').join("")+'</div>':"";
+    const wakeHtml=wakes.map(item=>{const selected=item.ts===selection.selected_ts;const failed=item.health==="failed"||item.health==="stale_incomplete";return '<article class="wake '+(selected?"selected ":"")+(failed?"failed":"")+'"><div class="wake-head"><b>'+esc(item.label||"réveil")+'</b><span class="chip '+(item.health==="ok"?"good":failed?"hot":"")+'">'+esc(item.health||item.status)+'</span></div><p>'+(item.summary?esc(item.summary):'<span class="note">aucune synthèse consommable</span>')+'</p><div class="stats">'+ago(item.ts)+' · matérialité '+(has(item.jev_materiality)?pct(item.jev_materiality*100,0):"—")+' · '+num(item.watch_count,0)+' veille(s) · '+num(item.tokens_in,0)+' tokens'+(selected?" · sélection JEV":"")+'</div></article>'}).join("");
+    const surfaces=Array.isArray(jobs.jev_surfaces)?jobs.jev_surfaces:[];
+    const surfaceRows=surfaces.map(item=>'<tr><td><b>'+esc(item.surface)+'</b><small>'+esc(item.job)+'</small></td><td><span class="surface-role" data-role="'+esc(item.jev_role)+'">'+esc(item.jev_role)+'</span></td><td>'+esc(evidenceText(item.evidence))+'</td><td>'+esc(item.reason||"")+'</td></tr>').join("");
+    const body=summary+alertHtml+'<div class="subhead">Réveils Kimi récents</div><div class="wake-grid">'+(wakeHtml||'<div class="empty">aucun réveil</div>')+'</div><div class="subhead">Surfaces GLM passées dans JEV</div><div class="table-wrap"><table><thead><tr><th>Surface</th><th>Rôle JEV</th><th>Mesure fraîche</th><th>Décision de câblage</th></tr></thead><tbody>'+surfaceRows+'</tbody></table></div><div class="evidence">Santé déterministe des jobs : '+num(jobHealth.healthy||0,0)+' sains · '+num(jobHealth.error||0,0)+' erreur(s) · '+num(jobHealth.empty||0,0)+' vide(s). JEV reste sans autorité de production.</div>';
+    return section("agent_observatory","Brain Kimi & moulinette JEV",body,"sélection shadow · échecs toujours visibles");
+  }
+
   function renderProvenance(data){
     const provenance=data.provenance||{},sources=Array.isArray(provenance.sources)?provenance.sources:[],warnings=Array.isArray(data.data_warnings)?data.data_warnings:[];
     const rows=sources.map(source=>'<div class="source"><div><b>'+esc(source.id)+'</b>'+(source.path?'<div class="note">'+esc(source.path)+"</div>":"")+'</div><span class="age">'+num(source.age_min,1)+' min</span><span class="'+(source.valid?"ok":"bad")+'">'+(source.valid?"valide":"invalide")+"</span></div>").join("");
@@ -101,7 +120,7 @@
   }
 
   const renderers={hero:renderHero,deterministic_alerts:renderAlerts,investigation:renderInvestigation,theses:renderTheses,value_map:renderValueMap,agent_record:renderAgentRecord,provenance:renderProvenance};
-  let current=null;
+  let current=null,currentAgent=null;
   function validate(data){
     if(!data||data.schema_version!=="v5-shadow-2")throw new Error("schéma inattendu: "+(data?.schema_version??"absent"));
     if(data.mode!=="shadow_only_no_production_authority")throw new Error("le manifeste n’est pas en mode shadow");
@@ -111,11 +130,16 @@
     const sectors=data.value_map?.sectors||[];
     $("sector-buttons")?.addEventListener("click",event=>{const button=event.target.closest("[data-sector]");if(!button)return;const chosen=sectors.find(item=>item.canonical_id===button.dataset.sector);if(!chosen)return;document.querySelectorAll("[data-sector]").forEach(item=>item.classList.toggle("on",item===button));$("sector-table").innerHTML=protocolTable(chosen)});
   }
-  function boot(data){
-    validate(data);current=data;
+  function boot(data,agentData){
+    validate(data);current=data;currentAgent=agentData||null;
     const declared=data.layout.section_order.filter((item,index,array)=>renderers[item]&&array.indexOf(item)===index);
     ["deterministic_alerts","agent_record","provenance"].forEach(key=>{if(!declared.includes(key))declared.push(key)});
-    $("app").innerHTML=declared.map(key=>renderers[key](data)).join("");
+    const rendered=declared.map(key=>({key,html:renderers[key](data)}));
+    if(currentAgent?.schema_version==="jev-agent-shadow-1"){
+      const index=Math.max(0,rendered.findIndex(item=>item.key==="investigation")+1);
+      rendered.splice(index,0,{key:"agent_observatory",html:renderAgentObservatory(currentAgent)});
+    }
+    $("app").innerHTML=rendered.map(item=>item.html).join("");
     $("asof").textContent="généré "+ago(data.generated_at);
     const summary=data.decision_summary||{};
     $("foot").textContent=data.schema_version+" · "+(summary.calls_ok??0)+"/"+(summary.calls??0)+" appels JEV · "+num(summary.latency_ms_total,0)+" ms · "+(data.publication?.profile||"shadow privé")+" · sans autorité de production";
@@ -123,7 +147,7 @@
   }
   async function load(){
     $("refresh").disabled=true;
-    try{const response=await fetch("v5-content-shadow.json?t="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("HTTP "+response.status);boot(await response.json())}
+    try{const stamp=Date.now();const response=await fetch("v5-content-shadow.json?t="+stamp,{cache:"no-store"});if(!response.ok)throw new Error("HTTP "+response.status);const agentResponse=await fetch("v5-agent-shadow.json?t="+stamp,{cache:"no-store"}).catch(()=>null);const agentData=agentResponse?.ok?await agentResponse.json():null;boot(await response.json(),agentData)}
     catch(error){if(!current)$("app").innerHTML='<div class="failure"><b>Manifeste shadow indisponible</b><br>'+esc(error.message)+"</div>";console.error(error)}
     finally{$("refresh").disabled=false}
   }

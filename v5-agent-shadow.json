@@ -1,0 +1,593 @@
+{
+  "schema_version": "jev-agent-shadow-1",
+  "mode": "shadow_only_no_production_authority",
+  "generated_at": "2026-09-24T11:43:41.190691+00:00",
+  "publication": {
+    "profile": "public_redacted_v1",
+    "redaction_strategy": "explicit_allow_list"
+  },
+  "authority": {
+    "jev_may": [
+      "assess_completed_wake_materiality",
+      "rank_bounded_resolved_candidates",
+      "measure_shadow_agreement"
+    ],
+    "jev_may_not": [
+      "execute_or_skip_jobs",
+      "suppress_failures",
+      "write_briefs_or_watches",
+      "route_brain_tools",
+      "publish"
+    ]
+  },
+  "kimi_wakes": {
+    "model": "kimi-k2-6",
+    "recent_count": 14,
+    "health_counts": {
+      "failed": 3,
+      "stale_incomplete": 3,
+      "ok": 7,
+      "silent": 1
+    },
+    "selection": {
+      "mode": "jev_shadow",
+      "threshold": 0.65,
+      "selected_ts": "2026-09-20T13:30:01.379452+00:00",
+      "selected_candidate_id": "w02",
+      "candidate_count": 3
+    },
+    "mandatory_alerts": [
+      {
+        "must_show": true,
+        "type": "kimi_wake_failure",
+        "ts": "2026-09-24T06:30:01.938545+00:00",
+        "label": "matin Europe",
+        "status": "error_final",
+        "health": "failed",
+        "tokens_in": 88281,
+        "tokens_out": 8641,
+        "wall_s": 1085.5,
+        "reason": "the Kimi wake did not produce a consumable final decision"
+      },
+      {
+        "must_show": true,
+        "type": "kimi_wake_failure",
+        "ts": "2026-09-23T13:30:02.010418+00:00",
+        "label": "ouverture US",
+        "status": "running",
+        "health": "stale_incomplete",
+        "tokens_in": 89622,
+        "tokens_out": 14885,
+        "wall_s": 805.6,
+        "reason": "trace remained incomplete after the run window"
+      },
+      {
+        "must_show": true,
+        "type": "kimi_wake_failure",
+        "ts": "2026-09-21T13:30:01.636512+00:00",
+        "label": "ouverture US",
+        "status": "running",
+        "health": "stale_incomplete",
+        "tokens_in": 64494,
+        "tokens_out": 9613,
+        "wall_s": 800.1,
+        "reason": "trace remained incomplete after the run window"
+      },
+      {
+        "must_show": true,
+        "type": "kimi_wake_failure",
+        "ts": "2026-09-19T13:30:02.083891+00:00",
+        "label": "ouverture US",
+        "status": "error_final",
+        "health": "failed",
+        "tokens_in": 76671,
+        "tokens_out": 7494,
+        "wall_s": 1375.4,
+        "reason": "the Kimi wake did not produce a consumable final decision"
+      },
+      {
+        "must_show": true,
+        "type": "kimi_wake_failure",
+        "ts": "2026-09-19T06:30:01.640643+00:00",
+        "label": "matin Europe",
+        "status": "running",
+        "health": "stale_incomplete",
+        "tokens_in": 81478,
+        "tokens_out": 16617,
+        "wall_s": 762.9,
+        "reason": "trace remained incomplete after the run window"
+      },
+      {
+        "must_show": true,
+        "type": "kimi_wake_failure",
+        "ts": "2026-09-17T13:30:02.119275+00:00",
+        "label": "ouverture US",
+        "status": "error",
+        "health": "failed",
+        "tokens_in": 6252,
+        "tokens_out": 2198,
+        "wall_s": 41.4,
+        "reason": "the Kimi wake did not produce a consumable final decision"
+      }
+    ],
+    "items": [
+      {
+        "ts": "2026-09-24T06:30:01.938545+00:00",
+        "age_h": 5.2,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "error_final",
+        "health": "failed",
+        "publish_decision": null,
+        "summary": "",
+        "watch_count": 0,
+        "tokens_in": 88281,
+        "tokens_out": 8641,
+        "wall_s": 1085.5
+      },
+      {
+        "ts": "2026-09-23T13:30:02.010418+00:00",
+        "age_h": 22.2,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "running",
+        "health": "stale_incomplete",
+        "publish_decision": null,
+        "summary": "",
+        "watch_count": 0,
+        "tokens_in": 89622,
+        "tokens_out": 14885,
+        "wall_s": 805.6
+      },
+      {
+        "ts": "2026-09-23T06:30:02.337829+00:00",
+        "age_h": 29.2,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Consensus aveugle sur Compound V3 qui bat ses records de TVL ; aucune veille concurrente sur ce protocole ; une veille emise sur son seuil critique a 1,65 Md$.",
+        "watch_count": 1,
+        "tokens_in": 75235,
+        "tokens_out": 16414,
+        "wall_s": 383.5,
+        "jev_materiality": 0.63,
+        "jev_candidate_id": "w05"
+      },
+      {
+        "ts": "2026-09-22T13:30:01.941319+00:00",
+        "age_h": 46.2,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "vide",
+        "health": "silent",
+        "publish_decision": null,
+        "summary": "",
+        "watch_count": 0,
+        "tokens_in": 88971,
+        "tokens_out": 15039,
+        "wall_s": 648.1
+      },
+      {
+        "ts": "2026-09-22T06:30:02.088802+00:00",
+        "age_h": 53.2,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "SparkLend, protocole de pret Sky, affiche le meilleur momentum du secteur lending sans couverture narrative ; veille sur TVL a 30 jours pour tester la persistance ; 1 predicat.",
+        "watch_count": 1,
+        "tokens_in": 73434,
+        "tokens_out": 19083,
+        "wall_s": 781.1,
+        "jev_materiality": 0.76,
+        "jev_candidate_id": "w04"
+      },
+      {
+        "ts": "2026-09-21T13:30:01.636512+00:00",
+        "age_h": 70.2,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "running",
+        "health": "stale_incomplete",
+        "publish_decision": null,
+        "summary": "",
+        "watch_count": 0,
+        "tokens_in": 64494,
+        "tokens_out": 9613,
+        "wall_s": 800.1
+      },
+      {
+        "ts": "2026-09-21T06:30:02.359310+00:00",
+        "age_h": 77.2,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Rotation liquide vers lending institutionnel ; Derive V2 OI et SparkLend TVL en veille.",
+        "watch_count": 1,
+        "tokens_in": 103887,
+        "tokens_out": 19266,
+        "wall_s": 583.2,
+        "jev_materiality": 0.58,
+        "jev_candidate_id": "w03"
+      },
+      {
+        "ts": "2026-09-20T13:30:01.379452+00:00",
+        "age_h": 94.2,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Perp sector fragmentation — dYdX V4 and Derive V2 surging while GMX V2/Jupiter data stagnates. Robinhood Chain fee collapse signals subsidized economics. 3 veilles on perp OI issued to track rotation persistence.",
+        "watch_count": 2,
+        "tokens_in": 84372,
+        "tokens_out": 20259,
+        "wall_s": 1062.2,
+        "jev_materiality": 0.81,
+        "jev_candidate_id": "w02"
+      },
+      {
+        "ts": "2026-09-20T06:30:01.954807+00:00",
+        "age_h": 101.2,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Derive V2 — perp DEX sur chaîne propriétaire en croissance mécanique de +52% hebdo d'OI, absent de tout radar narratif. 1 veille émise sur continuation OI.",
+        "watch_count": 1,
+        "tokens_in": 86527,
+        "tokens_out": 23057,
+        "wall_s": 1434.3,
+        "jev_materiality": 0.78,
+        "jev_candidate_id": "w01"
+      },
+      {
+        "ts": "2026-09-19T13:30:02.083891+00:00",
+        "age_h": 118.2,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "error_final",
+        "health": "failed",
+        "publish_decision": null,
+        "summary": "",
+        "watch_count": 0,
+        "tokens_in": 76671,
+        "tokens_out": 7494,
+        "wall_s": 1375.4
+      },
+      {
+        "ts": "2026-09-19T06:30:01.640643+00:00",
+        "age_h": 125.2,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "running",
+        "health": "stale_incomplete",
+        "publish_decision": null,
+        "summary": "",
+        "watch_count": 0,
+        "tokens_in": 81478,
+        "tokens_out": 16617,
+        "wall_s": 762.9
+      },
+      {
+        "ts": "2026-09-18T13:30:01.769588+00:00",
+        "age_h": 142.2,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "ether.fi Stake à $4,68B TVL (z=0,96, p97). Consensus aveugle sur le liquid staking. Veille émise sur franchissement des $5B.",
+        "watch_count": 1,
+        "tokens_in": 80723,
+        "tokens_out": 20134,
+        "wall_s": 937.9,
+        "jev_materiality": 0.58,
+        "jev_candidate_id": "w00"
+      },
+      {
+        "ts": "2026-09-18T06:30:01.711437+00:00",
+        "age_h": 149.2,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "SparkLend est le seul lending en accélération structurelle (z TVL 2.34, z fees 2.60) tandis que le consensus ignore la migration endogène Sky/DAI. | PUBLIÉ : divergence SparkLend vs Aave/Compound. | 3 veilles émises sur la recomposition du lending.",
+        "watch_count": 2,
+        "tokens_in": 93421,
+        "tokens_out": 24969,
+        "wall_s": 1524.5
+      },
+      {
+        "ts": "2026-09-17T13:30:02.119275+00:00",
+        "age_h": 166.2,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "error",
+        "health": "failed",
+        "publish_decision": null,
+        "summary": "",
+        "watch_count": 0,
+        "tokens_in": 6252,
+        "tokens_out": 2198,
+        "wall_s": 41.4
+      }
+    ]
+  },
+  "glm_jobs": {
+    "job_count": 18,
+    "health_counts": {
+      "healthy": 16,
+      "empty": 1,
+      "error": 1
+    },
+    "items": [
+      {
+        "name": "briefs tier A",
+        "script": "hermes_brain",
+        "cadence_h": 6,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 0.5
+      },
+      {
+        "name": "briefs tier S",
+        "script": "hermes_brain",
+        "cadence_h": 24,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 0.5
+      },
+      {
+        "name": "briefs tier B",
+        "script": "hermes_brain",
+        "cadence_h": 24,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 0.5
+      },
+      {
+        "name": "briefs tier W",
+        "script": "hermes_brain",
+        "cadence_h": 168,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 0.5
+      },
+      {
+        "name": "reveil brain L4",
+        "script": "wake2",
+        "cadence_h": 12,
+        "running": true,
+        "error": false,
+        "empty": false,
+        "measurable": true,
+        "log_age_h": 6.1
+      },
+      {
+        "name": "greffier",
+        "script": "clerk",
+        "cadence_h": 24,
+        "running": true,
+        "error": false,
+        "empty": false,
+        "measurable": true,
+        "log_age_h": 4.5
+      },
+      {
+        "name": "instructeur",
+        "script": "instructor",
+        "cadence_h": 24,
+        "running": true,
+        "error": false,
+        "empty": false,
+        "measurable": true,
+        "log_age_h": 4.1
+      },
+      {
+        "name": "reflexif",
+        "script": "reflex",
+        "cadence_h": 168,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 73.4
+      },
+      {
+        "name": "amont des theses",
+        "script": "claim_synthesizer",
+        "cadence_h": 12,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 9.3
+      },
+      {
+        "name": "digest findings",
+        "script": "findings_digest",
+        "cadence_h": 2,
+        "running": true,
+        "error": false,
+        "empty": true,
+        "measurable": true,
+        "log_age_h": 0.2
+      },
+      {
+        "name": "resume articles",
+        "script": "article_summarizer",
+        "cadence_h": 6,
+        "running": true,
+        "error": true,
+        "empty": false,
+        "measurable": true,
+        "log_age_h": 3.0
+      },
+      {
+        "name": "tags (classifier)",
+        "script": "tag_classifier",
+        "cadence_h": 6,
+        "running": true,
+        "error": false,
+        "empty": false,
+        "measurable": true,
+        "log_age_h": 4.7
+      },
+      {
+        "name": "retag",
+        "script": "retag_refine",
+        "cadence_h": 8,
+        "running": true,
+        "error": false,
+        "empty": false,
+        "measurable": true,
+        "log_age_h": 1.2
+      },
+      {
+        "name": "impact news",
+        "script": "news_impact",
+        "cadence_h": 6,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 4.6
+      },
+      {
+        "name": "digest on-chain",
+        "script": "onchain_digest",
+        "cadence_h": 6,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 4.9
+      },
+      {
+        "name": "analyste secteur",
+        "script": "sector_analyst",
+        "cadence_h": 4,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 3.7
+      },
+      {
+        "name": "analyste stress",
+        "script": "stress_analyst",
+        "cadence_h": 4,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 1.9
+      },
+      {
+        "name": "annotateur signaux",
+        "script": "signal_annotator",
+        "cadence_h": 8,
+        "running": true,
+        "error": false,
+        "empty": null,
+        "measurable": false,
+        "log_age_h": 5.9
+      }
+    ],
+    "jev_surfaces": [
+      {
+        "surface": "dashboard_featured",
+        "job": "dashboard_curator",
+        "jev_role": "shadow_candidate",
+        "production_authority": false,
+        "evidence": {
+          "top1_in_glm_top3": true,
+          "current_selected_type": "wake"
+        },
+        "reason": "stable bounded selection; keep deterministic mandatory sections outside JEV"
+      },
+      {
+        "surface": "clerk_multilabel_ranking",
+        "job": "clerk",
+        "jev_role": "advisory_ranking",
+        "production_authority": false,
+        "evidence": {
+          "n": 8,
+          "exact_accuracy": 0.75,
+          "expected_in_top2": 8
+        },
+        "reason": "use Noul probabilities as a shortlist; GLM keeps attribution and note writing"
+      },
+      {
+        "surface": "digest_impact",
+        "job": "digest_glm",
+        "jev_role": "observe_drift",
+        "production_authority": false,
+        "evidence": {
+          "n": 8,
+          "current_accuracy": 0.625,
+          "recent_accuracy_median": 0.875,
+          "batch_single_agreement": 0.625
+        },
+        "reason": "current agreement drifted; no replacement or gate until labelled evaluation"
+      },
+      {
+        "surface": "instructor_emit",
+        "job": "instructor",
+        "jev_role": "insufficient_sample",
+        "production_authority": false,
+        "evidence": {
+          "n": 1,
+          "matches": 0
+        },
+        "reason": "deterministic calibration remains authoritative; collect more positives and rejects"
+      },
+      {
+        "surface": "value_watch_publish",
+        "job": "value_watch",
+        "jev_role": "do_not_gate",
+        "production_authority": false,
+        "evidence": {
+          "expected_publish": true,
+          "jev_probability_publish": 0.34,
+          "match": false
+        },
+        "reason": "stable disagreement with the generative judgement; display only"
+      },
+      {
+        "surface": "react_next_tool",
+        "job": "hermes_brain",
+        "jev_role": "do_not_route",
+        "production_authority": false,
+        "evidence": {
+          "n": 15,
+          "exact_accuracy": 0.2667,
+          "top3_accuracy": 0.3333
+        },
+        "reason": "multiple valid actions and low replay agreement; Kimi/GLM retains tool judgement"
+      }
+    ],
+    "latest_battery": {
+      "finished_at": "2026-09-24T11:32:40.618196+00:00",
+      "calls": 37,
+      "ok": 37,
+      "latency_mean_ms": 486.35
+    }
+  }
+}
