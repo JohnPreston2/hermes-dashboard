@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-09-26T11:55:16.143019+00:00",
+  "generated_at": "2026-09-26T15:07:01.908552+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -24,17 +24,17 @@
     "model": "kimi-k2-6",
     "recent_count": 14,
     "health_counts": {
-      "ok": 6,
+      "ok": 7,
       "stale_incomplete": 3,
       "silent": 2,
-      "failed": 3
+      "failed": 2
     },
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
       "selected_ts": "2026-09-26T06:30:02.305662+00:00",
-      "selected_candidate_id": "w05",
-      "candidate_count": 5
+      "selected_candidate_id": "w04",
+      "candidate_count": 4
     },
     "mandatory_alerts": [
       {
@@ -96,24 +96,28 @@
         "tokens_out": 9613,
         "wall_s": 800.1,
         "reason": "trace remained incomplete after the run window"
-      },
-      {
-        "must_show": true,
-        "type": "kimi_wake_failure",
-        "ts": "2026-09-19T13:30:02.083891+00:00",
-        "label": "ouverture US",
-        "status": "error_final",
-        "health": "failed",
-        "tokens_in": 76671,
-        "tokens_out": 7494,
-        "wall_s": 1375.4,
-        "reason": "the Kimi wake did not produce a consumable final decision"
       }
     ],
     "items": [
       {
+        "ts": "2026-09-26T13:30:01.778128+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Compression structurelle des frais DEX — La cassure des frais DEX n'est pas une rotation, c'est une reinitialisation — 1 veille emise",
+        "watch_count": 1,
+        "tokens_in": 100468,
+        "tokens_out": 23678,
+        "wall_s": 894.3,
+        "jev_materiality": 0.67,
+        "jev_candidate_id": "w05"
+      },
+      {
         "ts": "2026-09-26T06:30:02.305662+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -125,11 +129,11 @@
         "tokens_out": 15942,
         "wall_s": 433.6,
         "jev_materiality": 0.81,
-        "jev_candidate_id": "w05"
+        "jev_candidate_id": "w04"
       },
       {
         "ts": "2026-09-25T13:30:01.809556+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -143,7 +147,7 @@
       },
       {
         "ts": "2026-09-25T06:30:01.843571+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "vide",
@@ -157,7 +161,7 @@
       },
       {
         "ts": "2026-09-24T13:30:02.311468+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error",
@@ -171,7 +175,7 @@
       },
       {
         "ts": "2026-09-24T06:30:01.938545+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -185,7 +189,7 @@
       },
       {
         "ts": "2026-09-23T13:30:02.010418+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -199,7 +203,7 @@
       },
       {
         "ts": "2026-09-23T06:30:02.337829+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -210,12 +214,12 @@
         "tokens_in": 75235,
         "tokens_out": 16414,
         "wall_s": 383.5,
-        "jev_materiality": 0.69,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.57,
+        "jev_candidate_id": "w03"
       },
       {
         "ts": "2026-09-22T13:30:01.941319+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "vide",
@@ -229,7 +233,7 @@
       },
       {
         "ts": "2026-09-22T06:30:02.088802+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -240,12 +244,12 @@
         "tokens_in": 73434,
         "tokens_out": 19083,
         "wall_s": 781.1,
-        "jev_materiality": 0.73,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.71,
+        "jev_candidate_id": "w02"
       },
       {
         "ts": "2026-09-21T13:30:01.636512+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -259,7 +263,7 @@
       },
       {
         "ts": "2026-09-21T06:30:02.359310+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -270,12 +274,12 @@
         "tokens_in": 103887,
         "tokens_out": 19266,
         "wall_s": 583.2,
-        "jev_materiality": 0.58,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.51,
+        "jev_candidate_id": "w01"
       },
       {
         "ts": "2026-09-20T13:30:01.379452+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -286,12 +290,12 @@
         "tokens_in": 84372,
         "tokens_out": 20259,
         "wall_s": 1062.2,
-        "jev_materiality": 0.76,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.77,
+        "jev_candidate_id": "w00"
       },
       {
         "ts": "2026-09-20T06:30:01.954807+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -301,31 +305,15 @@
         "watch_count": 1,
         "tokens_in": 86527,
         "tokens_out": 23057,
-        "wall_s": 1434.3,
-        "jev_materiality": 0.77,
-        "jev_candidate_id": "w00"
-      },
-      {
-        "ts": "2026-09-19T13:30:02.083891+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "error_final",
-        "health": "failed",
-        "publish_decision": null,
-        "summary": "",
-        "watch_count": 0,
-        "tokens_in": 76671,
-        "tokens_out": 7494,
-        "wall_s": 1375.4
+        "wall_s": 1434.3
       }
     ]
   },
   "glm_jobs": {
     "job_count": 18,
     "health_counts": {
-      "healthy": 14,
-      "empty": 3,
+      "healthy": 16,
+      "empty": 1,
       "error": 1
     },
     "items": [
@@ -337,7 +325,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.6
+        "log_age_h": 0.5
       },
       {
         "name": "briefs tier S",
@@ -347,7 +335,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.6
+        "log_age_h": 0.5
       },
       {
         "name": "briefs tier B",
@@ -357,7 +345,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.6
+        "log_age_h": 0.5
       },
       {
         "name": "briefs tier W",
@@ -367,7 +355,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.6
+        "log_age_h": 0.5
       },
       {
         "name": "reveil brain L4",
@@ -375,9 +363,9 @@
         "cadence_h": 12,
         "running": true,
         "error": false,
-        "empty": true,
+        "empty": false,
         "measurable": true,
-        "log_age_h": 5.9
+        "log_age_h": 6.0
       },
       {
         "name": "greffier",
@@ -407,7 +395,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 121.4
+        "log_age_h": 145.4
       },
       {
         "name": "amont des theses",
@@ -445,7 +433,7 @@
         "cadence_h": 6,
         "running": true,
         "error": false,
-        "empty": true,
+        "empty": false,
         "measurable": true,
         "log_age_h": 4.7
       },
@@ -507,7 +495,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 5.9
+        "log_age_h": 5.8
       }
     ],
     "jev_surfaces": [
