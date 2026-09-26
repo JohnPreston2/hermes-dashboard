@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-09-25T15:07:02.414177+00:00",
+  "generated_at": "2026-09-26T07:11:02.001753+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -24,17 +24,17 @@
     "model": "kimi-k2-6",
     "recent_count": 14,
     "health_counts": {
-      "stale_incomplete": 4,
+      "ok": 6,
+      "stale_incomplete": 3,
       "silent": 2,
-      "failed": 3,
-      "ok": 5
+      "failed": 3
     },
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
-      "selected_ts": "2026-09-20T13:30:01.379452+00:00",
-      "selected_candidate_id": "w01",
-      "candidate_count": 4
+      "selected_ts": "2026-09-26T06:30:02.305662+00:00",
+      "selected_candidate_id": "w05",
+      "candidate_count": 5
     },
     "mandatory_alerts": [
       {
@@ -108,24 +108,28 @@
         "tokens_out": 7494,
         "wall_s": 1375.4,
         "reason": "the Kimi wake did not produce a consumable final decision"
-      },
-      {
-        "must_show": true,
-        "type": "kimi_wake_failure",
-        "ts": "2026-09-19T06:30:01.640643+00:00",
-        "label": "matin Europe",
-        "status": "running",
-        "health": "stale_incomplete",
-        "tokens_in": 81478,
-        "tokens_out": 16617,
-        "wall_s": 762.9,
-        "reason": "trace remained incomplete after the run window"
       }
     ],
     "items": [
       {
+        "ts": "2026-09-26T06:30:02.305662+00:00",
+        "age_h": 0.7,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Sanctum Infinity révélé comme générateur de fees DEX masqué par le narrative LST ; retournement de traction fondamentale sur dYdX V4 post-migration ; 2 veilles émises.",
+        "watch_count": 2,
+        "tokens_in": 99517,
+        "tokens_out": 15942,
+        "wall_s": 433.6,
+        "jev_materiality": 0.81,
+        "jev_candidate_id": "w05"
+      },
+      {
         "ts": "2026-09-25T13:30:01.809556+00:00",
-        "age_h": 1.6,
+        "age_h": 17.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -139,7 +143,7 @@
       },
       {
         "ts": "2026-09-25T06:30:01.843571+00:00",
-        "age_h": 8.6,
+        "age_h": 24.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "vide",
@@ -153,7 +157,7 @@
       },
       {
         "ts": "2026-09-24T13:30:02.311468+00:00",
-        "age_h": 25.6,
+        "age_h": 41.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error",
@@ -167,7 +171,7 @@
       },
       {
         "ts": "2026-09-24T06:30:01.938545+00:00",
-        "age_h": 32.6,
+        "age_h": 48.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -181,7 +185,7 @@
       },
       {
         "ts": "2026-09-23T13:30:02.010418+00:00",
-        "age_h": 49.6,
+        "age_h": 65.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -195,7 +199,7 @@
       },
       {
         "ts": "2026-09-23T06:30:02.337829+00:00",
-        "age_h": 56.6,
+        "age_h": 72.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -206,12 +210,12 @@
         "tokens_in": 75235,
         "tokens_out": 16414,
         "wall_s": 383.5,
-        "jev_materiality": 0.72,
+        "jev_materiality": 0.67,
         "jev_candidate_id": "w04"
       },
       {
         "ts": "2026-09-22T13:30:01.941319+00:00",
-        "age_h": 73.6,
+        "age_h": 89.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "vide",
@@ -225,7 +229,7 @@
       },
       {
         "ts": "2026-09-22T06:30:02.088802+00:00",
-        "age_h": 80.6,
+        "age_h": 96.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -236,12 +240,12 @@
         "tokens_in": 73434,
         "tokens_out": 19083,
         "wall_s": 781.1,
-        "jev_materiality": 0.74,
+        "jev_materiality": 0.71,
         "jev_candidate_id": "w03"
       },
       {
         "ts": "2026-09-21T13:30:01.636512+00:00",
-        "age_h": 97.6,
+        "age_h": 113.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -255,7 +259,7 @@
       },
       {
         "ts": "2026-09-21T06:30:02.359310+00:00",
-        "age_h": 104.6,
+        "age_h": 120.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -271,7 +275,7 @@
       },
       {
         "ts": "2026-09-20T13:30:01.379452+00:00",
-        "age_h": 121.6,
+        "age_h": 137.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -282,12 +286,12 @@
         "tokens_in": 84372,
         "tokens_out": 20259,
         "wall_s": 1062.2,
-        "jev_materiality": 0.78,
+        "jev_materiality": 0.77,
         "jev_candidate_id": "w01"
       },
       {
         "ts": "2026-09-20T06:30:01.954807+00:00",
-        "age_h": 128.6,
+        "age_h": 144.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -303,7 +307,7 @@
       },
       {
         "ts": "2026-09-19T13:30:02.083891+00:00",
-        "age_h": 145.6,
+        "age_h": 161.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -314,20 +318,6 @@
         "tokens_in": 76671,
         "tokens_out": 7494,
         "wall_s": 1375.4
-      },
-      {
-        "ts": "2026-09-19T06:30:01.640643+00:00",
-        "age_h": 152.6,
-        "label": "matin Europe",
-        "model": "kimi-k2-6",
-        "status": "running",
-        "health": "stale_incomplete",
-        "publish_decision": null,
-        "summary": "",
-        "watch_count": 0,
-        "tokens_in": 81478,
-        "tokens_out": 16617,
-        "wall_s": 762.9
       }
     ]
   },
