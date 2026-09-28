@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-09-28T11:55:14.473155+00:00",
+  "generated_at": "2026-09-28T15:07:02.113964+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -24,16 +24,16 @@
     "model": "kimi-k2-6",
     "recent_count": 14,
     "health_counts": {
+      "ok": 7,
       "failed": 3,
-      "ok": 6,
-      "stale_incomplete": 3,
+      "stale_incomplete": 2,
       "silent": 2
     },
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
       "selected_ts": "2026-09-27T13:30:01.790002+00:00",
-      "selected_candidate_id": "w05",
+      "selected_candidate_id": "w04",
       "candidate_count": 4
     },
     "mandatory_alerts": [
@@ -96,24 +96,28 @@
         "tokens_out": 14885,
         "wall_s": 805.6,
         "reason": "trace remained incomplete after the run window"
-      },
-      {
-        "must_show": true,
-        "type": "kimi_wake_failure",
-        "ts": "2026-09-21T13:30:01.636512+00:00",
-        "label": "ouverture US",
-        "status": "running",
-        "health": "stale_incomplete",
-        "tokens_in": 64494,
-        "tokens_out": 9613,
-        "wall_s": 800.1,
-        "reason": "trace remained incomplete after the run window"
       }
     ],
     "items": [
       {
+        "ts": "2026-09-28T13:30:01.287053+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Rotation intra-RWA : T-Bills vers credit prive tokenise (Re +4,5%) | PumpSwap en surperformance silencieuse : fees z=2,59, zero article | 3 veilles emises sur Re, PumpSwap et Invesco USTB",
+        "watch_count": 3,
+        "tokens_in": 62520,
+        "tokens_out": 17281,
+        "wall_s": 1356.0,
+        "jev_materiality": 0.82,
+        "jev_candidate_id": "w05"
+      },
+      {
         "ts": "2026-09-28T06:30:02.383650+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -127,7 +131,7 @@
       },
       {
         "ts": "2026-09-27T13:30:01.790002+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -138,12 +142,12 @@
         "tokens_in": 86829,
         "tokens_out": 13882,
         "wall_s": 617.9,
-        "jev_materiality": 0.81,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.84,
+        "jev_candidate_id": "w04"
       },
       {
         "ts": "2026-09-27T06:30:01.991645+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -154,12 +158,12 @@
         "tokens_in": 86315,
         "tokens_out": 26956,
         "wall_s": 576.5,
-        "jev_materiality": 0.75,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.78,
+        "jev_candidate_id": "w03"
       },
       {
         "ts": "2026-09-26T13:30:01.778128+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -170,12 +174,12 @@
         "tokens_in": 100468,
         "tokens_out": 23678,
         "wall_s": 894.3,
-        "jev_materiality": 0.54,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.64,
+        "jev_candidate_id": "w02"
       },
       {
         "ts": "2026-09-26T06:30:02.305662+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -186,12 +190,12 @@
         "tokens_in": 99517,
         "tokens_out": 15942,
         "wall_s": 433.6,
-        "jev_materiality": 0.81,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.82,
+        "jev_candidate_id": "w01"
       },
       {
         "ts": "2026-09-25T13:30:01.809556+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -205,7 +209,7 @@
       },
       {
         "ts": "2026-09-25T06:30:01.843571+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "vide",
@@ -219,7 +223,7 @@
       },
       {
         "ts": "2026-09-24T13:30:02.311468+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error",
@@ -233,7 +237,7 @@
       },
       {
         "ts": "2026-09-24T06:30:01.938545+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -247,7 +251,7 @@
       },
       {
         "ts": "2026-09-23T13:30:02.010418+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -261,7 +265,7 @@
       },
       {
         "ts": "2026-09-23T06:30:02.337829+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -272,12 +276,12 @@
         "tokens_in": 75235,
         "tokens_out": 16414,
         "wall_s": 383.5,
-        "jev_materiality": 0.58,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.47,
+        "jev_candidate_id": "w00"
       },
       {
         "ts": "2026-09-22T13:30:01.941319+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "vide",
@@ -291,7 +295,7 @@
       },
       {
         "ts": "2026-09-22T06:30:02.088802+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -301,23 +305,7 @@
         "watch_count": 1,
         "tokens_in": 73434,
         "tokens_out": 19083,
-        "wall_s": 781.1,
-        "jev_materiality": 0.66,
-        "jev_candidate_id": "w00"
-      },
-      {
-        "ts": "2026-09-21T13:30:01.636512+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "running",
-        "health": "stale_incomplete",
-        "publish_decision": null,
-        "summary": "",
-        "watch_count": 0,
-        "tokens_in": 64494,
-        "tokens_out": 9613,
-        "wall_s": 800.1
+        "wall_s": 781.1
       }
     ]
   },
@@ -377,7 +365,7 @@
         "error": false,
         "empty": false,
         "measurable": true,
-        "log_age_h": 6.0
+        "log_age_h": 5.8
       },
       {
         "name": "greffier",
@@ -407,7 +395,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 1.4
+        "log_age_h": 25.4
       },
       {
         "name": "amont des theses",
@@ -447,7 +435,7 @@
         "error": false,
         "empty": false,
         "measurable": true,
-        "log_age_h": 4.8
+        "log_age_h": 4.7
       },
       {
         "name": "retag",
@@ -494,7 +482,7 @@
         "script": "stress_analyst",
         "cadence_h": 4,
         "running": true,
-        "error": true,
+        "error": false,
         "empty": null,
         "measurable": false,
         "log_age_h": 1.9
@@ -504,7 +492,7 @@
         "script": "signal_annotator",
         "cadence_h": 8,
         "running": true,
-        "error": false,
+        "error": true,
         "empty": null,
         "measurable": false,
         "log_age_h": 5.8
