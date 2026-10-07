@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-10-07T07:11:02.110774+00:00",
+  "generated_at": "2026-10-07T11:55:17.047733+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -148,7 +148,7 @@
     "items": [
       {
         "ts": "2026-10-07T06:30:01.502801+00:00",
-        "age_h": 0.7,
+        "age_h": 5.4,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -164,7 +164,7 @@
       },
       {
         "ts": "2026-10-06T13:30:01.850885+00:00",
-        "age_h": 17.7,
+        "age_h": 22.4,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -175,12 +175,12 @@
         "tokens_in": 88597,
         "tokens_out": 20547,
         "wall_s": 784.9,
-        "jev_materiality": 0.61,
+        "jev_materiality": 0.62,
         "jev_candidate_id": "w03"
       },
       {
         "ts": "2026-10-06T06:30:02.249930+00:00",
-        "age_h": 24.7,
+        "age_h": 29.4,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -194,7 +194,7 @@
       },
       {
         "ts": "2026-10-05T13:30:01.468751+00:00",
-        "age_h": 41.7,
+        "age_h": 46.4,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -208,7 +208,7 @@
       },
       {
         "ts": "2026-10-05T06:30:02.503836+00:00",
-        "age_h": 48.7,
+        "age_h": 53.4,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -224,7 +224,7 @@
       },
       {
         "ts": "2026-10-04T13:30:01.685685+00:00",
-        "age_h": 65.7,
+        "age_h": 70.4,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -238,7 +238,7 @@
       },
       {
         "ts": "2026-10-04T06:30:02.038822+00:00",
-        "age_h": 72.7,
+        "age_h": 77.4,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -252,7 +252,7 @@
       },
       {
         "ts": "2026-10-03T13:30:02.026579+00:00",
-        "age_h": 89.7,
+        "age_h": 94.4,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -266,7 +266,7 @@
       },
       {
         "ts": "2026-10-03T06:30:02.296799+00:00",
-        "age_h": 96.7,
+        "age_h": 101.4,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error",
@@ -280,7 +280,7 @@
       },
       {
         "ts": "2026-10-02T13:30:01.442877+00:00",
-        "age_h": 113.7,
+        "age_h": 118.4,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -294,7 +294,7 @@
       },
       {
         "ts": "2026-10-02T06:30:01.773778+00:00",
-        "age_h": 120.7,
+        "age_h": 125.4,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -308,7 +308,7 @@
       },
       {
         "ts": "2026-10-01T13:30:01.592949+00:00",
-        "age_h": 137.7,
+        "age_h": 142.4,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error",
@@ -322,7 +322,7 @@
       },
       {
         "ts": "2026-10-01T06:30:01.712371+00:00",
-        "age_h": 144.7,
+        "age_h": 149.4,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -338,7 +338,7 @@
       },
       {
         "ts": "2026-09-30T13:30:01.758792+00:00",
-        "age_h": 161.7,
+        "age_h": 166.4,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -349,7 +349,7 @@
         "tokens_in": 100787,
         "tokens_out": 22353,
         "wall_s": 918.4,
-        "jev_materiality": 0.49,
+        "jev_materiality": 0.46,
         "jev_candidate_id": "w00"
       }
     ]
@@ -562,7 +562,7 @@
         "production_authority": false,
         "evidence": {
           "n": 8,
-          "exact_accuracy": 0.625,
+          "exact_accuracy": 0.875,
           "expected_in_top2": 8
         },
         "reason": "use Noul probabilities as a shortlist; GLM keeps attribution and note writing"
@@ -574,8 +574,8 @@
         "production_authority": false,
         "evidence": {
           "n": 8,
-          "current_accuracy": 0.625,
-          "recent_accuracy_median": 0.6459,
+          "current_accuracy": 0.75,
+          "recent_accuracy_median": 0.7084,
           "batch_single_agreement": 0.75
         },
         "reason": "current agreement drifted; no replacement or gate until labelled evaluation"
@@ -586,7 +586,7 @@
         "jev_role": "insufficient_sample",
         "production_authority": false,
         "evidence": {
-          "n": 1,
+          "n": 2,
           "matches": 1
         },
         "reason": "deterministic calibration remains authoritative; collect more positives and rejects"
@@ -598,7 +598,7 @@
         "production_authority": false,
         "evidence": {
           "expected_publish": true,
-          "jev_probability_publish": 0.39,
+          "jev_probability_publish": 0.47,
           "match": false
         },
         "reason": "stable disagreement with the generative judgement; display only"
@@ -610,17 +610,17 @@
         "production_authority": false,
         "evidence": {
           "n": 15,
-          "exact_accuracy": 0.4,
-          "top3_accuracy": 0.6
+          "exact_accuracy": 0.2667,
+          "top3_accuracy": 0.4
         },
         "reason": "multiple valid actions and low replay agreement; Kimi/GLM retains tool judgement"
       }
     ],
     "latest_battery": {
-      "finished_at": "2026-10-06T11:55:15.340232+00:00",
-      "calls": 37,
-      "ok": 37,
-      "latency_mean_ms": 372.76
+      "finished_at": "2026-10-07T11:55:16.892567+00:00",
+      "calls": 38,
+      "ok": 38,
+      "latency_mean_ms": 385.57
     }
   }
 }
