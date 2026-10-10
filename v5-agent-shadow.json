@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-10-10T11:55:15.343883+00:00",
+  "generated_at": "2026-10-10T15:07:01.988618+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -24,17 +24,17 @@
     "model": "kimi-k2-6",
     "recent_count": 14,
     "health_counts": {
+      "ok": 7,
       "silent": 1,
-      "ok": 6,
       "stale_incomplete": 3,
-      "failed": 4
+      "failed": 3
     },
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
       "selected_ts": "2026-10-08T13:30:01.334365+00:00",
-      "selected_candidate_id": "w04",
-      "candidate_count": 4
+      "selected_candidate_id": "w03",
+      "candidate_count": 5
     },
     "mandatory_alerts": [
       {
@@ -108,24 +108,28 @@
         "tokens_out": 5501,
         "wall_s": 1063.9,
         "reason": "the Kimi wake did not produce a consumable final decision"
-      },
-      {
-        "must_show": true,
-        "type": "kimi_wake_failure",
-        "ts": "2026-10-03T13:30:02.026579+00:00",
-        "label": "ouverture US",
-        "status": "error_final",
-        "health": "failed",
-        "tokens_in": 55952,
-        "tokens_out": 2898,
-        "wall_s": 1076.6,
-        "reason": "the Kimi wake did not produce a consumable final decision"
       }
     ],
     "items": [
       {
+        "ts": "2026-10-10T13:30:01.482085+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Liquid staking exodus as base-yield substitution | \"Liquid Staking n'est plus le risk-free rate on-chain\" | 3 veilles : Lido TVL ≤ 23 Md, JustLend sTRX TVL ≤ 3,1 Md, Aave V3 fees ≥ 10,5 M USD (7j)",
+        "watch_count": 1,
+        "tokens_in": 98594,
+        "tokens_out": 31171,
+        "wall_s": 1300.6,
+        "jev_materiality": 0.83,
+        "jev_candidate_id": "w05"
+      },
+      {
         "ts": "2026-10-10T06:30:01.679834+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "vide",
@@ -139,7 +143,7 @@
       },
       {
         "ts": "2026-10-09T13:30:01.890069+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -150,12 +154,12 @@
         "tokens_in": 99582,
         "tokens_out": 21091,
         "wall_s": 1140.3,
-        "jev_materiality": 0.74,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.72,
+        "jev_candidate_id": "w04"
       },
       {
         "ts": "2026-10-09T06:30:02.336466+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "running",
@@ -169,7 +173,7 @@
       },
       {
         "ts": "2026-10-08T13:30:01.334365+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -180,12 +184,12 @@
         "tokens_in": 98336,
         "tokens_out": 20589,
         "wall_s": 1064.1,
-        "jev_materiality": 0.8,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.75,
+        "jev_candidate_id": "w03"
       },
       {
         "ts": "2026-10-08T06:30:01.605605+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -196,12 +200,12 @@
         "tokens_in": 71373,
         "tokens_out": 13432,
         "wall_s": 702.0,
-        "jev_materiality": 0.88,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.87,
+        "jev_candidate_id": "w02"
       },
       {
         "ts": "2026-10-07T13:30:01.923510+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -215,7 +219,7 @@
       },
       {
         "ts": "2026-10-07T06:30:01.502801+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -226,12 +230,12 @@
         "tokens_in": 69907,
         "tokens_out": 24956,
         "wall_s": 1546.8,
-        "jev_materiality": 0.85,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.84,
+        "jev_candidate_id": "w01"
       },
       {
         "ts": "2026-10-06T13:30:01.850885+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -242,12 +246,12 @@
         "tokens_in": 88597,
         "tokens_out": 20547,
         "wall_s": 784.9,
-        "jev_materiality": 0.64,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.51,
+        "jev_candidate_id": "w00"
       },
       {
         "ts": "2026-10-06T06:30:02.249930+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -261,7 +265,7 @@
       },
       {
         "ts": "2026-10-05T13:30:01.468751+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -275,7 +279,7 @@
       },
       {
         "ts": "2026-10-05T06:30:02.503836+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -285,13 +289,11 @@
         "watch_count": 0,
         "tokens_in": 82882,
         "tokens_out": 22332,
-        "wall_s": 1543.9,
-        "jev_materiality": 0.59,
-        "jev_candidate_id": "w00"
+        "wall_s": 1543.9
       },
       {
         "ts": "2026-10-04T13:30:01.685685+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "running",
@@ -305,7 +307,7 @@
       },
       {
         "ts": "2026-10-04T06:30:02.038822+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "error_final",
@@ -316,20 +318,6 @@
         "tokens_in": 79491,
         "tokens_out": 5501,
         "wall_s": 1063.9
-      },
-      {
-        "ts": "2026-10-03T13:30:02.026579+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "error_final",
-        "health": "failed",
-        "publish_decision": null,
-        "summary": "",
-        "watch_count": 0,
-        "tokens_in": 55952,
-        "tokens_out": 2898,
-        "wall_s": 1076.6
       }
     ]
   },
@@ -337,8 +325,7 @@
     "job_count": 18,
     "health_counts": {
       "healthy": 16,
-      "empty": 1,
-      "error": 1
+      "empty": 2
     },
     "items": [
       {
@@ -387,9 +374,9 @@
         "cadence_h": 12,
         "running": true,
         "error": false,
-        "empty": false,
+        "empty": true,
         "measurable": true,
-        "log_age_h": 5.8
+        "log_age_h": 5.7
       },
       {
         "name": "greffier",
@@ -419,7 +406,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 121.3
+        "log_age_h": 145.3
       },
       {
         "name": "amont des theses",
@@ -516,7 +503,7 @@
         "script": "signal_annotator",
         "cadence_h": 8,
         "running": true,
-        "error": true,
+        "error": false,
         "empty": null,
         "measurable": false,
         "log_age_h": 5.8
