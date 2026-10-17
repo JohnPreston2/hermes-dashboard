@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-10-16T15:07:02.051856+00:00",
+  "generated_at": "2026-10-17T07:11:01.736187+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -24,16 +24,15 @@
     "model": "kimi-k2-6",
     "recent_count": 14,
     "health_counts": {
-      "ok": 8,
+      "ok": 9,
       "failed": 3,
-      "stale_incomplete": 2,
-      "silent": 1
+      "stale_incomplete": 2
     },
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
       "selected_ts": "2026-10-15T06:30:02.205675+00:00",
-      "selected_candidate_id": "w02",
+      "selected_candidate_id": "w01",
       "candidate_count": 4
     },
     "mandatory_alerts": [
@@ -100,8 +99,24 @@
     ],
     "items": [
       {
+        "ts": "2026-10-17T06:30:01.699297+00:00",
+        "age_h": 0.7,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Anomalie PancakeSwap : TVL V3 en explosion (+47 %) mais revenus en repli (–20 %). Veille sur érosion des fees V3 malgré le capital affluant.",
+        "watch_count": 1,
+        "tokens_in": 59580,
+        "tokens_out": 15714,
+        "wall_s": 256.4,
+        "jev_materiality": 0.77,
+        "jev_candidate_id": "w05"
+      },
+      {
         "ts": "2026-10-16T13:30:02.105655+00:00",
-        "age_h": 1.6,
+        "age_h": 17.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -112,12 +127,12 @@
         "tokens_in": 96924,
         "tokens_out": 24182,
         "wall_s": 252.1,
-        "jev_materiality": 0.52,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.55,
+        "jev_candidate_id": "w04"
       },
       {
         "ts": "2026-10-16T06:30:02.321364+00:00",
-        "age_h": 8.6,
+        "age_h": 24.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -128,12 +143,12 @@
         "tokens_in": 108648,
         "tokens_out": 22006,
         "wall_s": 254.4,
-        "jev_materiality": 0.78,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.79,
+        "jev_candidate_id": "w03"
       },
       {
         "ts": "2026-10-15T13:30:02.078253+00:00",
-        "age_h": 25.6,
+        "age_h": 41.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -144,12 +159,12 @@
         "tokens_in": 95432,
         "tokens_out": 26269,
         "wall_s": 320.1,
-        "jev_materiality": 0.65,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.68,
+        "jev_candidate_id": "w02"
       },
       {
         "ts": "2026-10-15T06:30:02.205675+00:00",
-        "age_h": 32.6,
+        "age_h": 48.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -160,12 +175,12 @@
         "tokens_in": 96452,
         "tokens_out": 11283,
         "wall_s": 166.1,
-        "jev_materiality": 0.8,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.83,
+        "jev_candidate_id": "w01"
       },
       {
         "ts": "2026-10-14T13:30:01.858372+00:00",
-        "age_h": 49.6,
+        "age_h": 65.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -176,12 +191,12 @@
         "tokens_in": 79667,
         "tokens_out": 18021,
         "wall_s": 309.8,
-        "jev_materiality": 0.58,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.63,
+        "jev_candidate_id": "w00"
       },
       {
         "ts": "2026-10-14T06:30:01.780498+00:00",
-        "age_h": 56.6,
+        "age_h": 72.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -191,13 +206,11 @@
         "watch_count": 2,
         "tokens_in": 94092,
         "tokens_out": 19874,
-        "wall_s": 174.2,
-        "jev_materiality": 0.71,
-        "jev_candidate_id": "w00"
+        "wall_s": 174.2
       },
       {
         "ts": "2026-10-13T13:30:01.502552+00:00",
-        "age_h": 73.6,
+        "age_h": 89.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error",
@@ -211,7 +224,7 @@
       },
       {
         "ts": "2026-10-13T06:30:02.069184+00:00",
-        "age_h": 80.6,
+        "age_h": 96.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "running",
@@ -225,7 +238,7 @@
       },
       {
         "ts": "2026-10-12T13:30:01.869514+00:00",
-        "age_h": 97.6,
+        "age_h": 113.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error",
@@ -239,7 +252,7 @@
       },
       {
         "ts": "2026-10-12T06:30:01.455507+00:00",
-        "age_h": 104.6,
+        "age_h": 120.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "running",
@@ -253,7 +266,7 @@
       },
       {
         "ts": "2026-10-11T13:30:02.120519+00:00",
-        "age_h": 121.6,
+        "age_h": 137.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "error",
@@ -267,7 +280,7 @@
       },
       {
         "ts": "2026-10-11T06:30:01.910839+00:00",
-        "age_h": 128.6,
+        "age_h": 144.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -281,7 +294,7 @@
       },
       {
         "ts": "2026-10-10T13:30:01.482085+00:00",
-        "age_h": 145.6,
+        "age_h": 161.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -292,20 +305,6 @@
         "tokens_in": 98594,
         "tokens_out": 31171,
         "wall_s": 1300.6
-      },
-      {
-        "ts": "2026-10-10T06:30:01.679834+00:00",
-        "age_h": 152.6,
-        "label": "matin Europe",
-        "model": "kimi-k2-6",
-        "status": "vide",
-        "health": "silent",
-        "publish_decision": null,
-        "summary": "",
-        "watch_count": 0,
-        "tokens_in": 95021,
-        "tokens_out": 12629,
-        "wall_s": 1537.9
       }
     ]
   },
