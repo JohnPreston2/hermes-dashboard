@@ -1,0 +1,43 @@
+[
+ {
+  "first_seen": "2026-08-07T19:58:35+00:00",
+  "measured_at": "2026-08-04",
+  "session": "s52",
+  "method": "ablation sur la même série, même prédicat, horizon T+7, aucun lookahead",
+  "fisher_p": 0.023,
+  "stale_after_days": 45,
+  "bars": [
+   {
+    "key": "rule",
+    "label": "règle 0-LLM",
+    "detail": "flambée fees ≥ +50 % → parier −20 %",
+    "rate_pct": 49.1,
+    "held": 80,
+    "n": 163,
+    "role": "étalon à battre"
+   },
+   {
+    "key": "brain",
+    "label": "brain L4",
+    "detail": "même ablation, sur sa propre spécialité",
+    "rate_pct": 25.0,
+    "held": 7,
+    "n": 28,
+    "role": "référence"
+   },
+   {
+    "key": "random",
+    "label": "hasard",
+    "detail": "tirage sur la même population de prédicats",
+    "rate_pct": 14.8,
+    "held": 154,
+    "n": 1042,
+    "role": "plancher"
+   }
+  ],
+  "warning": "Ne jamais déployer la règle comme productrice : elle exploite une réversion de bruit, elle gonflerait le taux sans idée juste. Sa place est ici, comme ligne d'horizon.",
+  "age_days": 3.8,
+  "stale": false,
+  "last_seen": "2026-10-19T18:48:03+00:00"
+ }
+]
