@@ -62,6 +62,22 @@ Pour chaque veille en variation (%), on calcule la part des mouvements réelleme
 - **Sens annoncé :** 22 % d'appels haussiers, alors que 48 % des mouvements réalisés étaient haussiers. Le sens est juste 54 fois sur 105 (51,4 %), pour 51,3 % attendu (p = 0,53).
 - **Puissance du test :** avec n = 107, il détecterait 8 fois sur 10 un avantage d'environ 10 points (test unilatéral à 5 %). Un avantage plus petit reste possible, mais il n'est pas visible.
 
+### 5. Contrôle croisé des veilles TVL avec les autres blocs du dashboard
+`series.py` extrait 324 609 valeurs chiffrées des snapshots (TVL de 152 entités, prix, fee yield…). Ces valeurs viennent des blocs `macro`, `movers` et `curator` : elles sont indépendantes du correcteur de veilles, mais pas de la source amont.
+
+- **Couverture :** seules **6 veilles TVL sur 67** peuvent être re-notées. Les autres datent d'avant le début des séries (9 août) ou portent sur des protocoles absents du top suivi.
+- **Accord :** 6 sur 6 avec le verdict publié.
+- **Seuils demandés :** on voit enfin la difficulté des seuils absolus. Lista Lending devait faire **+114 % en 3 jours**. Aave V3 et Maple devaient baisser de 9 %, puis ont monté de 20 %.
+
+Ce contrôle ne remplace pas DefiLlama, mais il ne contredit pas le correcteur.
+
+**Qualité des données publiées**, d'après l'extraction :
+- la série `rwa.history` change de niveau sans mouvement réel : environ 27,5 Md$ jusqu'au 9 septembre, puis 4 à 6 Md$. C'est un changement de définition ou de source ;
+- les historiques `rwa` et `robinhood` sont révisés après coup (77 jours sur 83 pour `rwa`) ;
+- le `size` de la batterie vaut tantôt une TVL, tantôt des frais sur 7 jours, selon le déclencheur.
+
+Aucune veille ne devrait être notée sur ces séries sans contrôle.
+
 ## Ce qui n'a pas pu être fait
 
 1. **Re-notation indépendante et taux de base par entité** (`regrade.py`). La politique réseau de l'environnement refuse `api.llama.fi`. Le script est écrit et testé sur une série synthétique (bons verdicts, aucune donnée postérieure à l'émission). Il n'a pas été exécuté sur les vraies données : aucun chiffre DefiLlama n'apparaît dans ce rapport.
@@ -82,6 +98,7 @@ Pour chaque veille en variation (%), on calcule la part des mouvements réelleme
 
 ```bash
 python3 eval/reconstruct.py   # relit l'historique git -> eval/data/watches.jsonl, watch_stats.csv
-python3 eval/analyze.py       # -> eval/data/analysis.json + résumé
+python3 eval/series.py        # optionnel : séries chiffrées des snapshots -> eval/data/series.csv (32 Mo, non versionné)
+python3 eval/analyze.py       # -> eval/data/analysis.json + résumé (+ contrôle TVL si series.csv existe)
 python3 eval/regrade.py       # nécessite api.llama.fi -> eval/data/regrade_summary.json
 ```

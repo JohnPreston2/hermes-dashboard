@@ -215,6 +215,45 @@ def shuffle_baseline(decided, rng):
     }
 
 
+# ── E. controle croise TVL avec les series des snapshots (si series.py a tourne) ──
+def tvl_crosscheck(decided):
+    """Valeurs TVL publiees par les AUTRES blocs du dashboard (macro, movers, curator) :
+    independantes du correcteur de veilles, mais pas de la source amont."""
+    path = os.path.join(DATA, "series.csv")
+    if not os.path.exists(path):
+        return None
+    series = {}
+    with open(path) as f:
+        for r in csv.DictReader(f):
+            if r["metric"] == "tvl_usd":
+                series.setdefault(r["entity"], []).append((r["as_of"], float(r["value"])))
+
+    def at(entity, ts):
+        pts = [p for p in series.get(entity, []) if p[0] <= ts]
+        return max(pts)[1] if pts else None
+
+    tvl = [w for w in decided if w["metric"] == "tvl"]
+    out = {"n_tvl_decided": len(tvl), "no_series": 0, "no_value": 0, "graded": []}
+    for w in tvl:
+        if w["entity"] not in series:
+            out["no_series"] += 1
+            continue
+        v0, v1 = at(w["entity"], w["seen"]), at(w["entity"], w["deadline"] + "T00:45:00Z")
+        t = num(w["threshold"])
+        if not v0 or v1 is None or t is None:
+            out["no_value"] += 1
+            continue
+        ok = holds(t, 100 * (v1 / v0 - 1)) if w["op"] == "delta_pct" else (v1 >= t if w["op"] == ">=" else v1 <= t)
+        required = t if w["op"] == "delta_pct" else 100 * (t / v0 - 1)
+        out["graded"].append({"entity": w["entity"], "op": w["op"], "threshold": t, "seen": w["seen"],
+                              "deadline": w["deadline"], "required_move_pct": round(required, 1),
+                              "realized_move_pct": round(100 * (v1 / v0 - 1), 1),
+                              "crosscheck": "HELD" if ok else "BROKEN", "published": w["verdict"]})
+    g = out["graded"]
+    out["agreement"] = f"{sum(x['crosscheck'] == x['published'] for x in g)}/{len(g)}"
+    return out
+
+
 # ── D. pertes : veilles jamais tranchees publiquement ──────────────────────
 def coverage(watches, last_stats, today):
     open_past = [w for w in watches if w["verdict"] == "OPEN" and (w["deadline"] or "9") < today]
@@ -248,6 +287,7 @@ def main():
         "reconstructed": breakdowns(decided),
         "l3_minus_l4": boot_diff(decided, "L3", "L4", rng),
         "shuffle_baseline": shuffle_baseline(decided, rng),
+        "tvl_crosscheck": tvl_crosscheck(decided),
     }
     with open(os.path.join(DATA, "benchmark_history.json")) as f:
         bench = json.load(f)
@@ -275,6 +315,13 @@ def main():
         print(f"  sens juste : {d['right']}/{d['n']} = {d['rate_pct']} % vs {d['expected_if_independent_pct']} % "
               f"attendu (p={d['p_binom_one_sided']}) ; appels haussiers {d['share_bullish_calls_pct']} %, "
               f"mouvements haussiers {d['share_up_moves_pct']} %")
+    x = res["tvl_crosscheck"]
+    if x:
+        print(f"controle croise TVL : {len(x['graded'])}/{x['n_tvl_decided']} re-notables, accord {x['agreement']} "
+              f"(sans serie : {x['no_series']}, sans valeur : {x['no_value']})")
+        for g in x["graded"]:
+            print(f"   {g['entity']} {g['op']} {g['threshold']:g} : demande {g['required_move_pct']:+} %, "
+                  f"realise {g['realized_move_pct']:+} % -> {g['crosscheck']} (publie {g['published']})")
 
 
 if __name__ == "__main__":
