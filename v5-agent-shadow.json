@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-10-21T11:55:11.270982+00:00",
+  "generated_at": "2026-10-21T15:07:01.660358+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -30,14 +30,30 @@
       "mode": "jev_shadow",
       "threshold": 0.65,
       "selected_ts": "2026-10-19T06:30:02.009746+00:00",
-      "selected_candidate_id": "w01",
-      "candidate_count": 4
+      "selected_candidate_id": "w00",
+      "candidate_count": 3
     },
     "mandatory_alerts": [],
     "items": [
       {
+        "ts": "2026-10-21T13:30:01.992265+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Le decouplage OI/frais de dYdX V4 expose une recapture de parts de marche par subvention, non par demande organique ; aucune veille emise, la structure est deja couverte par les engagements ouverts.",
+        "watch_count": 1,
+        "tokens_in": 158866,
+        "tokens_out": 20734,
+        "wall_s": 684.8,
+        "jev_materiality": 0.62,
+        "jev_candidate_id": "w05"
+      },
+      {
         "ts": "2026-10-21T06:30:02.041287+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -48,12 +64,12 @@
         "tokens_in": 167254,
         "tokens_out": 14853,
         "wall_s": 328.1,
-        "jev_materiality": 0.47,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.36,
+        "jev_candidate_id": "w04"
       },
       {
         "ts": "2026-10-20T13:30:01.939467+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -64,12 +80,12 @@
         "tokens_in": 154184,
         "tokens_out": 20561,
         "wall_s": 444.0,
-        "jev_materiality": 0.52,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.53,
+        "jev_candidate_id": "w03"
       },
       {
         "ts": "2026-10-20T06:30:02.005033+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -80,12 +96,12 @@
         "tokens_in": 104203,
         "tokens_out": 18917,
         "wall_s": 202.9,
-        "jev_materiality": 0.84,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.83,
+        "jev_candidate_id": "w02"
       },
       {
         "ts": "2026-10-19T13:30:01.429678+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -96,12 +112,12 @@
         "tokens_in": 162750,
         "tokens_out": 14696,
         "wall_s": 182.1,
-        "jev_materiality": 0.86,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.84,
+        "jev_candidate_id": "w01"
       },
       {
         "ts": "2026-10-19T06:30:02.009746+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -113,11 +129,11 @@
         "tokens_out": 24394,
         "wall_s": 546.8,
         "jev_materiality": 0.86,
-        "jev_candidate_id": "w01"
+        "jev_candidate_id": "w00"
       },
       {
         "ts": "2026-10-18T13:30:01.519474+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -127,13 +143,11 @@
         "watch_count": 1,
         "tokens_in": 106662,
         "tokens_out": 23093,
-        "wall_s": 240.9,
-        "jev_materiality": 0.81,
-        "jev_candidate_id": "w00"
+        "wall_s": 240.9
       },
       {
         "ts": "2026-10-18T06:30:02.367848+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -147,7 +161,7 @@
       },
       {
         "ts": "2026-10-17T13:30:02.021283+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -161,7 +175,7 @@
       },
       {
         "ts": "2026-10-17T06:30:01.699297+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -175,7 +189,7 @@
       },
       {
         "ts": "2026-10-16T13:30:02.105655+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -189,7 +203,7 @@
       },
       {
         "ts": "2026-10-16T06:30:02.321364+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -203,7 +217,7 @@
       },
       {
         "ts": "2026-10-15T13:30:02.078253+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -217,7 +231,7 @@
       },
       {
         "ts": "2026-10-15T06:30:02.205675+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -228,28 +242,15 @@
         "tokens_in": 96452,
         "tokens_out": 11283,
         "wall_s": 166.1
-      },
-      {
-        "ts": "2026-10-14T13:30:01.858372+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "publish_decision": "PUBLIER",
-        "summary": "Liquid Staking en contraction synchronisée — Lido tvl <= 23B / PancakeSwap V3 fees delta_pct -20",
-        "watch_count": 2,
-        "tokens_in": 79667,
-        "tokens_out": 18021,
-        "wall_s": 309.8
       }
     ]
   },
   "glm_jobs": {
     "job_count": 18,
     "health_counts": {
-      "healthy": 17,
-      "empty": 1
+      "healthy": 16,
+      "empty": 1,
+      "error": 1
     },
     "items": [
       {
@@ -260,7 +261,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.5
+        "log_age_h": 0.6
       },
       {
         "name": "briefs tier S",
@@ -270,7 +271,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.5
+        "log_age_h": 0.6
       },
       {
         "name": "briefs tier B",
@@ -280,7 +281,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.5
+        "log_age_h": 0.6
       },
       {
         "name": "briefs tier W",
@@ -290,7 +291,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.5
+        "log_age_h": 0.6
       },
       {
         "name": "reveil brain L4",
@@ -330,7 +331,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 49.3
+        "log_age_h": 73.3
       },
       {
         "name": "amont des theses",
@@ -407,7 +408,7 @@
         "script": "sector_analyst",
         "cadence_h": 4,
         "running": true,
-        "error": false,
+        "error": true,
         "empty": null,
         "measurable": false,
         "log_age_h": 3.7
