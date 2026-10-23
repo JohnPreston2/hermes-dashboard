@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-10-23T11:55:14.201103+00:00",
+  "generated_at": "2026-10-23T15:07:01.701173+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -30,14 +30,30 @@
       "mode": "jev_shadow",
       "threshold": 0.65,
       "selected_ts": "2026-10-22T13:30:01.909443+00:00",
-      "selected_candidate_id": "w04",
-      "candidate_count": 2
+      "selected_candidate_id": "w03",
+      "candidate_count": 3
     },
     "mandatory_alerts": [],
     "items": [
       {
+        "ts": "2026-10-23T13:30:01.789880+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "publish_decision": "PUBLIER",
+        "summary": "Uniswap V4 Aggregator Hooks (live 22 Oct) non intégrés par le consensus ; divergence TVL↗/fees↘ = transition de modèle économique, pas échec ; 1 veille émise sur reprise des fees.",
+        "watch_count": 1,
+        "tokens_in": 368818,
+        "tokens_out": 30917,
+        "wall_s": 440.5,
+        "jev_materiality": 0.77,
+        "jev_candidate_id": "w05"
+      },
+      {
         "ts": "2026-10-23T06:30:02.281437+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -48,12 +64,12 @@
         "tokens_in": 388660,
         "tokens_out": 18157,
         "wall_s": 196.7,
-        "jev_materiality": 0.63,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.64,
+        "jev_candidate_id": "w04"
       },
       {
         "ts": "2026-10-22T13:30:01.909443+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -64,12 +80,12 @@
         "tokens_in": 503918,
         "tokens_out": 31156,
         "wall_s": 574.3,
-        "jev_materiality": 0.77,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.8,
+        "jev_candidate_id": "w03"
       },
       {
         "ts": "2026-10-22T06:30:01.810653+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -80,12 +96,12 @@
         "tokens_in": 107914,
         "tokens_out": 13118,
         "wall_s": 269.4,
-        "jev_materiality": 0.6,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.65,
+        "jev_candidate_id": "w02"
       },
       {
         "ts": "2026-10-21T13:30:01.992265+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -96,12 +112,12 @@
         "tokens_in": 158866,
         "tokens_out": 20734,
         "wall_s": 684.8,
-        "jev_materiality": 0.69,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.45,
+        "jev_candidate_id": "w01"
       },
       {
         "ts": "2026-10-21T06:30:02.041287+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -112,12 +128,12 @@
         "tokens_in": 167254,
         "tokens_out": 14853,
         "wall_s": 328.1,
-        "jev_materiality": 0.42,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.51,
+        "jev_candidate_id": "w00"
       },
       {
         "ts": "2026-10-20T13:30:01.939467+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -127,13 +143,11 @@
         "watch_count": 0,
         "tokens_in": 154184,
         "tokens_out": 20561,
-        "wall_s": 444.0,
-        "jev_materiality": 0.58,
-        "jev_candidate_id": "w00"
+        "wall_s": 444.0
       },
       {
         "ts": "2026-10-20T06:30:02.005033+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -147,7 +161,7 @@
       },
       {
         "ts": "2026-10-19T13:30:01.429678+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -161,7 +175,7 @@
       },
       {
         "ts": "2026-10-19T06:30:02.009746+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -175,7 +189,7 @@
       },
       {
         "ts": "2026-10-18T13:30:01.519474+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -189,7 +203,7 @@
       },
       {
         "ts": "2026-10-18T06:30:02.367848+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -203,7 +217,7 @@
       },
       {
         "ts": "2026-10-17T13:30:02.021283+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -217,7 +231,7 @@
       },
       {
         "ts": "2026-10-17T06:30:01.699297+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -228,28 +242,15 @@
         "tokens_in": 59580,
         "tokens_out": 15714,
         "wall_s": 256.4
-      },
-      {
-        "ts": "2026-10-16T13:30:02.105655+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "publish_decision": "PUBLIER",
-        "summary": "Veille sur Lido TVL — compression structurelle du liquid staking monolithique face à la montée des architectures dédiées et modulaires. Titre publié : Compression fondamentale des piliers infra sous le bruit des annonces. 1 veille émise.",
-        "watch_count": 1,
-        "tokens_in": 96924,
-        "tokens_out": 24182,
-        "wall_s": 252.1
       }
     ]
   },
   "glm_jobs": {
     "job_count": 18,
     "health_counts": {
-      "healthy": 17,
-      "empty": 1
+      "healthy": 16,
+      "empty": 1,
+      "error": 1
     },
     "items": [
       {
@@ -260,7 +261,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.6
+        "log_age_h": 0.5
       },
       {
         "name": "briefs tier S",
@@ -270,7 +271,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.6
+        "log_age_h": 0.5
       },
       {
         "name": "briefs tier B",
@@ -280,7 +281,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.6
+        "log_age_h": 0.5
       },
       {
         "name": "briefs tier W",
@@ -290,7 +291,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 0.6
+        "log_age_h": 0.5
       },
       {
         "name": "reveil brain L4",
@@ -330,7 +331,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 97.3
+        "log_age_h": 121.3
       },
       {
         "name": "amont des theses",
@@ -357,7 +358,7 @@
         "script": "article_summarizer",
         "cadence_h": 6,
         "running": true,
-        "error": false,
+        "error": true,
         "empty": false,
         "measurable": true,
         "log_age_h": 3.0
@@ -430,7 +431,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 5.9
+        "log_age_h": 5.8
       }
     ],
     "jev_surfaces": [
