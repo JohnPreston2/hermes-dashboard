@@ -66,7 +66,7 @@
     const block=data.investigation||{},episode=block.episode||{};
     if(block.display===false||!episode.canonical_id)return section("investigation","Enquête",'<div class="empty">Aucune enquête retenue.</div>');
     const body='<div class="investigation"><div><div class="eyebrow">'+esc(episode.priority||"priorité")+'</div><p class="question">'+esc(episode.question||"Question absente")+'</p><div class="evidence"><b>Dernier élément</b><br>'+esc(episode.fresh_evidence?.note||"Aucune preuve fraîche")+'</div></div><div class="probe"><b>Prochaine vérification</b>'+esc(episode.next_probe||"Non définie")+'<div class="evidence">'+esc(episode.canonical_id)+" · "+num(episode.touches,0)+" passages · touchée "+ago(episode.last_touched)+"</div></div></div>";
-    return section("investigation","Enquête active",body,emphasis(block.emphasis)+" · p "+pct((block.include_probability||0)*100,0));
+    return section("investigation","Enquête retenue au relevé",body,emphasis(block.emphasis)+" · p "+pct((block.include_probability||0)*100,0));
   }
 
   function renderTheses(data){
@@ -89,8 +89,9 @@
 
   function renderAgentRecord(data){
     const record=data.agent_record||{},last=record.last_run||{},watch=record.watches||{},theses=record.theses||{};
-    const body='<div class="record"><div class="metric"><span>runs aujourd’hui</span><b>'+num(record.runs_today,0)+'</b></div><div class="metric"><span>discipline dernier run</span><b>'+pct(last.discipline,0)+'</b></div><div class="metric"><span>watches évaluables</span><b>'+num(watch.evaluable,0)+'</b></div><div class="metric"><span>thèses dormantes</span><b>'+num(theses.dormant,0)+'</b></div></div><div class="evidence">Dernier run '+esc(last.tier||"?")+" · "+esc(last.mode||"?")+" · "+esc(last.model||"?")+" · "+ago(last.ts)+" · R2 "+(last.r2_pass?"pass":"non confirmé")+". Déchet d’émission watches : "+pct(watch.waste?.rate,1)+".</div>";
-    return section("agent_record","Journal de l’agent",body,"source déterministe");
+    const primary=last.role==="primary_research";
+    const body='<div class="record"><div class="metric"><span>runs au relevé</span><b>'+num(record.runs_today,0)+'</b></div><div class="metric"><span>admission</span><b>'+esc(primary?(last.admission||"inconnue"):"historique")+'</b></div><div class="metric"><span>watches évaluables</span><b>'+num(watch.evaluable,0)+'</b></div><div class="metric"><span>thèses dormantes</span><b>'+num(theses.dormant,0)+'</b></div></div><div class="evidence">'+(primary?"Recherche principale":"Archive de rôle non actuel")+' · '+esc(last.model||"modèle inconnu")+' · '+ago(last.ts)+'. Relevé du manifeste : '+esc(data.generated_at||"date inconnue")+'. Ces comptes ne certifient pas le raisonnement.</div>';
+    return section("agent_record","Journal daté de l’agent",body,"source déterministe · historique conservé");
   }
 
   function evidenceText(evidence){
@@ -102,21 +103,28 @@
     const wakes=Array.isArray(kimi.items)?kimi.items.slice(0,8):[];
     const alerts=Array.isArray(kimi.mandatory_alerts)?kimi.mandatory_alerts:[];
     const health=kimi.health_counts||{},jobHealth=jobs.health_counts||{};
-    const summary='<div class="agent-summary"><div class="metric"><span>modèle de réveil</span><b>'+esc(kimi.model||"—")+'</b></div><div class="metric"><span>réveils valides</span><b>'+num(health.ok||0,0)+' / '+num(kimi.recent_count||0,0)+'</b></div><div class="metric"><span>jobs LLM suivis</span><b>'+num(jobs.job_count||0,0)+'</b></div><div class="metric"><span>batterie JEV</span><b>'+num(jobs.latest_battery?.ok||0,0)+' / '+num(jobs.latest_battery?.calls||0,0)+'</b></div></div>';
-    const alertHtml=alerts.length?'<div class="agent-alerts">'+alerts.slice(0,5).map(item=>'<div class="agent-alert"><b>'+esc(item.label||"réveil Kimi")+' · '+esc(item.status||item.health)+'</b><div class="note">'+esc(item.reason||"échec sans sortie consommable")+' · '+num(item.tokens_in,0)+' tokens in · '+num(item.wall_s,0)+' s</div></div>').join("")+'</div>':"";
-    const wakeHtml=wakes.map(item=>{const selected=item.ts===selection.selected_ts;const failed=item.health==="failed"||item.health==="stale_incomplete";return '<article class="wake '+(selected?"selected ":"")+(failed?"failed":"")+'"><div class="wake-head"><b>'+esc(item.label||"réveil")+'</b><span class="chip '+(item.health==="ok"?"good":failed?"hot":"")+'">'+esc(item.health||item.status)+'</span></div><p>'+(item.summary?esc(item.summary):'<span class="note">aucune synthèse consommable</span>')+'</p><div class="stats">'+ago(item.ts)+' · matérialité '+(has(item.jev_materiality)?pct(item.jev_materiality*100,0):"—")+' · '+num(item.watch_count,0)+' veille(s) · '+num(item.tokens_in,0)+' tokens'+(selected?" · sélection JEV":"")+'</div></article>'}).join("");
+    const summary='<div class="note">Relevé des tentatives : '+esc(data.generated_at||"date inconnue")+'</div><div class="agent-summary"><div class="metric"><span>modèle de réveil</span><b>'+esc(kimi.model||"—")+'</b></div><div class="metric"><span>exécutions admises</span><b>'+num(health.ok||0,0)+' / '+num(kimi.recent_count||0,0)+'</b></div><div class="metric"><span>jobs LLM suivis</span><b>'+num(jobs.job_count||0,0)+'</b></div><div class="metric"><span>batterie JEV</span><b>'+num(jobs.latest_battery?.ok||0,0)+' / '+num(jobs.latest_battery?.calls||0,0)+'</b></div></div>';
+    const alertHtml=alerts.length?'<div class="agent-alerts">'+alerts.slice(0,5).map(item=>'<div class="agent-alert"><b>'+esc(item.label||"réveil Kimi")+' · '+esc(item.health||item.status)+'</b><div class="note">'+esc(item.reason||"échec sans sortie consommable")+' · '+num(item.tokens_in,0)+' tokens in · '+num(item.wall_s,0)+' s</div></div>').join("")+'</div>':"";
+    const wakeHtml=wakes.map(item=>{const selected=item.result_id&&selection.selected_result_id?item.result_id===selection.selected_result_id:item.ts===selection.selected_ts;const failed=["failed","stale_incomplete","blocked","pending_reconciliation","unreadable"].includes(item.health);return '<article class="wake '+(selected?"selected ":"")+(failed?"failed":"")+'"><div class="wake-head"><b>'+esc(item.label||"réveil")+'</b><span class="chip '+(item.health==="ok"?"good":failed?"hot":"")+'">'+esc(item.health||item.status)+'</span></div><p>'+(item.summary?esc(item.summary):'<span class="note">aucune synthèse publique admise</span>')+'</p><div class="stats">'+ago(item.ts)+' · matérialité '+(has(item.jev_materiality)?pct(item.jev_materiality*100,0):"—")+' · '+num(item.watch_count,0)+' veille(s) · '+num(item.tokens_in,0)+' tokens'+(selected?" · sélection JEV":"")+'</div></article>'}).join("");
     const surfaces=Array.isArray(jobs.jev_surfaces)?jobs.jev_surfaces:[];
     const surfaceRows=surfaces.map(item=>'<tr><td><b>'+esc(item.surface)+'</b><small>'+esc(item.job)+'</small></td><td><span class="surface-role" data-role="'+esc(item.jev_role)+'">'+esc(item.jev_role)+'</span></td><td>'+esc(evidenceText(item.evidence))+'</td><td>'+esc(item.reason||"")+'</td></tr>').join("");
-    const body=summary+alertHtml+'<div class="subhead">Réveils Kimi récents</div><div class="wake-grid">'+(wakeHtml||'<div class="empty">aucun réveil</div>')+'</div><div class="subhead">Surfaces GLM passées dans JEV</div><div class="table-wrap"><table><thead><tr><th>Surface</th><th>Rôle JEV</th><th>Mesure fraîche</th><th>Décision de câblage</th></tr></thead><tbody>'+surfaceRows+'</tbody></table></div><div class="evidence">Santé déterministe des jobs : '+num(jobHealth.healthy||0,0)+' sains · '+num(jobHealth.error||0,0)+' erreur(s) · '+num(jobHealth.empty||0,0)+' vide(s). JEV reste sans autorité de production.</div>';
+    const body=summary+alertHtml+'<div class="subhead">Réveils Kimi récents</div><div class="wake-grid">'+(wakeHtml||'<div class="empty">aucun réveil</div>')+'</div><div class="subhead">Surfaces GLM passées dans JEV</div><div class="table-wrap"><table><thead><tr><th>Surface</th><th>Rôle JEV</th><th>Mesure au relevé</th><th>Décision de câblage</th></tr></thead><tbody>'+surfaceRows+'</tbody></table></div><div class="evidence">Santé déterministe des jobs : '+num(jobHealth.healthy||0,0)+' sains · '+num(jobHealth.error||0,0)+' erreur(s) · '+num(jobHealth.empty||0,0)+' vide(s). JEV reste sans autorité de production.</div>';
     return section("agent_observatory","Brain Kimi & moulinette JEV",body,"sélection shadow · échecs toujours visibles");
   }
 
   function renderProvenance(data){
     const provenance=data.provenance||{},sources=Array.isArray(provenance.sources)?provenance.sources:[],warnings=Array.isArray(data.data_warnings)?data.data_warnings:[];
-    const rows=sources.map(source=>'<div class="source"><div><b>'+esc(source.id)+'</b>'+(source.path?'<div class="note">'+esc(source.path)+"</div>":"")+'</div><span class="age">'+num(source.age_min,1)+' min</span><span class="'+(source.valid?"ok":"bad")+'">'+(source.valid?"valide":"invalide")+"</span></div>").join("");
+    const rows=sources.map(source=>{const fresh=sourceState(source);return '<div class="source"><div><b>'+esc(source.id)+'</b>'+(source.path?'<div class="note">'+esc(source.path)+"</div>":"")+'</div><span class="age">'+esc(fresh.age)+'</span><span class="'+(fresh.valid?"ok":"bad")+'">'+esc(fresh.state)+"</span></div>";}).join("");
     const list=warnings.map(item=>"<li>"+esc(item)+"</li>").join("")||"<li>aucun</li>";
     const body='<div class="sources">'+(rows||'<div class="empty">Aucune source déclarée.</div>')+'</div><details class="warnings"><summary>'+warnings.length+" avertissement"+(warnings.length===1?"":"s")+' de données</summary><ul>'+list+'</ul></details><div class="evidence">'+esc(provenance.input_contract||"")+"</div>";
     return section("provenance","Provenance et limites",body,data.publication?.profile?"projection publique expurgée":"trace séparée · "+esc(provenance.audit_trace||"non déclarée"));
+  }
+
+  function sourceState(source){
+    const minutes=(Date.now()-Date.parse(source.as_of))/60000;
+    if(!Number.isFinite(minutes)||minutes<0)return{age:"date inconnue",state:"couverture inconnue",valid:false};
+    const within=source.max_age_min==null?null:minutes<=source.max_age_min;
+    return{age:ago(source.as_of),state:within===false?"périmée":within===null?"couverture inconnue":source.valid?"valide":"invalide",valid:within===true&&source.valid===true};
   }
 
   const renderers={hero:renderHero,deterministic_alerts:renderAlerts,investigation:renderInvestigation,theses:renderTheses,value_map:renderValueMap,agent_record:renderAgentRecord,provenance:renderProvenance};
@@ -139,7 +147,9 @@
       const index=Math.max(0,rendered.findIndex(item=>item.key==="investigation")+1);
       rendered.splice(index,0,{key:"agent_observatory",html:renderAgentObservatory(currentAgent)});
     }
-    $("app").innerHTML=rendered.map(item=>item.html).join("");
+    const archived=(data.provenance?.sources||[]).some(source=>sourceState(source).state==="périmée");
+    const note=archived?'<div class="failure"><b>Contenu éditorial archivé</b><br>Sources périmées selon leurs seuils déclarés. Manifeste du '+esc(data.generated_at)+'. L’observatoire des tentatives ci-dessous possède son propre relevé daté.</div>':"";
+    $("app").innerHTML=note+rendered.map(item=>item.html).join("");
     $("asof").textContent="généré "+ago(data.generated_at);
     const summary=data.decision_summary||{};
     $("foot").textContent=data.schema_version+" · "+(summary.calls_ok??0)+"/"+(summary.calls??0)+" appels JEV · "+num(summary.latency_ms_total,0)+" ms · "+(data.publication?.profile||"shadow privé")+" · sans autorité de production";

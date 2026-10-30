@@ -962,6 +962,14 @@ function watchCard(w){
   </article>`;
 }
 
+function primaryCard(row){
+  if(!row)return '<div class="empty">aucune synthèse principale admise dans les résultats transportés</div>';
+  return `<div class="bd"><p class="note">${stamp(row.ts)} · ${esc(row.model||"modèle inconnu")} · admission ${esc(row.admission||"inconnue")}</p>
+    <p>${esc(row.summary||"résumé absent")}</p>
+    <p class="note">Résumé attribué${row.summary_truncated?" · extrait limité à 400 caractères":""} · décision ${esc(row.publish||"inconnue")}.
+    L'admission en mémoire ne certifie pas la justesse du raisonnement.</p></div>`;
+}
+
 /* ── briefs ───────────────────────────────────────────────────────── */
 function briefCard(b){
   const g=b.gate||{},fc=b.fact_check||{};
@@ -1017,6 +1025,7 @@ const LBL={runs:"runs",briefs:"briefs",theses:"thèses",inquiries:"enquêtes",wa
   battery:"batterie",wakes:"réveils L4",macro:"macro",prices:"prix",news:"fil",
   robinhood:"robinhood",rwa:"rwa",health:"santé"};
 function freshness(bk){
+  if(bk.expected_current===false)return{cls:bk.err?"warn":"archive",txt:bk.err?"archive illisible":"archive"};
   if(bk.err)return{cls:"dead",txt:"échec"};
   if(!has(bk.as_of))return{cls:"dead",txt:"sans date"};
   const m=minAgo(bk.as_of),lim=bk.stale_min||480;
@@ -1032,7 +1041,7 @@ function cap(bk,unit){
 function head(title,bk,extra){
   const f=bk?freshness(bk):null;
   return `<header><h3>${title}</h3><div class="meta">${extra||""}
-    ${f?`<span class="fchip ${f.cls}" title="source : ${esc(bk.src||"?")} · péremption ${bk?bk.stale_min:"?"} min"><i></i>${f.txt}</span>`:""}
+    ${f?`<span class="fchip ${f.cls}" title="source : ${esc(bk.src||"?")} · ${bk.expected_current===false?"historique, sans cadence attendue":"péremption "+bk.stale_min+" min"}"><i></i>${f.txt}</span>`:""}
   </div></header>`;
 }
 function guard(bk,render,label){
@@ -1339,8 +1348,8 @@ function dgmLayers(D){
   const runs7=cad.length?cad.reduce((a,c)=>a+c.n_7d,0):null;
   const wk=(B.wakes&&!B.wakes.err&&B.wakes.v)?(B.wakes.v||[]).length:null;
   const L=[
-    ["L4","Le brain autonome","brain_wake · réveils 3×/j",has(wk)?wk+" réveils transportés":null],
-    ["L3","La plume GLM","hermes_brain · greffier · réflexif",has(runs7)?runs7+" runs sur 7 j":null],
+    ["L4","Le chercheur principal","research.py · calendrier dans le runtime",has(runs7)?runs7+" tentatives sur 7 j":null],
+    ["L3","Avis d’appui et archives","GLM ponctuel · historiques attribués",null],
     ["L2","Les ouvriers Gemma","contrats bornés · sortie typée",null],
     ["L1","La frontière déterministe","fact_api · SQL en lecture seule","0 LLM"]];
   const X=64,W=712,H=64,G=4,Y0=32;
@@ -1372,9 +1381,9 @@ function dgmLayers(D){
       {c:DGC.line2,f:DGC.paper2,t:"couche de jugement"}]);
     return s;};
   return dgSvg(800,iy+H+92,body,{title:"Les couches d'Hermes, et ce qui les juge",
-    desc:"Pile d'abstraction : la frontière déterministe fact_api à la base, les ouvriers Gemma, la plume GLM, "
-      +"puis le brain autonome. L'instrument de vérification est dessiné hors de la pile car il ne produit "
-      +"aucun texte : il rend des verdicts, et c'est le seul endroit du système qui puisse avoir tort de façon vérifiable."});
+    desc:"Pile d'abstraction : la frontière déterministe fact_api à la base, les ouvriers Gemma, les avis d’appui et les archives, "
+      +"puis le chercheur principal. L'instrument de vérification est dessiné hors de la pile car il ne produit "
+      +"aucun texte : il rend des verdicts, et il évalue ses prédicats mesurables, sans certifier les conclusions."});
 }
 /* ── 6 · BOUCLE — le cycle de recherche et son corpus ───────────────── */
 function dgLoopGap(cx,cy,R,r,th,dir){
@@ -1492,14 +1501,14 @@ V.poste=(D)=>{
    const n=bt.length+bq.length;
    if(n) h+=`<section class="alert" style="--tone:var(--warn)"><h3><span class="cnt">${n}</span>
        ${n>1?"lignes viennent":"ligne vient"} de passer en dormance</h3>
-     <p>L'agent n'y a plus touché depuis ${dd} jours. Ce n'est pas une panne : c'est un abandon, et il n'apparaît nulle part ailleurs.</p>
+     <p>L'agent n'y a plus touché depuis ${dd} jours. Ce compteur constate une absence de mise à jour ; il ne dit pas si une attente est justifiée.</p>
      <ul>${bt.map(t=>`<li><span class="pred">${esc(t.key)}</span><span class="wh">thèse · dernier verdict ${ago(t.ts)}</span></li>`).join("")}
        ${bq.map(q=>`<li><span class="pred">${esc(String(q.q).slice(0,60))}</span><span class="wh">enquête · dernière note ${ago(q.last_touched)}</span></li>`).join("")}</ul></section>`;}
 
   h+=`<div class="kpis">${[
-    ["Dernier run",`${esc(lr.tier||"?")} <small>${lr.silent?"[SILENT]":has(lr.discipline)?"disc "+nf(lr.discipline,1):""}</small>`,
+    ["Dernière tentative",`${esc(lr.role==="primary_research"?"L4":lr.tier||"inconnue")} <small>${esc(lr.admission||"")}</small>`,
       (ago(lr.ts)||"?")+" · "+esc(lr.status||"?"),""],
-    ["Discipline méd.",has(med)?nf(med,1):NA,runs.length+" runs · min "+(has(disc[0])?nf(disc[0],1):"—"),""],
+    ["Discipline archives L3",has(med)?nf(med,1):NA,runs.length+" archives · min "+(has(disc[0])?nf(disc[0],1):"—"),""],
     ["Veilles tenues",L4&&has(L4.rate)?nf(L4.rate,1)+" <small>%</small>":NA,
       L4?`L4 · ${L4.held} tenues / ${L4.held+L4.broken} échues`:"—",L4&&L4.rate>=50?"held":"broken"],
     ["Prédicats ouverts",S?(S.by_verdict.OPEN||0):NA,"en attente d'échéance","open"],
@@ -1542,7 +1551,7 @@ V.poste=(D)=>{
   h+=`<div class="sec"><h2>Qui a raison</h2><p>taux de prédicats tenus, par producteur — seul le verdict échu compte</p></div>
     <div class="card rv">${head("Scoreboard L3 · L4",B.watches)}
       ${guard(B.watches,W=>{
-        const S=W.stats,rows=[["L3","brief scripté GLM"],["L4","brain autonome"]];
+        const S=W.stats,rows=[["L3","historiques attribués"],["L4","chercheur principal"]];
         return '<div class="score">'+rows.map(([k,sub])=>{
           const r=S.by_src[k]||{held:0,broken:0,open:0,rate:null},tot=r.held+r.broken+r.open||1;
           return `<div class="srow"><span class="who">${k}<small>${esc(sub)}</small></span>
@@ -1634,10 +1643,10 @@ V.poste=(D)=>{
       </div>`;},"veilles")}
     </div>`;
 
-  h+=`<div class="sec"><h2>Dernier brief</h2><p>texte intégral, non tronqué</p></div>
+  h+=`<div class="sec"><h2>Dernière synthèse publiable</h2><p>chercheur principal · résumé attribué</p></div>
     <div class="grid g-main">
-      <div class="card rv">${head("Recherche publiée",B.briefs)}
-        ${guard(B.briefs,bs=>bs.length?briefCard(bs[0]):'<div class="empty">aucun brief</div>',"briefs")}</div>
+      <div class="card rv">${head("Recherche principale",B.wakes)}
+        ${guard(B.wakes,ws=>primaryCard(ws.find(row=>row.role==="primary_research"&&row.public_eligible)),"recherche principale")}</div>
       <div class="stack">
         <div class="card rv">${head("Échéances proches",B.watches)}
           ${guard(B.watches,W=>{const s=(W.items||[]).filter(w=>w.verdict==="OPEN").slice(0,5);
@@ -1860,7 +1869,7 @@ V.theses=(D)=>`<div class="sec"><h2>Le livre de thèses</h2><p>append-only · la
 V.enquetes=(D)=>{
   const qs0=(D.blocks.inquiries&&D.blocks.inquiries.v)||[];
   const nd=qs0.filter(q=>q.dormant).length;
-  return `<div class="sec"><h2>Enquêtes-mission</h2><p>la mission permanente · chaque note est datée, la trajectoire se lit de haut en bas</p>
+  return `<div class="sec"><h2>Dossiers de recherche</h2><p>dossiers ordinaires et permanents · notes datées et attribuées</p>
     ${nd?`<span class="chip warn" style="margin-left:auto">${nd} dormante${nd>1?"s":""} sur ${qs0.length}</span>`:""}</div>
   ${guard(D.blocks.reflex,r=>`<div class="card rv" style="margin-bottom:16px">
     ${head("Réflexif — synthèse hebdomadaire",D.blocks.reflex,
@@ -1871,24 +1880,24 @@ V.enquetes=(D)=>{
         <div class="tx open" style="padding:0 11px 12px">${md(s.prose)}</div>
         ${(s.flags||[]).length?`<div class="note" style="color:var(--warn);padding:0 11px 10px">⚠ ${esc(s.flags.join(" · "))}</div>`:""}
       </details>`).join("")}
-      <div class="note">Prose libre, sans gabarit — le code n'en extrait que la traçabilité.
-        Un job d'interprétation dont on contraint le format rend un formulaire vide.</div></div></div>`,"reflex")}
+      <div class="note">Synthèses attribuées. Les dates citées et les contrôles de forme ne certifient pas la fidélité aux sources ni la justesse du raisonnement.</div></div></div>`,"reflex")}
   <div class="grid g-2" id="ilist">${guard(D.blocks.inquiries,qs=>qs.map(q=>`
     <div class="card rv"${q.dormant?' data-dormant="1"':""} data-s="${esc(q.q+" "+(q.evidence||[]).map(e=>e.note).join(" "))}">
       ${head(esc(q.q),null,`<span class="chip ${q.status==="permanent"?"acc":"info"}">${esc(q.status)}</span>
         ${has(q.touches)?`<span class="chip" title="nombre de fois où un run a touché cette enquête">${q.touches} touches</span>`:""}
         ${q.last_touched?`<span class="chip ${q.dormant?"warn":""}" title="dernier passage d'un run sur cette enquête — ${stamp(q.last_touched)}">${q.dormant?"dormante · ":""}${ago(q.last_touched)}</span>`:'<span class="chip warn">jamais touchée</span>'}`)}
       <div class="bd">
+        <div class="note" style="margin-bottom:9px">${(q.evidence||[]).length} notes affichées sur ${q.evidence_total??(q.evidence||[]).length} conservées · les plus récentes d'abord · interprétations attribuées</div>
         ${(q.evidence||[]).length?`<div style="display:grid;gap:9px">${q.evidence.slice().reverse().map(e=>`
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline">
             <span style="font:10.5px var(--mono);color:var(--ink4);white-space:nowrap">${e.ts?stamp(e.ts):"—"}</span>
-            <span style="font-size:12px;color:var(--ink2);text-wrap:pretty">${esc(e.note)}</span></div>`).join("")}</div>`
+            <span style="font-size:12px;color:var(--ink2);text-wrap:pretty">${esc(e.note)}${(e.limits||[]).length?`<br><span style="color:var(--warn)">Limites conservées : ${esc(e.limits.join(" · "))}</span>`:""}</span></div>`).join("")}</div>`
           :`<div class="empty">aucune note d'enquête${has(q.age_d)?" — ouverte il y a "+Math.round(q.age_d)+" jours, jamais travaillée depuis":""}</div>`}
         ${q.next_probe?`<div class="note" style="border-top:1px solid var(--line);padding-top:9px;margin-top:11px">
           <b style="color:var(--acc);font-family:var(--mono);font-size:10px;letter-spacing:.11em">PROCHAINE SONDE</b><br>${esc(q.next_probe)}</div>`:""}
       </div></div>`).join(""),"enquêtes")}</div>
   <div class="card"><div class="note" style="padding:11px 14px">Toutes les enquêtes du registre sont affichées, sans coupe.
-  Une enquête <b>dormante</b> n'a reçu aucune note depuis 7 jours : elle est ouverte dans le fichier, pas dans le travail de l'agent.</div></div>`;
+  Une enquête <b>dormante</b> n'a reçu aucune note enregistrée depuis 7 jours ; son historique reste accessible.</div></div>`;
 };
 
 /* ── À LA UNE — vue dédiée, séparée de Marché (2026-09-03→04, retour user :
@@ -1938,10 +1947,10 @@ V.alaune=(D)=>{
         '<div><div class="note" style="padding:0 0 6px">Baisses</div>'+bars((m.losers||[]).map(p=>({n:p.name,v:Math.abs(p.chg_1d),
           lbl:nf(p.chg_1d,1)+"% <small>"+esc(p.category||"")+"</small>"})))+'</div>'+
         '</div><div class="note">CEX exclu (hors recherche DeFi) · '+esc(m.note||"")+'</div></div>',"movers")}</div>`;
-  const wk=`<div class="card rv">${head("Derniers réveils · wake2.py (L4)",B.wakes)}
+  const wk=`<div class="card rv">${head("Dernières tentatives · recherche principale",B.wakes)}
       ${guard(B.wakes,items=>'<div class="bd">'+(items||[]).slice(0,5).map(w=>`<div class="kpi" data-tone="${w.ok?"held":"broken"}" style="text-align:left">
           <div class="l"><b>${esc(w.label||"?")}</b> <small>${esc((w.ts||"").slice(0,16).replace("T"," "))} UTC</small></div>
-          <div class="note" style="padding:2px 0 0">${w.ok?esc((w.summary||"(pas de résumé)").slice(0,140)):"réveil en échec — rien produit"}</div>
+          <div class="note" style="padding:2px 0 0">${w.ok?esc((w.summary||"(pas de résumé)").slice(0,140)):"tentative non admise — consulter le diagnostic"}</div>
           <span class="bar"></span></div>`).join("")+'</div>',"wakes")}</div>`;
   const hn=`<div class="card rv">${head("Hot news · digest GLM, impact classé",B.hot_news)}
       ${guard(B.hot_news,h=>'<div class="bd">'+(h.news||[]).map(n=>`<div class="pxr">
@@ -2127,14 +2136,12 @@ V.agent=(D)=>{
     if(Math.abs(n)>=1e6)return (n/1e6).toFixed(1)+" M";
     if(Math.abs(n)>=1e3)return (n/1e3).toFixed(0)+" k";return String(n);};
 
-  // 1. LA DERNIERE CONCLUSION — ce que l'agent a retenu, dans ses mots.
-  const w0=wk[0];
-  const concl=!w0?`<p>aucun réveil enregistré</p>`:
-    `<p class="dgm-note" style="opacity:.8">${dt(w0.ts)} · ${esc(w0.label||"")} · ${esc(w0.model||"")}
-      · ${w0.dur_s?Math.round(w0.dur_s)+" s":"—"} · <b>${esc(w0.publish||"—")}</b></p>
-     <p style="font-size:1.02rem;line-height:1.5">${w0.summary?esc(w0.summary):
-       "<i>aucun résumé — le réveil n'a pas conclu au format que le harnais sait lire</i>"}</p>
-     <p class="dgm-note">${w0.watches||0} veille(s) émise(s) ce réveil.</p>`;
+  const latest=wk[0];
+  const w0=wk.find(row=>row.role==="primary_research"&&row.ok);
+  const diagnostic=latest&&latest.role==="primary_research"&&!latest.ok?
+    `<div class="missing"><b>Dernière tentative non admise</b>${esc(latest.status||"état inconnu")} · admission ${esc(latest.admission||"inconnue")}
+      <div class="note">${esc(latest.blocked_reason||"Admission non achevée")} · ${stamp(latest.ts)}. Cette tentative ne remplace pas un acquis.</div></div>`:"";
+  const concl=diagnostic+primaryCard(w0);
 
   // 2. CE QUI TOMBE BIENTOT — l'engagement qui va etre tranche, c'est ce qui compte demain.
   const ouv=it.filter(w=>w.verdict==="OPEN").sort((a,b)=>(a.due_h==null?1e9:a.due_h)-(b.due_h==null?1e9:b.due_h));
@@ -2155,7 +2162,7 @@ V.agent=(D)=>{
 
   // 4. SES QUESTIONS — le seul objet qui traverse les sessions.
   const qs=inq.slice(0,5).map(q=>{
-    const ev=(q.evidence&&q.evidence[0])||null;
+    const ev=(q.evidence&&q.evidence[q.evidence.length-1])||null;
     return `<div class="card rv"><div class="bd">
       <p><b>${esc(q.q||q.id)}</b></p>
       <p class="dgm-note">${q.touches||0} touches · ouverte depuis ${q.born?dt(q.born).slice(0,10):"?"}
@@ -2165,8 +2172,8 @@ V.agent=(D)=>{
     </div></div>`;}).join("");
 
   const b0=br[0];
-  return `<div class="sec"><h2>Sa dernière conclusion</h2>
-      <p>le réveil le plus récent, dans ses mots — le harnais n'en extrait que la forme</p></div>
+  return `<div class="sec"><h2>Dernière synthèse admise</h2>
+      <p>la dernière tentative reste signalée séparément lorsqu’elle n’est pas admise</p></div>
     <div class="card rv">${head("brain_wakes",B.wakes)}<div class="bd">${concl}</div></div>
 
     <div class="sec"><h2>Ce qui tombe bientôt</h2>
@@ -2180,10 +2187,10 @@ V.agent=(D)=>{
       <p>le seul objet qui traverse les sessions — une question sans note depuis des semaines est dormante</p></div>
     ${qs||`<div class="card rv"><div class="bd"><p>aucune enquête ouverte</p></div></div>`}
 
-    <div class="sec"><h2>Le dernier brief, et le réflexif</h2></div>
+    <div class="sec"><h2>Archives L3 et contribution réflexive</h2></div>
     <div class="card rv"><div class="bd">
       <p class="dgm-note">${b0?`<b>tier ${esc(b0.tier)}</b> · ${dt(b0.ts)} · ${esc(b0.mode||"")} ·
-        discipline ${b0.discipline} · R2 ${b0.r2_pass?"passé":"<b>ÉCHOUÉ</b>"}${b0.silent?" · SILENCE":""}`
+        discipline ${has(b0.discipline)?b0.discipline:"non mesurée"} · R2 ${has(b0.r2_pass)?(b0.r2_pass?"passé":"<b>ÉCHOUÉ</b>"):"non mesuré"}${b0.silent?" · SILENCE":""}`
         :"aucun brief"}</p>
       <p class="dgm-note">${rx&&rx.date?`réflexif du ${esc(rx.date)} — ${rx.n} enquête(s) relues sur tout le corpus`
         :"réflexif : aucune synthèse"}</p>
@@ -2208,7 +2215,7 @@ V.sante=(D)=>{
   if(stale)  lignes.push(`${stale} bloc(s) en erreur`);
   if(vieux)  lignes.push(`relevé vieux de ${ageH.toFixed(1)} h`);
   // LES PRODUCTEURS : c'est la vraie question — qui emet, et est-ce que ca tient ?
-  const SRC={L3:["GLM · briefs","tier A, 3-phase"],L4:["brain · réveils","kimi, 2×/jour"],
+  const SRC={L3:["Archives L3","prédicats historiques"],L4:["Recherche principale","prédicats attribués"],
              NEWS:["instructeur · fil","événement → prédicat"]};
   const bysrc=S.by_src||{}, waste=(S.waste&&S.waste.by_src)||{};
   const prod=Object.keys(SRC).filter(k=>bysrc[k]||waste[k]).map(k=>{
@@ -2336,12 +2343,12 @@ V.systeme=(D)=>{
           <td class="r">${nf(c.n_7d/7,1)}</td></tr>`).join("")||'<tr><td colspan="4" class="empty">aucun run</td></tr>'}</tbody>
       </table></div></div></div>
 
-    <div class="sec"><h2>Le brain L4</h2><p>réveils autonomes · mesurés par wake_grader, jamais montrés jusqu'ici</p></div>
+    <div class="sec"><h2>Recherche principale</h2><p>tentatives et admission · les mesures d’outils ne certifient pas le raisonnement</p></div>
     <div class="card rv">${head("brain_wakes/WAKE_*.json",B.wakes,(()=>{
       const c=B.wakes&&B.wakes.cap;return c&&c.failed?`<span class="chip bad">${c.failed} sans résultat / ${c.shown}</span>`:"";})())}
       ${guard(B.wakes,ws=>`<div class="tw"><table style="min-width:640px"><thead><tr><th>Réveil</th><th>Modèle</th>
         <th class="r">Durée</th><th class="r">Outils</th><th class="r">Lu / écrit</th><th class="r">Veilles</th>
-        <th>Publication</th><th>Signaux</th></tr></thead><tbody>
+        <th>Publication</th><th>Repères de texte</th></tr></thead><tbody>
         ${ws.map(w=>`<tr${w.ok===false?' data-dormant="1"':""}><td class="k" style="max-width:280px;white-space:normal">${stamp(w.ts)}
             <span style="color:var(--ink4);font-weight:400"> · ${esc(w.label||"")} · il y a ${ago(w.ts)||"?"}</span>
             ${w.summary?`<div style="font:400 11.5px var(--sans);color:var(--ink2);margin-top:4px;text-wrap:pretty">${esc(w.summary)}</div>`
@@ -2352,15 +2359,14 @@ V.systeme=(D)=>{
           <td class="r">${w.graded?(has(w.tools)?w.tools:NA):'<span class="na" title="le juge quotidien n\'est pas encore passé sur ce réveil">non noté</span>'}</td>
           <td class="r" title="caractères récupérés vs écrits">${has(w.ratio)?"×"+nf(w.ratio,1):(w.graded?NA:"·")}</td>
           <td class="r" title="veilles écrites par le réveil lui-même${has(w.watches_graded)?" · le juge en a compté "+w.watches_graded:""}">${has(w.watches)?w.watches:NA}</td>
-          <td><span class="chip ${w.publish==="PUBLIER"?"good":""}">${esc(w.publish||"—")}</span></td>
+          <td><span class="chip ${w.public_eligible?"good":""}">${esc(w.publish||"—")} · ${esc(w.admission||"inconnue")}</span></td>
           <td>${w.graded?(Object.entries(w.flags||{}).filter(([,v])=>v).map(([k])=>
             `<span class="chip" style="font-size:9.5px">${esc(k)}</span>`).join(" ")||NA)
             :'<span class="na">en attente du juge</span>'}</td></tr>`).join("")}
         </tbody></table></div>
-        <div class="note" style="padding:11px 14px">Un réveil apparaît ici <b>dès qu'il a eu lieu</b> (3×/jour).
-        Les colonnes Outils, Lu/écrit et Signaux viennent du juge <code>wake_grader</code>, qui ne passe qu'une fois par jour à 14:50 —
-        d'où « non noté » sur les réveils les plus récents. « Lu / écrit » = caractères récupérés par les outils rapportés à ceux réellement
-        écrits dans le compte rendu : un ratio élevé signale un réveil qui récupère beaucoup et synthétise peu.</div>`,"réveils L4")}</div>
+        <div class="note" style="padding:11px 14px">Les tentatives et leur admission viennent des traces de recherche.
+        Les comptes d'outils, caractères et mots-clés viennent de <code>wake_grader</code> ; une mesure absente reste « non noté ».
+        Ces comptes ne prouvent ni l'utilisation des sources ni la justesse du raisonnement.</div>`,"réveils L4")}</div>
 
     <div class="sec"><h2>Santé du harness</h2></div>
     <div class="grid g-2">
@@ -2729,11 +2735,14 @@ function renderRibbon(D){
       title="Le flux est régénéré toutes les 2 h. Appuyer pour re-télécharger maintenant.">
       <i style="background:var(--acc)"></i><span>flux ${ago(D.generated_at)||"?"}</span>
       <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 8a6 6 0 1 1-1.8-4.3M14 2v4h-4"/></svg></button>`;
-  const lr=(D.status||{}).last_run||{};
-  const m=minAgo(lr.ts);
-  const cls=bad?"ko":m>8*60?"warn":"ok";
-  $("pulse").className="pulse "+cls;
-  $("pulse-t").textContent=bad?bad+" bloc"+(bad>1?"s":"")+" en échec":m>8*60?"silence "+(ago(lr.ts)||""):"brain vivant";
+  const lr=(D.status||{}).last_run;
+  const primary=lr&&lr.role==="primary_research";
+  const blocked=primary&&lr.ok===false;
+  const fresh=D.blocks.wakes?freshness(D.blocks.wakes):{cls:"dead"};
+  const old=fresh.cls==="stale"||fresh.cls==="dead";
+  $("pulse").className="pulse "+(blocked||bad?"ko":!primary||old?"warn":"ok");
+  $("pulse-t").textContent=blocked?"dernier essai non admis":!primary?"état principal inconnu":
+    old?"dernier essai "+(ago(lr.ts)||"inconnu"):bad?bad+" bloc(s) en échec":"recherche active";
 }
 
 /* boot */
