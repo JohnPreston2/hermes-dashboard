@@ -966,7 +966,7 @@ function primaryCard(row){
   if(!row)return '<div class="empty">aucune synthèse principale admise dans les résultats transportés</div>';
   return `<div class="bd"><p class="note">${stamp(row.ts)} · ${esc(row.model||"modèle inconnu")} · admission ${esc(row.admission||"inconnue")}</p>
     <p>${esc(row.summary||"résumé absent")}</p>
-    <p class="note">Résumé attribué${row.summary_truncated?" · extrait limité à 400 caractères":""} · décision ${esc(row.publish||"inconnue")}.
+    <p class="note">Résumé attribué${row.summary_truncated?" · interprétation abrégée":""} · décision ${esc(row.publish||"inconnue")}.
     L'admission en mémoire ne certifie pas la justesse du raisonnement.</p></div>`;
 }
 
