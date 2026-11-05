@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-11-05T11:55:12.144003+00:00",
+  "generated_at": "2026-11-05T15:07:01.954667+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -33,7 +33,7 @@
       "threshold": 0.65,
       "selected_ts": "2026-11-05T06:30:03.642196+00:00",
       "selected_result_id": "research:WAKE_20261105_063003_642196_r3",
-      "selected_candidate_id": "w05",
+      "selected_candidate_id": "w04",
       "candidate_count": 1
     },
     "mandatory_alerts": [
@@ -88,11 +88,34 @@
     ],
     "items": [
       {
+        "result_id": "research:WAKE_20261105_133003_388961_r3",
+        "source": "data/brain_wakes/WAKE_20261105_133003_388961_r3.json",
+        "role": "primary_research",
+        "ts": "2026-11-05T13:30:03.388961+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "admission": "applied",
+        "public_eligible": true,
+        "blocked_reason": null,
+        "publish_decision": "PUBLIER",
+        "summary": "Interprétation attribuée : RLUSD supply stabilisé à ~$2.6B sans reprise de croissance dynamique ; le scénario redistribution interne gagne en vraisemblance. USDC montre des signes de stabilisation (-0… [suite dans la trace]\nLimites conservées : Pas de données whale_flow ni stablecoin_flow par chaîne pour RLUSD ; impossible de distinguer formellement afflux net vs redistribution ; Articles réglementaires sous résumés uniquement ; détails des dispositifs non vérifiés ; Rebond USDC sur 24h (+0.37%) non confirmé comme inversion de tendance\nSuite : Vérifier dans 2-3 semaines : (1) reprise croissance hebdomadaire RLUSD >+5% 7j, (2) première proposition intégration RLUSD dans Aave/Morpho/Compound, (3) confirmation inversion USDC sur métrique 7j, (4) évolution législative US post-midterms (hearings SEC/CFTC).",
+        "watch_count": 0,
+        "tokens_in": 193971,
+        "tokens_out": 7612,
+        "wall_s": 170.3,
+        "reasoning_correctness": "not_assessed",
+        "jev_materiality": 0.61,
+        "jev_candidate_id": "w05"
+      },
+      {
         "result_id": "research:WAKE_20261105_063003_642196_r3",
         "source": "data/brain_wakes/WAKE_20261105_063003_642196_r3.json",
         "role": "primary_research",
         "ts": "2026-11-05T06:30:03.642196+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -107,15 +130,15 @@
         "tokens_out": 8806,
         "wall_s": 81.7,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.69,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.7,
+        "jev_candidate_id": "w04"
       },
       {
         "result_id": "research:WAKE_20261104_133003_839676_r3",
         "source": "data/brain_wakes/WAKE_20261104_133003_839676_r3.json",
         "role": "primary_research",
         "ts": "2026-11-04T13:30:03.839676+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -136,7 +159,7 @@
         "source": "data/brain_wakes/WAKE_20261104_063003_654206_r3.json",
         "role": "primary_research",
         "ts": "2026-11-04T06:30:03.654206+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -157,7 +180,7 @@
         "source": "data/brain_wakes/WAKE_20261103_133003_094813_r3.json",
         "role": "primary_research",
         "ts": "2026-11-03T13:30:03.094813+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -178,7 +201,7 @@
         "source": "data/brain_wakes/WAKE_20261103_063003_552192_r3.json",
         "role": "primary_research",
         "ts": "2026-11-03T06:30:03.552192+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -193,15 +216,15 @@
         "tokens_out": 11812,
         "wall_s": 567.8,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.44,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.41,
+        "jev_candidate_id": "w03"
       },
       {
         "result_id": "research:WAKE_20261102_133003_463455_r3",
         "source": "data/brain_wakes/WAKE_20261102_133003_463455_r3.json",
         "role": "primary_research",
         "ts": "2026-11-02T13:30:03.463455+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -216,15 +239,15 @@
         "tokens_out": 8002,
         "wall_s": 218.9,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.46,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.36,
+        "jev_candidate_id": "w02"
       },
       {
         "result_id": "research:WAKE_20261102_063003_610249_r3",
         "source": "data/brain_wakes/WAKE_20261102_063003_610249_r3.json",
         "role": "primary_research",
         "ts": "2026-11-02T06:30:03.610249+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -239,15 +262,15 @@
         "tokens_out": 10289,
         "wall_s": 142.5,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.54,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.4,
+        "jev_candidate_id": "w01"
       },
       {
         "result_id": "research:WAKE_20261101_133003_255935_r3",
         "source": "data/brain_wakes/WAKE_20261101_133003_255935_r3.json",
         "role": "primary_research",
         "ts": "2026-11-01T13:30:03.255935+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -262,15 +285,15 @@
         "tokens_out": 7866,
         "wall_s": 91.8,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.31,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.44,
+        "jev_candidate_id": "w00"
       },
       {
         "result_id": "research:WAKE_20261101_063003_714892_r3",
         "source": "data/brain_wakes/WAKE_20261101_063003_714892_r3.json",
         "role": "primary_research",
         "ts": "2026-11-01T06:30:03.714892+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -284,16 +307,14 @@
         "tokens_in": 126782,
         "tokens_out": 8684,
         "wall_s": 76.4,
-        "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.48,
-        "jev_candidate_id": "w00"
+        "reasoning_correctness": "not_assessed"
       },
       {
         "result_id": "research:WAKE_20261031_133003_119197_r3",
         "source": "data/brain_wakes/WAKE_20261031_133003_119197_r3.json",
         "role": "primary_research",
         "ts": "2026-10-31T13:30:03.119197+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -314,7 +335,7 @@
         "source": "data/brain_wakes/WAKE_20261031_063003_539539_r3.json",
         "role": "primary_research",
         "ts": "2026-10-31T06:30:03.539539+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -335,7 +356,7 @@
         "source": "data/brain_wakes/WAKE_20261030_133002_865651_r3.json",
         "role": "primary_research",
         "ts": "2026-10-30T13:30:02.865651+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -356,7 +377,7 @@
         "source": "data/brain_wakes/WAKE_20261030_063003_940995.json",
         "role": "primary_research",
         "ts": "2026-10-30T06:30:03.940995+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -371,35 +392,13 @@
         "tokens_out": 8086,
         "wall_s": 132.5,
         "reasoning_correctness": "not_assessed"
-      },
-      {
-        "result_id": "research:WAKE_20261029_133002_883167",
-        "source": "data/brain_wakes/WAKE_20261029_133002_883167.json",
-        "role": "primary_research",
-        "ts": "2026-10-29T13:30:02.883167+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "admission": "applied",
-        "public_eligible": true,
-        "blocked_reason": null,
-        "publish_decision": "PUBLIER",
-        "summary": "Interprétation attribuée : RLUSD supply atteint $2,60B (+10,5 % 7j, z=+2,1) dans un marché global en contraction (-1,2 %). USDT (-1,0 %, z=-2,64) et USDC (-1,6 %, z=-1,54) perdent du supply. Séquence … [suite dans la trace]\nLimites conservées : Pas de whale flow RLUSD disponible ; stablecoin_flow non résolu par chaîne ; Utilisation on-chain DeFi de RLUSD non vérifiée\nSuite : Vérifier l’apparition de RLUSD dans les propositions de gouvernance Aave / Morpho et les métriques de whale flow dès disponibles, pour distinguer afflux net de redistribution interne.",
-        "watch_count": 0,
-        "tokens_in": 128086,
-        "tokens_out": 6171,
-        "wall_s": 158.6,
-        "reasoning_correctness": "not_assessed"
       }
     ]
   },
   "glm_jobs": {
     "job_count": 14,
     "health_counts": {
-      "error": 1,
-      "healthy": 5,
+      "healthy": 6,
       "unknown_coverage": 7,
       "empty": 1
     },
@@ -409,8 +408,8 @@
         "script": "research",
         "cadence_h": 12,
         "running": true,
-        "error": true,
-        "empty": null,
+        "error": false,
+        "empty": false,
         "measurable": true,
         "log_age_h": 6.1
       },
@@ -442,7 +441,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 73.4
+        "log_age_h": 97.4
       },
       {
         "name": "amont des theses",
