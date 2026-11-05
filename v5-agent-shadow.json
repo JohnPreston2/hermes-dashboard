@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-11-04T15:07:02.284619+00:00",
+  "generated_at": "2026-11-05T07:11:01.164729+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -24,17 +24,17 @@
     "model": "kimi-k2-6",
     "recent_count": 14,
     "health_counts": {
+      "ok": 10,
       "blocked": 2,
-      "failed": 2,
-      "ok": 10
+      "failed": 2
     },
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
-      "selected_ts": null,
-      "selected_result_id": null,
-      "selected_candidate_id": null,
-      "candidate_count": 0
+      "selected_ts": "2026-11-05T06:30:03.642196+00:00",
+      "selected_result_id": "research:WAKE_20261105_063003_642196_r3",
+      "selected_candidate_id": "w05",
+      "candidate_count": 1
     },
     "mandatory_alerts": [
       {
@@ -88,11 +88,34 @@
     ],
     "items": [
       {
+        "result_id": "research:WAKE_20261105_063003_642196_r3",
+        "source": "data/brain_wakes/WAKE_20261105_063003_642196_r3.json",
+        "role": "primary_research",
+        "ts": "2026-11-05T06:30:03.642196+00:00",
+        "age_h": 0.7,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "admission": "applied",
+        "public_eligible": true,
+        "blocked_reason": null,
+        "publish_decision": "PUBLIER",
+        "summary": "Interprétation attribuée : RLUSD supply stabilisé à ~$2,6B (var. 7j −0,3 % au 5 nov 2026) après l'impulsion réglementaire de fin octobre. Aucune proposition d'intégration dans Aave V3/V4 (4 nov) ni Mo… [suite dans la trace]\nLimites conservées : Pas de données whale_flow ni stablecoin_flow par chaîne pour RLUSD ; Utilisation on-chain DeFi inférée par gouvernances publiques uniquement ; utilisation marginale sur DEX non indexés non exclue ; Impossible de distinguer formellement afflux net de fiat vs redistribution interne entre stablecoins\nSuite : Vérifier dans 2-3 semaines : (1) reprise de croissance hebdomadaire RLUSD >+5 % 7j, (2) première proposition d'intégration RLUSD dans Aave/Morpho/autre protocole majeur, (3) confirmation ou infirmation de l'inversion USDC via métrique 7j.",
+        "watch_count": 0,
+        "tokens_in": 218332,
+        "tokens_out": 8806,
+        "wall_s": 81.7,
+        "reasoning_correctness": "not_assessed",
+        "jev_materiality": 0.69,
+        "jev_candidate_id": "w05"
+      },
+      {
         "result_id": "research:WAKE_20261104_133003_839676_r3",
         "source": "data/brain_wakes/WAKE_20261104_133003_839676_r3.json",
         "role": "primary_research",
         "ts": "2026-11-04T13:30:03.839676+00:00",
-        "age_h": 1.6,
+        "age_h": 17.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -113,7 +136,7 @@
         "source": "data/brain_wakes/WAKE_20261104_063003_654206_r3.json",
         "role": "primary_research",
         "ts": "2026-11-04T06:30:03.654206+00:00",
-        "age_h": 8.6,
+        "age_h": 24.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -134,7 +157,7 @@
         "source": "data/brain_wakes/WAKE_20261103_133003_094813_r3.json",
         "role": "primary_research",
         "ts": "2026-11-03T13:30:03.094813+00:00",
-        "age_h": 25.6,
+        "age_h": 41.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -155,7 +178,7 @@
         "source": "data/brain_wakes/WAKE_20261103_063003_552192_r3.json",
         "role": "primary_research",
         "ts": "2026-11-03T06:30:03.552192+00:00",
-        "age_h": 32.6,
+        "age_h": 48.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -170,15 +193,15 @@
         "tokens_out": 11812,
         "wall_s": 567.8,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.47,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.46,
+        "jev_candidate_id": "w04"
       },
       {
         "result_id": "research:WAKE_20261102_133003_463455_r3",
         "source": "data/brain_wakes/WAKE_20261102_133003_463455_r3.json",
         "role": "primary_research",
         "ts": "2026-11-02T13:30:03.463455+00:00",
-        "age_h": 49.6,
+        "age_h": 65.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -193,15 +216,15 @@
         "tokens_out": 8002,
         "wall_s": 218.9,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.47,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.49,
+        "jev_candidate_id": "w03"
       },
       {
         "result_id": "research:WAKE_20261102_063003_610249_r3",
         "source": "data/brain_wakes/WAKE_20261102_063003_610249_r3.json",
         "role": "primary_research",
         "ts": "2026-11-02T06:30:03.610249+00:00",
-        "age_h": 56.6,
+        "age_h": 72.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -216,15 +239,15 @@
         "tokens_out": 10289,
         "wall_s": 142.5,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.58,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.55,
+        "jev_candidate_id": "w02"
       },
       {
         "result_id": "research:WAKE_20261101_133003_255935_r3",
         "source": "data/brain_wakes/WAKE_20261101_133003_255935_r3.json",
         "role": "primary_research",
         "ts": "2026-11-01T13:30:03.255935+00:00",
-        "age_h": 73.6,
+        "age_h": 89.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -239,15 +262,15 @@
         "tokens_out": 7866,
         "wall_s": 91.8,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.41,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.29,
+        "jev_candidate_id": "w01"
       },
       {
         "result_id": "research:WAKE_20261101_063003_714892_r3",
         "source": "data/brain_wakes/WAKE_20261101_063003_714892_r3.json",
         "role": "primary_research",
         "ts": "2026-11-01T06:30:03.714892+00:00",
-        "age_h": 80.6,
+        "age_h": 96.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -262,15 +285,15 @@
         "tokens_out": 8684,
         "wall_s": 76.4,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.42,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.46,
+        "jev_candidate_id": "w00"
       },
       {
         "result_id": "research:WAKE_20261031_133003_119197_r3",
         "source": "data/brain_wakes/WAKE_20261031_133003_119197_r3.json",
         "role": "primary_research",
         "ts": "2026-10-31T13:30:03.119197+00:00",
-        "age_h": 97.6,
+        "age_h": 113.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -284,16 +307,14 @@
         "tokens_in": 223832,
         "tokens_out": 9629,
         "wall_s": 123.5,
-        "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.51,
-        "jev_candidate_id": "w00"
+        "reasoning_correctness": "not_assessed"
       },
       {
         "result_id": "research:WAKE_20261031_063003_539539_r3",
         "source": "data/brain_wakes/WAKE_20261031_063003_539539_r3.json",
         "role": "primary_research",
         "ts": "2026-10-31T06:30:03.539539+00:00",
-        "age_h": 104.6,
+        "age_h": 120.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -314,7 +335,7 @@
         "source": "data/brain_wakes/WAKE_20261030_133002_865651_r3.json",
         "role": "primary_research",
         "ts": "2026-10-30T13:30:02.865651+00:00",
-        "age_h": 121.6,
+        "age_h": 137.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -335,7 +356,7 @@
         "source": "data/brain_wakes/WAKE_20261030_063003_940995.json",
         "role": "primary_research",
         "ts": "2026-10-30T06:30:03.940995+00:00",
-        "age_h": 128.6,
+        "age_h": 144.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -356,7 +377,7 @@
         "source": "data/brain_wakes/WAKE_20261029_133002_883167.json",
         "role": "primary_research",
         "ts": "2026-10-29T13:30:02.883167+00:00",
-        "age_h": 145.6,
+        "age_h": 161.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -370,27 +391,6 @@
         "tokens_in": 128086,
         "tokens_out": 6171,
         "wall_s": 158.6,
-        "reasoning_correctness": "not_assessed"
-      },
-      {
-        "result_id": "research:WAKE_20261029_063004_713391",
-        "source": "data/brain_wakes/WAKE_20261029_063004_713391.json",
-        "role": "primary_research",
-        "ts": "2026-10-29T06:30:04.713391+00:00",
-        "age_h": 152.6,
-        "label": "matin Europe",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "admission": "applied",
-        "public_eligible": true,
-        "blocked_reason": null,
-        "publish_decision": "PUBLIER",
-        "summary": " **Synthèse**\n\nLes données de supply confirment un régime de contraction globale du marché stablecoin : $289,7B (-1,2 % sur 7 jours, z=-1,99), avec des sorties nettes sur les deux leaders historiques.… [suite dans la trace]\nLimites conservées : Pas de whale flow RLUSD disponible ; stablecoin_flow non résolu par chaîne ; Utilisation on-chain DeFi de RLUSD non vérifiée\nSuite : Dans 30-45 jours : vérifier adoption DeFi de RLUSD (Aave, Morpho, etc.) et taux de croissance hebdomadaire post-lancement Robinhood pour distinguer redistribution interne vs nouvel afflux fiat.",
-        "watch_count": 0,
-        "tokens_in": 135797,
-        "tokens_out": 12497,
-        "wall_s": 152.8,
         "reasoning_correctness": "not_assessed"
       }
     ]
