@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-11-06T11:55:11.791007+00:00",
+  "generated_at": "2026-11-06T15:07:02.464806+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -31,10 +31,10 @@
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
-      "selected_ts": "2026-11-06T06:30:03.457946+00:00",
-      "selected_result_id": "research:WAKE_20261106_063003_457946_r3",
+      "selected_ts": "2026-11-06T13:30:02.754746+00:00",
+      "selected_result_id": "research:WAKE_20261106_133002_754746_r3",
       "selected_candidate_id": "w05",
-      "candidate_count": 2
+      "candidate_count": 3
     },
     "mandatory_alerts": [
       {
@@ -76,11 +76,34 @@
     ],
     "items": [
       {
+        "result_id": "research:WAKE_20261106_133002_754746_r3",
+        "source": "data/brain_wakes/WAKE_20261106_133002_754746_r3.json",
+        "role": "primary_research",
+        "ts": "2026-11-06T13:30:02.754746+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "admission": "applied",
+        "public_eligible": true,
+        "blocked_reason": null,
+        "publish_decision": "PUBLIER",
+        "summary": "Interprétation attribuée : RLUSD supply a repris une croissance dynamique (+4,1 % 7j, +2,74 % 1j) pour atteindre ~$2,67B au 6 nov 2026, tandis que USDC (−1,6 % 7j) et USDT (−1,7 % 7j) poursuivent leur… [suite dans la trace]\nLimites conservées : Pas de données whale_flow ni stablecoin_flow par chaîne pour RLUSD ; impossible de distinguer formellement afflux net de fiat vs redistribution interne ; Articles réglementaires (Grèce, Nigeria) lus sous résumés uniquement ; détails des dispositifs non vérifiés ; Utilisation on-chain DeFi inférée par gouvernances publiques uniquement ; utilisation marginale sur DEX non indexés non exclue\nSuite : Vérifier dans 10-14 jours : (1) maintien de la croissance RLUSD >+3 % 7j pour confirmer le pivot, (2) première proposition d'intégration RLUSD dans Aave / Morpho / Compound, (3) confirmation ou infirmation de l'inversion USDC via métrique 7j, (4) effets des nouvelles taxes grecques et nigérianes sur les volumes et premiums.",
+        "watch_count": 0,
+        "tokens_in": 263957,
+        "tokens_out": 10605,
+        "wall_s": 527.3,
+        "reasoning_correctness": "not_assessed",
+        "jev_materiality": 0.78,
+        "jev_candidate_id": "w05"
+      },
+      {
         "result_id": "research:WAKE_20261106_063003_457946_r3",
         "source": "data/brain_wakes/WAKE_20261106_063003_457946_r3.json",
         "role": "primary_research",
         "ts": "2026-11-06T06:30:03.457946+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -96,14 +119,14 @@
         "wall_s": 144.2,
         "reasoning_correctness": "not_assessed",
         "jev_materiality": 0.8,
-        "jev_candidate_id": "w05"
+        "jev_candidate_id": "w04"
       },
       {
         "result_id": "research:WAKE_20261105_133003_388961_r3",
         "source": "data/brain_wakes/WAKE_20261105_133003_388961_r3.json",
         "role": "primary_research",
         "ts": "2026-11-05T13:30:03.388961+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -119,14 +142,14 @@
         "wall_s": 170.3,
         "reasoning_correctness": "not_assessed",
         "jev_materiality": 0.64,
-        "jev_candidate_id": "w04"
+        "jev_candidate_id": "w03"
       },
       {
         "result_id": "research:WAKE_20261105_063003_642196_r3",
         "source": "data/brain_wakes/WAKE_20261105_063003_642196_r3.json",
         "role": "primary_research",
         "ts": "2026-11-05T06:30:03.642196+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -141,15 +164,15 @@
         "tokens_out": 8806,
         "wall_s": 81.7,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.71,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.75,
+        "jev_candidate_id": "w02"
       },
       {
         "result_id": "research:WAKE_20261104_133003_839676_r3",
         "source": "data/brain_wakes/WAKE_20261104_133003_839676_r3.json",
         "role": "primary_research",
         "ts": "2026-11-04T13:30:03.839676+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -170,7 +193,7 @@
         "source": "data/brain_wakes/WAKE_20261104_063003_654206_r3.json",
         "role": "primary_research",
         "ts": "2026-11-04T06:30:03.654206+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -191,7 +214,7 @@
         "source": "data/brain_wakes/WAKE_20261103_133003_094813_r3.json",
         "role": "primary_research",
         "ts": "2026-11-03T13:30:03.094813+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -212,7 +235,7 @@
         "source": "data/brain_wakes/WAKE_20261103_063003_552192_r3.json",
         "role": "primary_research",
         "ts": "2026-11-03T06:30:03.552192+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -227,15 +250,15 @@
         "tokens_out": 11812,
         "wall_s": 567.8,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.41,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.51,
+        "jev_candidate_id": "w01"
       },
       {
         "result_id": "research:WAKE_20261102_133003_463455_r3",
         "source": "data/brain_wakes/WAKE_20261102_133003_463455_r3.json",
         "role": "primary_research",
         "ts": "2026-11-02T13:30:03.463455+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -250,15 +273,15 @@
         "tokens_out": 8002,
         "wall_s": 218.9,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.25,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.56,
+        "jev_candidate_id": "w00"
       },
       {
         "result_id": "research:WAKE_20261102_063003_610249_r3",
         "source": "data/brain_wakes/WAKE_20261102_063003_610249_r3.json",
         "role": "primary_research",
         "ts": "2026-11-02T06:30:03.610249+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -272,16 +295,14 @@
         "tokens_in": 229609,
         "tokens_out": 10289,
         "wall_s": 142.5,
-        "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.49,
-        "jev_candidate_id": "w00"
+        "reasoning_correctness": "not_assessed"
       },
       {
         "result_id": "research:WAKE_20261101_133003_255935_r3",
         "source": "data/brain_wakes/WAKE_20261101_133003_255935_r3.json",
         "role": "primary_research",
         "ts": "2026-11-01T13:30:03.255935+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -302,7 +323,7 @@
         "source": "data/brain_wakes/WAKE_20261101_063003_714892_r3.json",
         "role": "primary_research",
         "ts": "2026-11-01T06:30:03.714892+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -323,7 +344,7 @@
         "source": "data/brain_wakes/WAKE_20261031_133003_119197_r3.json",
         "role": "primary_research",
         "ts": "2026-10-31T13:30:03.119197+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -344,7 +365,7 @@
         "source": "data/brain_wakes/WAKE_20261031_063003_539539_r3.json",
         "role": "primary_research",
         "ts": "2026-10-31T06:30:03.539539+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -358,27 +379,6 @@
         "tokens_in": 336309,
         "tokens_out": 12651,
         "wall_s": 182.9,
-        "reasoning_correctness": "not_assessed"
-      },
-      {
-        "result_id": "research:WAKE_20261030_133002_865651_r3",
-        "source": "data/brain_wakes/WAKE_20261030_133002_865651_r3.json",
-        "role": "primary_research",
-        "ts": "2026-10-30T13:30:02.865651+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "admission": "applied",
-        "public_eligible": true,
-        "blocked_reason": null,
-        "publish_decision": "PUBLIER",
-        "summary": "Interprétation attribuée : Le hack Binance du 29-30 octobre 2026 (~6,3 Mds$) fournit un événement de référence réel qui éclaire la nature des 40 alertes exploit_risk précédentes. Ces alertes n'avaient… [suite dans la trace]\nLimites conservées : Les 40 événements exploit_risk historiques n'ont pas été vérifiés un par un contre leurs preuves on-chain ; Les articles lus sont des résumés (stored_record_only), pas le texte intégral des propositions de gouvernance ; L'impact du hack sur les stablecoins n'est pas mesuré chaîne par chaîne ; La trajectoire des fonds volés dans l'écosystème DeFi n'est pas tracée\nSuite : Vérifier si les fonds volés interagissent avec les protocoles DeFi (DEX, lending, bridges) et mesurer l'impact sur les TVL/fees lors de la réouverture des withdrawals Binance",
-        "watch_count": 0,
-        "tokens_in": 429556,
-        "tokens_out": 10459,
-        "wall_s": 232.7,
         "reasoning_correctness": "not_assessed"
       }
     ]
@@ -429,7 +429,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 97.4
+        "log_age_h": 121.4
       },
       {
         "name": "amont des theses",
@@ -529,7 +529,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 5.9
+        "log_age_h": 5.8
       }
     ],
     "jev_surfaces": [
