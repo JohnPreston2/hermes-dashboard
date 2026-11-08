@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-11-07T15:07:01.866629+00:00",
+  "generated_at": "2026-11-08T07:11:01.869642+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -31,10 +31,10 @@
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
-      "selected_ts": "2026-11-07T13:30:03.001470+00:00",
-      "selected_result_id": "research:WAKE_20261107_133003_001470_r3",
+      "selected_ts": "2026-11-08T06:30:04.418844+00:00",
+      "selected_result_id": "research:WAKE_20261108_063004_418844_r3",
       "selected_candidate_id": "w05",
-      "candidate_count": 4
+      "candidate_count": 5
     },
     "mandatory_alerts": [
       {
@@ -76,11 +76,34 @@
     ],
     "items": [
       {
+        "result_id": "research:WAKE_20261108_063004_418844_r3",
+        "source": "data/brain_wakes/WAKE_20261108_063004_418844_r3.json",
+        "role": "primary_research",
+        "ts": "2026-11-08T06:30:04.418844+00:00",
+        "age_h": 0.7,
+        "label": "matin Europe",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "admission": "applied",
+        "public_eligible": true,
+        "blocked_reason": null,
+        "publish_decision": "PUBLIER",
+        "summary": "Interprétation attribuée : Sky Lending en chute confirmée par redeem massif d'USDS (-808 M$ sur 7j, -12,6 % supply) expliquant la baisse de TVL (-746 M$, -14,4 %). Aave capte une partie du capital (+5… [suite dans la trace]\nLimites conservées : Catalyseur exact du redeem USDS non isolé (exploit Name.com de 138 K$ non vérifié comme driver principal) ; Destination des 808 M$ d'USDS redeemés non traçée (fiat, autres stables, ou protocoles non couverts) ; Fee-yields lending calculés par ratio fees_7d/TVL, non vérifiés comme mesure native du protocole ; Avis spécialiste partiel (stream_deadline), début suggère 'rotation de confiance vers Aave' mais non exploitable ; Flux inter-chaînes spécifiques non résolus par get_metric stablecoin_flow (valeur GLOBAL retournée)\nSuite : Dans 7 jours : (1) vérifier si Sky stabilise autour de 4,4 Md$ ou poursuit sa chute, (2) vérifier si Aave V4 maintient sa co-croissance TVL+fees, (3) chercher un catalyseur explicite de la fuite USDS dans la gouvernance ou les annonces.",
+        "watch_count": 0,
+        "tokens_in": 663314,
+        "tokens_out": 10512,
+        "wall_s": 296.7,
+        "reasoning_correctness": "not_assessed",
+        "jev_materiality": 0.78,
+        "jev_candidate_id": "w05"
+      },
+      {
         "result_id": "research:WAKE_20261107_133003_001470_r3",
         "source": "data/brain_wakes/WAKE_20261107_133003_001470_r3.json",
         "role": "primary_research",
         "ts": "2026-11-07T13:30:03.001470+00:00",
-        "age_h": 1.6,
+        "age_h": 17.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -95,15 +118,15 @@
         "tokens_out": 15528,
         "wall_s": 180.5,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.8,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.81,
+        "jev_candidate_id": "w04"
       },
       {
         "result_id": "research:WAKE_20261107_063003_358715_r3",
         "source": "data/brain_wakes/WAKE_20261107_063003_358715_r3.json",
         "role": "primary_research",
         "ts": "2026-11-07T06:30:03.358715+00:00",
-        "age_h": 8.6,
+        "age_h": 24.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -118,15 +141,15 @@
         "tokens_out": 13167,
         "wall_s": 139.9,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.81,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.82,
+        "jev_candidate_id": "w03"
       },
       {
         "result_id": "research:WAKE_20261106_133002_754746_r3",
         "source": "data/brain_wakes/WAKE_20261106_133002_754746_r3.json",
         "role": "primary_research",
         "ts": "2026-11-06T13:30:02.754746+00:00",
-        "age_h": 25.6,
+        "age_h": 41.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -141,15 +164,15 @@
         "tokens_out": 10605,
         "wall_s": 527.3,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.76,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.77,
+        "jev_candidate_id": "w02"
       },
       {
         "result_id": "research:WAKE_20261106_063003_457946_r3",
         "source": "data/brain_wakes/WAKE_20261106_063003_457946_r3.json",
         "role": "primary_research",
         "ts": "2026-11-06T06:30:03.457946+00:00",
-        "age_h": 32.6,
+        "age_h": 48.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -165,14 +188,14 @@
         "wall_s": 144.2,
         "reasoning_correctness": "not_assessed",
         "jev_materiality": 0.77,
-        "jev_candidate_id": "w02"
+        "jev_candidate_id": "w01"
       },
       {
         "result_id": "research:WAKE_20261105_133003_388961_r3",
         "source": "data/brain_wakes/WAKE_20261105_133003_388961_r3.json",
         "role": "primary_research",
         "ts": "2026-11-05T13:30:03.388961+00:00",
-        "age_h": 49.6,
+        "age_h": 65.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -187,15 +210,15 @@
         "tokens_out": 7612,
         "wall_s": 170.3,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.52,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.62,
+        "jev_candidate_id": "w00"
       },
       {
         "result_id": "research:WAKE_20261105_063003_642196_r3",
         "source": "data/brain_wakes/WAKE_20261105_063003_642196_r3.json",
         "role": "primary_research",
         "ts": "2026-11-05T06:30:03.642196+00:00",
-        "age_h": 56.6,
+        "age_h": 72.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -209,16 +232,14 @@
         "tokens_in": 218332,
         "tokens_out": 8806,
         "wall_s": 81.7,
-        "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.62,
-        "jev_candidate_id": "w00"
+        "reasoning_correctness": "not_assessed"
       },
       {
         "result_id": "research:WAKE_20261104_133003_839676_r3",
         "source": "data/brain_wakes/WAKE_20261104_133003_839676_r3.json",
         "role": "primary_research",
         "ts": "2026-11-04T13:30:03.839676+00:00",
-        "age_h": 73.6,
+        "age_h": 89.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -239,7 +260,7 @@
         "source": "data/brain_wakes/WAKE_20261104_063003_654206_r3.json",
         "role": "primary_research",
         "ts": "2026-11-04T06:30:03.654206+00:00",
-        "age_h": 80.6,
+        "age_h": 96.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -260,7 +281,7 @@
         "source": "data/brain_wakes/WAKE_20261103_133003_094813_r3.json",
         "role": "primary_research",
         "ts": "2026-11-03T13:30:03.094813+00:00",
-        "age_h": 97.6,
+        "age_h": 113.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -281,7 +302,7 @@
         "source": "data/brain_wakes/WAKE_20261103_063003_552192_r3.json",
         "role": "primary_research",
         "ts": "2026-11-03T06:30:03.552192+00:00",
-        "age_h": 104.6,
+        "age_h": 120.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -302,7 +323,7 @@
         "source": "data/brain_wakes/WAKE_20261102_133003_463455_r3.json",
         "role": "primary_research",
         "ts": "2026-11-02T13:30:03.463455+00:00",
-        "age_h": 121.6,
+        "age_h": 137.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -323,7 +344,7 @@
         "source": "data/brain_wakes/WAKE_20261102_063003_610249_r3.json",
         "role": "primary_research",
         "ts": "2026-11-02T06:30:03.610249+00:00",
-        "age_h": 128.6,
+        "age_h": 144.7,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -344,7 +365,7 @@
         "source": "data/brain_wakes/WAKE_20261101_133003_255935_r3.json",
         "role": "primary_research",
         "ts": "2026-11-01T13:30:03.255935+00:00",
-        "age_h": 145.6,
+        "age_h": 161.7,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -358,27 +379,6 @@
         "tokens_in": 153305,
         "tokens_out": 7866,
         "wall_s": 91.8,
-        "reasoning_correctness": "not_assessed"
-      },
-      {
-        "result_id": "research:WAKE_20261101_063003_714892_r3",
-        "source": "data/brain_wakes/WAKE_20261101_063003_714892_r3.json",
-        "role": "primary_research",
-        "ts": "2026-11-01T06:30:03.714892+00:00",
-        "age_h": 152.6,
-        "label": "matin Europe",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "admission": "applied",
-        "public_eligible": true,
-        "blocked_reason": null,
-        "publish_decision": "PUBLIER",
-        "summary": "Interprétation attribuée : La couche exploit_risk génère des faux positifs systémiques (40 événements/14j sans impact métrique ni couverture) et a manqué le hack Binance (~$6.3B), qui sert d'oracle né… [suite dans la trace]\nLimites conservées : Les 40 événements exploit_risk historiques n'ont pas été vérifiés un par un contre preuves on-chain ; Articles lus en résumé (stored_record_only), pas textes intégraux de gouvernance ou traçage ; Trajectoire fonds volés basée sur agrégations tierces (Arkham, Chainalysis), pas traçage transactionnel direct ; Échelle exacte interaction JustLend/jUSDT non quantifiée ; Pas de métrique stablecoin par chaîne\nSuite : Vérifier réouverture effective des retraits Binance le 1er nov et interactions fonds volés avec DeFi dans 7j ; évaluer si exploit Premia révèle vulnérabilité réplicable dans d'autres vaults d'options",
-        "watch_count": 0,
-        "tokens_in": 126782,
-        "tokens_out": 8684,
-        "wall_s": 76.4,
         "reasoning_correctness": "not_assessed"
       }
     ]
