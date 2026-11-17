@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-11-17T11:55:11.232873+00:00",
+  "generated_at": "2026-11-17T15:07:01.889089+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -30,10 +30,10 @@
     "selection": {
       "mode": "jev_shadow",
       "threshold": 0.65,
-      "selected_ts": "2026-11-17T06:30:04.037899+00:00",
-      "selected_result_id": "research:WAKE_20261117_063004_037899_r3",
-      "selected_candidate_id": "w05",
-      "candidate_count": 5
+      "selected_ts": "2026-11-15T13:30:02.250569+00:00",
+      "selected_result_id": "research:WAKE_20261115_133002_250569_r3",
+      "selected_candidate_id": "w02",
+      "candidate_count": 3
     },
     "mandatory_alerts": [
       {
@@ -63,11 +63,34 @@
     ],
     "items": [
       {
+        "result_id": "research:WAKE_20261117_133002_891039_r3",
+        "source": "data/brain_wakes/WAKE_20261117_133002_891039_r3.json",
+        "role": "primary_research",
+        "ts": "2026-11-17T13:30:02.891039+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "admission": "applied",
+        "public_eligible": true,
+        "blocked_reason": null,
+        "publish_decision": "PUBLIER",
+        "summary": "Interprétation attribuée : Diagnostic confirmé au 17 nov : la gouvernance Sky maintient le repli structurel sans ajustement du USDS Savings Rate. USDS supply se stabilise (+0,2% 1j à $5,24B, reçu 1) m… [suite dans la trace]\nLimites conservées : Statut exact du vote/exécution de la proposition BA Labs (12 nov) non vérifié ; Rendements effectifs sur Aave/Morpho non vérifiés directement (endpoints llama.fi/yields inaccessibles) ; Forums consultés via pages d'accueil et recherche textuelle basique ; proposition sur savings rate en discussion privée ou catégorie non listée pourrait échapper ; Page Snapshot sky-mdao.eth non lisible (8 caractères servis, probable écran de chargement) ; Destination précise des sorties USDS non tracée (whale_flow indisponible)\nSuite : Vérifier d'ici 2026-11-22 : (1) La proposition BA Labs a-t-elle été votée/exécutée ? (2) SparkLend TVL franchit-il $3,5B ? (3) USDS supply maintient-elle $5B+ ? (4) Une proposition Sky ajuste-t-elle le USDS Savings Rate ?",
+        "watch_count": 0,
+        "tokens_in": 648318,
+        "tokens_out": 11223,
+        "wall_s": 119.2,
+        "reasoning_correctness": "not_assessed",
+        "jev_materiality": 0.6,
+        "jev_candidate_id": "w05"
+      },
+      {
         "result_id": "research:WAKE_20261117_063004_037899_r3",
         "source": "data/brain_wakes/WAKE_20261117_063004_037899_r3.json",
         "role": "primary_research",
         "ts": "2026-11-17T06:30:04.037899+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -82,15 +105,15 @@
         "tokens_out": 11460,
         "wall_s": 154.0,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.66,
-        "jev_candidate_id": "w05"
+        "jev_materiality": 0.64,
+        "jev_candidate_id": "w04"
       },
       {
         "result_id": "research:WAKE_20261116_133003_235129_r3",
         "source": "data/brain_wakes/WAKE_20261116_133003_235129_r3.json",
         "role": "primary_research",
         "ts": "2026-11-16T13:30:03.235129+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -106,14 +129,14 @@
         "wall_s": 211.2,
         "reasoning_correctness": "not_assessed",
         "jev_materiality": 0.62,
-        "jev_candidate_id": "w04"
+        "jev_candidate_id": "w03"
       },
       {
         "result_id": "research:WAKE_20261116_063003_045718_r3",
         "source": "data/brain_wakes/WAKE_20261116_063003_045718_r3.json",
         "role": "primary_research",
         "ts": "2026-11-16T06:30:03.045718+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -134,7 +157,7 @@
         "source": "data/brain_wakes/WAKE_20261115_133002_250569_r3.json",
         "role": "primary_research",
         "ts": "2026-11-15T13:30:02.250569+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -149,15 +172,15 @@
         "tokens_out": 12642,
         "wall_s": 188.5,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.73,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.76,
+        "jev_candidate_id": "w02"
       },
       {
         "result_id": "research:WAKE_20261115_063002_637840_r3",
         "source": "data/brain_wakes/WAKE_20261115_063002_637840_r3.json",
         "role": "primary_research",
         "ts": "2026-11-15T06:30:02.637840+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -172,15 +195,15 @@
         "tokens_out": 13059,
         "wall_s": 303.5,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.76,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.74,
+        "jev_candidate_id": "w01"
       },
       {
         "result_id": "research:WAKE_20261114_133002_561179_r3",
         "source": "data/brain_wakes/WAKE_20261114_133002_561179_r3.json",
         "role": "primary_research",
         "ts": "2026-11-14T13:30:02.561179+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -196,14 +219,14 @@
         "wall_s": 435.0,
         "reasoning_correctness": "not_assessed",
         "jev_materiality": 0.78,
-        "jev_candidate_id": "w01"
+        "jev_candidate_id": "w00"
       },
       {
         "result_id": "research:WAKE_20261114_063002_895638_r3",
         "source": "data/brain_wakes/WAKE_20261114_063002_895638_r3.json",
         "role": "primary_research",
         "ts": "2026-11-14T06:30:02.895638+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -217,16 +240,14 @@
         "tokens_in": 515699,
         "tokens_out": 15371,
         "wall_s": 230.3,
-        "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.72,
-        "jev_candidate_id": "w00"
+        "reasoning_correctness": "not_assessed"
       },
       {
         "result_id": "research:WAKE_20261113_133002_654319_r3",
         "source": "data/brain_wakes/WAKE_20261113_133002_654319_r3.json",
         "role": "primary_research",
         "ts": "2026-11-13T13:30:02.654319+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -247,7 +268,7 @@
         "source": "data/brain_wakes/WAKE_20261113_063003_579806_r3.json",
         "role": "primary_research",
         "ts": "2026-11-13T06:30:03.579806+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -268,7 +289,7 @@
         "source": "data/brain_wakes/WAKE_20261112_133003_381883_r3.json",
         "role": "primary_research",
         "ts": "2026-11-12T13:30:03.381883+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -289,7 +310,7 @@
         "source": "data/brain_wakes/WAKE_20261112_063003_837466_r3.json",
         "role": "primary_research",
         "ts": "2026-11-12T06:30:03.837466+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -310,7 +331,7 @@
         "source": "data/brain_wakes/WAKE_20261111_133002_862150_r3.json",
         "role": "primary_research",
         "ts": "2026-11-11T13:30:02.862150+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -331,7 +352,7 @@
         "source": "data/brain_wakes/WAKE_20261111_063003_303878_r3.json",
         "role": "primary_research",
         "ts": "2026-11-11T06:30:03.303878+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -346,37 +367,16 @@
         "tokens_out": 12342,
         "wall_s": 280.7,
         "reasoning_correctness": "not_assessed"
-      },
-      {
-        "result_id": "research:WAKE_20261110_133003_582996_r3",
-        "source": "data/brain_wakes/WAKE_20261110_133003_582996_r3.json",
-        "role": "primary_research",
-        "ts": "2026-11-10T13:30:03.582996+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "admission": "applied",
-        "public_eligible": true,
-        "blocked_reason": null,
-        "publish_decision": "PUBLIER",
-        "summary": "Interprétation attribuée : Diagnostic confirmé et actualisé au 10 nov 2026 : la fuite de capital USDS s'est accélérée (-17.0% 7j, $5.38B, reçu 2) et touche désormais l'infrastructure entière avec Spar… [suite dans la trace]\nLimites conservées : Rendements effectifs sur Aave/Morpho non vérifiés directement (endpoints llama.fi/yields inaccessibles) ; Destination précise des sorties USDS non tracée (whale_flow indisponible pour Sky/USDS) ; Note sector_rotation sur lending Ethereum est une interprétation de modèle Gemma, pas une mesure primaire ; Forums Sky consultés via web_fetch + recherche textuelle ; une proposition cachée ou en discussion privée pourrait échapper\nSuite : Vérifier d'ici ~5 jours : (1) USDS supply franchit-elle $5B ? (2) Une proposition Sky ajuste-t-elle le USDS Savings Rate ? (3) SparkLend TVL poursuit-il sa baisse au-delà de -7.2% ?",
-        "watch_count": 0,
-        "tokens_in": 387974,
-        "tokens_out": 10624,
-        "wall_s": 347.0,
-        "reasoning_correctness": "not_assessed"
       }
     ]
   },
   "glm_jobs": {
     "job_count": 14,
     "health_counts": {
-      "error": 1,
       "healthy": 5,
-      "unknown_coverage": 7,
-      "empty": 1
+      "unknown_coverage": 5,
+      "empty": 1,
+      "error": 3
     },
     "items": [
       {
@@ -384,8 +384,8 @@
         "script": "research",
         "cadence_h": 12,
         "running": true,
-        "error": true,
-        "empty": null,
+        "error": false,
+        "empty": false,
         "measurable": true,
         "log_age_h": 6.1
       },
@@ -417,7 +417,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 25.5
+        "log_age_h": 49.5
       },
       {
         "name": "amont des theses",
@@ -444,7 +444,7 @@
         "script": "article_summarizer",
         "cadence_h": 6,
         "running": true,
-        "error": false,
+        "error": true,
         "empty": false,
         "measurable": true,
         "log_age_h": 3.0
@@ -484,7 +484,7 @@
         "script": "onchain_digest",
         "cadence_h": 6,
         "running": true,
-        "error": false,
+        "error": true,
         "empty": null,
         "measurable": false,
         "log_age_h": 4.9
@@ -514,7 +514,7 @@
         "script": "signal_annotator",
         "cadence_h": 8,
         "running": true,
-        "error": false,
+        "error": true,
         "empty": null,
         "measurable": false,
         "log_age_h": 5.9
