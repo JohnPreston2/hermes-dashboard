@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-11-20T11:55:12.394297+00:00",
+  "generated_at": "2026-11-20T15:07:01.910997+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -24,8 +24,8 @@
     "model": "kimi-k2-6",
     "recent_count": 14,
     "health_counts": {
-      "failed": 2,
-      "ok": 12
+      "failed": 3,
+      "ok": 11
     },
     "selection": {
       "mode": "jev_shadow",
@@ -36,6 +36,18 @@
       "candidate_count": 5
     },
     "mandatory_alerts": [
+      {
+        "must_show": true,
+        "type": "kimi_wake_failure",
+        "ts": "2026-11-20T13:30:03.327379+00:00",
+        "label": "ouverture US",
+        "status": "memory_conflict_or_error",
+        "health": "failed",
+        "tokens_in": 766934,
+        "tokens_out": 14643,
+        "wall_s": 283.4,
+        "reason": "Research not admitted for effects"
+      },
       {
         "must_show": true,
         "type": "kimi_wake_failure",
@@ -63,11 +75,32 @@
     ],
     "items": [
       {
+        "result_id": "research:WAKE_20261120_133003_327379_r3",
+        "source": "data/brain_wakes/WAKE_20261120_133003_327379_r3.json",
+        "role": "primary_research",
+        "ts": "2026-11-20T13:30:03.327379+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "memory_conflict_or_error",
+        "health": "failed",
+        "admission": "rejected",
+        "public_eligible": false,
+        "blocked_reason": "Research not admitted for effects",
+        "publish_decision": null,
+        "summary": "",
+        "watch_count": 0,
+        "tokens_in": 766934,
+        "tokens_out": 14643,
+        "wall_s": 283.4,
+        "reasoning_correctness": "not_assessed"
+      },
+      {
         "result_id": "research:WAKE_20261120_063003_714703_r3",
         "source": "data/brain_wakes/WAKE_20261120_063003_714703_r3.json",
         "role": "primary_research",
         "ts": "2026-11-20T06:30:03.714703+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -88,7 +121,7 @@
         "source": "data/brain_wakes/WAKE_20261119_133002_960499_r3.json",
         "role": "primary_research",
         "ts": "2026-11-19T13:30:02.960499+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -111,7 +144,7 @@
         "source": "data/brain_wakes/WAKE_20261119_063002_669626_r3.json",
         "role": "primary_research",
         "ts": "2026-11-19T06:30:02.669626+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -126,7 +159,7 @@
         "tokens_out": 13281,
         "wall_s": 295.9,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.73,
+        "jev_materiality": 0.74,
         "jev_candidate_id": "w04"
       },
       {
@@ -134,7 +167,7 @@
         "source": "data/brain_wakes/WAKE_20261118_133002_738972_r3.json",
         "role": "primary_research",
         "ts": "2026-11-18T13:30:02.738972+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -149,7 +182,7 @@
         "tokens_out": 13730,
         "wall_s": 267.4,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.65,
+        "jev_materiality": 0.66,
         "jev_candidate_id": "w03"
       },
       {
@@ -157,7 +190,7 @@
         "source": "data/brain_wakes/WAKE_20261118_063003_083606_r3.json",
         "role": "primary_research",
         "ts": "2026-11-18T06:30:03.083606+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -180,7 +213,7 @@
         "source": "data/brain_wakes/WAKE_20261117_133002_891039_r3.json",
         "role": "primary_research",
         "ts": "2026-11-17T13:30:02.891039+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -195,7 +228,7 @@
         "tokens_out": 11223,
         "wall_s": 119.2,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.54,
+        "jev_materiality": 0.56,
         "jev_candidate_id": "w01"
       },
       {
@@ -203,7 +236,7 @@
         "source": "data/brain_wakes/WAKE_20261117_063004_037899_r3.json",
         "role": "primary_research",
         "ts": "2026-11-17T06:30:04.037899+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -226,7 +259,7 @@
         "source": "data/brain_wakes/WAKE_20261116_133003_235129_r3.json",
         "role": "primary_research",
         "ts": "2026-11-16T13:30:03.235129+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -247,7 +280,7 @@
         "source": "data/brain_wakes/WAKE_20261116_063003_045718_r3.json",
         "role": "primary_research",
         "ts": "2026-11-16T06:30:03.045718+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -268,7 +301,7 @@
         "source": "data/brain_wakes/WAKE_20261115_133002_250569_r3.json",
         "role": "primary_research",
         "ts": "2026-11-15T13:30:02.250569+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -289,7 +322,7 @@
         "source": "data/brain_wakes/WAKE_20261115_063002_637840_r3.json",
         "role": "primary_research",
         "ts": "2026-11-15T06:30:02.637840+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -310,7 +343,7 @@
         "source": "data/brain_wakes/WAKE_20261114_133002_561179_r3.json",
         "role": "primary_research",
         "ts": "2026-11-14T13:30:02.561179+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -331,7 +364,7 @@
         "source": "data/brain_wakes/WAKE_20261114_063002_895638_r3.json",
         "role": "primary_research",
         "ts": "2026-11-14T06:30:02.895638+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -346,34 +379,14 @@
         "tokens_out": 15371,
         "wall_s": 230.3,
         "reasoning_correctness": "not_assessed"
-      },
-      {
-        "result_id": "research:WAKE_20261113_133002_654319_r3",
-        "source": "data/brain_wakes/WAKE_20261113_133002_654319_r3.json",
-        "role": "primary_research",
-        "ts": "2026-11-13T13:30:02.654319+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "admission": "applied",
-        "public_eligible": true,
-        "blocked_reason": null,
-        "publish_decision": "PUBLIER",
-        "summary": "Interprétation attribuée : Diagnostic révisé au 13 nov 12:18 UTC : la gouvernance Sky répond au capital flight par un repli structurel (fermeture Core Vaults, BA Labs 12 nov) plutôt que par compétitio… [suite dans la trace]\nLimites conservées : Calendrier de vote de la proposition BA Labs non vérifié ; Texte complet de l'Atlas Edit (54 pages) non lu ; snippet et titre uniquement ; Rendements effectifs sur Aave/Morpho non vérifiés directement (endpoints llama.fi/yields inaccessibles) ; Destination précise des sorties USDS non tracée (whale_flow indisponible) ; Forums consultés via pages d'accueil et recherche textuelle basique ; une proposition cachée ou en discussion privée pourrait échapper\nSuite : Vérifier d'ici 2026-11-20 : (1) La proposition BA Labs passe-t-elle au vote et est-elle adoptée ? (2) USDS supply franchit-elle $5B ? (3) SparkLend TVL passe-t-il sous $4B ? (4) Une proposition Sky ajuste-t-elle le USDS Savings Rate ?",
-        "watch_count": 0,
-        "tokens_in": 491875,
-        "tokens_out": 10774,
-        "wall_s": 93.7,
-        "reasoning_correctness": "not_assessed"
       }
     ]
   },
   "glm_jobs": {
     "job_count": 14,
     "health_counts": {
-      "healthy": 6,
+      "error": 1,
+      "healthy": 5,
       "unknown_coverage": 7,
       "empty": 1
     },
@@ -383,8 +396,8 @@
         "script": "research",
         "cadence_h": 12,
         "running": true,
-        "error": false,
-        "empty": false,
+        "error": true,
+        "empty": null,
         "measurable": true,
         "log_age_h": 6.1
       },
@@ -416,7 +429,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 97.5
+        "log_age_h": 121.5
       },
       {
         "name": "amont des theses",
