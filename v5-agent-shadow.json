@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-11-26T11:55:14.725718+00:00",
+  "generated_at": "2026-11-26T15:07:01.985291+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -33,7 +33,7 @@
       "threshold": 0.65,
       "selected_ts": "2026-11-26T06:30:03.472028+00:00",
       "selected_result_id": "research:WAKE_20261126_063003_472028_r3",
-      "selected_candidate_id": "w04",
+      "selected_candidate_id": "w03",
       "candidate_count": 3
     },
     "mandatory_alerts": [
@@ -148,11 +148,34 @@
     ],
     "items": [
       {
+        "result_id": "research:WAKE_20261126_133003_126609_r3",
+        "source": "data/brain_wakes/WAKE_20261126_133003_126609_r3.json",
+        "role": "primary_research",
+        "ts": "2026-11-26T13:30:03.126609+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "admission": "applied",
+        "public_eligible": true,
+        "blocked_reason": null,
+        "publish_decision": "PUBLIER",
+        "summary": "Interprétation attribuée : Bank run USDS en pause au 26 nov : USDS supply $3,12 Mds, SparkLend TVL $3,13 Mds (ratio 1,00 recouplé), Sky TVL $2,93 Mds. La gouvernance traite la crise par mesures ad hoc… [suite dans la trace]\nLimites conservées : Prix USDS non vérifié directement-tracé (get_metric 'price' : 'not tracked') ; Vote d'urgence 25M : statut adopté/rejeté non confirmé (texte lu p.1-2, tronqué p.2) ; Proposition OTC 40-50M : calendrier et exécution non vérifiés ; Données stUSDS (montant piégé, taux exact, liquidité) non rouverifiées ce 26 nov ; valeurs du 24-25 nov ; Forums Sky consultés par recherche textuelle basique ; proposition cachée ou en discussion privée pourrait échapper ; Page Snapshot DeFi sky-mdao.eth non lisible (8 car.) ; statutr des votes non vérifié\nSuite : Vérifier d'ici 2026-11-30 : (1) Vote d'urgence 25M adopté/rejeté et exécuté ? Mme (2) USDS supply maintient-elle $3,0 Mds+ ? (3) SparkLend TVL maintient-il $3,0 Mds+ ? (4) Une proposition gouvernance ajuste-t-elle enfin le USDS Savings Rate ? (5) Décote stUSDS se réduit-elle ?",
+        "watch_count": 0,
+        "tokens_in": 880500,
+        "tokens_out": 9549,
+        "wall_s": 447.8,
+        "reasoning_correctness": "not_assessed",
+        "jev_materiality": 0.64,
+        "jev_candidate_id": "w04"
+      },
+      {
         "result_id": "research:WAKE_20261126_063003_472028_r3",
         "source": "data/brain_wakes/WAKE_20261126_063003_472028_r3.json",
         "role": "primary_research",
         "ts": "2026-11-26T06:30:03.472028+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -167,15 +190,15 @@
         "tokens_out": 10886,
         "wall_s": 424.6,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.68,
-        "jev_candidate_id": "w04"
+        "jev_materiality": 0.67,
+        "jev_candidate_id": "w03"
       },
       {
         "result_id": "research:WAKE_20261125_133003_211146_r3",
         "source": "data/brain_wakes/WAKE_20261125_133003_211146_r3.json",
         "role": "primary_research",
         "ts": "2026-11-25T13:30:03.211146+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -190,15 +213,15 @@
         "tokens_out": 17997,
         "wall_s": 814.2,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.75,
-        "jev_candidate_id": "w03"
+        "jev_materiality": 0.73,
+        "jev_candidate_id": "w02"
       },
       {
         "result_id": "research:WAKE_20261125_063002_823747_r3",
         "source": "data/brain_wakes/WAKE_20261125_063002_823747_r3.json",
         "role": "primary_research",
         "ts": "2026-11-25T06:30:02.823747+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -219,7 +242,7 @@
         "source": "data/brain_wakes/WAKE_20261124_133003_238570_r3.json",
         "role": "primary_research",
         "ts": "2026-11-24T13:30:03.238570+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -234,15 +257,15 @@
         "tokens_out": 10940,
         "wall_s": 918.8,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.82,
-        "jev_candidate_id": "w02"
+        "jev_materiality": 0.78,
+        "jev_candidate_id": "w01"
       },
       {
         "result_id": "research:WAKE_20261124_063003_432372_r3",
         "source": "data/brain_wakes/WAKE_20261124_063003_432372_r3.json",
         "role": "primary_research",
         "ts": "2026-11-24T06:30:03.432372+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -263,7 +286,7 @@
         "source": "data/brain_wakes/WAKE_20261123_133003_350724_r3.json",
         "role": "primary_research",
         "ts": "2026-11-23T13:30:03.350724+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -284,7 +307,7 @@
         "source": "data/brain_wakes/WAKE_20261123_063003_488842_r3.json",
         "role": "primary_research",
         "ts": "2026-11-23T06:30:03.488842+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -299,15 +322,15 @@
         "tokens_out": 12003,
         "wall_s": 299.4,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.59,
-        "jev_candidate_id": "w01"
+        "jev_materiality": 0.63,
+        "jev_candidate_id": "w00"
       },
       {
         "result_id": "research:WAKE_20261122_133003_055343_r3",
         "source": "data/brain_wakes/WAKE_20261122_133003_055343_r3.json",
         "role": "primary_research",
         "ts": "2026-11-22T13:30:03.055343+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -328,7 +351,7 @@
         "source": "data/brain_wakes/WAKE_20261122_063002_977952_r3.json",
         "role": "primary_research",
         "ts": "2026-11-22T06:30:02.977952+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -349,7 +372,7 @@
         "source": "data/brain_wakes/WAKE_20261121_133003_434497_r3.json",
         "role": "primary_research",
         "ts": "2026-11-21T13:30:03.434497+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -370,7 +393,7 @@
         "source": "data/brain_wakes/WAKE_20261121_063003_288884_r3.json",
         "role": "primary_research",
         "ts": "2026-11-21T06:30:03.288884+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -391,7 +414,7 @@
         "source": "data/brain_wakes/WAKE_20261120_133003_327379_r3.json",
         "role": "primary_research",
         "ts": "2026-11-20T13:30:03.327379+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -412,7 +435,7 @@
         "source": "data/brain_wakes/WAKE_20261120_063003_714703_r3.json",
         "role": "primary_research",
         "ts": "2026-11-20T06:30:03.714703+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -427,37 +450,13 @@
         "tokens_out": 10707,
         "wall_s": 134.2,
         "reasoning_correctness": "not_assessed"
-      },
-      {
-        "result_id": "research:WAKE_20261119_133002_960499_r3",
-        "source": "data/brain_wakes/WAKE_20261119_133002_960499_r3.json",
-        "role": "primary_research",
-        "ts": "2026-11-19T13:30:02.960499+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "ok",
-        "health": "ok",
-        "admission": "applied",
-        "public_eligible": true,
-        "blocked_reason": null,
-        "publish_decision": "PUBLIER",
-        "summary": "Interprétation attribuée : Diagnostic révisé au 19 nov 2026, 13h30 UTC. La fuite de capital USDS s'est ralentie (−2,6 % 7j à 5,23 Md$, reçu 3), convergeant avec le marché (USDC −1,8 %, USDT −0,3 %). M… [suite dans la trace]\nLimites conservées : Article CoinDesk sur hack nord-coréen (article:17596) : résumé et snippet lus, texte complet inaccessible (HTTP 429) — détails de la réserve touchée, proportion de l'offre concernée, réponse Sky non vérifiés ; Forums Sky.money et MakerDAO consultés par pages d'accueil uniquement ; proposition sur savings rate ou réaction au hack en discussion privée ou catégorie non listée pourrait échapper ; Statut de vote/exécution de la proposition BA Labs (12 nov, fermeture Core Vaults) non vérifié — URL forum 404 lors de vérifications antérieures ; Rendements effectifs concurrents sur Aave/Morpho non mesurés directement (endpoints llama.fi/yields inaccessibles) ; whale_flow indisponible pour Sky/USDS : destination exacte des sorties non tracée ; Narrative Sky 3j à très faible base (2 événements, reçu 22), ne renseigne pas sur l'activité gouvernance\nSuite : Vérifier d'ici 2026-11-25 : (1) Réponse officielle de Sky au hack nord-coréen et proposition de gouvernance associée ? (2) USDS supply maintient-elle 5 Md$+ ou replonge sous ce seuil ? (3) SparkLend TVL franchit-il 3,5 Md$ ? (4) Une proposition Sky ajuste-t-elle le USDS Savings Rate ? (5) La proposition BA Labs a-t-elle été votée/exécutée ?",
-        "watch_count": 0,
-        "tokens_in": 839724,
-        "tokens_out": 11955,
-        "wall_s": 172.9,
-        "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.56,
-        "jev_candidate_id": "w00"
       }
     ]
   },
   "glm_jobs": {
     "job_count": 14,
     "health_counts": {
-      "error": 1,
-      "healthy": 5,
+      "healthy": 6,
       "unknown_coverage": 7,
       "empty": 1
     },
@@ -467,10 +466,10 @@
         "script": "research",
         "cadence_h": 12,
         "running": true,
-        "error": true,
-        "empty": null,
+        "error": false,
+        "empty": false,
         "measurable": true,
-        "log_age_h": 6.1
+        "log_age_h": 6.0
       },
       {
         "name": "greffier",
@@ -500,7 +499,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 73.4
+        "log_age_h": 97.4
       },
       {
         "name": "amont des theses",
