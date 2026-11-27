@@ -1,7 +1,7 @@
 {
   "schema_version": "jev-agent-shadow-1",
   "mode": "shadow_only_no_production_authority",
-  "generated_at": "2026-11-27T11:55:13.402727+00:00",
+  "generated_at": "2026-11-27T15:07:02.088814+00:00",
   "publication": {
     "profile": "public_redacted_v1",
     "redaction_strategy": "explicit_allow_list"
@@ -24,8 +24,8 @@
     "model": "kimi-k2-6",
     "recent_count": 14,
     "health_counts": {
-      "failed": 8,
-      "ok": 5,
+      "ok": 6,
+      "failed": 7,
       "blocked": 1
     },
     "selection": {
@@ -132,27 +132,38 @@
         "tokens_out": 13659,
         "wall_s": 258.0,
         "reason": "Research not admitted for effects"
-      },
-      {
-        "must_show": true,
-        "type": "kimi_wake_failure",
-        "ts": "2026-11-20T13:30:03.327379+00:00",
-        "label": "ouverture US",
-        "status": "memory_conflict_or_error",
-        "health": "failed",
-        "tokens_in": 766934,
-        "tokens_out": 14643,
-        "wall_s": 283.4,
-        "reason": "Research not admitted for effects"
       }
     ],
     "items": [
+      {
+        "result_id": "research:WAKE_20261127_133003_138044_r3",
+        "source": "data/brain_wakes/WAKE_20261127_133003_138044_r3.json",
+        "role": "primary_research",
+        "ts": "2026-11-27T13:30:03.138044+00:00",
+        "age_h": 1.6,
+        "label": "ouverture US",
+        "model": "kimi-k2-6",
+        "status": "ok",
+        "health": "ok",
+        "admission": "applied",
+        "public_eligible": true,
+        "blocked_reason": null,
+        "publish_decision": "PUBLIER",
+        "summary": "Interprétation attribuée : Bank run USDS en pause technique au 27 nov 2026 : supply 3,12 Mds USDS (stable 48 h, −0,8 % 7j), SparkLend 3,20 Mds (+2,1 % 1j, ratio recouplé ~1,02), Sky Lending 2,95 Mds. … [suite dans la trace]\nLimites conservées : Prix USDS non vérifié directement (get_metric 'price' : 'not tracked') ; Statut du vote d’urgence 25 M USDS non confirmé (texte forum tronqué, Snapshot non lisible) ; Forums Sky/MakerDAO consultés par recherche textuelle basique ; proposition sur savings rate en discussion privée ou catégorie non listée pourrait échapper ; Delta +40 % 7j sur Sky Lending TVL est probablement un artefact technique (point bas post-hack) ; vérification non faite ; Proposition BA Labs (12 nov, fermeture Core Burrows) : statut non vérifié ; Données stUSDS (montant piégé, taux exact, décote) non rouverifiées ce 27 nov ; valeurs du 24-25 nov ; Rendements effectifs concurrents sur Aave/Morpho non vérifiés directement ; Page Snapshot sky-mdaol.eth non lisible (retourne 60 octets JSON) ; aucune proposition listation\nSuite : Vérifier d’ici 2026-12-04 : (1) Vote d’urgence 25 M adopté/rejeté et exécuté ? (2) USDS supply maintient-elle 3,0 Mds+ ? (3) Une proposition gouvernance ajuste-t-elle enfin le USDS Savings Rate ? (4) SparkLend TVL maintient-il 3,0 Mds+ ? (5) La décote stUSDS se réduit-elle ?",
+        "watch_count": 0,
+        "tokens_in": 897328,
+        "tokens_out": 11253,
+        "wall_s": 500.8,
+        "reasoning_correctness": "not_assessed",
+        "jev_materiality": 0.59,
+        "jev_candidate_id": "w05"
+      },
       {
         "result_id": "research:WAKE_20261127_063003_985711_r3",
         "source": "data/brain_wakes/WAKE_20261127_063003_985711_r3.json",
         "role": "primary_research",
         "ts": "2026-11-27T06:30:03.985711+00:00",
-        "age_h": 5.4,
+        "age_h": 8.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -173,7 +184,7 @@
         "source": "data/brain_wakes/WAKE_20261126_133003_126609_r3.json",
         "role": "primary_research",
         "ts": "2026-11-26T13:30:03.126609+00:00",
-        "age_h": 22.4,
+        "age_h": 25.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -188,7 +199,7 @@
         "tokens_out": 9549,
         "wall_s": 447.8,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.63,
+        "jev_materiality": 0.6,
         "jev_candidate_id": "w04"
       },
       {
@@ -196,7 +207,7 @@
         "source": "data/brain_wakes/WAKE_20261126_063003_472028_r3.json",
         "role": "primary_research",
         "ts": "2026-11-26T06:30:03.472028+00:00",
-        "age_h": 29.4,
+        "age_h": 32.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -211,7 +222,7 @@
         "tokens_out": 10886,
         "wall_s": 424.6,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.67,
+        "jev_materiality": 0.65,
         "jev_candidate_id": "w03"
       },
       {
@@ -219,7 +230,7 @@
         "source": "data/brain_wakes/WAKE_20261125_133003_211146_r3.json",
         "role": "primary_research",
         "ts": "2026-11-25T13:30:03.211146+00:00",
-        "age_h": 46.4,
+        "age_h": 49.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -234,7 +245,7 @@
         "tokens_out": 17997,
         "wall_s": 814.2,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.71,
+        "jev_materiality": 0.7,
         "jev_candidate_id": "w02"
       },
       {
@@ -242,7 +253,7 @@
         "source": "data/brain_wakes/WAKE_20261125_063002_823747_r3.json",
         "role": "primary_research",
         "ts": "2026-11-25T06:30:02.823747+00:00",
-        "age_h": 53.4,
+        "age_h": 56.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -263,7 +274,7 @@
         "source": "data/brain_wakes/WAKE_20261124_133003_238570_r3.json",
         "role": "primary_research",
         "ts": "2026-11-24T13:30:03.238570+00:00",
-        "age_h": 70.4,
+        "age_h": 73.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -278,7 +289,7 @@
         "tokens_out": 10940,
         "wall_s": 918.8,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.77,
+        "jev_materiality": 0.74,
         "jev_candidate_id": "w01"
       },
       {
@@ -286,7 +297,7 @@
         "source": "data/brain_wakes/WAKE_20261124_063003_432372_r3.json",
         "role": "primary_research",
         "ts": "2026-11-24T06:30:03.432372+00:00",
-        "age_h": 77.4,
+        "age_h": 80.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -307,7 +318,7 @@
         "source": "data/brain_wakes/WAKE_20261123_133003_350724_r3.json",
         "role": "primary_research",
         "ts": "2026-11-23T13:30:03.350724+00:00",
-        "age_h": 94.4,
+        "age_h": 97.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -328,7 +339,7 @@
         "source": "data/brain_wakes/WAKE_20261123_063003_488842_r3.json",
         "role": "primary_research",
         "ts": "2026-11-23T06:30:03.488842+00:00",
-        "age_h": 101.4,
+        "age_h": 104.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -343,7 +354,7 @@
         "tokens_out": 12003,
         "wall_s": 299.4,
         "reasoning_correctness": "not_assessed",
-        "jev_materiality": 0.62,
+        "jev_materiality": 0.58,
         "jev_candidate_id": "w00"
       },
       {
@@ -351,7 +362,7 @@
         "source": "data/brain_wakes/WAKE_20261122_133003_055343_r3.json",
         "role": "primary_research",
         "ts": "2026-11-22T13:30:03.055343+00:00",
-        "age_h": 118.4,
+        "age_h": 121.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "ok",
@@ -372,7 +383,7 @@
         "source": "data/brain_wakes/WAKE_20261122_063002_977952_r3.json",
         "role": "primary_research",
         "ts": "2026-11-22T06:30:02.977952+00:00",
-        "age_h": 125.4,
+        "age_h": 128.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -393,7 +404,7 @@
         "source": "data/brain_wakes/WAKE_20261121_133003_434497_r3.json",
         "role": "primary_research",
         "ts": "2026-11-21T13:30:03.434497+00:00",
-        "age_h": 142.4,
+        "age_h": 145.6,
         "label": "ouverture US",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -414,7 +425,7 @@
         "source": "data/brain_wakes/WAKE_20261121_063003_288884_r3.json",
         "role": "primary_research",
         "ts": "2026-11-21T06:30:03.288884+00:00",
-        "age_h": 149.4,
+        "age_h": 152.6,
         "label": "matin Europe",
         "model": "kimi-k2-6",
         "status": "memory_conflict_or_error",
@@ -429,34 +440,14 @@
         "tokens_out": 13659,
         "wall_s": 258.0,
         "reasoning_correctness": "not_assessed"
-      },
-      {
-        "result_id": "research:WAKE_20261120_133003_327379_r3",
-        "source": "data/brain_wakes/WAKE_20261120_133003_327379_r3.json",
-        "role": "primary_research",
-        "ts": "2026-11-20T13:30:03.327379+00:00",
-        "age_h": 166.4,
-        "label": "ouverture US",
-        "model": "kimi-k2-6",
-        "status": "memory_conflict_or_error",
-        "health": "failed",
-        "admission": "rejected",
-        "public_eligible": false,
-        "blocked_reason": "Research not admitted for effects",
-        "publish_decision": null,
-        "summary": "",
-        "watch_count": 0,
-        "tokens_in": 766934,
-        "tokens_out": 14643,
-        "wall_s": 283.4,
-        "reasoning_correctness": "not_assessed"
       }
     ]
   },
   "glm_jobs": {
     "job_count": 14,
     "health_counts": {
-      "healthy": 6,
+      "error": 1,
+      "healthy": 5,
       "unknown_coverage": 7,
       "empty": 1
     },
@@ -466,8 +457,8 @@
         "script": "research",
         "cadence_h": 12,
         "running": true,
-        "error": false,
-        "empty": false,
+        "error": true,
+        "empty": null,
         "measurable": true,
         "log_age_h": 6.0
       },
@@ -499,7 +490,7 @@
         "error": false,
         "empty": null,
         "measurable": false,
-        "log_age_h": 97.4
+        "log_age_h": 121.4
       },
       {
         "name": "amont des theses",
